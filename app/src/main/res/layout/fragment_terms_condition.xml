@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="50dp"
+    android:paddingLeft="50dp"
+    tools:context=".Privacy.TermsConditionFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="TERMS AND CONDITION"
+        android:textSize="30dp"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/btnAcceptTerm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:text="Accept"
+        android:textSize="20sp"
+        android:background="@drawable/btn_round"
+        app:backgroundTint="@color/safeplace_mediumgreen" />
+
+    <Button
+        android:id="@+id/btnDeclineTerm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:text="Not Now"
+        android:textSize="20sp"
+        android:background="@drawable/btn_round"
+        app:backgroundTint="@color/colorTextSecondary" />
+
+</RelativeLayout>

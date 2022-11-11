@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SafePlace</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="congratulation">CONGRATULATION</string>
+    <string name="OpenDrawer">Open Navigation Drawer</string>
+    <string name="CloseDrawer">Closed Navigation Drawer</string>
+
+
+</resources>

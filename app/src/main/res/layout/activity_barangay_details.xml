@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BarangaysMenuList.BarangayDetailsActivity">
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginBottom="20dp"
+            android:id="@+id/barangayActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <ImageView
+                android:id="@+id/btnBarangayDetailsBack"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:id="@+id/titleBarangay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="30dp"
+                android:text="BARANGAY"
+                />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtDetailBarangayNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/barangayActionBar"
+            android:layout_marginBottom="20dp"
+            />
+
+        <ImageView
+            android:id="@+id/imgDetailsBarangay"
+            android:layout_width="350dp"
+            android:layout_height="180dp"
+            android:src="#FDD835"
+            android:layout_below="@+id/txtDetailBarangayNameTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:id="@+id/txtDetailBarangayCaptionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Barangay Name"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_barangay"
+            android:layout_below="@+id/imgDetailsBarangay"
+            android:layout_marginTop="20dp"
+            android:layout_alignLeft="@+id/imgDetailsBarangay"
+            android:drawablePadding="10dp"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailBarangayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailBarangayCaptionName"
+            android:layout_below="@+id/txtDetailBarangayCaptionName"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailCaptionBarangayCaptain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Barangay Captain"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_director"
+            android:layout_below="@+id/txtDetailBarangayName"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailBarangayName"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailBarangayCaptain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailCaptionBarangayCaptain"
+            android:layout_below="@+id/txtDetailCaptionBarangayCaptain"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailBarangayCaptionLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_location"
+            android:layout_below="@+id/txtDetailBarangayCaptain"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailBarangayCaptain"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailBarangayLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailBarangayCaptionLocation"
+            android:layout_below="@+id/txtDetailBarangayCaptionLocation"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailBarangayCaptionSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Barangay Working Hours"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_clock"
+            android:layout_below="@+id/txtDetailBarangayLocation"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailBarangayLocation"
+            />
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailBarangaySchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailBarangayCaptionSchedule"
+            android:layout_below="@+id/txtDetailBarangayCaptionSchedule"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailBarangayCaptionContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Details"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_phone"
+            android:layout_below="@+id/txtDetailBarangaySchedule"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailBarangaySchedule"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailBarangayContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailBarangayCaptionContact"
+            android:layout_below="@+id/txtDetailBarangayCaptionContact"
+            android:layout_marginBottom="10dp"
+            />
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

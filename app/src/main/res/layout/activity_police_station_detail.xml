@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PoliceStationMenuList.PoliceStationDetailActivity">
+
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginBottom="20dp"
+            android:id="@+id/policeStationActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <ImageView
+                android:id="@+id/btnPoliceStationDetailBack"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:id="@+id/titleDetailPoliceStation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="30dp"
+                android:text="POLICE STATION"
+                />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/txtDetailPoliceStationNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/policeStationActionBar"
+            android:layout_marginBottom="20dp"
+            />
+
+        <ImageView
+            android:id="@+id/imgDetailsPoliceStation"
+            android:layout_width="350dp"
+            android:layout_height="180dp"
+            android:src="@color/safeplace_btnblue"
+            android:layout_below="@+id/txtDetailPoliceStationNameTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/txtDetailPoliceStationCaptionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Police Station Name"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_police"
+            android:layout_below="@+id/imgDetailsPoliceStation"
+            android:layout_marginTop="20dp"
+            android:layout_alignLeft="@+id/imgDetailsPoliceStation"
+            android:drawablePadding="10dp"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailPoliceStationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionName"
+            android:layout_below="@+id/txtDetailPoliceStationCaptionName"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailPoliceStationCaptionCommander"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Police Station Commander"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_police"
+            android:layout_below="@+id/txtDetailPoliceStationName"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationName"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailPoliceStationCommander"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionCommander"
+            android:layout_below="@+id/txtDetailPoliceStationCaptionCommander"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailPoliceStationCaptionLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_location"
+            android:layout_below="@+id/txtDetailPoliceStationCommander"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationCommander"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailPoliceStationLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionLocation"
+            android:layout_below="@+id/txtDetailPoliceStationCaptionLocation"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailPoliceStationCaptionSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schedule"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_clock"
+            android:layout_below="@+id/txtDetailPoliceStationLocation"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationLocation"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailPoliceStationSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionSchedule"
+            android:layout_below="@+id/txtDetailPoliceStationCaptionSchedule"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailPoliceStationCaptionWebsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Details"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_phone"
+            android:layout_below="@+id/txtDetailPoliceStationSchedule"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationSchedule"
+            />
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailPoliceStationWebsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
+            android:layout_below="@+id/txtDetailPoliceStationCaptionWebsite"
+            android:layout_marginBottom="10dp"
+            />
+
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

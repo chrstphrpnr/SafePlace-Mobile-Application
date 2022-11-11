@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HospitalMenuList.HospitalDetailActivity">
+    />
+
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginBottom="20dp"
+            android:id="@+id/hospitalActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <ImageView
+                android:id="@+id/btnHospitalBack"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:id="@+id/titleHospital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="30dp"
+                android:text="HOSPITALS"
+                />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/txtDetailHospitalNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/hospitalActionBar"
+            android:layout_marginBottom="20dp"
+            />
+
+
+        <ImageView
+            android:id="@+id/imgDetailsHospital"
+            android:layout_width="350dp"
+            android:layout_height="180dp"
+            android:src="@color/safeplace_mediumgreen"
+            android:layout_below="@+id/txtDetailHospitalNameTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:id="@+id/txtDetailHospitalCaptionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hospital Name"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_hospital"
+            android:layout_below="@+id/imgDetailsHospital"
+            android:layout_marginTop="20dp"
+            android:layout_alignLeft="@+id/imgDetailsHospital"
+            android:drawablePadding="10dp"
+            />
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailHospitalName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalCaptionName"
+            android:layout_below="@+id/txtDetailHospitalCaptionName"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailHospitalCaptionType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hospital Type"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_hospital"
+            android:layout_below="@+id/txtDetailHospitalName"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/imgDetailsHospital"
+            />
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailHospitalType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalCaptionType"
+            android:layout_below="@+id/txtDetailHospitalCaptionType"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailHospitalCaptionDirector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hospital Director"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_director"
+            android:layout_below="@+id/txtDetailHospitalType"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalType"
+            />
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailHospitalDirector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalCaptionDirector"
+            android:layout_below="@+id/txtDetailHospitalCaptionDirector"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailHospitalCaptionLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_location"
+            android:layout_below="@+id/txtDetailHospitalDirector"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalDirector"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailHospitalLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalCaptionLocation"
+            android:layout_below="@+id/txtDetailHospitalCaptionLocation"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailHospitalCaptionSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schedule"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_clock"
+            android:layout_below="@+id/txtDetailHospitalLocation"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalLocation"
+            />
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailHospitalSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalCaptionSchedule"
+            android:layout_below="@+id/txtDetailHospitalCaptionSchedule"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:drawablePadding="10dp"
+            android:id="@+id/txtDetailHospitalCaptionWebsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Details"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_phone"
+            android:layout_below="@+id/txtDetailHospitalSchedule"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalSchedule"
+            />
+
+1
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtDetailHospitalWebsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            android:textSize="20dp"
+            android:layout_alignLeft="@+id/txtDetailHospitalCaptionWebsite"
+            android:layout_below="@+id/txtDetailHospitalCaptionWebsite"
+            android:layout_marginBottom="10dp"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+
+</ScrollView>
