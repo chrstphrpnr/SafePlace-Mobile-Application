@@ -178,7 +178,6 @@ public class SignInFragment extends Fragment {
                         editor.putString("token",jsonObject.getString("token"));
 
                         editor.putInt("id",object.getInt("id"));
-                        editor.putString("email",object.getString("email"));
 
                         editor.putString("fname",object.getString("fname"));
                         editor.putString("mname",object.getString("mname"));

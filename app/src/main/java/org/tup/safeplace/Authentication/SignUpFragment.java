@@ -292,10 +292,11 @@ public class SignUpFragment extends Fragment {
 
                         editor.putInt("id",object.getInt("id"));
 
+                        editor.putString("fname",object.getString("fname"));
+                        editor.putString("mname",object.getString("mname"));
+                        editor.putString("lname",object.getString("lname"));
                         editor.putString("email",object.getString("email"));
-                        editor.putString("fname",object.getString("email"));
-                        editor.putString("mname",object.getString("email"));
-                        editor.putString("lname",object.getString("email"));
+
                         editor.putString("status",object.getString("status"));
 
 
