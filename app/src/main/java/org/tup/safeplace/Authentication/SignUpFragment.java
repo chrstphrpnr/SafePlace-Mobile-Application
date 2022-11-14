@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tup.safeplace.Constants.API;
@@ -279,16 +280,27 @@ public class SignUpFragment extends Fragment {
         StringRequest request = new StringRequest(Request.Method.POST, API.register_user, response -> {
             //we get response if connection success
             try {
-                JSONObject object = new JSONObject(response);
-                if(object.getBoolean("success")){
-                    JSONObject user = object.getJSONObject("user");
-                    //Make Shared preference user
-                    SharedPreferences userPref = getActivity().getApplicationContext().getSharedPreferences("user",getContext().MODE_PRIVATE);
-                    SharedPreferences.Editor editor = userPref.edit();
-                    editor.putString("token",object.getString("token"));
-                    editor.putString("name",user.getString("name"));
-                    editor.putString("img",user.getString("img"));
-                    editor.apply();
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray jsonArray = jsonObject.getJSONArray("user");
+                if(jsonObject.getBoolean("success")){
+                    for (int i = 0; i <jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);                    //Make Shared preference user
+                        SharedPreferences userPref = getActivity().getApplicationContext().getSharedPreferences("user",getContext().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = userPref.edit();
+
+                        editor.putString("token",jsonObject.getString("token"));
+
+                        editor.putInt("id",object.getInt("id"));
+
+                        editor.putString("email",object.getString("email"));
+                        editor.putString("fname",object.getString("email"));
+                        editor.putString("mname",object.getString("email"));
+                        editor.putString("lname",object.getString("email"));
+                        editor.putString("status",object.getString("status"));
+
+
+                        editor.apply();
+                    }
 
                     //if Success
                     startActivity(new Intent(((AuthenticationActivity)getContext()), UserInfoRegisterActivity.class));
