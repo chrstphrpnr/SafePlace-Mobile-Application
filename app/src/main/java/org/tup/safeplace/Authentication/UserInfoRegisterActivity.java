@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +19,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +52,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,13 +64,18 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
     private TextInputLayout layoutAddress, layoutBirthDate, layoutGender, layoutContact;
     private EditText txtAddress, txtBirthDate, txtGender, txtContact;
     private TextView txtSelectPhoto;
-    private Button btnContinue;
+    private Button btnContinue,btnDatePicker;
     private CircleImageView circleImageView;
     ActivityResultLauncher<String> mTakePhoto;
     private Bitmap bitmap = null;
     private SharedPreferences userPref;
     private ProgressDialog progressDialog;
     String encodedImage;
+    Spinner spinnerGender;
+    String[] gender = {"Male","Female"};
+
+    private DatePickerDialog datePickerDialog;
+
 
 
     @Override
@@ -69,28 +83,26 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_register);
         init();
+        initDatePicker();
     }
 
     private void init(){
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         layoutAddress = findViewById(R.id.txtLayoutAddressUserInfo);
-        layoutBirthDate = findViewById(R.id.txtLayoutBirthDateUserInfo);
+//        layoutBirthDate = findViewById(R.id.txtLayoutBirthDateUserInfo);
         layoutGender = findViewById(R.id.txtLayoutGenderUserInfo);
         layoutContact = findViewById(R.id.txtLayoutContactUserInfo);
 
         txtAddress = findViewById(R.id.txtAddressUserInfo);
-        txtBirthDate = findViewById(R.id.txtBirthDateUserInfo);
+        btnDatePicker = findViewById(R.id.btnDatePicker);
         txtGender = findViewById(R.id.txtGenderUserInfo);
         txtContact = findViewById(R.id.txtContactUserInfo);
-
         txtSelectPhoto = findViewById(R.id.txtSelectPhoto);
 
         btnContinue = findViewById(R.id.btnContinueUserInfo);
 
         circleImageView = findViewById(R.id.imgProfileUserInfo);
-
-
 
         txtSelectPhoto.setOnClickListener(v->{
             Dexter.withContext(UserInfoRegisterActivity.this)
@@ -115,6 +127,7 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
                     }).check();
         });
 
+        btnDatePicker.setText(getTodaysDate());
 
         btnContinue.setOnClickListener(v->{
             if(validate()){
@@ -123,6 +136,44 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
         });
 
     }
+
+    private String getTodaysDate(){
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(year,month,day);
+    }
+
+    private void initDatePicker(){
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(year,month,day);
+                btnDatePicker.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+        datePickerDialog = new DatePickerDialog(this,style,dateSetListener,year,month,day);
+    }
+
+    private String makeDateString(int year, int month, int day) {
+        return year +"-" + month + "-" + day ;
+    }
+
+    public void openDatePicker(View view) {
+        datePickerDialog.show();
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -153,11 +204,12 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        if (txtBirthDate.getText().toString().isEmpty()){
-            layoutBirthDate.setErrorEnabled(true);
-            layoutBirthDate.setError("BirthDate is Required");
+        if (txtGender.getText().toString().isEmpty()){
+            layoutGender.setErrorEnabled(true);
+            layoutGender.setError("Gender is Required");
             return false;
         }
+
 
         if (txtContact.getText().toString().isEmpty()){
             layoutContact.setErrorEnabled(true);
@@ -165,18 +217,13 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        if (txtGender.getText().toString().isEmpty()){
-            layoutGender.setErrorEnabled(true);
-            layoutGender.setError("Gender is Required");
-            return false;
-        }
 
         return true;
     }
 
     private void saveUserInfo(){
         String address = txtAddress.getText().toString().trim();
-        String birthdate = txtBirthDate.getText().toString().trim();
+        String birthdate = btnDatePicker.getText().toString().trim();
         String gender = txtGender.getText().toString().trim();
         String contact = txtContact.getText().toString().trim();
 
@@ -189,6 +236,7 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
                     editor.putString("img",object.getString("img"));
                     editor.putBoolean("isLoggedIn",true);
                     editor.apply();
+
                     startActivity(new Intent(UserInfoRegisterActivity.this,SafePlaceHomeScreenActivity.class));
                     finish();
                 }
@@ -235,14 +283,6 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
         byte [] imageBytes = byteArrayOutputStream.toByteArray();
         encodedImage = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }
-
-
-
-
-
-
-
-
 
 
 
