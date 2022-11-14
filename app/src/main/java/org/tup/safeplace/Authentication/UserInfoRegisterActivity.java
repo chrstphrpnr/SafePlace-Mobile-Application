@@ -42,6 +42,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tup.safeplace.Constants.API;
@@ -230,12 +231,25 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, API.save_user_info, response->{
 
             try {
-                JSONObject object = new JSONObject(response);
-                if(object.getBoolean("success")){
-                    SharedPreferences.Editor editor = userPref.edit();
-                    editor.putString("img",object.getString("img"));
-                    editor.putBoolean("isLoggedIn",true);
-                    editor.apply();
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray jsonArray = jsonObject.getJSONArray("user");
+                if(jsonObject.getBoolean("success")){
+                    for (int i = 0; i <jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+
+                        SharedPreferences.Editor editor = userPref.edit();
+                        editor.putString("img",object.getString("img"));
+
+                        editor.putString("address",object.getString("address"));
+                        editor.putString("birthdate",object.getString("birthdate"));
+                        editor.putString("gender",object.getString("gender"));
+                        editor.putString("contact",object.getString("contact"));
+
+
+                        editor.putBoolean("isLoggedIn",true);
+                        editor.apply();
+                    }
+
 
                     startActivity(new Intent(UserInfoRegisterActivity.this,SafePlaceHomeScreenActivity.class));
                     finish();
