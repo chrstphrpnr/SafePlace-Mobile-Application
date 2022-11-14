@@ -44,7 +44,7 @@
 
 
     <TextView
-        android:id="@+id/txtDrawableUserName"
+        android:id="@+id/txtUserNameDrawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/profileCardView"
@@ -58,7 +58,7 @@
 
     <TextView
         android:id="@+id/txtDrawableUserEmail"
-        android:layout_below="@+id/txtDrawableUserName"
+        android:layout_below="@+id/txtUserNameDrawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/profileCardView"

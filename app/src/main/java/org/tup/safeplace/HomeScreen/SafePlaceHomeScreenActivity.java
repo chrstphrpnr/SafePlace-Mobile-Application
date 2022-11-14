@@ -10,9 +10,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -38,6 +41,11 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
+    private SharedPreferences userPref;
+
+    private TextView txtUserName,txtUserEmail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +93,35 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 return false;
             }
         });
+        userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
+        View header = navigationView.getHeaderView(0);
+        txtUserName = header.findViewById(R.id.txtUserNameDrawer);
+        txtUserEmail = header.findViewById(R.id.txtDrawableUserEmail);
+
+        userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
+        String fname = userPref.getString("fname","");
+        String lname = userPref.getString("lname","");
+
+        String email = userPref.getString("email","");
+
+
+        if(fname != null || lname != null){
+            txtUserName.setText(fname + " " + lname);
+        }
+
+        if (email != null){
+            txtUserEmail.setText(email);
+        }
+
+        if (email.equals(null)){
+            txtUserEmail.setText("");
+        }
+
+        if (fname.equals(null)||lname.equals(null)){
+            txtUserEmail.setText("");
+        }
+
+
 
 
         pagerAdapter=new ScreenSlidePageAdapter(this);
