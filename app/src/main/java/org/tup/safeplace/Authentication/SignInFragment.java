@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tup.safeplace.Constants.API;
@@ -167,19 +168,35 @@ public class SignInFragment extends Fragment {
         StringRequest request = new StringRequest(Request.Method.POST, API.login_user, response -> {
             //we get response if connection success
             try {
-                JSONObject object = new JSONObject(response);
-                if(object.getBoolean("success")){
-                    JSONObject user = object.getJSONObject("user");
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray jsonArray = jsonObject.getJSONArray("user");
+                if(jsonObject.getBoolean("success")){
+                    for (int i = 0; i <jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        SharedPreferences userPref = getActivity().getApplicationContext().getSharedPreferences("user",getContext().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = userPref.edit();
+                        editor.putString("token",jsonObject.getString("token"));
 
-                    //Make Shared preference user
-                    SharedPreferences userPref = getActivity().getApplicationContext().getSharedPreferences("user",getContext().MODE_PRIVATE);
-                    SharedPreferences.Editor editor = userPref.edit();
-                    editor.putString("token",object.getString("token"));
-                    editor.putString("name",user.getString("name"));
-                    editor.putString("email",user.getString("email"));
-                    editor.putInt("id",user.getInt("id"));
-                    editor.putBoolean("isLoggedIn",true);
-                    editor.apply();
+                        editor.putInt("id",object.getInt("id"));
+                        editor.putString("email",object.getString("email"));
+
+                        editor.putString("fname",object.getString("fname"));
+                        editor.putString("mname",object.getString("mname"));
+                        editor.putString("lname",object.getString("lname"));
+                        editor.putString("gender",object.getString("gender"));
+                        editor.putString("birthdate",object.getString("birthdate"));
+                        editor.putString("address",object.getString("address"));
+                        editor.putString("contact",object.getString("contact"));
+                        editor.putString("email",object.getString("email"));
+                        editor.putString("status",object.getString("status"));
+
+                        editor.putString("img",object.getString("img"));
+
+                        editor.putBoolean("isLoggedIn",true);
+
+                        editor.apply();
+                    }
+
 
                     //if Success
                     startActivity(new Intent(((AuthenticationActivity)getContext()), SafePlaceHomeScreenActivity.class));

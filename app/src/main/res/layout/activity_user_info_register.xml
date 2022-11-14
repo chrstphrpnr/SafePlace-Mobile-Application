@@ -40,6 +40,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutAddressUserInfo"
         android:layout_marginBottom="20dp"
+        android:background="@color/transparent"
+        app:boxStrokeWidth="0dp"
         >
 
         <EditText
@@ -52,28 +54,36 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtLayoutBirthDateUserInfo"
-        android:layout_marginBottom="20dp"
-        >
 
-        <EditText
+
+        <Button
+            android:layout_marginBottom="20dp"
+            android:id="@+id/btnDatePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Birth Date"
-            android:id="@+id/txtBirthDateUserInfo"
-            android:inputType="date"
-            android:textSize="15sp"/>
+            android:background="#DFDFDF"
+            android:backgroundTint="#DFDFDF"
+            android:text="2022-10-22"
+            app:backgroundTint="#DFDFDF"
+            android:textColor="#5B5B5B"
+            android:textSize="17sp"
+            android:textAllCaps="false"
+            android:gravity="start"
+            android:layout_gravity="start"
+            style="@style/Widget.AppCompat.Spinner"
+            android:onClick="openDatePicker"
+            />
 
-    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutGenderUserInfo"
         android:layout_marginBottom="20dp"
+        app:boxStrokeWidth="0dp"
         >
 
         <EditText
@@ -84,6 +94,16 @@
             android:inputType="text"
             android:textSize="15sp"/>
 
+<!--        <Spinner-->
+<!--            android:id="@+id/spnrGender"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:spinnerMode="dropdown"-->
+<!--            android:popupBackground="#DFDFDF"-->
+<!--            />-->
+
+
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -91,6 +111,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutContactUserInfo"
         android:layout_marginBottom="20dp"
+        app:boxStrokeWidth="0dp"
         >
 
         <EditText
@@ -104,14 +125,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <Button
         android:id="@+id/btnContinueUserInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:text="Continue"
         android:textSize="20dp"
-        android:text="Continue"/>
+
+        app:backgroundTint="@color/safeplace_btnblue" />
 
 
 
