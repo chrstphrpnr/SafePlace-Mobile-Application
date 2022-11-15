@@ -8,39 +8,92 @@
     android:id="@+id/frameHospitalListContainer"
     >
 
-    <RelativeLayout
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
 
-        <ImageView
-            android:id="@+id/btnHospitalBack"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
-
-        <TextView
-            android:id="@+id/titleHospital"
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textSize="30dp"
-            android:text="HOSPITALS"
-            />
+            >
 
-        <ImageView
-            android:id="@+id/btnHospitalSearch"
-            android:src="@drawable/ic_search"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            <androidx.appcompat.widget.Toolbar
+                android:background="@color/white"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            />
+                <ImageView
+                    android:id="@+id/btnHospitalBack"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
 
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+
+
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HOSPITALS"
+                        android:textColor="@color/black"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    </LinearLayout>
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="16dp"-->
+<!--        >-->
+
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/titleHospital"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:textSize="30dp"-->
+<!--            android:text="HOSPITALS"-->
+<!--            />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/btnHospitalSearch"-->
+<!--            android:src="@drawable/ic_search"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_centerVertical="true"-->
+
+<!--            />-->
+
+<!--    </RelativeLayout>-->
 
 
 

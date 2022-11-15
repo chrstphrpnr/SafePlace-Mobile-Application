@@ -40,6 +40,7 @@ public class TermsConditionFragment extends Fragment {
             if (firstTimeLoad) {
                 Intent intent = new Intent(getActivity(), AuthenticationActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,6 +60,7 @@ public class TermsConditionFragment extends Fragment {
             boolean firstTimeLoad = prefs.getBoolean("first_time_load", true);
             if (!firstTimeLoad) {
                 Intent intent = new Intent(getActivity(), AuthenticationActivity.class);
+                getActivity().finish();
                 startActivity(intent);
             }
         } catch (Exception e) {
@@ -71,6 +73,7 @@ public class TermsConditionFragment extends Fragment {
             editor.commit();
             Intent intent = new Intent(getActivity(), AuthenticationActivity.class);
             startActivity(intent);
+            getActivity().finish();
         });
     }
 

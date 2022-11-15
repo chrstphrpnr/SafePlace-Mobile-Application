@@ -18,9 +18,6 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog dialog;
     private ProgressBar progressBar;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences userPref = getApplicationContext().getSharedPreferences("user",Context.MODE_PRIVATE);
-                // TODO: change true to false after implementing database
                 boolean isLoggedIn = userPref.getBoolean("isLoggedIn",false);
 
                 if (isLoggedIn){
@@ -42,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
                 else {
                     startActivity(new Intent(MainActivity.this,OnboardingActivity.class));
+                    finish();
                 }
             }
         },1000);

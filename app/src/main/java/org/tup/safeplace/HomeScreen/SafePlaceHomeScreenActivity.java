@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,10 +39,14 @@ import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Hospital.HospitalCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
 import org.tup.safeplace.R;
+import org.tup.safeplace.UserAccountActivity;
+
 import androidx.appcompat.widget.Toolbar;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class SafePlaceHomeScreenActivity extends AppCompatActivity {
@@ -62,12 +67,17 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     private TextView txtUserName,txtUserEmail;
 
+    private CircleImageView imgProfile;
+    private String imgUrl = "";
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_safe_place_home_screen);
+
         viewPager2 = findViewById(R.id.pager);
         bottomNavigationView = findViewById(R.id.bottomNav);
         drawerLayout = findViewById(R.id.frameHomeContainer);
@@ -78,14 +88,16 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
         txtUserName = header.findViewById(R.id.txtUserNameDrawer);
         txtUserEmail = header.findViewById(R.id.txtDrawableUserEmail);
+        imgProfile = header.findViewById(R.id.userProfileImage);
 
+
+
+        //Drawable Drawer and Toolbar
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.OpenDrawer, R.string.CloseDrawer);
         drawerLayout.addDrawerListener(toggle);
-
         toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -94,6 +106,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
                 if(id == R.id.AccountMenu){
                     Toast.makeText(SafePlaceHomeScreenActivity.this, "Account", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
                 }
                 else if(id == R.id.VerificationMenu){
                     Toast.makeText(SafePlaceHomeScreenActivity.this, "Verification", Toast.LENGTH_SHORT).show();
@@ -116,12 +129,15 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             }
         });
 
-
+        //Slide PageAdapter
         pagerAdapter=new ScreenSlidePageAdapter(this);
         viewPager2.setAdapter(pagerAdapter);
         viewPager2.setCurrentItem(1,true);
+
+        //Set Default Bottom Navigation Menu to HomeMenu
         bottomNavigationView.getMenu().findItem(R.id.homeMenu).setChecked(true);
 
+        //Highlight which icon when viewpager is changed
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -139,6 +155,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             }
         });
 
+        //Bottom Navigation Changing Page when bottom navigation icon is changed
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -159,6 +176,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
+    //Volley Get Method for Display of UserInformation in Drawable Drawer
     private void getData() {
 
         StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
@@ -171,6 +189,9 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                         JSONObject object = jsonArray.getJSONObject(i);
                         txtUserName.setText(object.getString("fname")+" "+object.getString("lname"));
                         txtUserEmail.setText(object.getString("email"));
+                        Picasso.get().load(API.URL+object.getString("img")).resize(500,0).centerCrop().into(imgProfile);
+//                        imgUrl = API.URL+"storage/images/"+object.getString("img");
+
                     }
                 }
             } catch (JSONException e) {
@@ -196,12 +217,14 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
+    //OnResume Method for getData Method
     @Override
     protected void onResume() {
         super.onResume();
         getData();
     }
 
+    //Bottom Navigation Slide Pager
     private class ScreenSlidePageAdapter extends FragmentStateAdapter{
 
         public ScreenSlidePageAdapter(SafePlaceHomeScreenActivity safePlaceHomeScreenActivity) {
@@ -228,6 +251,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         }
     }
 
+    //Logout Method for user logging out
     private void logout(){
         StringRequest request = new StringRequest(Request.Method.GET, API.logout_user, response -> {
             try{

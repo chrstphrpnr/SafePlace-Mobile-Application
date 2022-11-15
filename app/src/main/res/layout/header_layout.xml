@@ -20,25 +20,17 @@
         >
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:innerRadius="0dp"
-            android:shape="ring"
-            app:cardCornerRadius="200dp"
-            app:cardElevation="20dp"
-            >
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userProfileImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="Header Image"
                 android:src="@drawable/ic_person"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                />
 
 
-        </androidx.cardview.widget.CardView>
 
     </androidx.cardview.widget.CardView>
 

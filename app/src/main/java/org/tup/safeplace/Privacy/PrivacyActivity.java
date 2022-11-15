@@ -14,6 +14,5 @@ public class PrivacyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy);
         getSupportFragmentManager().beginTransaction().replace(R.id.framePrivacyContainer,new TermsConditionFragment()).commit();
-
     }
 }

@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.tup.safeplace.R;
 
 public class HospitalDetailActivity extends AppCompatActivity {
-    Hospital Hospital;
-    TextView tvDetailHospitalTitle,tvDetailHospitalName, tvDetailHospitalType,tvDetailHospitalDirector,tvDetailHospitalLocation,tvDetailHospitalSchedule,txtDetailHospitalWebsite;
+    private Hospital Hospital;
+    private TextView tvDetailHospitalTitle,tvDetailHospitalName, tvDetailHospitalType,tvDetailHospitalDirector,tvDetailHospitalLocation,tvDetailHospitalSchedule,txtDetailHospitalWebsite;
+    private ImageView btnHospitalDetailBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,12 @@ public class HospitalDetailActivity extends AppCompatActivity {
             tvDetailHospitalSchedule.setText(Hospital.getHospital_schedule());
             txtDetailHospitalWebsite.setText(Hospital.getHospital_contact());
         }
+
+        btnHospitalDetailBack = findViewById(R.id.btnHospitalDetailBack);
+        btnHospitalDetailBack.setOnClickListener(v->{
+            startActivity(new Intent(HospitalDetailActivity.this, HospitalListActivity.class));
+            finish();
+        });
 
 
 

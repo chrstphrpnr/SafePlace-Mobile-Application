@@ -41,6 +41,8 @@ dependencies {
 
     implementation 'com.karumi:dexter:6.2.3'
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
