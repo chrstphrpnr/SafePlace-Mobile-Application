@@ -1,157 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserAccountActivity">
+    tools:context=".UserAccount.UserAccountActivity">
 
     <RelativeLayout
-        android:id="@+id/UserProfileHeader"
-        android:background="#303658"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        >
 
         <RelativeLayout
+            android:id="@+id/UserProfileHeader"
+            android:background="#303658"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            >
+            android:layout_height="300dp">
 
-            <ImageView
-                android:id="@+id/btnBarangayBack"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_back"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
-
-            <TextView
-                android:textColor="@color/white"
-                android:id="@+id/titleBarangay"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="20dp"
+                >
+
+                <ImageView
+                    android:id="@+id/btnBarangayBack"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:id="@+id/titleBarangay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Account Profile"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/txtSaveAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="20dp"
+                    android:text="Save"
+                    />
+
+
+
+            </RelativeLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardviewProfile"
+                android:background="@color/white"
+                app:cardCornerRadius="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_centerInParent="true"
-                android:textSize="20dp"
-                android:text="Edit Profile"
-                />
+                >
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userProfileImage"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Header Image"
+                    android:src="@drawable/ic_person"
+                    tools:srcCompat="@tools:sample/avatars"
+                    />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:textColor="@color/white"
-                android:id="@+id/txtSaveAccount"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtSelectAccountPhoto"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="20dp"
-                android:text="Save"
-                />
-
-
+                android:layout_below="@+id/cardviewProfile"
+                android:layout_centerInParent="true"
+                android:layout_margin="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="Select Photo"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardviewProfile"
-            android:background="@color/white"
-            app:cardCornerRadius="200dp"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerInParent="true"
-            >
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/userProfileImage"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="Header Image"
-                android:src="@drawable/ic_person"
-                tools:srcCompat="@tools:sample/avatars"
-                />
-
-        </androidx.cardview.widget.CardView>
-
         <TextView
-            android:id="@+id/txtSelectAccountPhoto"
+            android:id="@+id/UserAccountEmailTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardviewProfile"
-            android:layout_centerInParent="true"
-            android:layout_margin="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/UserProfileHeader"
+            android:text="Email"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            />
+
+        <EditText
+            android:id="@+id/txtUserAccountEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/UserAccountEmailTitle"
+            android:textSize="20sp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:text="Select Photo"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:layout_marginHorizontal="30dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:textStyle="bold"
+            android:backgroundTint="@color/safeplace_textHint"
+            />
+
+        <TextView
+            android:id="@+id/UserAccountNameTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtUserAccountEmail"
+            android:text="Name"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            />
+
+        <EditText
+            android:id="@+id/txtUserAccountName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/UserAccountNameTitle"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:textStyle="bold"
+            android:backgroundTint="@color/safeplace_textHint"
+            />
+
+
+
+        <TextView
+            android:id="@+id/UserAccountGenderTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtUserAccountName"
+            android:text="Gender"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            />
+
+        <EditText
+            android:id="@+id/txtUserAccountGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/UserAccountGenderTitle"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:textStyle="bold"
+            android:backgroundTint="@color/safeplace_textHint"
+            />
+
+        <TextView
+            android:id="@+id/UserAccountBirthDateTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtUserAccountGender"
+            android:text="Birthday"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            />
+
+        <EditText
+            android:id="@+id/txtUserAccountBirthDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/UserAccountBirthDateTitle"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:textStyle="bold"
+            android:backgroundTint="@color/safeplace_textHint"
+            />
+
+        <TextView
+            android:id="@+id/UserAccountAddressTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtUserAccountBirthDate"
+            android:text="Address"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            />
+
+        <EditText
+            android:id="@+id/txtUserAccountAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/UserAccountAddressTitle"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:textStyle="bold"
+            android:backgroundTint="@color/safeplace_textHint"
+            />
+
+        <TextView
+            android:id="@+id/UserAccountContactTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtUserAccountAddress"
+            android:text="Contact Number"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            />
+
+        <EditText
+            android:id="@+id/txtUserAccountContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/UserAccountContactTitle"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="15dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:textStyle="bold"
+            android:backgroundTint="@color/safeplace_textHint"
+            />
+
+        <Button
+            android:id="@+id/btnChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtUserAccountContactNumber"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginVertical="10dp"
+            android:text="CHANGE PASSWORD"
+            android:background="@drawable/btn_round"
+            app:backgroundTint="@color/colorAccent" />
+
+
+
+
+
+
+
+
+
 
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/UserAccountNameTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/UserProfileHeader"
-        android:text="Name"
-        android:textSize="15sp"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="30dp"
-        />
-
-    <EditText
-        android:id="@+id/txtUserAccountName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/UserAccountNameTitle"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="30dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:textStyle="bold"
-        android:backgroundTint="@color/safeplace_textHint"
-        />
-
-    <TextView
-        android:id="@+id/UserAccountEmailTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtUserAccountName"
-        android:text="Email"
-        android:textSize="15sp"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="30dp"
-        />
-
-    <EditText
-        android:id="@+id/txtUserAccountEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/UserAccountEmailTitle"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="30dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:textStyle="bold"
-        android:backgroundTint="@color/safeplace_textHint"
-        />
 
 
 
 
-
-
-
-
-
-
-</RelativeLayout>
+</ScrollView>

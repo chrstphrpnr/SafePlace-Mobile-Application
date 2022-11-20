@@ -1,4 +1,4 @@
-package org.tup.safeplace;
+package org.tup.safeplace.UserAccount;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,8 +19,6 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.karumi.dexter.Dexter;
@@ -33,8 +32,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tup.safeplace.Authentication.UserInfoRegisterActivity;
 import org.tup.safeplace.Constants.API;
+import org.tup.safeplace.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -48,12 +47,13 @@ public class UserAccountActivity extends AppCompatActivity {
 
     private SharedPreferences userPref;
     private CircleImageView imgAccountImage;
-    private EditText txtUserAccountName,txtUserAccountEmail;
+    private EditText txtUserAccountName,txtUserAccountEmail,txtUserAccountGender,txtUserAccountBirthDate,txtUserAccountAddress,txtUserAccountContactNumber;
     private TextView txtSelectAccountPhoto,txtSaveAccount;
+    private Button btnChangePassword;
 
 
     private Bitmap bitmap = null;
-    String encodedImage;
+    private String encodedImage;
 
 
 
@@ -65,6 +65,15 @@ public class UserAccountActivity extends AppCompatActivity {
         userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
         txtUserAccountName = findViewById(R.id.txtUserAccountName);
         txtUserAccountEmail = findViewById(R.id.txtUserAccountEmail);
+        txtUserAccountGender = findViewById(R.id.txtUserAccountGender);
+        txtUserAccountBirthDate = findViewById(R.id.txtUserAccountBirthDate);
+        txtUserAccountAddress = findViewById(R.id.txtUserAccountAddress);
+        txtUserAccountContactNumber = findViewById(R.id.txtUserAccountContactNumber);
+
+        btnChangePassword = findViewById(R.id.btnChangePassword);
+
+
+
         imgAccountImage = findViewById(R.id.userProfileImage);
         txtSaveAccount = findViewById(R.id.txtSaveAccount);
 
@@ -97,10 +106,11 @@ public class UserAccountActivity extends AppCompatActivity {
             updateData();
         });
 
-
-
-
         getData();
+
+        btnChangePassword.setOnClickListener(v->{
+            startActivity(new Intent(UserAccountActivity.this, UserChangePasswordActivity.class));
+        });
 
     }
 
@@ -183,8 +193,6 @@ public class UserAccountActivity extends AppCompatActivity {
         encodedImage = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }
 
-
-
     private void getData() {
 
         StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
@@ -198,6 +206,10 @@ public class UserAccountActivity extends AppCompatActivity {
                         txtUserAccountName.setText(object.getString("fname")+" "+object.getString("mname")+" "+object.getString("lname"));
                         txtUserAccountEmail.setText(object.getString("email"));
                         Picasso.get().load(API.URL+object.getString("img")).resize(500,0).centerCrop().into(imgAccountImage);
+                        txtUserAccountGender.setText(object.getString("gender"));
+                        txtUserAccountBirthDate.setText(object.getString("birthdate"));
+                        txtUserAccountAddress.setText(object.getString("address"));
+                        txtUserAccountContactNumber.setText(object.getString("contact"));
 
                     }
                 }

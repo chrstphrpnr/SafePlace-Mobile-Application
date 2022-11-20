@@ -5,25 +5,24 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,10 +38,12 @@ import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Hospital.HospitalCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
 import org.tup.safeplace.R;
-import org.tup.safeplace.UserAccountActivity;
+import org.tup.safeplace.UserAccount.UserAccountActivity;
 
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -174,9 +175,39 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             }
         });
 
+
+        userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
+        String fname = userPref.getString("fname","");
+        String lname = userPref.getString("lname","");
+
+        String email = userPref.getString("email","");
+
+        String img = userPref.getString("img", "");
+
+        byte[] decodedString = Base64.decode(img,Base64.NO_WRAP);
+        InputStream inputStream  = new ByteArrayInputStream(decodedString);
+        Bitmap bitmap  = BitmapFactory.decodeStream(inputStream);
+        imgProfile.setImageBitmap(bitmap);
+
+        if(fname != null || lname != null){
+            txtUserName.setText(fname + " " + lname);
+        }
+
+        if (email != null){
+            txtUserEmail.setText(email);
+        }
+
+        if (email.equals(null)){
+            txtUserEmail.setText("");
+        }
+
+        if (fname.equals(null)||lname.equals(null)){
+            txtUserEmail.setText("");
+        }
+
     }
 
-    //Volley Get Method for Display of UserInformation in Drawable Drawer
+//    Volley Get Method for Display of UserInformation in Drawable Drawer
     private void getData() {
 
         StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
@@ -217,7 +248,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
-    //OnResume Method for getData Method
+//    OnResume Method for getData Method
     @Override
     protected void onResume() {
         super.onResume();
