@@ -108,8 +108,8 @@ public class HospitalListMenuFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
             }
         });
 

@@ -32,6 +32,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tup.safeplace.ChangePasswordOTP;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
@@ -109,7 +110,7 @@ public class UserAccountActivity extends AppCompatActivity {
         getData();
 
         btnChangePassword.setOnClickListener(v->{
-            startActivity(new Intent(UserAccountActivity.this, UserChangePasswordActivity.class));
+            startActivity(new Intent(UserAccountActivity.this, ChangePasswordOTP.class));
         });
 
     }

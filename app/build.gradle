@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'     // Add the Google services Gradle plugin
 }
 
 android {
@@ -35,12 +36,16 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
 
+    //Volley Library
     implementation 'com.android.volley:volley:1.2.1'
 
+    //Circle Image Library
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //Android Ask Permission
     implementation 'com.karumi:dexter:6.2.3'
 
+    //Loading Image Library
     implementation 'com.squareup.picasso:picasso:2.71828'
 
 
@@ -51,5 +56,9 @@ dependencies {
 
     //implemented libraries
     implementation 'com.google.android.material:material:1.6.1'
+
+    //Firebase OTP
+    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation 'com.google.firebase:firebase-auth'
 
 }

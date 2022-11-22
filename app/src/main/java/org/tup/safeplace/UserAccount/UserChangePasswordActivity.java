@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.tup.safeplace.ChangePasswordOTP;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
@@ -172,6 +174,7 @@ public class UserChangePasswordActivity extends AppCompatActivity {
 
         StringRequest request = new StringRequest(Request.Method.POST, API.change_password, response -> {
             Toast.makeText(this, "Password Changed Successfully", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(UserChangePasswordActivity.this, UserAccountActivity.class));
         }, error -> {
             Toast.makeText(this, "Current Password Doesn't Match", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
