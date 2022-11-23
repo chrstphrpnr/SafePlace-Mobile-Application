@@ -1,4 +1,4 @@
-package org.tup.safeplace;
+package org.tup.safeplace.UserAccount;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +21,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import org.tup.safeplace.UserAccount.UserChangePasswordActivity;
+import org.tup.safeplace.R;
 
 import java.util.concurrent.TimeUnit;
 

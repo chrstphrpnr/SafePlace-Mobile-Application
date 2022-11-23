@@ -45,7 +45,7 @@ public class SignInFragment extends Fragment {
 
     private Button btnSignIn;
 
-    private TextView txtSignup;
+    private TextView txtSignup, txtForgotPassword;
 
 
     private ProgressDialog dialog;
@@ -76,11 +76,18 @@ public class SignInFragment extends Fragment {
         //SignUp Redirect
         txtSignup = view.findViewById(R.id.txtSignUp);
 
+        //Forgot Password Redirect
+        txtForgotPassword = view.findViewById(R.id.txtForgotPassword);
+
         dialog = new ProgressDialog(getContext());
         dialog.setCancelable(false);
 
         txtSignup.setOnClickListener(v->{
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAuthContainer,new SignUpFragment()).commit();
+        });
+
+        txtForgotPassword.setOnClickListener(v->{
+            startActivity(new Intent(((AuthenticationActivity)getContext()), ForgotPasswordActivity.class));
         });
 
         txtEmail.addTextChangedListener(new TextWatcher() {
