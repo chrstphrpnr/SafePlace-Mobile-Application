@@ -68,7 +68,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         getCurrentLocation();
 
-        SearchView searchViewHospital = (SearchView) findViewById(R.id.searchHospital);
     }
 
 
@@ -83,17 +82,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(myLocation).title("Current Location")
                 .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_usermarker)
                 ));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
 
+        float zoomLevel = 16.0f; //This goes up to 21
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, zoomLevel));
 
-        CenterCameraLocation();
 
         getHospitalsLocation();
         getBarangaysLocation();
         getPoliceStationsLocation();
-
-
-
 
 
     }
@@ -148,36 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    //Zoom the camera when opening to the current location
-    private void CenterCameraLocation(){
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-        if (location != null)
-        {
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 13));
-
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
-                    .zoom(17)                   // Sets the zoom
-                    .bearing(90)                // Sets the orientation of the camera to east
-                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
-                    .build();                   // Creates a CameraPosition from the builder
-            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        }
-
-    }
 
     //Show markers of Hospitals
     private void getHospitalsLocation() {
@@ -192,12 +159,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 result = j.getJSONArray("hospitals");
                 for (int i = 0; i < result.length(); i++) {
                     JSONObject object = result.getJSONObject(i);
-                    String lat_i = object.getString("latitude");
-                    String long_i = object.getString("longitude");
+                    String hospitalLatitude = object.getString("latitude");
+                    String hospitalLongtitude = object.getString("longitude");
                     String hospital_name = object.getString("hospital_name");
 
                     mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
+                            .position(new LatLng(Double.parseDouble(hospitalLatitude), Double.parseDouble(hospitalLongtitude)))
                             .title(hospital_name)
                             .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_hospitalmarker))
                     );
@@ -237,11 +204,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     JSONObject object = result.getJSONObject(i);
                     String lat_i = object.getString("latitude");
                     String long_i = object.getString("longitude");
-                    String hospital_name = object.getString("barangay_name");
+                    String barangay_name = object.getString("barangay_name");
 
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
-                            .title(hospital_name)
+                            .title(barangay_name)
                             .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_barangaymarker))
                     );
 
@@ -279,11 +246,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     JSONObject object = result.getJSONObject(i);
                     String lat_i = object.getString("latitude");
                     String long_i = object.getString("longitude");
-                    String hospital_name = object.getString("policestation_name");
+                    String policestation_name = object.getString("policestation_name");
 
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
-                            .title(hospital_name)
+                            .title(policestation_name)
                             .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_policemarker))
                     );
 

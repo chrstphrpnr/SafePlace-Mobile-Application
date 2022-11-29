@@ -171,6 +171,7 @@ public class UserChangePasswordActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, API.change_password, response -> {
             Toast.makeText(this, "Password Changed Successfully", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(UserChangePasswordActivity.this, UserAccountActivity.class));
+            finish();
         }, error -> {
             Toast.makeText(this, "Current Password Doesn't Match", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
