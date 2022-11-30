@@ -110,6 +110,7 @@ public class UserAccountActivity extends AppCompatActivity {
 
         btnChangePassword.setOnClickListener(v->{
             startActivity(new Intent(UserAccountActivity.this, ChangePasswordOTP.class));
+            finish();
         });
 
     }

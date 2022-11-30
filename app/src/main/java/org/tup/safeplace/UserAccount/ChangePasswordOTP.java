@@ -3,6 +3,7 @@ package org.tup.safeplace.UserAccount;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,9 @@ public class ChangePasswordOTP extends AppCompatActivity {
     private String CountryCode = "+63";
     private String id = "";
 
+    private ProgressDialog dialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,10 @@ public class ChangePasswordOTP extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+
+
         PhoneNumber = findViewById(R.id.edtPhoneNumber);
         oneTimePassword = findViewById(R.id.edtOTP);
 
@@ -49,11 +57,15 @@ public class ChangePasswordOTP extends AppCompatActivity {
 
         btnOTP.setOnClickListener(v->{
 
+            dialog.setMessage("Loading...");
+            dialog.show();
+
             if(otpSent){
                 final String getOTP = oneTimePassword.getText().toString();
 
                 if(id.isEmpty()) {
                     Toast.makeText(ChangePasswordOTP.this, "Unable to verify OTP", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
                 else {
 
@@ -64,10 +76,14 @@ public class ChangePasswordOTP extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 FirebaseUser userDetails = task.getResult().getUser();
                                 Toast.makeText(ChangePasswordOTP.this, "Verified", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
                                 startActivity(new Intent(ChangePasswordOTP.this, UserChangePasswordActivity.class));
+                                finish();
                             }
                             else{
-                                Toast.makeText(ChangePasswordOTP.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ChangePasswordOTP.this, "Something Went Wrong. Please Try Again", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+
                             }
                         }
                     });
@@ -86,16 +102,22 @@ public class ChangePasswordOTP extends AppCompatActivity {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                                 Toast.makeText(ChangePasswordOTP.this, "OTP sent Successfully", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+
                             }
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(ChangePasswordOTP.this, "Something went wrong "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ChangePasswordOTP.this, "Something went Wrong. Please Try Again", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                                dialog.dismiss();
+
                             }
 
                             @Override
                             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(s, forceResendingToken);
+                                dialog.dismiss();
                                 oneTimePassword.setVisibility(View.VISIBLE);
                                 btnOTP.setText("Verified OTP");
                                 id = s;

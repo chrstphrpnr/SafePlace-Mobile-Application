@@ -170,7 +170,7 @@ public class SignInFragment extends Fragment {
     }
 
     private void login(){
-        dialog.setMessage("Login On Process");
+        dialog.setMessage("Loading...");
         dialog.show();
         StringRequest request = new StringRequest(Request.Method.POST, API.login_user, response -> {
             //we get response if connection success
@@ -194,7 +194,8 @@ public class SignInFragment extends Fragment {
                         editor.putString("address",object.getString("address"));
                         editor.putString("contact",object.getString("contact"));
                         editor.putString("email",object.getString("email"));
-                        editor.putString("status",object.getString("status"));
+
+                        editor.putString("role",object.getString("role"));
 
                         editor.putString("img",object.getString("img"));
 

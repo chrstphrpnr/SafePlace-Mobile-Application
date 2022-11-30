@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -70,7 +71,7 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
     ActivityResultLauncher<String> mTakePhoto;
     private Bitmap bitmap = null;
     private SharedPreferences userPref;
-    private ProgressDialog progressDialog;
+    private ProgressDialog dialog;
     String encodedImage;
     Spinner spinnerGender;
     String[] gender = {"Male","Female"};
@@ -89,6 +90,10 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
 
     private void init(){
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+
 
         layoutAddress = findViewById(R.id.txtLayoutAddressUserInfo);
 //        layoutBirthDate = findViewById(R.id.txtLayoutBirthDateUserInfo);
@@ -228,6 +233,9 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
         String gender = txtGender.getText().toString().trim();
         String contact = txtContact.getText().toString().trim();
 
+        dialog.setMessage("Loading...");
+        dialog.show();
+
         StringRequest request = new StringRequest(Request.Method.POST, API.save_user_info, response->{
 
             try {
@@ -257,12 +265,18 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 Toast.makeText(this, "Please Try Again", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
+                dialog.dismiss();
+
             }
+
+            dialog.dismiss();
+
 
 
         },error -> {
             Toast.makeText(this, "Error in Connection", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
+            dialog.dismiss();
         }){
             //Add Token to headers
             @Override

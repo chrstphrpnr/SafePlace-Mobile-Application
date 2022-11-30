@@ -57,7 +57,6 @@ public class HomeScreenFragment extends Fragment {
         });
 
         menuBarangayList.setOnClickListener(v -> {
-//            Toast.makeText(getContext(), "BARANGAY", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getContext(), BarangayListActivity.class));
         });
 

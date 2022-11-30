@@ -106,12 +106,10 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if(id == R.id.AccountMenu){
-                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Account", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
                 }
                 else if(id == R.id.VerificationMenu){
                     Toast.makeText(SafePlaceHomeScreenActivity.this, "Verification", Toast.LENGTH_SHORT).show();
-
                 }
                 else if(id == R.id.SettingsMenu){
                     Toast.makeText(SafePlaceHomeScreenActivity.this, "Settings", Toast.LENGTH_SHORT).show();

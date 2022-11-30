@@ -3,6 +3,7 @@ package org.tup.safeplace.Authentication;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -29,11 +30,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     TextInputLayout LayoutEmailForgotPassword;
     TextInputEditText txtEmailForgotPassword;
     Button btnResetPassword;
+    private ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+
 
         LayoutEmailForgotPassword = findViewById(R.id.txtLayoutEmailForgotPassword);
         txtEmailForgotPassword = findViewById(R.id.txtEmailForgotPassword);
@@ -48,16 +55,23 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     public void resetPassword(){
 
+
         String email = txtEmailForgotPassword.getText().toString().trim();
 
-        StringRequest request = new StringRequest(Request.Method.POST, API.forgot_password, response -> {
+        dialog.setMessage("Loading...");
+        dialog.show();
 
+        StringRequest request = new StringRequest(Request.Method.POST, API.forgot_password, response -> {
             Toast.makeText(this, "Sent to Email! Please check your email to reset your password", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+
 
         }, error -> {
 
             Toast.makeText(this, "Please Check Your Internet Connection", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
+            dialog.dismiss();
+
 
         }){
 

@@ -312,6 +312,7 @@ public class SignUpFragment extends Fragment {
             } catch (JSONException e){
                 Toast.makeText(getContext(), "Please Try Again", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
+                dialog.dismiss();
             }
             dialog.dismiss();
 

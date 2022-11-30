@@ -20,6 +20,7 @@ public class PoliceStationListActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v->{
             startActivity(new Intent(PoliceStationListActivity.this, SafePlaceHomeScreenActivity.class));
+            finish();
         });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.framePoliceStationListContainer,new PoliceStationListMenuFragment()).commit();

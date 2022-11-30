@@ -26,6 +26,7 @@ public class HospitalListActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v->{
             startActivity(new Intent(HospitalListActivity.this, SafePlaceHomeScreenActivity.class));
+            finish();
         });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frameHospitalListContainer,new HospitalListMenuFragment()).commit();

@@ -3,6 +3,7 @@ package org.tup.safeplace.UserAccount;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,8 @@ public class UserChangePasswordActivity extends AppCompatActivity {
     private TextInputEditText txtCurrentPassword,txtNewPassword,txtConfirmNewPassword;
     private Button btnSaveChangePassword;
     private SharedPreferences userPref;
+    private ProgressDialog dialog;
+
 
 
     @Override
@@ -43,6 +46,11 @@ public class UserChangePasswordActivity extends AppCompatActivity {
 
     private void init(){
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+
+
         LayoutCurrentPassword = findViewById(R.id.txtLayoutCurrentPassword);
         LayoutNewPassword = findViewById(R.id.txtLayoutNewPassword);
         LayoutConfirmNewPassword = findViewById(R.id.txtLayoutConfirmNewPassword);
@@ -123,6 +131,7 @@ public class UserChangePasswordActivity extends AppCompatActivity {
         String newPassword = txtNewPassword.getText().toString();
         String confirmNewPassword = txtConfirmNewPassword.getText().toString();
 
+
         if(currentPassword.isEmpty()){
             LayoutCurrentPassword.setErrorEnabled(true);
             LayoutCurrentPassword.setError("Your Current Password is Required");
@@ -168,13 +177,18 @@ public class UserChangePasswordActivity extends AppCompatActivity {
         String password = txtNewPassword.getText().toString().trim();
         String confirm_password = txtConfirmNewPassword.getText().toString().trim();
 
+        dialog.setMessage("Loading...");
+        dialog.show();
+
         StringRequest request = new StringRequest(Request.Method.POST, API.change_password, response -> {
             Toast.makeText(this, "Password Changed Successfully", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
             startActivity(new Intent(UserChangePasswordActivity.this, UserAccountActivity.class));
             finish();
         }, error -> {
             Toast.makeText(this, "Current Password Doesn't Match", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
+            dialog.dismiss();
         }){
 
             @Override
