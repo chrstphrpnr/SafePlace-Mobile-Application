@@ -2,7 +2,7 @@ package org.tup.safeplace.Constants;
 
 public class API {
     //API URL
-    public static String URL = "http://192.168.137.1:8080/";
+    public static String URL = "http://192.168.15.27:8080/";
     public static String API = URL + "api/";
 
     //Hospital List
@@ -35,12 +35,22 @@ public class API {
     //User Forgot Password
     public static String forgot_password = API + "forgot-password/";
 
-
+    //Hospital Map
     public static String hospital_map= API + "hospitals_location";
 
+    //Barangay Map
     public static String barangay_map= API + "barangays_location";
 
+    //Police Map
     public static String policeStation_map= API + "policestations_location";
+
+
+
+    public static String front_id= API + "verification_frontId";
+    public static String back_id= API + "verification_backId";
+    public static String face_image= API + "verification_faceImage";
+    public static String id_information= API + "verification_idDetails";
+
 
 
 
