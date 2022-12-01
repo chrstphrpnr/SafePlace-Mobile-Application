@@ -45,21 +45,22 @@
         android:textSize="25dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="5dp"
         />
 
 
-    <TextView
-        android:id="@+id/txtDrawableUserEmail"
-        android:layout_below="@+id/txtUserNameDrawer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/profileCardView"
-        android:text="JoseDelaCruz@gmail.com"
-        android:textColor="@color/white"
-        android:textSize="10dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        />
+<!--    <TextView-->
+<!--        android:id="@+id/txtDrawableUserEmail"-->
+<!--        android:layout_below="@+id/txtUserNameDrawer"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_toRightOf="@id/profileCardView"-->
+<!--        android:text="JoseDelaCruz@gmail.com"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="10dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        />-->
 
 
 

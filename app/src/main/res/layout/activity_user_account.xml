@@ -12,48 +12,65 @@
         android:paddingBottom="20dp"
         >
 
+        <LinearLayout
+            android:id="@+id/taskbarAccount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <androidx.appcompat.widget.Toolbar
+                    android:background="@color/white"
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/btnAccountBack"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Account Information"
+                            android:textColor="@color/black"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        </LinearLayout>
+
+
+
         <RelativeLayout
             android:id="@+id/UserProfileHeader"
             android:background="#303658"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                >
-
-                <ImageView
-                    android:id="@+id/btnBarangayBack"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
-
-                <TextView
-                    android:id="@+id/titleBarangay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="Account Profile"
-                    android:textColor="@color/white"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:textColor="@color/white"
-                    android:id="@+id/txtSaveAccount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:textSize="20dp"
-                    android:text="Save"
-                    />
-
-
-
-            </RelativeLayout>
-
+            android:layout_height="300dp"
+            android:layout_below="@+id/taskbarAccount"
+            >
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardviewProfile"
@@ -83,13 +100,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cardviewProfile"
                 android:layout_centerInParent="true"
-                android:layout_margin="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:text="Select Photo"
                 android:textColor="@color/white"

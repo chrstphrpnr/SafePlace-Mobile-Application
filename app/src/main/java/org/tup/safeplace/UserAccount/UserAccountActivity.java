@@ -1,9 +1,7 @@
 package org.tup.safeplace.UserAccount;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -13,8 +11,12 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -47,14 +49,17 @@ public class UserAccountActivity extends AppCompatActivity {
 
     private SharedPreferences userPref;
     private CircleImageView imgAccountImage;
-    private EditText txtUserAccountName,txtUserAccountEmail,txtUserAccountGender,txtUserAccountBirthDate,txtUserAccountAddress,txtUserAccountContactNumber;
-    private TextView txtSelectAccountPhoto,txtSaveAccount;
+    private EditText txtUserAccountName, txtUserAccountEmail, txtUserAccountGender, txtUserAccountBirthDate, txtUserAccountAddress, txtUserAccountContactNumber;
+    private TextView txtSelectAccountPhoto, txtSaveAccount;
     private Button btnChangePassword;
 
 
     private Bitmap bitmap = null;
     private String encodedImage;
 
+    private ProgressDialog dialog;
+
+    private ImageView btnAccountBack;
 
 
     @Override
@@ -62,7 +67,7 @@ public class UserAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
 
-        userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
+        userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
         txtUserAccountName = findViewById(R.id.txtUserAccountName);
         txtUserAccountEmail = findViewById(R.id.txtUserAccountEmail);
         txtUserAccountGender = findViewById(R.id.txtUserAccountGender);
@@ -72,14 +77,18 @@ public class UserAccountActivity extends AppCompatActivity {
 
         btnChangePassword = findViewById(R.id.btnChangePassword);
 
+        btnAccountBack = findViewById(R.id.btnAccountBack);
+
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
 
 
         imgAccountImage = findViewById(R.id.userProfileImage);
-        txtSaveAccount = findViewById(R.id.txtSaveAccount);
 
         txtSelectAccountPhoto = findViewById(R.id.txtSelectAccountPhoto);
 
-        txtSelectAccountPhoto.setOnClickListener(v->{
+        txtSelectAccountPhoto.setOnClickListener(v -> {
             Dexter.withContext(UserAccountActivity.this)
                     .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                     .withListener(new PermissionListener() {
@@ -87,7 +96,7 @@ public class UserAccountActivity extends AppCompatActivity {
                         public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
                             Intent intent = new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
-                            startActivityForResult(Intent.createChooser(intent,"Select Image"),1);
+                            startActivityForResult(Intent.createChooser(intent, "Select Image"), 1);
                         }
 
                         @Override
@@ -102,26 +111,27 @@ public class UserAccountActivity extends AppCompatActivity {
                     }).check();
         });
 
-        txtSaveAccount.setOnClickListener(v->{
-            updateData();
-        });
 
         getData();
 
-        btnChangePassword.setOnClickListener(v->{
+        btnChangePassword.setOnClickListener(v -> {
             startActivity(new Intent(UserAccountActivity.this, ChangePasswordOTP.class));
             finish();
+        });
+
+        btnAccountBack.setOnClickListener(v -> {
+            onBackPressed();
         });
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == 1 && resultCode==RESULT_OK){
+        if (requestCode == 1 && resultCode == RESULT_OK) {
 
             Uri filePath = data.getData();
 
-            try{
+            try {
                 InputStream inputStream = getContentResolver().openInputStream(filePath);
                 bitmap = BitmapFactory.decodeStream(inputStream);
                 imgAccountImage.setImageBitmap(bitmap);
@@ -134,20 +144,25 @@ public class UserAccountActivity extends AppCompatActivity {
 
         }
         super.onActivityResult(requestCode, resultCode, data);
+        updateData();
+
     }
 
     private void updateData() {
 
+        dialog.setMessage("Loading...");
+        dialog.show();
+
         StringRequest request = new StringRequest(Request.Method.POST, API.save_user_info, response -> {
 
-            try{
+            try {
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray jsonArray = jsonObject.getJSONArray("user");
-                if(jsonObject.getBoolean("success")){
-                    for (int i = 0; i <jsonArray.length(); i++) {
+                if (jsonObject.getBoolean("success")) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         SharedPreferences.Editor editor = userPref.edit();
-                        editor.putString("img",object.getString("img"));
+                        editor.putString("img", object.getString("img"));
                         editor.apply();
                         finish();
                         startActivity(getIntent());
@@ -157,18 +172,22 @@ public class UserAccountActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 Toast.makeText(this, "Please Try Again", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
+                dialog.dismiss();
             }
+            dialog.dismiss();
+
 
         }, error -> {
             Toast.makeText(this, "Error in Connection", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
-        }){
+            dialog.dismiss();
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                String token = userPref.getString("token","");
-                HashMap<String, String> map =new HashMap<>();
-                map.put("Authorization","Bearer "+token);
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
                 return map;
             }
 
@@ -176,7 +195,7 @@ public class UserAccountActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("img",encodedImage);
+                map.put("img", encodedImage);
                 return map;
             }
         };
@@ -190,7 +209,7 @@ public class UserAccountActivity extends AppCompatActivity {
     private void ImageStore(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        byte [] imageBytes = byteArrayOutputStream.toByteArray();
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
         encodedImage = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }
 
@@ -198,15 +217,15 @@ public class UserAccountActivity extends AppCompatActivity {
 
         StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
 
-            try{
+            try {
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray jsonArray = jsonObject.getJSONArray("user");
-                if (jsonObject.getBoolean("success")){
-                    for (int i = 0; i <jsonArray.length(); i++) {
+                if (jsonObject.getBoolean("success")) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
-                        txtUserAccountName.setText(object.getString("fname")+" "+object.getString("mname")+" "+object.getString("lname"));
+                        txtUserAccountName.setText(object.getString("fname") + " " + object.getString("mname") + " " + object.getString("lname"));
                         txtUserAccountEmail.setText(object.getString("email"));
-                        Picasso.get().load(API.URL+object.getString("img")).resize(500,0).centerCrop().into(imgAccountImage);
+                        Picasso.get().load(API.URL + object.getString("img")).resize(500, 0).centerCrop().into(imgAccountImage);
                         txtUserAccountGender.setText(object.getString("gender"));
                         txtUserAccountBirthDate.setText(object.getString("birthdate"));
                         txtUserAccountAddress.setText(object.getString("address"));
@@ -220,19 +239,18 @@ public class UserAccountActivity extends AppCompatActivity {
 
         }, error -> {
             error.printStackTrace();
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                String token = userPref.getString("token","");
-                HashMap<String,String> map = new HashMap<>();
-                map.put("Authorization","Bearer "+token);
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
                 return map;
             }
         };
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
-
 
 
     }

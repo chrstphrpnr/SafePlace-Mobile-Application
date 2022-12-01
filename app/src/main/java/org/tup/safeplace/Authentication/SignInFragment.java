@@ -195,7 +195,7 @@ public class SignInFragment extends Fragment {
                         editor.putString("contact",object.getString("contact"));
                         editor.putString("email",object.getString("email"));
 
-                        editor.putString("role",object.getString("role"));
+                        editor.putString("status",object.getString("status"));
 
                         editor.putString("img",object.getString("img"));
 
@@ -215,6 +215,7 @@ public class SignInFragment extends Fragment {
             } catch (JSONException e){
                 Toast.makeText(getContext(), "Please Try Again", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
+                dialog.dismiss();
             }
             dialog.dismiss();
 

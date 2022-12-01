@@ -33,6 +33,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tup.safeplace.AccountActivity;
 import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Hospital.HospitalCallScreenFragment;
@@ -88,7 +89,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         View header = navigationView.getHeaderView(0);
         userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
         txtUserName = header.findViewById(R.id.txtUserNameDrawer);
-        txtUserEmail = header.findViewById(R.id.txtDrawableUserEmail);
+//        txtUserEmail = header.findViewById(R.id.txtDrawableUserEmail);
         imgProfile = header.findViewById(R.id.userProfileImage);
 
 
@@ -107,6 +108,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
                 if(id == R.id.AccountMenu){
                     startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
+//                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, AccountActivity.class));
                 }
                 else if(id == R.id.VerificationMenu){
                     Toast.makeText(SafePlaceHomeScreenActivity.this, "Verification", Toast.LENGTH_SHORT).show();
@@ -178,29 +180,22 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         String fname = userPref.getString("fname","");
         String lname = userPref.getString("lname","");
 
-        String email = userPref.getString("email","");
-
-        String img = userPref.getString("img", "");
-
-        byte[] decodedString = Base64.decode(img,Base64.NO_WRAP);
-        InputStream inputStream  = new ByteArrayInputStream(decodedString);
-        Bitmap bitmap  = BitmapFactory.decodeStream(inputStream);
-        imgProfile.setImageBitmap(bitmap);
+//        String email = userPref.getString("email","");
 
         if(fname != null || lname != null){
             txtUserName.setText(fname + " " + lname);
         }
 
-        if (email != null){
-            txtUserEmail.setText(email);
-        }
-
-        if (email.equals(null)){
-            txtUserEmail.setText("");
-        }
+//        if (email != null){
+//            txtUserEmail.setText(email);
+//        }
+//
+//        if (email.equals(null)){
+//            txtUserEmail.setText("");
+//        }
 
         if (fname.equals(null)||lname.equals(null)){
-            txtUserEmail.setText("");
+            txtUserName.setText("");
         }
 
     }
@@ -217,7 +212,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                     for (int i = 0; i <jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         txtUserName.setText(object.getString("fname")+" "+object.getString("lname"));
-                        txtUserEmail.setText(object.getString("email"));
+//                        txtUserEmail.setText(object.getString("email"));
                         Picasso.get().load(API.URL+object.getString("img")).resize(500,0).centerCrop().into(imgProfile);
 //                        imgUrl = API.URL+"storage/images/"+object.getString("img");
 
