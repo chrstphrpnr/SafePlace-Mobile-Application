@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/safeplace_bgcolor"
+    android:orientation="vertical"
+    tools:context=".Verification.IdentificationCardPictureActivity">
+
+
+    <TextView
+        android:id="@+id/txtfrontcapture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FRONT"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="50dp"
+        >
+
+        <ImageView
+            android:id="@+id/imgFrontId"
+            android:layout_gravity="center"
+            android:layout_width="500dp"
+            android:layout_height="300dp"
+            android:background="@drawable/ic_camera"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@+id/cardview1"
+        android:id="@+id/cardview2"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="50dp"
+        >
+
+        <ImageView
+            android:id="@+id/imgBackId"
+            android:layout_gravity="center"
+            android:layout_width="239dp"
+            android:layout_height="174dp"
+            android:background="@drawable/ic_camera"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:layout_gravity="center"/>
+
+
+
+
+
+
+
+</LinearLayout>

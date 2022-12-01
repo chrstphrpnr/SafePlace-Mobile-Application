@@ -11,10 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -33,18 +30,16 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tup.safeplace.AccountActivity;
 import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Hospital.HospitalCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
 import org.tup.safeplace.R;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
+import org.tup.safeplace.Verification.VerificationActivity;
 
 import androidx.appcompat.widget.Toolbar;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -108,10 +103,9 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
                 if(id == R.id.AccountMenu){
                     startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
-//                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, AccountActivity.class));
                 }
                 else if(id == R.id.VerificationMenu){
-                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Verification", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
                 }
                 else if(id == R.id.SettingsMenu){
                     Toast.makeText(SafePlaceHomeScreenActivity.this, "Settings", Toast.LENGTH_SHORT).show();
