@@ -3,6 +3,7 @@ package org.tup.safeplace.Verification;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.WindowManager;
@@ -35,7 +37,9 @@ import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -50,6 +54,8 @@ public class IdentificationCardPictureActivity extends AppCompatActivity {
     String encodedimage;
 
     private CardView cardview1, cardview2;
+
+    private String currentPhotoPath;
 
 
     private static final String api_front = "http://192.168.15.27:8080/api/verification_frontId";
@@ -83,8 +89,25 @@ public class IdentificationCardPictureActivity extends AppCompatActivity {
                     .withListener(new PermissionListener() {
                         @Override
                         public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, 111);
+                            String fileName = "photo";
+                            File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+
+                            try {
+                                File imageFile = File.createTempFile(fileName,".jpg",storageDirectory);
+
+                                currentPhotoPath = imageFile.getAbsolutePath();
+
+                                Uri imageUri = FileProvider.getUriForFile(IdentificationCardPictureActivity.this, "org.tup.safeplace.fileprovider", imageFile);
+                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+                                startActivityForResult(intent, 111);
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+
                         }
 
                         @Override
@@ -100,29 +123,6 @@ public class IdentificationCardPictureActivity extends AppCompatActivity {
 
         });
 
-        cardview2.setOnClickListener(v -> {
-
-            Dexter.withContext(getApplicationContext())
-                    .withPermission(Manifest.permission.CAMERA)
-                    .withListener(new PermissionListener() {
-                        @Override
-                        public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, 222);
-                        }
-
-                        @Override
-                        public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-
-                        }
-
-                        @Override
-                        public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-                            permissionToken.continuePermissionRequest();
-                        }
-                    }).check();
-
-        });
 
         btnSubmit.setOnClickListener(v -> {
             uploadFrontId();
@@ -133,15 +133,13 @@ public class IdentificationCardPictureActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 111 && resultCode == RESULT_OK) {
-            bitmap = (Bitmap) data.getExtras().get("data");
+            bitmap = BitmapFactory.decodeFile(currentPhotoPath);
             imgFrontId.setImageBitmap(bitmap);
             ImageStore(bitmap);
         }
-        if (requestCode == 222 && resultCode == RESULT_OK) {
-            bitmap = (Bitmap) data.getExtras().get("data");
-            imgBackId.setImageBitmap(bitmap);
-            ImageStore(bitmap);
-        }
+
+
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 
