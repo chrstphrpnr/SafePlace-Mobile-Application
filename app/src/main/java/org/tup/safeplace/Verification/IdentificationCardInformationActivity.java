@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,16 +15,12 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.tup.safeplace.Authentication.UserInfoRegisterActivity;
 import org.tup.safeplace.Constants.API;
-import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
 
 import java.util.HashMap;
@@ -37,6 +32,8 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
     private Button btnContinue;
     private ImageView btnback;
     private SharedPreferences userPref;
+
+
 
 
     @Override
@@ -89,7 +86,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
                     }
 
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(IdentificationCardInformationActivity.this, IdentificationCardPictureActivity.class));
+                    startActivity(new Intent(IdentificationCardInformationActivity.this, FrontIdCardActivity.class));
                     finish();
                 }
 

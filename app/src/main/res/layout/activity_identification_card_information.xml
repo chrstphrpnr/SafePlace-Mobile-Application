@@ -96,7 +96,7 @@
             android:id="@+id/edtIdentificationCardNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ID Type"
+            android:hint="ID Number"
             android:layout_below="@+id/txtTitleIdNumber"
             />
 

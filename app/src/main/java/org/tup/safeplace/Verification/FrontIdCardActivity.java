@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -18,7 +19,6 @@ import android.util.Base64;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -33,102 +33,88 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
+import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IdentificationCardPictureActivity extends AppCompatActivity {
+public class FrontIdCardActivity extends AppCompatActivity {
 
     private SharedPreferences userPref;
-    private ImageView imgFrontId, imgBackId;
-    private Button btnSubmit;
+    private ImageView imgFrontId;
+    private Button btnFrontContinue,btnCaptureFront;
     Bitmap bitmap;
     String encodedimage;
 
-    private CardView cardview1, cardview2;
-
     private String currentPhotoPath;
 
+    private ProgressDialog dialog;
 
-    private static final String api_front = "http://192.168.15.27:8080/api/verification_frontId";
-    private static final String api_back = "http://192.168.15.27:8080/api/verification_backId";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_identification_card_picture);
+        setContentView(R.layout.activity_front_id_card);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
         userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
 
-
         imgFrontId = findViewById(R.id.imgFrontId);
-        cardview1 = findViewById(R.id.cardview1);
+        btnCaptureFront = findViewById(R.id.btnCaptureFront);
+        btnFrontContinue = findViewById(R.id.btnFrontContinue);
 
-        imgBackId = findViewById(R.id.imgBackId);
-        cardview2 = findViewById(R.id.cardview2);
-
-
-        btnSubmit = findViewById(R.id.btnSubmit);
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
 
 
-        cardview1.setOnClickListener(v -> {
+        btnCaptureFront.setOnClickListener(v->{
 
-            Dexter.withContext(getApplicationContext())
-                    .withPermission(Manifest.permission.CAMERA)
-                    .withListener(new PermissionListener() {
-                        @Override
-                        public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                            String fileName = "photo";
-                            File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
+                @Override
+                public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                    String fileName = "photo";
+                    File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
 
-                            try {
-                                File imageFile = File.createTempFile(fileName,".jpg",storageDirectory);
+                    try {
+                        File imageFile = File.createTempFile(fileName,".jpg",storageDirectory);
 
-                                currentPhotoPath = imageFile.getAbsolutePath();
+                        currentPhotoPath = imageFile.getAbsolutePath();
 
-                                Uri imageUri = FileProvider.getUriForFile(IdentificationCardPictureActivity.this, "org.tup.safeplace.fileprovider", imageFile);
-                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                                startActivityForResult(intent, 111);
+                        Uri imageUri = FileProvider.getUriForFile(FrontIdCardActivity.this, "org.tup.safeplace.fileprovider", imageFile);
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+                        startActivityForResult(intent, 111);
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
 
+                @Override
+                public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
 
-                        }
+                }
 
-                        @Override
-                        public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+                @Override
+                public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
 
-                        }
-
-                        @Override
-                        public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-                            permissionToken.continuePermissionRequest();
-                        }
-                    }).check();
+                }
+            }).check();
 
         });
 
-
-        btnSubmit.setOnClickListener(v -> {
-            uploadFrontId();
+        btnFrontContinue.setOnClickListener(v->{
+            startActivity(new Intent(FrontIdCardActivity.this, BackIdCardActivity.class));
         });
+
+
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -137,12 +123,9 @@ public class IdentificationCardPictureActivity extends AppCompatActivity {
             imgFrontId.setImageBitmap(bitmap);
             ImageStore(bitmap);
         }
-
-
-
         super.onActivityResult(requestCode, resultCode, data);
+        uploadFrontId();
     }
-
 
     private void ImageStore(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -151,19 +134,24 @@ public class IdentificationCardPictureActivity extends AppCompatActivity {
         encodedimage = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }
 
-
     private void uploadFrontId() {
 
-        StringRequest request = new StringRequest(Request.Method.POST, api_front, response -> {
+        dialog.setMessage("Loading...");
+        dialog.show();
+
+        StringRequest request = new StringRequest(Request.Method.POST, API.front_id, response -> {
 
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
 
         }, error -> {
 
-            Toast.makeText(this, "Error in Connection", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
+            dialog.dismiss();
 
-        }) {
+
+        }){
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -186,5 +174,4 @@ public class IdentificationCardPictureActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
-
 }

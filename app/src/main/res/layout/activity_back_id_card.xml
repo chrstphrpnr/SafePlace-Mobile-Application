@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/safeplace_bgcolor"
+    tools:context=".Verification.BackIdCardActivity">
+
+    <TextView
+        android:id="@+id/txtbackcapture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_marginTop="200dp"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@+id/txtbackcapture"
+        android:id="@+id/cardviewBackId"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="10dp"
+        >
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_camera"/>
+
+        <ImageView
+            android:id="@+id/imgBackId"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:id="@+id/btnCaptureBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorTextSecondary"
+        android:layout_below="@+id/cardviewBackId"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="TAKE PHOTO"/>
+
+    <Button
+        android:id="@+id/btnBackIdContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/safeplace_btnblue"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:text="CONTINUE"
+        />
+
+
+</RelativeLayout>
