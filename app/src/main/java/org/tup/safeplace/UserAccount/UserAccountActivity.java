@@ -153,27 +153,27 @@ public class UserAccountActivity extends AppCompatActivity {
         dialog.setMessage("Loading...");
         dialog.show();
 
-        StringRequest request = new StringRequest(Request.Method.POST, API.save_user_info, response -> {
+        StringRequest request = new StringRequest(Request.Method.POST, API.update_profile_picture, response -> {
 
-            try {
-                JSONObject jsonObject = new JSONObject(response);
-                JSONArray jsonArray = jsonObject.getJSONArray("user");
-                if (jsonObject.getBoolean("success")) {
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        SharedPreferences.Editor editor = userPref.edit();
-                        editor.putString("img", object.getString("img"));
-                        editor.apply();
+//            try {
+//                JSONObject jsonObject = new JSONObject(response);
+//                JSONArray jsonArray = jsonObject.getJSONArray("user");
+//                if (jsonObject.getBoolean("success")) {
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject object = jsonArray.getJSONObject(i);
+//                        SharedPreferences.Editor editor = userPref.edit();
+//                        editor.putString("img", object.getString("img"));
+//                        editor.apply();
                         finish();
                         startActivity(getIntent());
 
-                    }
-                }
-            } catch (JSONException e) {
-                Toast.makeText(this, "Please Try Again", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-                dialog.dismiss();
-            }
+//                    }
+//                }
+//            } catch (JSONException e) {
+//                Toast.makeText(this, "Please Try Again", Toast.LENGTH_SHORT).show();
+//                e.printStackTrace();
+//                dialog.dismiss();
+//            }
             dialog.dismiss();
 
 

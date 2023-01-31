@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -172,6 +173,12 @@ public class BackIdCardActivity extends AppCompatActivity {
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         requestQueue.add(request);
 
 

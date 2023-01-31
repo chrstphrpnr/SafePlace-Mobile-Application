@@ -2,7 +2,7 @@ package org.tup.safeplace.Constants;
 
 public class API {
     //API URL
-    public static String URL = "http://192.168.11.27:8080/";
+    public static String URL = "http://192.168.37.27:8080/";
     public static String API = URL + "api/";
 
     //Hospital List
@@ -50,6 +50,7 @@ public class API {
     public static String back_id= API + "verification_backId";
     public static String face_image= API + "verification_faceImage";
     public static String id_information= API + "verification_idDetails";
+//
 
 
 
@@ -58,9 +59,8 @@ public class API {
 
 
 
-
-
-
+//
+//
 //    //API URL
 //    public static String URL = "https://safeplacetaguig.com/";
 //
@@ -72,8 +72,6 @@ public class API {
 //
 //    //Barangay List
 //    public static String barangay_list_api = "https://safeplacetaguig.com/api/barangays/";
-//
-//
 //
 //    //User Authentication LOGIN
 //    public static String login_user = "https://safeplacetaguig.com/api/login";
@@ -87,6 +85,9 @@ public class API {
 //    //User Authentication Register User Info
 //    public static String save_user_info =  "https://safeplacetaguig.com/api/save_user_info";
 //
+//    public static String update_profile_picture =  "https://safeplacetaguig.com/api/update_profile_picture";
+//
+//
 //    //User Get User Info
 //    public static String get_user_info =  "https://safeplacetaguig.com/api/get_user_info";
 //
@@ -94,7 +95,7 @@ public class API {
 //    public static String change_password = "https://safeplacetaguig.com/api/change_password";
 //
 //    //User Forgot Password
-//    public static String forgot_password = "https://safeplacetaguig.com/api/forgot-password/";
+//    public static String forgot_password = "https://safeplacetaguig.com/api/forgot-password";
 //
 //    //Map Hospital
 //    public static String hospital_map= "https://safeplacetaguig.com/api/hospitals_location";
@@ -104,6 +105,14 @@ public class API {
 //
 //    //Map Police Station
 //    public static String policeStation_map= "https://safeplacetaguig.com/api/policestations_location";
+//
+//
+//    //Verification
+//    public static String front_id =  "https://safeplacetaguig.com/api/verification_frontId";
+//    public static String back_id =  "https://safeplacetaguig.com/api/verification_backId";
+//    public static String face_image =  "https://safeplacetaguig.com/api/verification_faceImage";
+//    public static String id_information =  "https://safeplacetaguig.com/api/verification_idDetails";
+
 
 
 
