@@ -50,9 +50,8 @@ public class API {
     public static String back_id= API + "verification_backId";
     public static String face_image= API + "verification_faceImage";
     public static String id_information= API + "verification_idDetails";
-//
 
-
+    public static String update_profile_picture =  API + "update_profile_picture";
 
 
 

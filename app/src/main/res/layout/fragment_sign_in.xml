@@ -5,20 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="50dp"
-    android:paddingRight="50dp"
-    android:paddingTop="50dp"
+    android:paddingLeft="@dimen/_40sdp"
+    android:paddingRight="@dimen/_40sdp"
+    android:paddingTop="@dimen/_100sdp"
     tools:context=".Authentication.SignInFragment"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:gravity="center"
         android:text="SafePlace Account"
         android:textColor="@color/safeplace_darkfont"
-        android:textSize="36sp"
+        android:textSize="@dimen/_25sdp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,7 +27,7 @@
         android:gravity="center"
         android:text="LOGIN"
         android:textColor="@color/safeplace_darkfont"
-        android:textSize="33sp"
+        android:textSize="@dimen/_23sdp"
         android:textStyle="bold" />
 
 

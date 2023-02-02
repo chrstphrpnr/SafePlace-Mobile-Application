@@ -17,12 +17,13 @@ import org.tup.safeplace.HospitalMenuList.HospitalListActivity;
 import org.tup.safeplace.GoogleMaps.MapsActivity;
 import org.tup.safeplace.PoliceStationMenuList.PoliceStationListActivity;
 import org.tup.safeplace.R;
+import org.tup.safeplace.ReportsMenuList.ReportListActivity;
 
 
 public class HomeScreenFragment extends Fragment {
 
     private View view;
-    private CardView menuHospitalList, menuPoliceStationList, menuBarangayList, mapView;
+    private CardView menuHospitalList, menuPoliceStationList, menuBarangayList, menuReportList, mapView;
     private Button btnReportHere;
 
 
@@ -43,6 +44,7 @@ public class HomeScreenFragment extends Fragment {
         mapView = view.findViewById(R.id.mapView);
         menuBarangayList = view.findViewById(R.id.menuBarangayList);
         btnReportHere = view.findViewById(R.id.btnReportHere);
+        menuReportList = view.findViewById(R.id.menuReportList);
 
         mapView.setOnClickListener(v->{
             startActivity(new Intent(getContext(), MapsActivity.class));
@@ -60,10 +62,16 @@ public class HomeScreenFragment extends Fragment {
             startActivity(new Intent(getContext(), BarangayListActivity.class));
         });
 
+        menuReportList.setOnClickListener(v->{
+            startActivity(new Intent(getContext(), ReportListActivity.class));
+        });
+
 
         btnReportHere.setOnClickListener(v -> {
             Toast.makeText(getContext(), "REPORT HERE", Toast.LENGTH_SHORT).show();
         });
+
+
     }
 
 
