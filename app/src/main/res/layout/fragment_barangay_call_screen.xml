@@ -3,79 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeScreen.Police.PoliceCallScreenFragment"
     android:padding="@dimen/_20sdp"
     android:background="@color/safeplace_bgcolor"
-    >
-
+    tools:context=".HomeScreen.Barangay.BarangayCallScreenFragment">
 
     <TextView
-        android:id="@+id/PoliceCallTitle"
+        android:id="@+id/BarangayCallTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="POLICE CALL"
-        android:textSize="@dimen/_40sdp"
+        android:text="BARANGAY CALL"
+        android:textSize="@dimen/_32sdp"
         android:textStyle="bold"
         android:gravity="center_horizontal"
         android:layout_marginTop="@dimen/_70sdp"
         android:textColor="@color/safeplace_lightfont"
         />
 
-
     <Spinner
-        android:id="@+id/policeSpinner"
+        android:id="@+id/barangaySpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/PoliceCallTitle"
+        android:layout_below="@id/BarangayCallTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center_horizontal"
         android:paddingHorizontal="@dimen/_20sdp"
         android:spinnerMode="dialog"
         android:textAlignment="center"
-
         />
 
-
-        <TextView
-            android:id="@+id/policeContactCall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/policeSpinner"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
-            android:visibility="invisible"
-            />
-
-
+    <TextView
+        android:id="@+id/barangayContactCall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/barangaySpinner"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:visibility="invisible"
+        />
 
     <ImageButton
-        android:id="@+id/btnPoliceCall"
+        android:id="@+id/btnBarangayCall"
         android:layout_width="@dimen/_220sdp"
         android:layout_height="@dimen/_220sdp"
         android:background="@drawable/ic_emergencycall"
-        android:layout_below="@id/policeContactCall"
+        android:layout_below="@id/barangayContactCall"
         android:layout_centerHorizontal="true"
         />
-
-<!--    <Button-->
-<!--        android:id="@+id/btnPoliceCall"-->
-<!--        android:layout_width="@dimen/_200sdp"-->
-<!--        android:layout_height="@dimen/_50sdp"-->
-<!--        android:layout_below="@id/policeContactCall"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:text="CALL"-->
-<!--        android:layout_marginTop="@dimen/_50sdp"-->
-<!--        app:backgroundTint="#C91010"-->
-<!--        />-->
-
-
-
-
-
-
-
-
 
 </RelativeLayout>

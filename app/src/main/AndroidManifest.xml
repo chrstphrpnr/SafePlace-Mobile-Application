@@ -15,6 +15,9 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+
     <application
         android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"

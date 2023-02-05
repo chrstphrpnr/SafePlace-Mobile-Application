@@ -34,13 +34,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SAFEPLACE"
+                android:text="Taguig District 2"
                 android:textColor="@color/safeplace_lightfont"
                 android:textStyle="bold"
-                android:textSize="35dp"
+                android:textSize="@dimen/_22sdp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="60dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp" />
 
 
             <TextView
@@ -98,7 +99,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="170dp"
-                android:src="@drawable/cardview_map"/>
+                android:src="@drawable/googlemaps_cardview"/>
 
             <ImageView
                 android:layout_width="30dp"

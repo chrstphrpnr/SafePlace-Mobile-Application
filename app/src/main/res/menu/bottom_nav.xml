@@ -3,9 +3,9 @@
 
 
     <item
-        android:id="@+id/hospitalMenu"
-        android:title="Hospital"
-        android:icon="@drawable/ic_hospital">
+        android:id="@+id/barangayMenu"
+        android:title="Barangay"
+        android:icon="@drawable/ic_barangay">
     </item>
 
     <item

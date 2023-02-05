@@ -32,7 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.Constants.API;
-import org.tup.safeplace.HomeScreen.Hospital.HospitalCallScreenFragment;
+import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
 import org.tup.safeplace.R;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
@@ -138,7 +138,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 switch (position){
                     case 0:
-                        bottomNavigationView.getMenu().findItem(R.id.hospitalMenu).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.barangayMenu).setChecked(true);
                         break;
                     case 1:
                         bottomNavigationView.getMenu().findItem(R.id.homeMenu).setChecked(true);
@@ -155,7 +155,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.hospitalMenu:
+                    case R.id.barangayMenu:
                         viewPager2.setCurrentItem(0,true);
                         return true;
                     case R.id.homeMenu:
@@ -254,7 +254,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new HospitalCallScreenFragment();
+                    return new BarangayCallScreenFragment();
                 case 1:
                     return new HomeScreenFragment();
                 case 2:
