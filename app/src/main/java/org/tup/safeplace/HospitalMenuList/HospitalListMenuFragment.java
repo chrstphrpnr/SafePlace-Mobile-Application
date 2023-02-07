@@ -91,9 +91,10 @@ public class HospitalListMenuFragment extends Fragment {
                         String hospital_location = object.getString("hospital_location");
                         String hospital_schedule = object.getString("hospital_schedule");
                         String hospital_contact = object.getString("hospital_contact");
+                        String img = object.getString("img");
 
 
-                        hospital = new Hospital(hospital_name,hospital_type,hospital_medical_director,hospital_location,hospital_schedule,hospital_contact);
+                        hospital = new Hospital(hospital_name,hospital_type,hospital_medical_director,hospital_location,hospital_schedule,hospital_contact,img);
 
                         hospitalArrayList.add(hospital);
                         adapter.notifyDataSetChanged();

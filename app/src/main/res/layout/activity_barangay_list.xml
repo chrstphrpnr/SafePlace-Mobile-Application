@@ -26,19 +26,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="30dp"
             android:text="BARANGAYS"
-            />
-
-        <ImageView
-            android:id="@+id/btnBarangaySearch"
-            android:src="@drawable/ic_search"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_25sdp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
 
             />
+
+
+
 
     </RelativeLayout>
 

@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
 public class HospitalDetailActivity extends AppCompatActivity {
     private Hospital Hospital;
     private TextView tvDetailHospitalTitle,tvDetailHospitalName, tvDetailHospitalType,tvDetailHospitalDirector,tvDetailHospitalLocation,tvDetailHospitalSchedule,txtDetailHospitalWebsite;
-    private ImageView btnHospitalDetailBack;
+    private ImageView btnHospitalDetailBack,imgDetailsHospital;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,7 @@ public class HospitalDetailActivity extends AppCompatActivity {
         tvDetailHospitalLocation = findViewById(R.id.txtDetailHospitalLocation);
         tvDetailHospitalSchedule = findViewById(R.id.txtDetailHospitalSchedule);
         txtDetailHospitalWebsite = findViewById(R.id.txtDetailHospitalWebsite);
-
+        imgDetailsHospital = findViewById(R.id.imgDetailsHospital);
 
         Intent intent = getIntent();
         if(intent.getExtras() != null){
@@ -39,6 +42,9 @@ public class HospitalDetailActivity extends AppCompatActivity {
             tvDetailHospitalLocation.setText(Hospital.getHospital_location());
             tvDetailHospitalSchedule.setText(Hospital.getHospital_schedule());
             txtDetailHospitalWebsite.setText(Hospital.getHospital_contact());
+            Picasso.get().load(API.URL+Hospital.getImg()).resize(500,0).centerCrop().into(imgDetailsHospital);
+
+
         }
 
         btnHospitalDetailBack = findViewById(R.id.btnHospitalDetailBack);

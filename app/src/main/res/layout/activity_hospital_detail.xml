@@ -80,10 +80,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TEST"
-            android:textSize="25dp"
+            android:textSize="@dimen/_15sdp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/hospitaldetailtoolbar"
             android:layout_marginBottom="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/safeplace_darkfont"
+            android:paddingHorizontal="10dp"
+            android:gravity="center"
             />
 
 
@@ -243,7 +247,7 @@
             android:layout_alignLeft="@+id/txtDetailHospitalSchedule"
             />
 
-1
+
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/txtDetailHospitalWebsite"

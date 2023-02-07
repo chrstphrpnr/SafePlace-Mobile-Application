@@ -68,7 +68,7 @@ public class BarangayAdapter extends BaseAdapter implements Filterable {
                     ArrayList<Barangay> filterList = new ArrayList<Barangay>();
                     for (int i=0; i<arrayListBarangay.size(); i++){
                         if ((arrayListBarangay.get(i).getBarangay_name().toUpperCase()).contains(constraint.toString().toUpperCase())){
-                            Barangay barangay = new Barangay(arrayListBarangay.get(i).getBarangay_name(),arrayListBarangay.get(i).getBarangay_captain(),arrayListBarangay.get(i).getBarangay_location(),arrayListBarangay.get(i).getBarangay_schedule(),arrayListBarangay.get(i).getBarangay_contact());
+                            Barangay barangay = new Barangay(arrayListBarangay.get(i).getBarangay_name(),arrayListBarangay.get(i).getBarangay_captain(),arrayListBarangay.get(i).getBarangay_location(),arrayListBarangay.get(i).getBarangay_schedule(),arrayListBarangay.get(i).getBarangay_contact(),arrayListBarangay.get(i).getImg());
                             filterList.add(barangay);
                         }
                     }

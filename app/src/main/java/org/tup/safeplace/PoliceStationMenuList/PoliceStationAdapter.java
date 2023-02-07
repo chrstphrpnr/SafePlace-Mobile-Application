@@ -74,7 +74,9 @@ public class PoliceStationAdapter extends BaseAdapter implements Filterable {
                                     arrayListPoliceStation.get(i).getPolicestation_commander(),
                                     arrayListPoliceStation.get(i).getPolicestation_location(),
                                     arrayListPoliceStation.get(i).getPolicestation_schedule(),
-                                    arrayListPoliceStation.get(i).getPolicestation_contact()
+                                    arrayListPoliceStation.get(i).getPolicestation_contact(),
+                                    arrayListPoliceStation.get(i).getImg()
+
                             );
 
                             filterList.add(policeStation);

@@ -64,7 +64,7 @@ public class HospitalAdapter extends BaseAdapter implements Filterable {
                     ArrayList<Hospital> filterList = new ArrayList<Hospital>();
                     for (int i=0; i<hospitalArrayList.size(); i++){
                         if ((hospitalArrayList.get(i).getHospital_name().toUpperCase()).contains(constraint.toString().toUpperCase())){
-                            Hospital hospital = new Hospital(hospitalArrayList.get(i).getHospital_name(),hospitalArrayList.get(i).getHospital_type(),hospitalArrayList.get(i).getHospital_medical_director(),hospitalArrayList.get(i).getHospital_location(),hospitalArrayList.get(i).getHospital_schedule(),hospitalArrayList.get(i).getHospital_contact());
+                            Hospital hospital = new Hospital(hospitalArrayList.get(i).getHospital_name(),hospitalArrayList.get(i).getHospital_type(),hospitalArrayList.get(i).getHospital_medical_director(),hospitalArrayList.get(i).getHospital_location(),hospitalArrayList.get(i).getHospital_schedule(),hospitalArrayList.get(i).getHospital_contact(),hospitalArrayList.get(i).getImg());
                             filterList.add(hospital);
                         }
                     }

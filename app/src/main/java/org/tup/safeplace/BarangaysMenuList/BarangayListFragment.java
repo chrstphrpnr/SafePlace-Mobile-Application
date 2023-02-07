@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,7 @@ public class BarangayListFragment extends Fragment {
         searchView = view.findViewById(R.id.searchBarangay);
         adapter =new BarangayAdapter(getContext(),barangayArrayList);
         listViewBarangay.setAdapter(adapter);
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -80,6 +83,7 @@ public class BarangayListFragment extends Fragment {
         StringRequest request = new StringRequest(Request.Method.GET, API.barangay_list_api, response -> {
             barangayArrayList.clear();
 
+
             try {
                 JSONObject jsonObject =new JSONObject(response);
                 String succes = jsonObject.optString("success");
@@ -93,8 +97,11 @@ public class BarangayListFragment extends Fragment {
                         String barangay_location = object.getString("barangay_location");
                         String barangay_schedule = object.getString("barangay_schedule");
                         String barangay_contact = object.getString("barangay_contact");
+                        String img = object.getString("img");
 
-                        barangay = new Barangay(barangay_name,barangay_captain,barangay_location,barangay_schedule,barangay_contact);
+
+
+                        barangay = new Barangay(barangay_name,barangay_captain,barangay_location,barangay_schedule,barangay_contact,img);
 
                         barangayArrayList.add(barangay);
                         adapter.notifyDataSetChanged();

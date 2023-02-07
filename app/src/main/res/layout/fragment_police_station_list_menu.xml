@@ -22,6 +22,8 @@
         android:id="@+id/myListViewPoliceStation"
         android:layout_below="@id/searchPoliceStation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+
+        />
 
 </RelativeLayout>

@@ -94,8 +94,11 @@ public class PoliceStationListMenuFragment extends Fragment {
                         String policestation_location = object.getString("policestation_location");
                         String policestation_schedule = object.getString("policestation_schedule");
                         String policestation_contact = object.getString("policestation_contact");
+                        String img = object.getString("img");
 
-                        policeStation = new PoliceStation(policestation_name,policestation_commander,policestation_location,policestation_schedule,policestation_contact);
+
+
+                        policeStation = new PoliceStation(policestation_name,policestation_commander,policestation_location,policestation_schedule,policestation_contact,img);
 
                         policeStationArrayList.add(policeStation);
                         adapter.notifyDataSetChanged();

@@ -7,11 +7,14 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
 public class PoliceStationDetailActivity extends AppCompatActivity {
     private TextView tvDetailPoliceTitle,tvDetailPoliceName, tvDetailPoliceCommander,tvDetailPoliceLocation,tvDetailPoliceSchedule,tvDetailPoliceWebsite;
-    private ImageView btnBack;
+    private ImageView btnBack,imgDetailsPoliceStation;
 
     PoliceStation PoliceStation;
 
@@ -29,6 +32,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         tvDetailPoliceLocation = findViewById(R.id.txtDetailPoliceStationLocation);
         tvDetailPoliceSchedule = findViewById(R.id.txtDetailPoliceStationSchedule);
         tvDetailPoliceWebsite = findViewById(R.id.txtDetailPoliceStationWebsite);
+        imgDetailsPoliceStation = findViewById(R.id.imgDetailsPoliceStation);
 
         Intent intent = getIntent();
 
@@ -41,6 +45,11 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
             tvDetailPoliceLocation.setText(PoliceStation.getPolicestation_location());
             tvDetailPoliceSchedule.setText(PoliceStation.getPolicestation_schedule());
             tvDetailPoliceWebsite.setText(PoliceStation.getPolicestation_contact());
+            Picasso.get().load(API.URL+PoliceStation.getImg()).resize(500,0).centerCrop().into(imgDetailsPoliceStation);
+
+
+
+
         }
 
 

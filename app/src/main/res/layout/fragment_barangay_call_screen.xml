@@ -3,21 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_20sdp"
     android:background="@color/safeplace_bgcolor"
+    android:padding="@dimen/_20sdp"
     tools:context=".HomeScreen.Barangay.BarangayCallScreenFragment">
 
     <TextView
         android:id="@+id/BarangayCallTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BARANGAY CALL"
-        android:textSize="@dimen/_32sdp"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"
         android:layout_marginTop="@dimen/_70sdp"
+        android:gravity="center_horizontal"
+        android:text="BARANGAY CALL"
         android:textColor="@color/safeplace_lightfont"
-        />
+        android:textSize="@dimen/_32sdp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/barangaySpinner"
@@ -29,26 +28,23 @@
         android:gravity="center_horizontal"
         android:paddingHorizontal="@dimen/_20sdp"
         android:spinnerMode="dialog"
-        android:textAlignment="center"
-        />
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/barangayContactCall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/barangaySpinner"
-        android:textAlignment="center"
         android:gravity="center_horizontal"
-        android:visibility="invisible"
-        />
+        android:textAlignment="center"
+        android:visibility="invisible" />
 
     <ImageButton
         android:id="@+id/btnBarangayCall"
         android:layout_width="@dimen/_220sdp"
         android:layout_height="@dimen/_220sdp"
-        android:background="@drawable/ic_emergencycall"
         android:layout_below="@id/barangayContactCall"
         android:layout_centerHorizontal="true"
-        />
+        android:background="@drawable/ic_emergencycall" />
 
 </RelativeLayout>

@@ -206,9 +206,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                     for (int i = 0; i <jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         txtUserName.setText(object.getString("fname")+" "+object.getString("lname"));
-//                        txtUserEmail.setText(object.getString("email"));
                         Picasso.get().load(API.URL+object.getString("img")).resize(500,0).centerCrop().into(imgProfile);
-//                        imgUrl = API.URL+"storage/images/"+object.getString("img");
 
                     }
                 }

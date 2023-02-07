@@ -4,17 +4,19 @@ import java.io.Serializable;
 
 public class Barangay implements Serializable {
 
-    String barangay_name,barangay_captain,barangay_location,barangay_schedule,barangay_contact;
+    String barangay_name,barangay_captain,barangay_location,barangay_schedule,barangay_contact,img;
 
     public Barangay() {
     }
 
-    public Barangay(String barangay_name, String barangay_captain, String barangay_location, String barangay_schedule, String barangay_contact) {
+    public Barangay(String barangay_name, String barangay_captain, String barangay_location, String barangay_schedule, String barangay_contact,String img) {
         this.barangay_name = barangay_name;
         this.barangay_captain = barangay_captain;
         this.barangay_location = barangay_location;
         this.barangay_schedule = barangay_schedule;
         this.barangay_contact = barangay_contact;
+        this.img = img;
+
     }
 
     public String getBarangay_name() {
@@ -55,5 +57,13 @@ public class Barangay implements Serializable {
 
     public void setBarangay_contact(String barangay_contact) {
         this.barangay_contact = barangay_contact;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

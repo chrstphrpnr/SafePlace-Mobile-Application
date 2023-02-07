@@ -3,17 +3,19 @@ package org.tup.safeplace.PoliceStationMenuList;
 import java.io.Serializable;
 
 public class PoliceStation implements Serializable {
-    String policestation_name,policestation_commander,policestation_location,policestation_schedule,policestation_contact;
+    String policestation_name,policestation_commander,policestation_location,policestation_schedule,policestation_contact,img;
 
     public PoliceStation() {
     }
 
-    public PoliceStation(String policestation_name, String policestation_commander, String policestation_location, String policestation_schedule, String policestation_contact) {
+    public PoliceStation(String policestation_name, String policestation_commander, String policestation_location, String policestation_schedule, String policestation_contact,String img) {
         this.policestation_name = policestation_name;
         this.policestation_commander = policestation_commander;
         this.policestation_location = policestation_location;
         this.policestation_schedule = policestation_schedule;
         this.policestation_contact = policestation_contact;
+        this.img = img;
+
     }
 
     public String getPolicestation_name() {
@@ -54,5 +56,13 @@ public class PoliceStation implements Serializable {
 
     public void setPolicestation_contact(String policestation_contact) {
         this.policestation_contact = policestation_contact;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
