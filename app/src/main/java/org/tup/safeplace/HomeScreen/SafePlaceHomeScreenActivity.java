@@ -62,7 +62,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     private SharedPreferences userPref;
 
-    private TextView txtUserName,txtUserEmail;
+    private TextView txtUserName,txtUserVerificationStatus;
 
     private CircleImageView imgProfile;
     private String imgUrl = "";
@@ -84,6 +84,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         View header = navigationView.getHeaderView(0);
         userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
         txtUserName = header.findViewById(R.id.txtUserNameDrawer);
+        txtUserVerificationStatus = header.findViewById(R.id.txtUserVerificationStatus);
+
 //        txtUserEmail = header.findViewById(R.id.txtDrawableUserEmail);
         imgProfile = header.findViewById(R.id.userProfileImage);
 
@@ -206,6 +208,17 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                     for (int i = 0; i <jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         txtUserName.setText(object.getString("fname")+" "+object.getString("lname"));
+
+                        String status = object.getString("role");
+
+                        if(status.equals("unverified_user")){
+                            txtUserVerificationStatus.setText("Unverified User");
+                        }
+
+                        if(status.equals("verified_user")){
+                            txtUserVerificationStatus.setText("Verified User");
+                        }
+
                         Picasso.get().load(API.URL+object.getString("img")).resize(500,0).centerCrop().into(imgProfile);
 
                     }
@@ -230,6 +243,10 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
+
+    }
+
+    private void getVerificationStatus(){
 
     }
 

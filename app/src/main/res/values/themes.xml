@@ -38,4 +38,12 @@
     <style name="ActionMenuTextAppearance" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu">
         <item name="android:textSize">30sp</item>
     </style>
+
+
+    <style name="PopUp" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+
+    </style>
+
 </resources>

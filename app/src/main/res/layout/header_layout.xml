@@ -15,7 +15,7 @@
         app:cardCornerRadius="200dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/_5sdp"
         android:layout_marginTop="50dp"
         >
 
@@ -40,27 +40,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/profileCardView"
-        android:text="Jose Dela Cruz"
+        android:text="User Name"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="@dimen/_15sdp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="5dp"
         />
 
+    <TextView
+        android:id="@+id/txtUserVerificationStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/profileCardView"
+        android:layout_below="@+id/txtUserNameDrawer"
+        android:text="Verification Status"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_8sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        />
 
-<!--    <TextView-->
-<!--        android:id="@+id/txtDrawableUserEmail"-->
-<!--        android:layout_below="@+id/txtUserNameDrawer"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_toRightOf="@id/profileCardView"-->
-<!--        android:text="JoseDelaCruz@gmail.com"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="10dp"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        />-->
 
 
 

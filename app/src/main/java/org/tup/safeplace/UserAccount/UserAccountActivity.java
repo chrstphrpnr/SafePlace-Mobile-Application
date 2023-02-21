@@ -19,8 +19,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.karumi.dexter.Dexter;
@@ -178,7 +181,7 @@ public class UserAccountActivity extends AppCompatActivity {
 
 
         }, error -> {
-            Toast.makeText(this, "Error in Connection", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
             dialog.dismiss();
         }) {
@@ -200,8 +203,29 @@ public class UserAccountActivity extends AppCompatActivity {
             }
         };
 
+        request.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
+
+
+
+
 
     }
 
@@ -251,6 +275,8 @@ public class UserAccountActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
+
+
 
 
     }

@@ -95,25 +95,25 @@ public class OnboardingActivity extends AppCompatActivity {
         List<OnboardingItems> onboardingItems = new ArrayList<>();
 
         OnboardingItems first_feature = new OnboardingItems();
-        first_feature.setTitle("Feature Number One");
-        first_feature.setDescription("There are various of features items in our application for SafePlace");
+        first_feature.setTitle("Filing Reports");
+        first_feature.setDescription("These are the powerful functions in this application. Users can easily file a report without any subscription but with a help of internet or mobile data. Filing reports can be used by the verified users only to avoid unwanted or fake reports.");
         first_feature.setImage(R.drawable.onboarding_image_1);
 
 
         OnboardingItems second_feature = new OnboardingItems();
-        second_feature.setTitle("Feature Number Two");
-        second_feature.setDescription("There are various of features items in our application for SafePlace");
+        second_feature.setTitle("Statistics & Maps");
+        second_feature.setDescription("Statistics was designed to keep users in track with the crime rates in certain barangay within District 2 - Taguig City for the residents to be informed about the high numbers of crime happened within their barangay. SafePlace App can also show the map locations of the nearest Barangays, Police Sub-stations, and Hospitals from user's area.");
         second_feature.setImage(R.drawable.onboarding_image_2);
 
 
         OnboardingItems third_feature = new OnboardingItems();
-        third_feature.setTitle("Feature Number Three");
-        third_feature.setDescription("There are various of features items in our application for SafePlace");
+        third_feature.setTitle("Emergency Calls");
+        third_feature.setDescription("Users can easily call for emergency without any subscription but with a help of internet or mobile data. Filing reports can be used by the verified users only to avoid unwanted or fake reports.");
         third_feature.setImage(R.drawable.onboarding_image_3);
 
         OnboardingItems fourth_feature = new OnboardingItems();
-        fourth_feature.setTitle("Feature Number Four");
-        fourth_feature.setDescription("There are various of features items in our application for SafePlace");
+        fourth_feature.setTitle("Community");
+        fourth_feature.setDescription("Safe Place App is an application with different functional features that help people have a community to be informed about the crimes that occurred in District 2 - Taguig City where users of this application can assess, manage and monitor its risks.");
         fourth_feature.setImage(R.drawable.onboarding_image_4);
 
         onboardingItems.add(first_feature);

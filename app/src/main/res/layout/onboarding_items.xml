@@ -26,7 +26,9 @@
         android:gravity="center"
         android:textColor="@color/colorTextPrimary"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_marginVertical="@dimen/_10sdp"
+        />
 
 
     <TextView
