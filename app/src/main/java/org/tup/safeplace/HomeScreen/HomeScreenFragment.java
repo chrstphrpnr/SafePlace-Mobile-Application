@@ -33,6 +33,7 @@ import org.tup.safeplace.HospitalMenuList.HospitalListActivity;
 import org.tup.safeplace.GoogleMaps.MapsActivity;
 import org.tup.safeplace.PoliceStationMenuList.PoliceStationListActivity;
 import org.tup.safeplace.R;
+import org.tup.safeplace.Report.ReportActivity;
 import org.tup.safeplace.ReportsMenuList.ReportListActivity;
 import org.tup.safeplace.UnregisteredUserPopUp;
 
@@ -88,6 +89,7 @@ public class HomeScreenFragment extends Fragment {
                             }
 
                             else{
+                                startActivity(new Intent(getContext(), ReportActivity.class));
                                 Toast.makeText(getContext(), "Report Here", Toast.LENGTH_SHORT).show();
                             }
 

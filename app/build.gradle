@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "org.tup.safeplace"
-        minSdk 16
+        minSdk 19
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -77,6 +77,11 @@ dependencies {
 
     //Responsive Size
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
+
+
+    //QR CODE SCANNER
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
+
 
 
 }

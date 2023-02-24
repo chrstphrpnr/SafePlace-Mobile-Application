@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
+import org.tup.safeplace.QRLoginActivity;
 import org.tup.safeplace.R;
 
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class SignInFragment extends Fragment {
 
     private Button btnSignIn;
 
-    private TextView txtSignup, txtForgotPassword;
+    private TextView txtSignup, txtForgotPassword, txtQrCodeLogin;
 
 
     private ProgressDialog dialog;
@@ -69,6 +70,7 @@ public class SignInFragment extends Fragment {
         //TextEditText
         txtEmail = view.findViewById(R.id.txtEmailSignIn);
         txtPassword = view.findViewById(R.id.txtPasswordSignIn);
+        txtQrCodeLogin = view.findViewById(R.id.txtQrCodeLogin);
 
         //TextView for Sign
         btnSignIn = view.findViewById(R.id.btnSignIn);
@@ -126,6 +128,10 @@ public class SignInFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
 
             }
+        });
+
+        txtQrCodeLogin.setOnClickListener(v->{
+            startActivity(new Intent(((AuthenticationActivity)getContext()), QRLoginActivity.class));
         });
 
 

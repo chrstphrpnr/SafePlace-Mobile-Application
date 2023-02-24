@@ -35,6 +35,7 @@ import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
 import org.tup.safeplace.R;
+import org.tup.safeplace.Report.ReportActivity;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
 import org.tup.safeplace.Verification.VerificationActivity;
 
