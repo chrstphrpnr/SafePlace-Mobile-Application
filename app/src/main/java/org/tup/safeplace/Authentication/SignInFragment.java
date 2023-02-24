@@ -30,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
-import org.tup.safeplace.QRLoginActivity;
 import org.tup.safeplace.R;
 
 import java.util.HashMap;

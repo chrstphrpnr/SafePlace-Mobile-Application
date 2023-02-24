@@ -1,4 +1,4 @@
-package org.tup.safeplace;
+package org.tup.safeplace.Authentication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +20,8 @@ import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.zxing.Result;
+
+import org.tup.safeplace.R;
 
 import java.util.concurrent.ExecutionException;
 
