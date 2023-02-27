@@ -7,6 +7,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,14 +17,28 @@ import android.util.Size;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.zxing.Result;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.tup.safeplace.Constants.API;
+import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class QRLoginActivity extends AppCompatActivity {
@@ -90,6 +106,76 @@ public class QRLoginActivity extends AppCompatActivity {
                     public void run() {
                         String text = result.getText();
                         qrCodetxt.setText(text);
+
+
+                        StringRequest request = new StringRequest(Request.Method.POST, API.qr_code_login, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                //we get response if connection success
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    JSONArray jsonArray = jsonObject.getJSONArray("user");
+                                    if(jsonObject.getBoolean("success")){
+                                        for (int i = 0; i <jsonArray.length(); i++) {
+                                            JSONObject object = jsonArray.getJSONObject(i);
+                                            SharedPreferences userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = userPref.edit();
+                                            editor.putString("token",jsonObject.getString("token"));
+
+                                            editor.putInt("id",object.getInt("id"));
+
+                                            editor.putString("fname",object.getString("fname"));
+                                            editor.putString("mname",object.getString("mname"));
+                                            editor.putString("lname",object.getString("lname"));
+                                            editor.putString("gender",object.getString("gender"));
+                                            editor.putString("birthdate",object.getString("birthdate"));
+                                            editor.putString("address",object.getString("address"));
+                                            editor.putString("contact",object.getString("contact"));
+                                            editor.putString("email",object.getString("email"));
+
+                                            editor.putString("status",object.getString("status"));
+
+                                            editor.putString("img",object.getString("img"));
+
+                                            editor.putBoolean("isLoggedIn",true);
+
+                                            editor.apply();
+                                        }
+
+
+                                        //if Success
+                                        startActivity(new Intent(QRLoginActivity.this,SafePlaceHomeScreenActivity.class));
+                                        finish();
+                                        Toast.makeText(QRLoginActivity.this, "Login Fucking Successfully", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } catch (JSONException e){
+                                    Toast.makeText(QRLoginActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, error -> {
+
+                            Toast.makeText(QRLoginActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
+                            error.printStackTrace();
+
+                        }){
+
+                            @Nullable
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                HashMap<String,String> map = new HashMap<>();
+                                map.put("qr_code",qrCodetxt.getText().toString().trim());
+                                return map;
+                            }
+                        };
+                        //add this request to requestqueue
+                        RequestQueue queue = Volley.newRequestQueue(QRLoginActivity.this);
+                        queue.add(request);
+
+
                     }
                 });
             }
