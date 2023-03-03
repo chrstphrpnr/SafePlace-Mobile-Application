@@ -246,6 +246,7 @@ public class UserAccountActivity extends AppCompatActivity {
                 JSONArray jsonArray = jsonObject.getJSONArray("user");
                 if (jsonObject.getBoolean("success")) {
                     for (int i = 0; i < jsonArray.length(); i++) {
+
                         JSONObject object = jsonArray.getJSONObject(i);
                         txtUserAccountName.setText(object.getString("fname") + " " + object.getString("mname") + " " + object.getString("lname"));
                         txtUserAccountEmail.setText(object.getString("email"));
@@ -275,9 +276,6 @@ public class UserAccountActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
-
-
-
 
     }
 }

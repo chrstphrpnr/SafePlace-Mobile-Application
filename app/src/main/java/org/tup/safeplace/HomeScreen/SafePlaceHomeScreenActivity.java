@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
+import org.tup.safeplace.NotificationActivity;
 import org.tup.safeplace.R;
 import org.tup.safeplace.Report.ReportActivity;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
@@ -68,6 +70,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
     private CircleImageView imgProfile;
     private String imgUrl = "";
 
+    private ImageView notificationBell;
+
 
 
 
@@ -82,6 +86,9 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
         toolbar = findViewById(R.id.toolbar);
 
+        notificationBell = findViewById(R.id.notificationBell);
+
+
         View header = navigationView.getHeaderView(0);
         userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
         txtUserName = header.findViewById(R.id.txtUserNameDrawer);
@@ -89,6 +96,13 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
 //        txtUserEmail = header.findViewById(R.id.txtDrawableUserEmail);
         imgProfile = header.findViewById(R.id.userProfileImage);
+
+        notificationBell.setOnClickListener(v->{
+
+            startActivity(new Intent(SafePlaceHomeScreenActivity.this, NotificationActivity.class));
+
+        });
+
 
 
 

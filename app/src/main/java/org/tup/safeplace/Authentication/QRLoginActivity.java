@@ -147,19 +147,20 @@ public class QRLoginActivity extends AppCompatActivity {
                                         //if Success
                                         startActivity(new Intent(QRLoginActivity.this,SafePlaceHomeScreenActivity.class));
                                         finish();
-                                        Toast.makeText(QRLoginActivity.this, "Login Fucking Successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(QRLoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                                     }
 
                                 } catch (JSONException e){
-                                    Toast.makeText(QRLoginActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
+                                    recreate();
                                     e.printStackTrace();
+                                    Toast.makeText(QRLoginActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
                         }, error -> {
-
-                            Toast.makeText(QRLoginActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
+                            recreate();
                             error.printStackTrace();
+                            Toast.makeText(QRLoginActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
 
                         }){
 
