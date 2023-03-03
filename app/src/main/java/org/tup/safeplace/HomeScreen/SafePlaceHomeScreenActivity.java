@@ -335,7 +335,60 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
+    private void check_notification(){
+
+        ImageView notification = (ImageView) findViewById(R.id.notificationBell);
 
 
+        StringRequest request = new StringRequest(Request.Method.GET, API.notification_check_unread, response -> {
 
+            try{
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray jsonArray = jsonObject.getJSONArray("notification");
+                if (jsonObject.getBoolean("success")){
+                    for (int i = 0; i <jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+
+                        String status = object.getString("status");
+
+                        if(status.isEmpty()){
+                            notification.setImageResource(R.drawable.ic_notification);
+                        }
+
+                        else{
+                            notification.setImageResource(R.drawable.ic_baseline_notifications_active_24);
+
+                        }
+
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }, error -> {
+            error.printStackTrace();
+        }){
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String token = userPref.getString("token","");
+                HashMap<String,String> map = new HashMap<>();
+                map.put("Authorization","Bearer "+token);
+                return map;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
+
+
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        check_notification();
+    }
 }

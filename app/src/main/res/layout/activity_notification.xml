@@ -1,77 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".Notification.NotificationActivity">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/layout_bar"
-        >
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/layout_bar"
             >
 
-            <androidx.appcompat.widget.Toolbar
-                android:background="@color/white"
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                >
 
-                <ImageView
-                    android:id="@+id/btnNotificationBack"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                <androidx.appcompat.widget.Toolbar
+                    android:background="@color/white"
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/btnNotificationBack"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
 
-
-
-
-                    <TextView
-                        android:layout_gravity="center"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NOTIFICATION"
-                        android:textColor="@color/safeplace_darkfont"
-                        android:textSize="@dimen/_25sdp"
-                        android:textStyle="bold"
-                        />
-
-
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
 
 
 
 
-            </androidx.appcompat.widget.Toolbar>
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NOTIFICATION"
+                            android:textColor="@color/safeplace_darkfont"
+                            android:textSize="@dimen/_25sdp"
+                            android:textStyle="bold"
+                            />
 
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-    </LinearLayout>
+                    </LinearLayout>
 
 
 
-    <ListView
-        android:layout_below="@+id/layout_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/myListView"/>
+
+                </androidx.appcompat.widget.Toolbar>
 
 
-</RelativeLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        </LinearLayout>
+
+
+        <ListView
+            android:layout_below="@+id/layout_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myListView"/>
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRead"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:cornerRadius="20dp"
+            android:text="Mark as Read"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/_20sdp"
+            android:backgroundTint="@color/safeplace_btnblue"
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+</ScrollView>

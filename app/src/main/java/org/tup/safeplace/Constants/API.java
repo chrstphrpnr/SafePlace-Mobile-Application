@@ -56,6 +56,8 @@ public class API {
     public static String qr_code_login= API + "qrcode";
 
     public static String notification= API + "notification";
+    public static String notification_mark_as_read = API + "notification_read";
+    public static String notification_check_unread = API + "check_unread";
 
 
 

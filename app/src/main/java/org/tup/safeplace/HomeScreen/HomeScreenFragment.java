@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -53,12 +54,14 @@ public class HomeScreenFragment extends Fragment {
 
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home_screen, container, false);
         layout_popup = view.findViewById(R.id.popup);
+
         reportVerification();
         init();
         return view;
@@ -126,8 +129,6 @@ public class HomeScreenFragment extends Fragment {
     private void init() {
 
         userPref = getActivity().getApplicationContext().getSharedPreferences("user",getContext().MODE_PRIVATE);
-
-
         menuHospitalList = view.findViewById(R.id.menuHospitalList);
         menuPoliceStationList = view.findViewById(R.id.menuPoliceStationList);
         mapView = view.findViewById(R.id.mapView);
@@ -162,7 +163,6 @@ public class HomeScreenFragment extends Fragment {
 
 
     }
-
 
 
 
