@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,6 +40,7 @@ import org.tup.safeplace.Notification.NotificationActivity;
 import org.tup.safeplace.R;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
 import org.tup.safeplace.Verification.VerificationActivity;
+import org.w3c.dom.Text;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -338,6 +340,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
     private void check_notification(){
 
         ImageView notification = (ImageView) findViewById(R.id.notificationBell);
+        TextView notification_count = findViewById(R.id.txt_notif_count);
 
 
         StringRequest request = new StringRequest(Request.Method.GET, API.notification_check_unread, response -> {
@@ -345,20 +348,20 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             try{
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray jsonArray = jsonObject.getJSONArray("notification");
+
+
+
+
+
+
+
                 if (jsonObject.getBoolean("success")){
                     for (int i = 0; i <jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
 
                         String status = object.getString("status");
+                        notification_count.setText(Integer.toString(object.getInt("id")));
 
-                        if(status.isEmpty()){
-                            notification.setImageResource(R.drawable.ic_notification);
-                        }
-
-                        else{
-                            notification.setImageResource(R.drawable.ic_baseline_notifications_active_24);
-
-                        }
 
                     }
                 }

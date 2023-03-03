@@ -67,27 +67,74 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/notificationBell"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:src="@drawable/ic_notification"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="@dimen/_13sdp"
-                    />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/notificationBell"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/ic_notification"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="@dimen/_13sdp"
+                        />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/notif_cardview"
+                        android:layout_width="17dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="right"
+                        app:cardBackgroundColor="#E60A0A"
+                        app:cardCornerRadius="@dimen/_200sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.2">
+
+
+                        <TextView
+                            android:id="@+id/txt_notif_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="@dimen/_1sdp"
+                            />
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
 
-            </androidx.appcompat.widget.Toolbar>
 
 
-        </com.google.android.material.appbar.AppBarLayout>
 
 
-    </LinearLayout>
 
-<!--    BottomNavigation-->
+
+
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        </LinearLayout>
+
+    <!--    BottomNavigation-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

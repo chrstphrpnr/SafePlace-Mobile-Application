@@ -8,13 +8,14 @@
     >
 
     <TextView
+        android:padding="@dimen/_10sdp"
         android:id="@+id/txt_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Notification Messages"
         android:textSize="15sp"
         android:textColor="@color/black"
-        android:gravity="center_vertical"
+        android:gravity="center"
         />
 
     <TextView
