@@ -4,15 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotificationActivity">
+    tools:context=".Notification.NotificationActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NOTIFICATION"
-        android:layout_centerInParent="true"
-        android:textSize="@dimen/_40sdp" />
+        android:orientation="vertical"
+        android:id="@+id/layout_bar"
+        >
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.appcompat.widget.Toolbar
+                android:background="@color/white"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/btnNotificationBack"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+
+
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NOTIFICATION"
+                        android:textColor="@color/safeplace_darkfont"
+                        android:textSize="@dimen/_25sdp"
+                        android:textStyle="bold"
+                        />
+
+
+                </LinearLayout>
+
+
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    </LinearLayout>
+
+
+
+    <ListView
+        android:layout_below="@+id/layout_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/myListView"/>
 
 
 </RelativeLayout>

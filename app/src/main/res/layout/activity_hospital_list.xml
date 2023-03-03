@@ -67,41 +67,6 @@
 
     </LinearLayout>
 
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="16dp"-->
-<!--        >-->
-
-
-
-<!--        <TextView-->
-<!--            android:id="@+id/titleHospital"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:textSize="30dp"-->
-<!--            android:text="HOSPITALS"-->
-<!--            />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/btnHospitalSearch"-->
-<!--            android:src="@drawable/ic_search"-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_centerVertical="true"-->
-
-<!--            />-->
-
-<!--    </RelativeLayout>-->
-
-
-
-
-
-
-
 
 
 </RelativeLayout>

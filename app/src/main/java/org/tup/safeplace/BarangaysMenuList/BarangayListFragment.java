@@ -117,7 +117,6 @@ public class BarangayListFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
-
             }
         });
 

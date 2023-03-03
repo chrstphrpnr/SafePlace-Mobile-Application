@@ -35,9 +35,8 @@ import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
-import org.tup.safeplace.NotificationActivity;
+import org.tup.safeplace.Notification.NotificationActivity;
 import org.tup.safeplace.R;
-import org.tup.safeplace.Report.ReportActivity;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
 import org.tup.safeplace.Verification.VerificationActivity;
 
@@ -100,6 +99,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         notificationBell.setOnClickListener(v->{
 
             startActivity(new Intent(SafePlaceHomeScreenActivity.this, NotificationActivity.class));
+            finish();
 
         });
 
@@ -120,9 +120,11 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
                 if(id == R.id.AccountMenu){
                     startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
+                    finish();
                 }
                 else if(id == R.id.VerificationMenu){
                     startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
+                    finish();
                 }
                 else if(id == R.id.SettingsMenu){
                     Toast.makeText(SafePlaceHomeScreenActivity.this, "Settings", Toast.LENGTH_SHORT).show();
