@@ -339,7 +339,6 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     private void check_notification(){
 
-        ImageView notification = (ImageView) findViewById(R.id.notificationBell);
         TextView notification_count = findViewById(R.id.txt_notif_count);
 
 
@@ -350,18 +349,11 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 JSONArray jsonArray = jsonObject.getJSONArray("notification");
 
 
-
-
-
-
-
                 if (jsonObject.getBoolean("success")){
                     for (int i = 0; i <jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
 
-                        String status = object.getString("status");
                         notification_count.setText(Integer.toString(object.getInt("id")));
-
 
                     }
                 }
