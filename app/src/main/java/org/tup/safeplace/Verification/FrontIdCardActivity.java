@@ -7,10 +7,13 @@ import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -40,6 +43,7 @@ import org.tup.safeplace.R;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -121,7 +125,13 @@ public class FrontIdCardActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 111 && resultCode == RESULT_OK) {
             bitmap = BitmapFactory.decodeFile(currentPhotoPath);
-            imgFrontId.setImageBitmap(bitmap);
+
+            Matrix matrix = new Matrix();
+            matrix.postRotate(0);
+
+            Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(),
+                    matrix, true);
+            imgFrontId.setImageBitmap(rotated);
             ImageStore(bitmap);
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -134,6 +144,9 @@ public class FrontIdCardActivity extends AppCompatActivity {
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
         encodedimage = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }
+
+
+
 
     private void uploadFrontId() {
 

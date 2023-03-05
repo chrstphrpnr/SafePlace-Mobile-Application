@@ -106,6 +106,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textStyle="bold"
+                            android:textColor="@color/white"
                             android:layout_marginBottom="@dimen/_1sdp"
                             />
 

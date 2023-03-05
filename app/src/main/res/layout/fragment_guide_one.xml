@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Verification.GuideOneFragment">
+    tools:context=".Verification.GuideOneFragment"
+    android:background="@color/safeplace_bgcolor"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:id="@+id/taskbarfragone"
         >
 
         <com.google.android.material.appbar.AppBarLayout
@@ -61,13 +64,19 @@
 
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="27dp"
-        android:text="ABOUT VERIFICATION"
-        android:gravity="center"
+        android:layout_below="@+id/taskbarfragone"
         android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:fontFamily="@font/opensans"
+        android:paddingHorizontal="@dimen/_28sdp"
+        android:text="Submit a report and make an emergency call anytime when you're verified"
+        android:textColor="@color/safeplace_darkfont"
+        android:textSize="@dimen/_13sdp"
+        android:textStyle="bold"
         />
+
 
     <Button
         android:id="@+id/btnContinueGuideOne"

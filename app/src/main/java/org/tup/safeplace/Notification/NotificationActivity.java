@@ -120,13 +120,8 @@ public class NotificationActivity extends AppCompatActivity {
                         notificationModelArrayList.add(notificationModel);
                         adapter.notifyDataSetChanged();
 
-
-
                     }
                 }
-
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

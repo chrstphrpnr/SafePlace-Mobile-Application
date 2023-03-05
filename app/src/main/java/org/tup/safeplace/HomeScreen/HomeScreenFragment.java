@@ -60,7 +60,7 @@ public class HomeScreenFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home_screen, container, false);
-        layout_popup = view.findViewById(R.id.popup);
+        layout_popup = view.findViewById(R.id.popUpUnregisteredUser);
 
         reportVerification();
         init();

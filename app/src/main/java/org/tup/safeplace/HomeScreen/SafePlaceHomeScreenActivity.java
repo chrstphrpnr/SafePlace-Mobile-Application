@@ -12,7 +12,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +41,8 @@ import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
 import org.tup.safeplace.Notification.NotificationActivity;
 import org.tup.safeplace.R;
+import org.tup.safeplace.Report.ReportActivity;
+import org.tup.safeplace.UnregisteredUserPopUp;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
 import org.tup.safeplace.Verification.VerificationActivity;
 import org.w3c.dom.Text;
@@ -72,6 +77,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
     private String imgUrl = "";
 
     private ImageView notificationBell;
+    private Menu optionsMenu;
+
 
 
 
@@ -88,6 +95,9 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
 
         notificationBell = findViewById(R.id.notificationBell);
+
+
+
 
 
         View header = navigationView.getHeaderView(0);
@@ -114,35 +124,84 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.OpenDrawer, R.string.CloseDrawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        navigationView.setNavigationItemSelectedListener(item -> {
 
-                int id = item.getItemId();
+            int id = item.getItemId();
 
-                if(id == R.id.AccountMenu){
-                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
-                    finish();
-                }
-                else if(id == R.id.VerificationMenu){
-                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
-                    finish();
-                }
-                else if(id == R.id.SettingsMenu){
-                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-
-                }
-                else if(id == R.id.HelpMenu){
-                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Help", Toast.LENGTH_SHORT).show();
-
-                }
-                else if(id == R.id.LogoutMenu){
-                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-                    logout();
-                }
-
-                return false;
+            if(id == R.id.AccountMenu){
+                startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
+                finish();
             }
+            else if(id == R.id.VerificationMenu){
+
+                StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
+
+                    try{
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = jsonObject.getJSONArray("user");
+                        if (jsonObject.getBoolean("success")){
+                            for (int i = 0; i <jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+
+                                String status = object.getString("role");
+
+                                if(status.equals("unverified_user")){
+                                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
+                                }
+
+                                if(status.equals("verified_user")){
+
+                                    LayoutInflater inflater = (LayoutInflater)
+                                            getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                                    UnregisteredUserPopUp popUpWindow = new UnregisteredUserPopUp();
+
+                                    View popupView = inflater.inflate(R.layout.registered_user_pop_up, null);
+
+                                    popUpWindow.showPopupWindow(popupView);
+                                }
+
+
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }, error -> {
+                    error.printStackTrace();
+                }){
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        String token = userPref.getString("token","");
+                        HashMap<String,String> map = new HashMap<>();
+                        map.put("Authorization","Bearer "+token);
+                        return map;
+                    }
+                };
+
+                RequestQueue queue = Volley.newRequestQueue(this);
+                queue.add(request);
+
+
+
+            }
+            else if(id == R.id.SettingsMenu){
+                Toast.makeText(SafePlaceHomeScreenActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+
+            }
+            else if(id == R.id.HelpMenu){
+                Toast.makeText(SafePlaceHomeScreenActivity.this, "Help", Toast.LENGTH_SHORT).show();
+
+            }
+            else if(id == R.id.LogoutMenu){
+                Toast.makeText(SafePlaceHomeScreenActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                logout();
+            }
+
+            return false;
         });
 
         //Slide PageAdapter
@@ -215,7 +274,12 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
-//    Volley Get Method for Display of UserInformation in Drawable Drawer
+    private void onButtonShowPopupWindowClick(View view){
+        UnregisteredUserPopUp popUpWindow = new UnregisteredUserPopUp();
+        popUpWindow.showPopupWindow(view);
+    }
+
+    //    Volley Get Method for Display of UserInformation in Drawable Drawer
     private void getData() {
 
         StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
@@ -265,9 +329,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
-    private void getVerificationStatus(){
 
-    }
 
 //    OnResume Method for getData Method
     @Override
@@ -337,6 +399,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
+    //Check Notification
     private void check_notification(){
 
         TextView notification_count = findViewById(R.id.txt_notif_count);
@@ -350,12 +413,12 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
 
                 if (jsonObject.getBoolean("success")){
-                    for (int i = 0; i <jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
+//                    for (int i = 0; i <jsonArray.length(); i++) {
+//                        JSONObject object = jsonArray.getJSONObject(i);
 
-                        notification_count.setText(Integer.toString(object.getInt("id")));
+                        notification_count.setText(Integer.toString(jsonArray.length()));
 
-                    }
+//                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
