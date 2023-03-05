@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
+import org.tup.safeplace.UpdateInformationActivity;
 
 
 public class GuideThreeFragment extends Fragment {
@@ -32,7 +33,7 @@ public class GuideThreeFragment extends Fragment {
         btnBack = view.findViewById(R.id.btnGuideThreeBack);
 
         btnGuideThree.setOnClickListener(v->{
-            startActivity(new Intent(((VerificationActivity)getContext()), IdentificationCardInformationActivity.class));
+            startActivity(new Intent(((VerificationActivity)getContext()), UpdateInformationActivity.class));
             ((VerificationActivity) getContext()).finish();
         });
 
