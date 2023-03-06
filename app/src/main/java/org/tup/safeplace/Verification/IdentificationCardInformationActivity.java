@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,6 +36,11 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
     private SharedPreferences userPref;
 
 
+    String[] identificationCards = {"National ID","School ID", "Postal ID"};
+    AutoCompleteTextView autoCompleteIdList;
+    ArrayAdapter<String> adapterItems;
+
+
 
 
     @Override
@@ -47,10 +54,14 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
 
 
-        edtCardType = findViewById(R.id.edtIdentificationCardType);
         edtCardNumber = findViewById(R.id.edtIdentificationCardNumber);
         btnContinue = findViewById(R.id.btnContinueCardInformation);
         btnback = findViewById(R.id.btnCardInfoBack);
+
+        autoCompleteIdList = findViewById(R.id.autoCompleteIdtxt);
+        adapterItems = new ArrayAdapter<String>(this,R.layout.identification_list_item, identificationCards);
+        autoCompleteIdList.setAdapter(adapterItems);
+
 
         btnback.setOnClickListener(v->{
             onBackPressed();
@@ -64,7 +75,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
     private void postCardDetails(){
 
-        String id_type = edtCardType.getText().toString().trim();
+        String id_type = autoCompleteIdList.getText().toString().trim();
         String id_number = edtCardNumber.getText().toString().trim();
 
         StringRequest request = new StringRequest(Request.Method.POST, API.id_information, response -> {

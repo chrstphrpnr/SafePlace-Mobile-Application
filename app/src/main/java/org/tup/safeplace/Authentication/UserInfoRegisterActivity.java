@@ -23,6 +23,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -63,8 +64,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserInfoRegisterActivity extends AppCompatActivity {
 
-    private TextInputLayout layoutAddress, layoutBirthDate, layoutGender, layoutContact;
-    private EditText txtAddress, txtBirthDate, txtGender, txtContact;
+    private TextInputLayout layoutAddress, layoutContact;
+    private EditText txtAddress, txtContact;
     private TextView txtSelectPhoto;
     private Button btnContinue,btnDatePicker;
     private CircleImageView circleImageView;
@@ -73,10 +74,13 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
     private SharedPreferences userPref;
     private ProgressDialog dialog;
     String encodedImage;
-    Spinner spinnerGender;
-    String[] gender = {"Male","Female"};
+
 
     private DatePickerDialog datePickerDialog;
+
+    String[] gender = {"Male","Female"};
+    AutoCompleteTextView genderDropdown;
+    ArrayAdapter<String> adapterItems;
 
 
 
@@ -94,19 +98,20 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
 
-
         layoutAddress = findViewById(R.id.txtLayoutAddressUserInfo);
 //        layoutBirthDate = findViewById(R.id.txtLayoutBirthDateUserInfo);
-        layoutGender = findViewById(R.id.txtLayoutGenderUserInfo);
         layoutContact = findViewById(R.id.txtLayoutContactUserInfo);
 
         txtAddress = findViewById(R.id.txtAddressUserInfo);
         btnDatePicker = findViewById(R.id.btnDatePicker);
-        txtGender = findViewById(R.id.txtGenderUserInfo);
         txtContact = findViewById(R.id.txtContactUserInfo);
         txtSelectPhoto = findViewById(R.id.txtSelectPhoto);
 
         btnContinue = findViewById(R.id.btnContinueUserInfo);
+
+        genderDropdown = findViewById(R.id.dropDownGender);
+        adapterItems = new ArrayAdapter<String>(this,R.layout.gender_list_item, gender);
+        genderDropdown.setAdapter(adapterItems);
 
         circleImageView = findViewById(R.id.imgProfileUserInfo);
 
@@ -210,11 +215,11 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        if (txtGender.getText().toString().isEmpty()){
-            layoutGender.setErrorEnabled(true);
-            layoutGender.setError("Gender is Required");
-            return false;
-        }
+//        if (txtGender.getText().toString().isEmpty()){
+//            layoutGender.setErrorEnabled(true);
+//            layoutGender.setError("Gender is Required");
+//            return false;
+//        }
 
 
         if (txtContact.getText().toString().isEmpty()){
@@ -230,7 +235,7 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
     private void saveUserInfo(){
         String address = txtAddress.getText().toString().trim();
         String birthdate = btnDatePicker.getText().toString().trim();
-        String gender = txtGender.getText().toString().trim();
+        String gender = genderDropdown.getText().toString().trim();
         String contact = txtContact.getText().toString().trim();
 
         dialog.setMessage("Loading...");

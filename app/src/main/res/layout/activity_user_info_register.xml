@@ -75,36 +75,28 @@
             />
 
 
-
-
-
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtLayoutGenderUserInfo"
-        android:layout_marginBottom="20dp"
-        app:boxStrokeWidth="0dp"
-        >
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:hint="@string/select_here"
+        app:boxBackgroundColor="#DEDEDE"
+        app:boxStrokeWidth="0dp">
 
-        <EditText
+        <AutoCompleteTextView
+            android:id="@+id/dropDownGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gender"
-            android:id="@+id/txtGenderUserInfo"
-            android:inputType="text"
-            android:textSize="15sp"/>
-
-<!--        <Spinner-->
-<!--            android:id="@+id/spnrGender"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:spinnerMode="dropdown"-->
-<!--            android:popupBackground="#DFDFDF"-->
-<!--            />-->
-
-
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
