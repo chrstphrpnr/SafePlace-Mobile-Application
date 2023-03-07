@@ -187,7 +187,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
+    //Show Markers of Barangay
     private void getBarangaysLocation(){
 
         RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
@@ -231,6 +231,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    //Show Markers of Police Station
     private void getPoliceStationsLocation(){
         RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, API.policeStation_map,response -> {

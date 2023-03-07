@@ -99,6 +99,11 @@
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 map:cameraZoom="10"
+                map:uiRotateGestures="false"
+                map:uiZoomControls="false"
+                map:uiZoomGestures="false"
+                map:uiScrollGestures="false"
+
                 />
 
             <ImageView

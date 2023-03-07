@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +31,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -278,6 +281,10 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+        getHospitalsLocation();
+        getBarangaysLocation();
+        getPoliceStationsLocation();
+
 
     }
 
@@ -293,6 +300,136 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
+
+    //Show markers of Hospitals
+    private void getHospitalsLocation() {
+
+        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.hospital_map,response -> {
+
+            Log.d("JSONResult", response.toString());
+            JSONObject j = null;
+            try {
+                j = new JSONObject(response);
+                result = j.getJSONArray("hospitals");
+                for (int i = 0; i < result.length(); i++) {
+                    JSONObject object = result.getJSONObject(i);
+                    String hospitalLatitude = object.getString("latitude");
+                    String hospitalLongtitude = object.getString("longitude");
+                    String hospital_name = object.getString("hospital_name");
+
+                    mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(Double.parseDouble(hospitalLatitude), Double.parseDouble(hospitalLongtitude)))
+                            .title(hospital_name)
+                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(),R.drawable.ic_hospitalmarker))
+                    );
+
+
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> {
+            error.printStackTrace();
+            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+        });
+
+        int socketTimeout = 10000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
+
+    }
+
+    //Show Markers of Barangay
+    private void getBarangaysLocation(){
+
+        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.barangay_map,response -> {
+
+            Log.d("JSONResult", response.toString());
+            JSONObject j = null;
+            try {
+                j = new JSONObject(response);
+                result = j.getJSONArray("barangay");
+                for (int i = 0; i < result.length(); i++) {
+                    JSONObject object = result.getJSONObject(i);
+                    String lat_i = object.getString("latitude");
+                    String long_i = object.getString("longitude");
+                    String barangay_name = object.getString("barangay_name");
+
+                    mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
+                            .title(barangay_name)
+                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(),R.drawable.ic_barangaymarker))
+                    );
+
+
+
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> {
+            error.printStackTrace();
+            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+        });
+
+        int socketTimeout = 10000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
+
+    }
+
+    //Show Markers of Police Station
+    private void getPoliceStationsLocation(){
+        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.policeStation_map,response -> {
+
+            Log.d("JSONResult", response.toString());
+            JSONObject j = null;
+            try {
+                j = new JSONObject(response);
+                result = j.getJSONArray("police_station");
+                for (int i = 0; i < result.length(); i++) {
+                    JSONObject object = result.getJSONObject(i);
+                    String lat_i = object.getString("latitude");
+                    String long_i = object.getString("longitude");
+                    String policestation_name = object.getString("policestation_name");
+
+                    mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
+                            .title(policestation_name)
+                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(),R.drawable.ic_policemarker))
+                    );
+
+
+
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> {
+            error.printStackTrace();
+            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+        });
+
+        int socketTimeout = 10000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
+    }
+
 
 
 
