@@ -1,6 +1,5 @@
 package org.tup.safeplace.HomeScreen;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,9 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -23,7 +23,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +35,7 @@ import org.tup.safeplace.PoliceStationMenuList.PoliceStationListActivity;
 import org.tup.safeplace.R;
 import org.tup.safeplace.Report.ReportActivity;
 import org.tup.safeplace.ReportsMenuList.ReportListActivity;
-import org.tup.safeplace.UnregisteredUserPopUp;
+import org.tup.safeplace.Verification.VerificationActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +46,6 @@ public class HomeScreenFragment extends Fragment {
     private View view;
     private CardView menuHospitalList, menuPoliceStationList, menuBarangayList, menuReportList, mapView;
     private Button btnReportHere;
-    private RelativeLayout layout_popup;
 
     private SharedPreferences userPref;
 
@@ -60,7 +58,6 @@ public class HomeScreenFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home_screen, container, false);
-        layout_popup = view.findViewById(R.id.popUpUnregisteredUser);
 
         reportVerification();
         init();
@@ -86,8 +83,7 @@ public class HomeScreenFragment extends Fragment {
 
                             if(status.equals("unverified_user")){
                                 Toast.makeText(getContext(), "Register First", Toast.LENGTH_SHORT).show();
-                                UnregisteredUserPopUp popUpWindow = new UnregisteredUserPopUp();
-                                popUpWindow.showPopupWindow(v);
+                                showPopupWindow(view);
 
                             }
 
@@ -120,6 +116,51 @@ public class HomeScreenFragment extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
         queue.add(request);
+
+    }
+
+    private void showPopupWindow(final View view) {
+
+        //Create a View object yourself through inflater
+        LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.activity_unregistered_user_pop_up, null);
+
+        //Specify the length and width through constants
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.MATCH_PARENT;
+
+        //Make Inactive Items Outside Of PopupWindow
+        boolean focusable = true;
+
+        //Create a window with our parameters
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        //Set the location of the window on the screen
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        TextView skip = popupView.findViewById(R.id.txtSkipUnregistered);
+
+        TextView unregisteredRegister = popupView.findViewById(R.id.txtRegisterUnregistered);
+
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+
+            }
+        });
+
+        unregisteredRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), VerificationActivity.class));
+            }
+        });
+
+
+
+
 
     }
 

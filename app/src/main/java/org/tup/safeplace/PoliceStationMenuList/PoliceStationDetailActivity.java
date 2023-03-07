@@ -56,7 +56,8 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
 
         btnBack.setOnClickListener(v->{
-            startActivity(new Intent(PoliceStationDetailActivity.this, PoliceStationListActivity.class));
+            onBackPressed();
+            finish();
 
         });
     }

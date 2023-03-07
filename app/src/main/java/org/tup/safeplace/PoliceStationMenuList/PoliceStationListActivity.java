@@ -19,7 +19,7 @@ public class PoliceStationListActivity extends AppCompatActivity {
 
 
         btnBack.setOnClickListener(v->{
-            startActivity(new Intent(PoliceStationListActivity.this, SafePlaceHomeScreenActivity.class));
+            onBackPressed();
             finish();
         });
 

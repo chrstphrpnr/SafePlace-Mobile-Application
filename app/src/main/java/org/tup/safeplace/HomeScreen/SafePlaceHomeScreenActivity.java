@@ -12,13 +12,15 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,11 +43,8 @@ import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
 import org.tup.safeplace.Notification.NotificationActivity;
 import org.tup.safeplace.R;
-import org.tup.safeplace.Report.ReportActivity;
-import org.tup.safeplace.UnregisteredUserPopUp;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
 import org.tup.safeplace.Verification.VerificationActivity;
-import org.w3c.dom.Text;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -99,7 +98,6 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
 
 
-
         View header = navigationView.getHeaderView(0);
         userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
         txtUserName = header.findViewById(R.id.txtUserNameDrawer);
@@ -109,10 +107,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         imgProfile = header.findViewById(R.id.userProfileImage);
 
         notificationBell.setOnClickListener(v->{
-
             startActivity(new Intent(SafePlaceHomeScreenActivity.this, NotificationActivity.class));
-            finish();
-
         });
 
 
@@ -130,7 +125,6 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
             if(id == R.id.AccountMenu){
                 startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
-                finish();
             }
             else if(id == R.id.VerificationMenu){
 
@@ -150,15 +144,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                                 }
 
                                 if(status.equals("verified_user")){
-
-                                    LayoutInflater inflater = (LayoutInflater)
-                                            getSystemService(LAYOUT_INFLATER_SERVICE);
-
-                                    UnregisteredUserPopUp popUpWindow = new UnregisteredUserPopUp();
-
-                                    View popupView = inflater.inflate(R.layout.registered_user_pop_up, null);
-
-                                    popUpWindow.showPopupWindow(popupView);
+                                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Your Account is already registered.", Toast.LENGTH_SHORT).show();
+                                    showPopupWindow();
                                 }
 
 
@@ -188,13 +175,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
 
             }
-            else if(id == R.id.SettingsMenu){
-                Toast.makeText(SafePlaceHomeScreenActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-
-            }
             else if(id == R.id.HelpMenu){
                 Toast.makeText(SafePlaceHomeScreenActivity.this, "Help", Toast.LENGTH_SHORT).show();
-
             }
             else if(id == R.id.LogoutMenu){
                 Toast.makeText(SafePlaceHomeScreenActivity.this, "Logout", Toast.LENGTH_SHORT).show();
@@ -274,10 +256,6 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
-    private void onButtonShowPopupWindowClick(View view){
-        UnregisteredUserPopUp popUpWindow = new UnregisteredUserPopUp();
-        popUpWindow.showPopupWindow(view);
-    }
 
     //    Volley Get Method for Display of UserInformation in Drawable Drawer
     private void getData() {
@@ -398,6 +376,38 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         queue.add(request);
 
     }
+
+    //PopUp Windows
+    private void showPopupWindow() {
+
+        //Create a View object yourself through inflater
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.activity_registered_user_pop_up, null);
+
+        //Specify the length and width through constants
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.MATCH_PARENT;
+
+        //Make Inactive Items Outside Of PopupWindow
+        boolean focusable = true;
+
+        //Create a window with our parameters
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        //Set the location of the window on the screen
+        popupWindow.showAtLocation(drawerLayout, Gravity.CENTER, 0, 0);
+
+        TextView txtSkipUnregistered = popupView.findViewById(R.id.txtSkipUnregistered);
+
+        txtSkipUnregistered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+
+    }
+
 
     //Check Notification
     private void check_notification(){

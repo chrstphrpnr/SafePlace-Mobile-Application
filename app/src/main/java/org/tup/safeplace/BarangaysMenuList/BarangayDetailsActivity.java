@@ -17,7 +17,7 @@ public class BarangayDetailsActivity extends AppCompatActivity {
 
     TextView tvDetailBarangayTitle,tvDetailBarangayName,tvDetailBarangayCaptain,tvDetailBarangayLocation,tvDetailBarangaySchedule,tvDetailBarangayContacts;
     Barangay Barangay;
-    ImageView imgDetailsBarangay;
+    ImageView imgDetailsBarangay, btnBarangayDetailsBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,13 @@ public class BarangayDetailsActivity extends AppCompatActivity {
             Picasso.get().load(API.URL+Barangay.getImg()).resize(500,0).centerCrop().into(imgDetailsBarangay);
 
         }
+
+        btnBarangayDetailsBack = findViewById(R.id.btnBarangayDetailsBack);
+
+        btnBarangayDetailsBack.setOnClickListener(v->{
+            onBackPressed();
+            finish();
+        });
 
 
 

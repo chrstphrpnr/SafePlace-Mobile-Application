@@ -16,12 +16,6 @@
             />
 
         <item
-            android:icon="@drawable/ic_settings"
-            android:id="@+id/SettingsMenu"
-            android:title="Settings"
-            />
-
-        <item
             android:icon="@drawable/ic_help"
             android:id="@+id/HelpMenu"
             android:title="Help"

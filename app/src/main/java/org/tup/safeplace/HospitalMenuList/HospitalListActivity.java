@@ -25,12 +25,17 @@ public class HospitalListActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnHospitalBack);
 
         btnBack.setOnClickListener(v->{
-            startActivity(new Intent(HospitalListActivity.this, SafePlaceHomeScreenActivity.class));
+            onBackPressed();
             finish();
         });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frameHospitalListContainer,new HospitalListMenuFragment()).commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
 
+    }
 }

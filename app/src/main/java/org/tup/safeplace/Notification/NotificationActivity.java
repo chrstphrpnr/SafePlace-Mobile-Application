@@ -43,7 +43,6 @@ public class NotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_notification);
 
         userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
@@ -61,7 +60,7 @@ public class NotificationActivity extends AppCompatActivity {
 
 
         btnBack.setOnClickListener(v->{
-            startActivity(new Intent(NotificationActivity.this, SafePlaceHomeScreenActivity.class));
+            onBackPressed();
             finish();
         });
 

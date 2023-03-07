@@ -21,7 +21,8 @@ public class BarangayListActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBarangayBack);
 
         btnBack.setOnClickListener(v->{
-            startActivity(new Intent(BarangayListActivity.this, SafePlaceHomeScreenActivity.class));
+            onBackPressed();
+            finish();
         });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frameBarangayListContainer,new BarangayListFragment()).commit();

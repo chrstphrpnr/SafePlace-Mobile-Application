@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#A2A2A3"
-    android:id="@+id/popUpUnregisteredUser"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:gravity="center"
     >
 
     <LinearLayout
+        android:backgroundTint="#EDEDED"
         android:layout_margin="@dimen/_20sdp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_270sdp"
         android:orientation="vertical"
         android:background="@drawable/popup">
 
@@ -26,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/safeplace_darkfont"
-            android:text="PLEASE VERIFY YOUR ACCOUNT FIRST"
+            android:text="YOUR ACCOUNT IS ALREADY VERIFIED"
             android:textSize="@dimen/_20sdp"
             android:gravity="center"
             android:layout_marginTop="@dimen/_25sdp"
@@ -40,26 +44,13 @@
             android:layout_margin="@dimen/_20sdp">
 
             <TextView
+                android:id="@+id/txtSkipUnregistered"
                 android:textSize="@dimen/_15sdp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:text="SKIP" />
+                android:gravity="center"
+                android:text="CLOSE" />
 
-
-            <TextView
-                android:textSize="@dimen/_11sdp"
-                android:background="@drawable/btn_round"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="4dp"
-                android:text="REGISTER"
-                android:padding="@dimen/_5sdp"
-                android:textStyle="bold"
-                />
 
 
 
@@ -70,4 +61,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

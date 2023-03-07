@@ -49,7 +49,7 @@ public class HospitalDetailActivity extends AppCompatActivity {
 
         btnHospitalDetailBack = findViewById(R.id.btnHospitalDetailBack);
         btnHospitalDetailBack.setOnClickListener(v->{
-            startActivity(new Intent(HospitalDetailActivity.this, HospitalListActivity.class));
+            onBackPressed();
             finish();
         });
 
