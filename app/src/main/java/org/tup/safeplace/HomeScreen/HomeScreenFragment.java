@@ -256,7 +256,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         Location location = null;
 
         mMap = googleMap;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(),R.raw.mapstyle));
 
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;

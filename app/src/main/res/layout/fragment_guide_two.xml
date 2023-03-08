@@ -1,88 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Verification.GuideTwoFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Verification.GuideTwoFragment"
+    android:background="@color/safeplace_bgcolor"
+
+    >
 
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         >
 
-        <com.google.android.material.appbar.AppBarLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/taskbarIdGuide"
             >
 
-            <androidx.appcompat.widget.Toolbar
-                android:background="@color/white"
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                >
 
-                <ImageView
-                    android:id="@+id/btnGuidTwoBack"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                <androidx.appcompat.widget.Toolbar
+                    android:background="@color/white"
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/btnGuidTwoBack"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="VERIFICATION"
+                            android:textColor="@color/black"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/GuideTakingIdPictureTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taskbarIdGuide"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/opensans"
+            android:gravity="center"
+            android:text="GUIDE IN TAKING ID PICTURE"
+            android:paddingHorizontal="@dimen/_28sdp"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_20sdp"
+            />
+
+        <TextView
+            android:id="@+id/GuideTakingIdPictureDescription1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/GuideTakingIdPictureTitle"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/opensans"
+            android:gravity="center"
+            android:text="Fill out the required information and make sure you have at least one [1] valid Primary ID. Please ensure that the Name and Birthday you entered in the Upgrade Application form matches the Name and Birthday reflected in the Valid ID that you will be uploading."
+            android:paddingHorizontal="@dimen/_28sdp"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_20sdp"
+            />
+
+
+        <GridLayout
+            android:id="@+id/gridlayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/GuideTakingIdPictureDescription1"
+            android:layout_marginTop="15dp"
+            android:columnCount="2"
+
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/guide1"
+                android:layout_width="165dp"
+                android:layout_height="300dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_230sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
 
-                    <TextView
-                        android:layout_gravity="center"
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="VERIFICATION"
-                        android:textColor="@color/black"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
+                        android:layout_margin="15dp"
+                        android:gravity="center"
+                        android:src="@drawable/verification3"
+                        />
 
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="Make sure the information in your ID is same with the information you entered in the app."
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/guide2"
+                android:layout_width="165dp"
+                android:layout_height="300dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                >
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_230sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:gravity="center"
+                        android:src="@drawable/verification4"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="Please ensure that your ID is up to date and not expired (and also not a photocopy)."
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    />
+
+
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+
+
+        <GridLayout
+            android:id="@+id/gridlayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gridlayout1"
+            android:columnCount="2"
+
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/guide3"
+                android:layout_width="165dp"
+                android:layout_height="300dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_230sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:gravity="center"
+                        android:src="@drawable/verification5" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="Capture your ID horizontally or in landscape format"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/guide4"
+                android:layout_width="165dp"
+                android:layout_height="300dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_230sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:gravity="center"
+                        android:src="@drawable/verification6" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="Double check if the photos of your ID are clear and the details are readable before submission."
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/btnContinueGuideTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/safeplace_btnblue"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            android:text="CONTINUE"
+            android:layout_below="@+id/gridlayout2"
+            />
+
+
+    </RelativeLayout>
 
 
 
-            </androidx.appcompat.widget.Toolbar>
-
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-    </LinearLayout>
 
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="27dp"
-        android:text="GUIDE IN TAKING ID PICTURE"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        />
 
-    <Button
-        android:id="@+id/btnContinueGuideTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/safeplace_btnblue"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp"
-        android:text="CONTINUE"
-        />
-
-
-
-</RelativeLayout>
+</ScrollView>
