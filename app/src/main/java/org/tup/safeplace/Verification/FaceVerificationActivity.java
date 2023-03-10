@@ -10,11 +10,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -116,13 +118,36 @@ public class FaceVerificationActivity extends AppCompatActivity {
         });
     }
 
+    // rotate the bitmap to portrait
+    public static Bitmap RotateBitmap(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(),
+                source.getHeight(), matrix, true);
+    }
+
+
+    //the front camera displays the mirror image, we should flip it to its original
+    Bitmap flip(Bitmap d)
+    {
+        Matrix m = new Matrix();
+        m.preScale(-1, 1);
+        Bitmap src = d;
+        Bitmap dst = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), m, false);
+        dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
+        return dst;
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 111 && resultCode == RESULT_OK) {
             bitmap = BitmapFactory.decodeFile(currentPhotoPath);
-            imgFaceImage.setImageBitmap(bitmap);
-            ImageStore(bitmap);
+            Matrix matrixfront = new Matrix();
+            matrixfront.postRotate(-90);
+            Bitmap rotatedfront = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrixfront, true);
+            imgFaceImage.setImageBitmap(flip(rotatedfront));
+            ImageStore(rotatedfront);
         }
         super.onActivityResult(requestCode, resultCode, data);
         uploadFaceImage();
@@ -147,12 +172,12 @@ public class FaceVerificationActivity extends AppCompatActivity {
             editor.putString("status","Pending");
             editor.apply();
 
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
 
         }, error -> {
 
-            Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Upload Failed. Please Take a Selfie Again.", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
             dialog.dismiss();
 

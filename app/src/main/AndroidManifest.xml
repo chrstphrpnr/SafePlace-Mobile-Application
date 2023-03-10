@@ -92,20 +92,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Verification.BackIdCardActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Verification.FrontIdCardActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Verification.IdentificationCardInformationActivity"
             android:exported="false">
             <meta-data

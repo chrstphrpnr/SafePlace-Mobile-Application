@@ -11,43 +11,47 @@
         android:id="@+id/txtfacecapture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FACE"
+        android:text="TAKE A SELFIE"
         android:textSize="30sp"
         android:gravity="center"
         android:layout_marginTop="200dp"
+        android:textColor="@color/safeplace_darkfont"
         />
 
-    <androidx.cardview.widget.CardView
-        android:layout_below="@+id/txtfacecapture"
-        android:id="@+id/cardviewFaceImage"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
-        android:backgroundTint="@color/white"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="10dp"
-        >
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_below="@+id/txtfacecapture"-->
+<!--        android:id="@+id/cardviewFaceImage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        android:layout_marginHorizontal="50dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        >-->
 
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_camera"/>
+<!--        <ImageView-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="@drawable/ic_camera"/>-->
 
         <ImageView
             android:id="@+id/imgFaceImage"
             android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/txtfacecapture"
+            android:src="@color/white"
             />
 
-    </androidx.cardview.widget.CardView>
+<!--    </androidx.cardview.widget.CardView>-->
 
     <Button
         android:id="@+id/btnCaptureFace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorTextSecondary"
-        android:layout_below="@+id/cardviewFaceImage"
+        android:layout_below="@+id/imgFaceImage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="TAKE PHOTO"/>
