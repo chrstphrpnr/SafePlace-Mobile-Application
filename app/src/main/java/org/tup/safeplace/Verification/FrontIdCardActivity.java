@@ -196,4 +196,7 @@ public class FrontIdCardActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
+
+
+
 }

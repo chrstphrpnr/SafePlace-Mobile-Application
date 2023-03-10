@@ -96,6 +96,7 @@
             >
 
             <androidx.cardview.widget.CardView
+                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide1"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
@@ -103,7 +104,8 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="5dp"
+                >
 
                 <LinearLayout
                     android:layout_marginTop="@dimen/_20sdp"
@@ -140,6 +142,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide2"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
@@ -147,7 +150,7 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
+                app:cardElevation="5dp"
                 >
 
                 <LinearLayout
@@ -195,6 +198,7 @@
             >
 
             <androidx.cardview.widget.CardView
+                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide3"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
@@ -202,7 +206,7 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_marginTop="@dimen/_20sdp"
@@ -239,6 +243,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide4"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
@@ -246,7 +251,7 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
+                app:cardElevation="5dp"
                 >
 
                 <LinearLayout
@@ -282,9 +287,6 @@
             </androidx.cardview.widget.CardView>
 
         </GridLayout>
-
-
-
 
 
         <Button

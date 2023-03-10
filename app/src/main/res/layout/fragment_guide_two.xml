@@ -78,15 +78,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/taskbarIdGuide"
             android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/opensans"
             android:gravity="center"
-            android:text="GUIDE IN TAKING ID PICTURE"
             android:paddingHorizontal="@dimen/_28sdp"
+            android:text="GUIDE IN TAKING ID PICTURE"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="@dimen/_18sdp"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_20sdp"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/GuideTakingIdPictureDescription1"
@@ -116,6 +115,7 @@
             >
 
             <androidx.cardview.widget.CardView
+                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide1"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
@@ -123,7 +123,7 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_marginTop="@dimen/_20sdp"
@@ -160,6 +160,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide2"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
@@ -167,7 +168,7 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
+                app:cardElevation="5dp"
                 >
 
                 <LinearLayout
@@ -215,6 +216,7 @@
             >
 
             <androidx.cardview.widget.CardView
+                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide3"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
@@ -222,7 +224,7 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -257,6 +259,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide4"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
@@ -264,7 +267,7 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

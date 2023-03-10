@@ -34,7 +34,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".UpdateInformationActivity"
+            android:name=".Verification.UpdateInformationActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -1,140 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/safeplace_bgcolor"
     tools:context=".Verification.IdentificationCardInformationActivity">
 
-    <LinearLayout
-        android:id="@+id/taskbarVerification"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <LinearLayout
+            android:id="@+id/taskbarVerification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             >
 
-            <androidx.appcompat.widget.Toolbar
-                android:background="@color/white"
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <androidx.appcompat.widget.Toolbar
+                    android:background="@color/white"
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/btnCardInfoBack"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="VERIFICATION"
+                            android:textColor="@color/black"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/VerificationIdInformationTitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taskbarVerification"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/opensans"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_28sdp"
+            android:text="UPLOAD IDENTIFICATION CARD"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/FrontIdTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/VerificationIdInformationTitle1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/opensans"
+            android:gravity="center"
+            android:text="Front ID"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_118sdp"
+            android:layout_below="@+id/FrontIdTitle"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="5dp"
+            android:layout_marginVertical="@dimen/_15sdp"
+            android:id="@+id/frontIdCardView"
+            >
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/btnCardInfoBack"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/frontIdImage"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:src="@drawable/cardview_rounded"
+                    />
+
+                <ImageView
+                    android:id="@+id/frontIdCam"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/camera" />
 
 
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="VERIFICATION"
-                        android:textColor="@color/black"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/frontGuidetxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/frontIdCam"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Upload the FRONT of your ID Here" />
 
+            </RelativeLayout>
 
-                </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-
-
-
-            </androidx.appcompat.widget.Toolbar>
-
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="30dp"
-        >
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/BackIdTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="@string/select_here"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-           android:layout_below="@+id/txtTitleIdType"
-            android:id="@+id/inputLayoutId"
+            android:layout_below="@+id/frontIdCardView"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/opensans"
+            android:gravity="center"
+            android:text="Back ID"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_118sdp"
+            android:layout_below="@+id/BackIdTitle"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="5dp"
+            android:layout_marginVertical="@dimen/_15sdp"
+            android:id="@+id/backIdCardView"
             >
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteIdtxt"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"/>
+                android:layout_height="match_parent">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <ImageView
+                    android:id="@+id/backIdImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cardview_rounded"
+                    />
 
-        <TextView
-            android:layout_centerInParent="true"
-            android:id="@+id/txtTitleIdType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Id Type"
-            android:layout_below="@+id/taskbarVerification"
-            />
+                <ImageView
+                    android:id="@+id/backIdCam"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="-5dp"
+                    android:src="@drawable/camera" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/edtIdentificationCardType"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="ID Type"-->
-<!--            android:layout_below="@+id/txtTitleIdType"-->
-<!--            />-->
 
-        <TextView
-            android:id="@+id/txtTitleIdNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Id Number"
-            android:layout_below="@+id/inputLayoutId"
-            />
+                <TextView
+                    android:id="@+id/backGuidetxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/backIdCam"
+                    android:text="Upload the BACK of your ID Here"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    />
 
-        <EditText
-            android:id="@+id/edtIdentificationCardNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID Number"
-            android:layout_below="@+id/txtTitleIdNumber"
-            />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
 
     </RelativeLayout>
 
 
-    <Button
-        android:id="@+id/btnContinueCardInformation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/safeplace_btnblue"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp"
-        android:text="CONTINUE"
-        />
 
 
 
 
 
-</RelativeLayout>
+
+</ScrollView>

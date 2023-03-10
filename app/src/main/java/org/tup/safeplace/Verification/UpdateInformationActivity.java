@@ -1,4 +1,4 @@
-package org.tup.safeplace;
+package org.tup.safeplace.Verification;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,19 +13,14 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tup.safeplace.Authentication.UserInfoRegisterActivity;
 import org.tup.safeplace.Constants.API;
-import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
-import org.tup.safeplace.Verification.IdentificationCardInformationActivity;
+import org.tup.safeplace.R;
 
 import java.util.HashMap;
 import java.util.Map;

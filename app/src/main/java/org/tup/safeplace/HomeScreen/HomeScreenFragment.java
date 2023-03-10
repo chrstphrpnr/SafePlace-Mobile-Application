@@ -334,7 +334,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
         }, error -> {
             error.printStackTrace();
-            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Error in connection. Please try again", Toast.LENGTH_LONG).show();
         });
 
         int socketTimeout = 10000;
