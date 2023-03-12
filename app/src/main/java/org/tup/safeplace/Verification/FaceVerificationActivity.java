@@ -128,8 +128,7 @@ public class FaceVerificationActivity extends AppCompatActivity {
 
 
     //the front camera displays the mirror image, we should flip it to its original
-    Bitmap flip(Bitmap d)
-    {
+    Bitmap flip(Bitmap d) {
         Matrix m = new Matrix();
         m.preScale(-1, 1);
         Bitmap src = d;
@@ -169,7 +168,7 @@ public class FaceVerificationActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, API.face_image, response -> {
 
             SharedPreferences.Editor editor = userPref.edit();
-            editor.putString("status","Pending");
+            editor.putBoolean("verification_submitted",true);
             editor.apply();
 
             Toast.makeText(this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();

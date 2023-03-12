@@ -133,8 +133,6 @@ public class SignInFragment extends Fragment {
             startActivity(new Intent(((AuthenticationActivity)getContext()), QRLoginActivity.class));
         });
 
-
-
         btnSignIn.setOnClickListener(v->{
             if(validate()){
                 login();

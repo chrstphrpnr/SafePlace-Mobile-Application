@@ -91,6 +91,7 @@ public class BarangayListFragment extends Fragment {
 
                 if(succes!=null){
                     for (int i = 0; i<jsonArray.length(); i++){
+
                         JSONObject object = jsonArray.getJSONObject(i);
                         String barangay_name = object.getString("barangay_name");
                         String barangay_captain = object.getString("barangay_captain");
@@ -99,12 +100,11 @@ public class BarangayListFragment extends Fragment {
                         String barangay_contact = object.getString("barangay_contact");
                         String img = object.getString("img");
 
-
-
                         barangay = new Barangay(barangay_name,barangay_captain,barangay_location,barangay_schedule,barangay_contact,img);
 
                         barangayArrayList.add(barangay);
                         adapter.notifyDataSetChanged();
+
                     }
                 }
 

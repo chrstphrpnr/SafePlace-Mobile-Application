@@ -9,9 +9,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,7 +43,9 @@ import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
+import org.tup.safeplace.MainActivity;
 import org.tup.safeplace.Notification.NotificationActivity;
+import org.tup.safeplace.Onboarding.OnboardingActivity;
 import org.tup.safeplace.R;
 import org.tup.safeplace.UserAccount.UserAccountActivity;
 import org.tup.safeplace.Verification.VerificationActivity;
@@ -113,6 +117,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
 
 
+
+
         //Drawable Drawer and Toolbar
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -128,49 +134,71 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             }
             else if(id == R.id.VerificationMenu){
 
-                StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
 
-                    try{
-                        JSONObject jsonObject = new JSONObject(response);
-                        JSONArray jsonArray = jsonObject.getJSONArray("user");
-                        if (jsonObject.getBoolean("success")){
-                            for (int i = 0; i <jsonArray.length(); i++) {
-                                JSONObject object = jsonArray.getJSONObject(i);
+                SharedPreferences userPref = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+                boolean requested = userPref.getBoolean("verification_submitted",true);
 
-                                String status = object.getString("role");
+                if (requested){
+                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Your account is already in the process of verification, please wait.", Toast.LENGTH_SHORT).show();
+                    showPopupWindow();
+                }
+                else{
 
-                                if(status.equals("unverified_user")){
-                                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
+                    StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
+
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("user");
+                            if (jsonObject.getBoolean("success")){
+                                for (int i = 0; i <jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+
+                                    String status = object.getString("role");
+
+                                    if(status.equals("unverified_user")){
+                                        startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
+                                        SharedPreferences.Editor editor = userPref.edit();
+                                        editor.putBoolean("verification_submitted",false);
+                                        editor.apply();
+                                    }
+
+                                    if(status.equals("verified_user")){
+                                        Toast.makeText(SafePlaceHomeScreenActivity.this, "Your Account is already registered.", Toast.LENGTH_SHORT).show();
+                                        SharedPreferences.Editor editor = userPref.edit();
+                                        editor.putBoolean("verification_submitted",true);
+                                        editor.apply();
+                                        showPopupWindow();
+
+                                    }
+
                                 }
-
-                                if(status.equals("verified_user")){
-                                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Your Account is already registered.", Toast.LENGTH_SHORT).show();
-                                    showPopupWindow();
-                                }
-
-
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
 
 
-                }, error -> {
-                    error.printStackTrace();
-                }){
+                    }, error -> {
+                        error.printStackTrace();
+                    }){
 
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        String token = userPref.getString("token","");
-                        HashMap<String,String> map = new HashMap<>();
-                        map.put("Authorization","Bearer "+token);
-                        return map;
-                    }
-                };
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            String token = userPref.getString("token","");
+                            HashMap<String,String> map = new HashMap<>();
+                            map.put("Authorization","Bearer "+token);
+                            return map;
+                        }
+                    };
 
-                RequestQueue queue = Volley.newRequestQueue(this);
-                queue.add(request);
+                    RequestQueue queue = Volley.newRequestQueue(this);
+                    queue.add(request);
+
+
+
+                }
+
+
 
 
 
@@ -335,7 +363,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                     return new PoliceCallScreenFragment();
                 default:
                     return null;
-            }        }
+            }
+        }
 
         @Override
         public int getItemCount() {
@@ -382,7 +411,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
         //Create a View object yourself through inflater
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.activity_registered_user_pop_up, null);
+        View popupView = inflater.inflate(R.layout.activity_pending_user_pop_up, null);
 
         //Specify the length and width through constants
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
@@ -397,9 +426,9 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         //Set the location of the window on the screen
         popupWindow.showAtLocation(drawerLayout, Gravity.CENTER, 0, 0);
 
-        TextView txtSkipUnregistered = popupView.findViewById(R.id.txtSkipUnregistered);
+        TextView txtSkipPending = popupView.findViewById(R.id.txtSkipPending);
 
-        txtSkipUnregistered.setOnClickListener(new View.OnClickListener() {
+        txtSkipPending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 popupWindow.dismiss();
