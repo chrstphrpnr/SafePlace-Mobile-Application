@@ -260,6 +260,7 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
 
 
                         editor.putBoolean("isLoggedIn",true);
+
                         editor.apply();
                     }
 

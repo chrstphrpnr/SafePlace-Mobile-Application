@@ -37,7 +37,8 @@
         android:layout_below="@+id/barangaySpinner"
         android:gravity="center_horizontal"
         android:textAlignment="center"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        />
 
     <ImageButton
         android:id="@+id/btnBarangayCall"

@@ -3,10 +3,12 @@ package org.tup.safeplace.HomeScreen.Police;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -21,6 +23,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -34,6 +38,8 @@ import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PoliceCallScreenFragment extends Fragment {
@@ -54,6 +60,9 @@ public class PoliceCallScreenFragment extends Fragment {
     ImageButton btnPoliceCall;
     static int PERMISSION_CODE = 100;
 
+    private SharedPreferences userPref;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,8 +74,10 @@ public class PoliceCallScreenFragment extends Fragment {
 
     private void init(){
 
+        userPref = getActivity().getApplicationContext().getSharedPreferences("user", getContext().MODE_PRIVATE);
+
+
         policeStations = new ArrayList<String>();
-        policeStations.add("Please Select Here...");
 
         spinner = view.findViewById(R.id.policeSpinner);
         policeContact = view.findViewById(R.id.policeContactCall);
@@ -100,12 +111,103 @@ public class PoliceCallScreenFragment extends Fragment {
             Intent intent = new Intent("android.intent.action.VIEW");
             intent.setClassName("com.viber.voip", "com.viber.voip.WelcomeActivity");
             intent.setData(uri);
-            startActivity(intent);
+
+
+            StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("user");
+                    if (jsonObject.getBoolean("success")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            String status = object.getString("role");
+
+
+                            if (status.equals("unverified_user")) {
+                                Toast.makeText(getContext(), "Register First", Toast.LENGTH_SHORT).show();
+//                                showPopupWindow(view);
+
+                            } else {
+//                                startActivity(new Intent(getContext(), ReportActivity.class));
+//                                Toast.makeText(getContext(), "Report Here", Toast.LENGTH_SHORT).show();
+//                                startActivity(intent);
+                                callLog();
+
+                            }
+
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }, error -> {
+                error.printStackTrace();
+            }) {
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    String token = userPref.getString("token", "");
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("Authorization", "Bearer " + token);
+                    return map;
+                }
+            };
+
+            RequestQueue queue = Volley.newRequestQueue(getContext());
+            queue.add(request);
+
 
         });
 
 
     }
+
+    private void callLog(){
+        String name_contacted = spinner.getSelectedItem().toString();
+
+        StringRequest request = new StringRequest(Request.Method.POST, API.call_log, response -> {
+
+            String phoneNumber = policeContact.getText().toString();
+            Uri uri = Uri.parse("tel:" + Uri.encode(phoneNumber));
+            Intent intent = new Intent("android.intent.action.VIEW");
+            intent.setClassName("com.viber.voip", "com.viber.voip.WelcomeActivity");
+            intent.setData(uri);
+            startActivity(intent);
+
+
+        }, error -> {
+
+            Toast.makeText(getContext(), "Error in Connection", Toast.LENGTH_SHORT).show();
+            error.printStackTrace();
+
+        }){
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String token = userPref.getString("token","");
+                HashMap<String, String> map =new HashMap<>();
+                map.put("Authorization","Bearer "+token);
+                return map;
+            }
+
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("name_contacted",name_contacted);
+                return map;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(request);
+    }
+
 
     private void getData(){
 

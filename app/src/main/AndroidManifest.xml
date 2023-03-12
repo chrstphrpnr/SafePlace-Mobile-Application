@@ -61,15 +61,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".UnregisteredUserPopUp"
-            android:exported="false"
-            android:theme="@style/PopUp"
-            tools:ignore="Instantiatable">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+<!--        <activity-->
+<!--            android:name=".UnregisteredUserPopUp"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/PopUp"-->
+<!--            tools:ignore="Instantiatable">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
         <activity
             android:name=".ReportsMenuList.ReportListActivity"
             android:exported="false">

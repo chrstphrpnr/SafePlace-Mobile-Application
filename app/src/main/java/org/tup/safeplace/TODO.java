@@ -3,7 +3,7 @@ package org.tup.safeplace;
 public class TODO {
     
     //TODO: Send Notification After Clicking DONE in Selfie Activity
-    //TODO: Put a reminder pop up window for user to have a viber account in their first call
+    //TODO: Put a reminder pop up window for user to have a viber account in their first call (San lalagay yung logic na to?)
     //TODO: Submit a review
 
 
