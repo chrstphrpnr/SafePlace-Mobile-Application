@@ -11,11 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,10 +34,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tup.safeplace.CallHistory.CallHistoryActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
-import org.tup.safeplace.Verification.FaceVerificationActivity;
-import org.tup.safeplace.Verification.IdentificationCardInformationActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,13 +56,14 @@ public class BarangayCallScreenFragment extends Fragment {
     private JSONArray data;
 
     private TextView barangayContact;
+    private Button btnCallHistory;
 
     ImageButton btnBarangayCall;
     static int PERMISSION_CODE = 100;
 
     private SharedPreferences userPref;
-    String selected, spinner_item;
-    int sp_position;
+
+
 
 
 
@@ -85,6 +87,7 @@ public class BarangayCallScreenFragment extends Fragment {
         spinner = view.findViewById(R.id.barangaySpinner);
         barangayContact = view.findViewById(R.id.barangayContactCall);
         btnBarangayCall = view.findViewById(R.id.btnBarangayCall);
+        btnCallHistory = view.findViewById(R.id.btnCallHistoryBarangay);
 
         getData();
 
@@ -92,6 +95,10 @@ public class BarangayCallScreenFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 barangayContact.setText(getContact(i));
+                ((TextView) adapterView.getChildAt(0)).setTextSize(20);
+                ((TextView) adapterView.getChildAt(0)).setGravity(Gravity.CENTER);
+
+
 
             }
             @Override
@@ -105,8 +112,11 @@ public class BarangayCallScreenFragment extends Fragment {
             return;
         }
 
-        btnBarangayCall.setOnClickListener(v->{
+        btnCallHistory.setOnClickListener(v->{
+                startActivity(new Intent(getContext(), CallHistoryActivity.class));
+        });
 
+        btnBarangayCall.setOnClickListener(v->{
 
             StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
 
@@ -161,7 +171,7 @@ public class BarangayCallScreenFragment extends Fragment {
     private void callLog(){
         String name_contacted = spinner.getSelectedItem().toString();
 
-        StringRequest request = new StringRequest(Request.Method.POST, API.call_log, response -> {
+        StringRequest request = new StringRequest(Request.Method.POST, API.barangay_call_log, response -> {
 
             String phoneNumber = barangayContact.getText().toString();
             Uri uri = Uri.parse("tel:" + Uri.encode(phoneNumber));
@@ -256,8 +266,7 @@ public class BarangayCallScreenFragment extends Fragment {
 
     }
 
-
-    //Method to get student name of a particular position
+    //Method to get barangay name of a particular position
     private String getContact(int position){
         String contact="";
         try {

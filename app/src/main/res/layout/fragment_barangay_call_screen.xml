@@ -23,12 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/BarangayCallTitle"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center_horizontal"
         android:paddingHorizontal="@dimen/_20sdp"
         android:spinnerMode="dialog"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+
+        />
 
     <TextView
         android:id="@+id/barangayContactCall"
@@ -42,10 +44,23 @@
 
     <ImageButton
         android:id="@+id/btnBarangayCall"
-        android:layout_width="@dimen/_220sdp"
-        android:layout_height="@dimen/_220sdp"
-        android:layout_below="@id/barangayContactCall"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_below="@id/barangaySpinner"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/ic_emergencycall" />
+        android:background="@drawable/ic_emergencycall"
+
+        />
+
+    <Button
+        android:id="@+id/btnCallHistoryBarangay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call History"
+        android:backgroundTint="@color/safeplace_btnblue"
+        android:layout_below="@+id/btnBarangayCall"
+        android:layout_margin="@dimen/_50sdp"
+        android:layout_centerInParent="true"
+        />
 
 </RelativeLayout>

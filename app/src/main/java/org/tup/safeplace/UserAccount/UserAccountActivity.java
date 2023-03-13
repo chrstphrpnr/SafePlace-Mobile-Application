@@ -99,6 +99,7 @@ public class UserAccountActivity extends AppCompatActivity {
                         public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
                             Intent intent = new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
+//                            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                             startActivityForResult(Intent.createChooser(intent, "Select Image"), 1);
                         }
 

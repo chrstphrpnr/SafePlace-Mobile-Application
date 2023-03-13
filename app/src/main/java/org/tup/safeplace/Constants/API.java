@@ -63,7 +63,10 @@ public class API {
     public static String update_information= API + "update_information";
 
 
-    public static String call_log= API + "call_log";
+    public static String barangay_call_log= API + "barangay_call_log";
+    public static String police_call_log= API + "police_call_log";
+
+    public static String call_history= API + "view_call_log";
 
 
 

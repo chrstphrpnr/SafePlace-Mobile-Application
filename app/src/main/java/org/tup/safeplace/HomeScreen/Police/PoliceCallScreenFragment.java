@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tup.safeplace.CallHistory.CallHistory;
+import org.tup.safeplace.CallHistory.CallHistoryActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
@@ -48,6 +51,8 @@ public class PoliceCallScreenFragment extends Fragment {
     public static final String TAG_NAME = "policestation_name";
     public static final String TAG_CONTACT = "policestation_contact";
     public static final String JSON_ARRAY = "data";
+
+    private Button btnCallHistory;
 
     private Spinner spinner;
 
@@ -83,6 +88,13 @@ public class PoliceCallScreenFragment extends Fragment {
         policeContact = view.findViewById(R.id.policeContactCall);
         btnPoliceCall = view.findViewById(R.id.btnPoliceCall);
 
+        btnCallHistory = view.findViewById(R.id.btnCallHistory);
+
+        btnCallHistory.setOnClickListener(v->{
+            startActivity(new Intent(getContext(), CallHistoryActivity.class));
+        });
+
+
 
         getData();
 
@@ -90,7 +102,8 @@ public class PoliceCallScreenFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                ((TextView) adapterView.getChildAt(0)).setTextSize(23);
+//                ((TextView) adapterView.getChildAt(0)).setGravity(Gravity.CENTER);
                 policeContact.setText(getContact(i));
             }
 
@@ -170,7 +183,7 @@ public class PoliceCallScreenFragment extends Fragment {
     private void callLog(){
         String name_contacted = spinner.getSelectedItem().toString();
 
-        StringRequest request = new StringRequest(Request.Method.POST, API.call_log, response -> {
+        StringRequest request = new StringRequest(Request.Method.POST, API.police_call_log, response -> {
 
             String phoneNumber = policeContact.getText().toString();
             Uri uri = Uri.parse("tel:" + Uri.encode(phoneNumber));
