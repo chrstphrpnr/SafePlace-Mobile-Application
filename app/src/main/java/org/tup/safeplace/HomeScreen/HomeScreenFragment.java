@@ -1,5 +1,7 @@
 package org.tup.safeplace.HomeScreen;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -89,6 +92,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     private static final int REQUEST_CODE = 101;
     private JSONArray result;
 
+    private ScrollView scrollViewHomeScreen;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -135,8 +140,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
                                 showPopupWindow(view);
 
                             } else {
-                                startActivity(new Intent(getContext(), ReportActivity.class));
-                                Toast.makeText(getContext(), "Report Here", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getContext(), "Report Here", Toast.LENGTH_SHORT).show();
+                                showPopupWindowReport(view);
                             }
 
                         });
@@ -208,6 +213,46 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
+    private void showPopupWindowReport(final View view) {
+
+        //Create a View object yourself through inflater
+        LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.report_pop_up_window, null);
+
+        //Specify the length and width through constants
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.MATCH_PARENT;
+
+        //Make Inactive Items Outside Of PopupWindow
+        boolean focusable = true;
+
+        //Create a window with our parameters
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        //Set the location of the window on the screen
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        TextView btnReportBarangay = popupView.findViewById(R.id.btnReportBarangay);
+
+        TextView btnReportPolice = popupView.findViewById(R.id.btnReportPolice);
+
+        btnReportBarangay.setOnClickListener(v->{
+            startActivity(new Intent(getContext(), ReportActivity.class));
+
+            Toast.makeText(getContext(), "Barangay", Toast.LENGTH_SHORT).show();
+        });
+
+        btnReportPolice.setOnClickListener(v->{
+            startActivity(new Intent(getContext(), ReportActivity.class));
+            Toast.makeText(getContext(), "Police", Toast.LENGTH_SHORT).show();
+
+        });
+
+
+
+
+    }
+
 
     private void init() {
 
@@ -218,6 +263,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         menuBarangayList = view.findViewById(R.id.menuBarangayList);
         btnReportHere = view.findViewById(R.id.btnReportHere);
         menuReportList = view.findViewById(R.id.menuReportList);
+
+        scrollViewHomeScreen = view.findViewById(R.id.scrollViewHomeScreen);
 
         ic_zoom = view.findViewById(R.id.ic_zoom);
 
@@ -248,7 +295,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             startActivity(new Intent(getContext(), ReportListActivity.class));
         });
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -287,8 +333,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
 
     }
-
-
 
     //Converts Image in Drawable to Bitmap
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, int VectorResId){

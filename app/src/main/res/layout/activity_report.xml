@@ -1,66 +1,369 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Report.ReportActivity">
+    tools:context=".Report.ReportActivity"
+    android:background="@color/safeplace_bgcolor"
+    >
 
-  <LinearLayout
-      android:id="@+id/taskbarReport"
+  <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      >
+      android:layout_height="wrap_content">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
+        android:id="@+id/taskbarReport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         >
 
-      <androidx.appcompat.widget.Toolbar
-          android:background="@color/white"
-          android:id="@+id/toolbar"
+      <com.google.android.material.appbar.AppBarLayout
           android:layout_width="match_parent"
-          android:layout_height="match_parent">
+          android:layout_height="wrap_content"
+          >
 
-        <ImageView
-            android:id="@+id/btnReportBack"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+        <androidx.appcompat.widget.Toolbar
+            android:background="@color/white"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+          <ImageView
+              android:id="@+id/btnReportBack"
+              android:layout_centerVertical="true"
+              android:src="@drawable/ic_back"
+              android:layout_width="30dp"
+              android:layout_height="30dp"/>
 
-
-          <TextView
-              android:layout_gravity="center"
+          <LinearLayout
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REPORT"
-              android:textColor="@color/black"
-              android:textSize="25dp"
-              android:textStyle="bold" />
+              android:layout_height="match_parent"
+              android:layout_gravity="center_horizontal"
+              android:orientation="horizontal">
 
 
-        </LinearLayout>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REPORT"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+
+          </LinearLayout>
 
 
 
 
-      </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
 
-    </com.google.android.material.appbar.AppBarLayout>
+      </com.google.android.material.appbar.AppBarLayout>
 
 
-  </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/taskbarReport"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+
+        >
+
+      <TextView
+          android:id="@+id/txtStreetTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Street (If Applicable)"
+          android:textSize="15sp"
+          android:layout_marginTop="@dimen/_20sdp"
+          />
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/edtLayoutStreetLocationReport"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="Street"
+          android:textColor="@color/safeplace_darkfont"
+          android:layout_below="@+id/txtStreetTitle"
+          android:textSize="15sp"
+          app:boxStrokeWidth="0dp"
+          app:hintTextColor="#8C8686"
+          android:layout_marginTop="@dimen/_10sdp"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:background="@color/white"
+            android:id="@+id/txtInputStreetReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" />
 
 
-</RelativeLayout>
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <TextView
+          android:id="@+id/txtBarangayTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/edtLayoutStreetLocationReport"
+          android:text="Barangay"
+          android:textSize="15sp"
+          android:layout_marginTop="@dimen/_20sdp"
+
+          />
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/select_here"
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+          android:id="@+id/dropDownBarangayReportLayout"
+          android:background="@color/white"
+          android:layout_below="@+id/txtBarangayTitle"
+          android:layout_marginTop="@dimen/_10sdp"
+          >
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteBarangaytxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#DFDFDF"
+            android:inputType="none" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+
+      <TextView
+          android:id="@+id/txtPoliceStationTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/dropDownBarangayReportLayout"
+          android:text="Police Station"
+          android:textSize="15sp"
+          android:layout_marginTop="@dimen/_20sdp"
+
+          />
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/select_here"
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+          android:id="@+id/dropDownPoliceReportLayout"
+          android:background="@color/white"
+          android:layout_below="@+id/txtPoliceStationTitle"
+          android:layout_marginTop="@dimen/_10sdp"
+          >
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompletePoliceStationtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#DFDFDF"
+            android:inputType="none" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+
+      <TextView
+          android:id="@+id/txtIncidentTypeTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/dropDownPoliceReportLayout"
+          android:text="Incident Type"
+          android:textSize="15sp"
+          android:layout_marginTop="@dimen/_20sdp"
+
+          />
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/select_here"
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+          android:id="@+id/dropIncidentTypeLayout"
+          android:background="@color/white"
+          android:layout_below="@+id/txtIncidentTypeTitle"
+          android:layout_marginTop="@dimen/_10sdp"
+          >
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteIncidentTypetxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#DFDFDF"
+            android:inputType="none" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <TextView
+          android:id="@+id/txtReportDateTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/dropIncidentTypeLayout"
+          android:text="Date Committed"
+          android:textSize="15sp"
+          android:layout_marginTop="@dimen/_20sdp"
+
+          />
+
+      <Button
+          android:id="@+id/btnDatePickerReport"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="#DFDFDF"
+          android:backgroundTint="#DFDFDF"
+          android:text="Please pick the date of incident "
+          app:backgroundTint="@color/white"
+          android:textColor="#5B5B5B"
+          android:textSize="17sp"
+          android:textAllCaps="false"
+          android:gravity="start"
+          android:layout_gravity="start"
+          style="@style/Widget.AppCompat.Spinner"
+          android:onClick="openDatePicker"
+          android:layout_below="@+id/txtReportDateTitle"
+          android:layout_marginTop="@dimen/_10sdp"
+          />
+
+
+      <TextView
+          android:id="@+id/txtReportTimePickerTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/btnDatePickerReport"
+          android:text="Time Committed"
+          android:textSize="15sp"
+          android:layout_marginTop="@dimen/_20sdp"
+
+          />
+
+
+      <Button
+          android:id="@+id/btnReportTimePickerReport"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="#DFDFDF"
+          android:backgroundTint="#DFDFDF"
+          android:text="Please Pick the Time of Incident"
+          app:backgroundTint="@color/white"
+          android:textColor="#5B5B5B"
+          android:textSize="17sp"
+          android:textAllCaps="false"
+          android:gravity="start"
+          android:layout_gravity="start"
+          style="@style/Widget.AppCompat.Spinner"
+          android:onClick="openDatePicker"
+          android:layout_below="@+id/txtReportTimePickerTitle"
+          android:layout_marginTop="@dimen/_10sdp"
+          />
+
+
+      <TextView
+          android:id="@+id/txtReportDetailsTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/btnReportTimePickerReport"
+          android:text="Report Details"
+          android:textSize="15sp"
+          android:layout_marginTop="@dimen/_20sdp"
+          />
+
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/edtReportDetailsLayout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="Please Input the Report Details Here"
+          android:textColor="@color/safeplace_darkfont"
+          android:layout_below="@+id/txtReportDetailsTitle"
+          android:textSize="15sp"
+          app:boxStrokeWidth="0dp"
+          app:hintTextColor="#8C8686"
+          android:layout_marginTop="@dimen/_10sdp"
+
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:background="@color/white"
+            android:id="@+id/txtReportDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:isScrollContainer="true"
+            android:editable="true"
+            android:enabled="true"
+            android:maxLines="20"
+            android:textIsSelectable="true"
+            android:focusable="true"
+            android:ellipsize="start"
+            />
+
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <CheckBox
+          android:id="@+id/anonymousCheckBox"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/edtReportDetailsLayout"
+          android:text="Anonymous"/>
+
+      <TextView
+        android:id="@+id/txtchkbx"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="asdasdas"
+          android:layout_below="@+id/anonymousCheckBox"
+          android:visibility="gone"
+          />
+
+
+      <Button
+          android:id="@+id/btnSubmitReportBlotter"
+          android:layout_width="@dimen/_200sdp"
+          android:layout_height="@dimen/_50sdp"
+          android:layout_below="@+id/anonymousCheckBox"
+          android:layout_centerHorizontal="true"
+          android:backgroundTint="@color/safeplace_heavygreen"
+          android:layout_marginTop="@dimen/_10sdp"
+          android:text="SUBMIT"/>
+
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+  </RelativeLayout>
+
+
+
+
+
+
+</ScrollView>
