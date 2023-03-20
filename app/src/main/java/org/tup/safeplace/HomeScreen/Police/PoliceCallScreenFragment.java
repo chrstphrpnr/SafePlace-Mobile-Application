@@ -143,7 +143,7 @@ public class PoliceCallScreenFragment extends Fragment {
 //                                showPopupWindow(view);
 
                             } else {
-//                                startActivity(new Intent(getContext(), ReportActivity.class));
+//                                startActivity(new Intent(getContext(), PoliceReportActivity.class));
 //                                Toast.makeText(getContext(), "Report Here", Toast.LENGTH_SHORT).show();
 //                                startActivity(intent);
                                 callLog();

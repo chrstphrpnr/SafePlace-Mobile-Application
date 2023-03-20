@@ -1,4 +1,4 @@
-package org.tup.safeplace.Report;
+package org.tup.safeplace.Report.BarangayReport;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +16,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -25,7 +24,6 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
@@ -34,7 +32,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
-import org.tup.safeplace.ReportsMenuList.Report;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,29 +39,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-public class ReportActivity extends AppCompatActivity {
+public class BarangayReportActivity extends AppCompatActivity {
 
     private SharedPreferences userPref;
 
 
 
-    TextInputLayout edtLayoutStreetLocationReport, dropDownPoliceReportLayout, dropDownBarangayReportLayout, dropIncidentTypeLayout, edtReportDetailsLayout;
+    TextInputLayout edtLayoutStreetLocationReport, dropDownBarangayReportLayout, dropIncidentTypeLayout, edtReportDetailsLayout;
 
     TextInputEditText txtInputStreetReport, txtReportDetails;
 
-    AutoCompleteTextView autoCompleteBarangaytxt, autoCompletePoliceStationtxt, autoCompleteIncidentTypetxt;
+    AutoCompleteTextView autoCompleteBarangaytxt, autoCompleteIncidentTypetxt;
 
     private Button btnSubmitReportBlotter, btnDatePickerReport, btnReportTimePickerReport;
     private DatePickerDialog datePickerDialog;
 
 
-
-
     String[] barangay_array = {"Upper Bicutan","Lower Bicutan", "Signal Village"};
     ArrayAdapter<String> barangayAdapterItems;
-
-    String[] police_array = {"Police Sub Station 1","Police Sub Station 2", "Police Sub Station 3"};
-    ArrayAdapter<String> policeAdapterItems;
 
     String[] incident_type_array = {"Physical Injury","Thief", "Robbery"};
     ArrayAdapter<String> incidentAdapterItems;
@@ -73,20 +65,16 @@ public class ReportActivity extends AppCompatActivity {
 
     CheckBox anonymousCheckBox;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        setContentView(R.layout.activity_barangay_report);
 
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         //TextInputLayout
         edtLayoutStreetLocationReport = findViewById(R.id.edtLayoutStreetLocationReport);
         dropDownBarangayReportLayout = findViewById(R.id.dropDownBarangayReportLayout);
-        dropDownPoliceReportLayout = findViewById(R.id.dropDownPoliceReportLayout);
         dropIncidentTypeLayout = findViewById(R.id.dropIncidentTypeLayout);
         edtReportDetailsLayout = findViewById(R.id.edtReportDetailsLayout);
 
@@ -96,16 +84,12 @@ public class ReportActivity extends AppCompatActivity {
 
         //DropDown
         autoCompleteBarangaytxt = findViewById(R.id.autoCompleteBarangaytxt);
-        autoCompletePoliceStationtxt = findViewById(R.id.autoCompletePoliceStationtxt);
         autoCompleteIncidentTypetxt = findViewById(R.id.autoCompleteIncidentTypetxt);
 
         //Barangay
         barangayAdapterItems = new ArrayAdapter<String>(this,R.layout.barangay_list_item, barangay_array);
         autoCompleteBarangaytxt.setAdapter(barangayAdapterItems);
 
-        //Police Station
-        policeAdapterItems = new ArrayAdapter<String>(this,R.layout.police_list_item, police_array);
-        autoCompletePoliceStationtxt.setAdapter(policeAdapterItems);
 
         //Incident Type
         incidentAdapterItems = new ArrayAdapter<String>(this,R.layout.incident_type_list_item, incident_type_array);
@@ -126,7 +110,7 @@ public class ReportActivity extends AppCompatActivity {
             int hours = calendar.get(Calendar.HOUR_OF_DAY);
             int mins = calendar.get(Calendar.MINUTE);
 
-            TimePickerDialog timePickerDialog = new TimePickerDialog(ReportActivity.this, TimePickerDialog.THEME_DEVICE_DEFAULT_DARK, new TimePickerDialog.OnTimeSetListener() {
+            TimePickerDialog timePickerDialog = new TimePickerDialog(BarangayReportActivity.this, TimePickerDialog.THEME_DEVICE_DEFAULT_DARK, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                     Calendar c = Calendar.getInstance();
@@ -214,7 +198,6 @@ public class ReportActivity extends AppCompatActivity {
     private void SubmitReport(){
         String street = txtInputStreetReport.getText().toString().trim();
         String barangay = autoCompleteBarangaytxt.getText().toString().trim();
-        String police_substation = autoCompletePoliceStationtxt.getText().toString().trim();
         String incident_type = autoCompleteIncidentTypetxt.getText().toString().trim();
         String date_commited = btnDatePickerReport.getText().toString().trim();
         String time_commited = btnReportTimePickerReport.getText().toString().trim();
@@ -230,20 +213,12 @@ public class ReportActivity extends AppCompatActivity {
         String complainant_identity = txtchkbx.getText().toString().trim();
 
 
-
-
-
-
-
-
-
-
-        StringRequest request = new StringRequest(Request.Method.POST, API.report, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, API.report_barangay, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 try{
-                    startActivity(new Intent(ReportActivity.this, SafePlaceHomeScreenActivity.class));
+                    startActivity(new Intent(BarangayReportActivity.this, SafePlaceHomeScreenActivity.class));
                 }catch (Error error){
                     error.printStackTrace();
                 }
@@ -251,7 +226,7 @@ public class ReportActivity extends AppCompatActivity {
 
             }
         }, error -> {
-            Toast.makeText(ReportActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BarangayReportActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
         }){
 
@@ -269,7 +244,6 @@ public class ReportActivity extends AppCompatActivity {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("street",street);
                 map.put("barangay",barangay);
-                map.put("police_substation",police_substation);
                 map.put("incident_type",incident_type);
                 map.put("date_commited",date_commited);
                 map.put("time_commited",time_commited);

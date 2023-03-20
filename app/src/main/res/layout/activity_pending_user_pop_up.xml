@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:gravity="center"
     >
 
-    <LinearLayout
-        android:backgroundTint="#EDEDED"
-        android:layout_margin="@dimen/_20sdp"
+    <RelativeLayout
+        android:backgroundTint="@color/safeplace_bgcolor"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_270sdp"
-        android:orientation="vertical"
-        android:background="@drawable/popup">
+        android:layout_height="@dimen/_250sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/popup"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_5sdp"
+        >
+
+
+
+        <ImageView
+            android:id="@+id/verified_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@drawable/ic_yellow_pending"
+            android:layout_centerHorizontal="true"
+            />
 
         <TextView
+            android:id="@+id/txtAccountAlreadyVerified"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/safeplace_darkfont"
-            android:text="SAFEPLACE"
+            android:text="PLEASE WAIT TO BE VERIFIED"
             android:textSize="@dimen/_20sdp"
             android:gravity="center"
-            android:layout_marginTop="@dimen/_20sdp"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/safeplace_darkfont"
-            android:text="YOUR ACCOUNT IS ALREADY IN PROCESS OF VERIFICATION"
-            android:textSize="@dimen/_20sdp"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_below="@+id/verified_logo"
+            android:layout_marginTop="@dimen/_5sdp"
             />
 
+        <Button
+            android:id="@+id/txtPendingClose"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/txtAccountAlreadyVerified"
+            android:backgroundTint="@color/safeplace_btnblue"
+            android:text="Close"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/_20sdp">
-
-            <TextView
-                android:id="@+id/txtSkipPending"
-                android:textSize="@dimen/_15sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="CLOSE" />
+        <!--        <TextView-->
+        <!--        android:textSize="@dimen/_15sdp"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:gravity="center"-->
+        <!--        android:text="CLOSE" />-->
 
 
 
 
-        </RelativeLayout>
+
+    </RelativeLayout>
 
 
 
+</RelativeLayout>
 
-    </LinearLayout>
 
-</LinearLayout>

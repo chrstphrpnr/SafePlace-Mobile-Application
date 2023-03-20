@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -138,11 +139,6 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 SharedPreferences userPref = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
                 boolean requested = userPref.getBoolean("verification_submitted",true);
 
-                if (requested){
-                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Your account is already in the process of verification, please wait.", Toast.LENGTH_SHORT).show();
-                    showPopupWindow();
-                }
-                else{
 
                     StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
 
@@ -156,10 +152,17 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                                     String status = object.getString("role");
 
                                     if(status.equals("unverified_user")){
-                                        startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
-                                        SharedPreferences.Editor editor = userPref.edit();
-                                        editor.putBoolean("verification_submitted",false);
-                                        editor.apply();
+
+                                        if (requested){
+                                            Toast.makeText(SafePlaceHomeScreenActivity.this, "Your account is already in the process of verification, please wait.", Toast.LENGTH_SHORT).show();
+                                            showPopupWindow();
+                                        }
+                                        else {
+                                            startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
+                                            SharedPreferences.Editor editor = userPref.edit();
+                                            editor.putBoolean("verification_submitted",false);
+                                            editor.apply();
+                                        }
                                     }
 
                                     if(status.equals("verified_user")){
@@ -167,8 +170,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                                         SharedPreferences.Editor editor = userPref.edit();
                                         editor.putBoolean("verification_submitted",true);
                                         editor.apply();
-                                        showPopupWindow();
-
+                                        showPopupWindowVerified();
                                     }
 
                                 }
@@ -199,10 +201,6 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 }
 
 
-
-
-
-            }
             else if(id == R.id.HelpMenu){
                 Toast.makeText(SafePlaceHomeScreenActivity.this, "Help", Toast.LENGTH_SHORT).show();
             }
@@ -426,7 +424,38 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         //Set the location of the window on the screen
         popupWindow.showAtLocation(drawerLayout, Gravity.CENTER, 0, 0);
 
-        TextView txtSkipPending = popupView.findViewById(R.id.txtSkipPending);
+        Button txtSkipPending = popupView.findViewById(R.id.txtPendingClose);
+
+        txtSkipPending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+
+    }
+
+    //PopUp Windows
+    private void showPopupWindowVerified() {
+
+        //Create a View object yourself through inflater
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.activity_registered_user_pop_up, null);
+
+        //Specify the length and width through constants
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.MATCH_PARENT;
+
+        //Make Inactive Items Outside Of PopupWindow
+        boolean focusable = true;
+
+        //Create a window with our parameters
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        //Set the location of the window on the screen
+        popupWindow.showAtLocation(drawerLayout, Gravity.CENTER, 0, 0);
+
+        Button txtSkipPending = popupView.findViewById(R.id.txtRegisteredClose);
 
         txtSkipPending.setOnClickListener(new View.OnClickListener() {
             @Override

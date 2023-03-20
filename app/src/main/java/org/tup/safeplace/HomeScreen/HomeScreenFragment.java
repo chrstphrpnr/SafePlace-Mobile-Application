@@ -1,7 +1,5 @@
 package org.tup.safeplace.HomeScreen;
 
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +15,6 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -28,7 +25,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,12 +40,10 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -59,13 +53,14 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tup.safeplace.Report.BarangayReport.BarangayReportActivity;
 import org.tup.safeplace.BarangaysMenuList.BarangayListActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HospitalMenuList.HospitalListActivity;
 import org.tup.safeplace.GoogleMaps.MapsActivity;
 import org.tup.safeplace.PoliceStationMenuList.PoliceStationListActivity;
 import org.tup.safeplace.R;
-import org.tup.safeplace.Report.ReportActivity;
+import org.tup.safeplace.Report.PoliceReport.PoliceReportActivity;
 import org.tup.safeplace.ReportsMenuList.ReportListActivity;
 import org.tup.safeplace.Verification.VerificationActivity;
 import org.tup.safeplace.databinding.ActivityMapsBinding;
@@ -232,22 +227,19 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         //Set the location of the window on the screen
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        TextView btnReportBarangay = popupView.findViewById(R.id.btnReportBarangay);
+        Button btnReportBarangay = popupView.findViewById(R.id.btnReportBarangay);
 
-        TextView btnReportPolice = popupView.findViewById(R.id.btnReportPolice);
+        Button btnReportPolice = popupView.findViewById(R.id.btnReportPolice);
 
         btnReportBarangay.setOnClickListener(v->{
-            startActivity(new Intent(getContext(), ReportActivity.class));
-
-            Toast.makeText(getContext(), "Barangay", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getContext(), BarangayReportActivity.class));
+            popupWindow.dismiss();
         });
 
         btnReportPolice.setOnClickListener(v->{
-            startActivity(new Intent(getContext(), ReportActivity.class));
-            Toast.makeText(getContext(), "Police", Toast.LENGTH_SHORT).show();
-
+            startActivity(new Intent(getContext(), PoliceReportActivity.class));
+            popupWindow.dismiss();
         });
-
 
 
 

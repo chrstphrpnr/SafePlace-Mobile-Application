@@ -3,7 +3,7 @@ package org.tup.safeplace.Constants;
 public class API {
 
     //API URL
-    public static String URL = "http://192.168.132.27:8080/";
+    public static String URL = "http://192.168.43.139:8080/";
     public static String API = URL + "api/";
 
     //Hospital List
@@ -69,7 +69,8 @@ public class API {
 
     public static String call_history= API + "view_call_log";
 
-    public static String report= API + "policesubstation_reports";
+    public static String report_police = API + "policesubstation_reports";
+    public static String report_barangay = API + "barangay_reports";
 
 
 
