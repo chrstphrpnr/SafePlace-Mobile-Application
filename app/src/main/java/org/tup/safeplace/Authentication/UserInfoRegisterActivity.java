@@ -215,12 +215,6 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
             return false;
         }
 
-//        if (txtGender.getText().toString().isEmpty()){
-//            layoutGender.setErrorEnabled(true);
-//            layoutGender.setError("Gender is Required");
-//            return false;
-//        }
-
 
         if (txtContact.getText().toString().isEmpty()){
             layoutContact.setErrorEnabled(true);
@@ -301,7 +295,14 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
                 map.put("birthdate",birthdate);
                 map.put("gender",gender);
                 map.put("contact",contact);
-                map.put("img",encodedImage);
+
+                if (encodedImage ==  null){
+
+                }
+                else{
+                    map.put("img",encodedImage);
+                }
+
                 return map;
             }
         };

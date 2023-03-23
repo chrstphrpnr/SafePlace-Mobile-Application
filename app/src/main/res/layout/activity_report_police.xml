@@ -120,6 +120,16 @@
 
           />
 
+      <TextView
+          android:id="@+id/txtBarangay"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/txtBarangayTitle"
+          android:text="Barangay"
+          android:textSize="15sp"
+          android:visibility="gone"
+          />
+
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -127,7 +137,7 @@
           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
           android:id="@+id/dropDownBarangayReportLayout"
           android:background="@color/white"
-          android:layout_below="@+id/txtBarangayTitle"
+          android:layout_below="@+id/txtBarangay"
           android:layout_marginTop="@dimen/_10sdp"
           >
 
@@ -140,17 +150,39 @@
 
       </com.google.android.material.textfield.TextInputLayout>
 
+      <TextView
+          android:id="@+id/txtNearestPoliceStation"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/dropDownBarangayReportLayout"
+          android:text="Nearest Police Station"
+          android:textSize="15sp"
+          />
+
+
 
       <TextView
           android:id="@+id/txtPoliceStationTitle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_below="@+id/dropDownBarangayReportLayout"
+          android:layout_below="@+id/txtNearestPoliceStation"
           android:text="Police Station"
           android:textSize="15sp"
           android:layout_marginTop="@dimen/_20sdp"
 
           />
+
+      <TextView
+          android:id="@+id/txtPoliceStation"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/txtPoliceStationTitle"
+          android:text="Police Station"
+          android:textSize="15sp"
+          android:visibility="gone"
+          />
+
+
 
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
@@ -159,8 +191,7 @@
           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
           android:id="@+id/dropDownPoliceReportLayout"
           android:background="@color/white"
-          android:layout_below="@+id/txtPoliceStationTitle"
-          android:layout_marginTop="@dimen/_10sdp"
+          android:layout_below="@+id/txtPoliceStation"
           >
 
         <AutoCompleteTextView
@@ -172,12 +203,21 @@
 
       </com.google.android.material.textfield.TextInputLayout>
 
+      <TextView
+          android:id="@+id/txtNearestBarangay"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/dropDownPoliceReportLayout"
+          android:text="Nearest Barangay"
+          android:textSize="15sp"
+          />
+
 
       <TextView
           android:id="@+id/txtIncidentTypeTitle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_below="@+id/dropDownPoliceReportLayout"
+          android:layout_below="@+id/txtNearestBarangay"
           android:text="Incident Type"
           android:textSize="15sp"
           android:layout_marginTop="@dimen/_20sdp"
@@ -268,10 +308,141 @@
 
 
       <TextView
-          android:id="@+id/txtReportDetailsTitle"
+          android:id="@+id/txtReportImageTitle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_below="@+id/btnReportTimePickerReport"
+          android:text="Evidences"
+          android:textSize="15sp"
+          android:layout_marginTop="@dimen/_20sdp"
+
+          />
+
+
+      <RelativeLayout
+          android:id="@+id/police_relativeLayoutImage1"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/_100sdp"
+          android:layout_below="@+id/txtReportImageTitle"
+          android:background="@color/white"
+          android:layout_marginTop="@dimen/_10sdp"
+          >
+
+
+
+        <ImageView
+            android:id="@+id/police_evidence_1"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_image"
+            />
+
+
+        <Button
+            android:id="@+id/police_report_image_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/police_evidence_1"
+            android:backgroundTint="@color/safeplace_textHint"
+            android:text="Upload Image"
+            android:drawableLeft="@drawable/ic_upload"
+            />
+
+
+      </RelativeLayout>
+
+
+
+      <RelativeLayout
+          android:id="@+id/police_relativeLayoutImage2"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/_100sdp"
+          android:layout_below="@+id/police_relativeLayoutImage1"
+          android:background="@color/white"
+          android:layout_marginTop="@dimen/_10sdp"
+          android:visibility="gone"
+          >
+
+
+
+        <ImageView
+            android:id="@+id/police_evidence_2"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/ic_image"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            />
+
+
+        <Button
+            android:id="@+id/police_report_image_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/police_evidence_2"
+            android:backgroundTint="@color/colorTextSecondary"
+            android:text="Upload Image"
+            android:drawableLeft="@drawable/ic_upload"
+
+            />
+
+
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:id="@+id/police_relativeLayoutImage3"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/_100sdp"
+          android:layout_below="@+id/police_relativeLayoutImage2"
+
+          android:background="@color/white"
+          android:layout_marginTop="@dimen/_10sdp"
+          android:visibility="gone"
+
+          >
+
+
+
+        <ImageView
+            android:id="@+id/police_evidence_3"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/ic_image"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            />
+
+
+        <Button
+            android:id="@+id/police_report_image_3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_toRightOf="@+id/police_evidence_3"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/safeplace_textHint"
+            android:text="Upload Image"
+            android:drawableLeft="@drawable/ic_upload"
+
+            />
+
+
+      </RelativeLayout>
+
+
+
+
+            <TextView
+          android:id="@+id/txtReportDetailsTitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/police_relativeLayoutImage3"
           android:text="Report Details"
           android:textSize="15sp"
           android:layout_marginTop="@dimen/_20sdp"
@@ -327,6 +498,9 @@
           />
 
 
+
+
+
       <Button
           android:id="@+id/btnSubmitReportBlotter"
           android:layout_width="@dimen/_200sdp"
@@ -336,7 +510,6 @@
           android:backgroundTint="@color/safeplace_heavygreen"
           android:layout_marginTop="@dimen/_10sdp"
           android:text="SUBMIT"/>
-
 
 
 

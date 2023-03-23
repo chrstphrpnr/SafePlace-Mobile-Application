@@ -3,19 +3,27 @@ package org.tup.safeplace.Report.BarangayReport;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -28,14 +36,25 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
+import org.tup.safeplace.Authentication.UserInfoRegisterActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -43,7 +62,7 @@ public class BarangayReportActivity extends AppCompatActivity {
 
     private SharedPreferences userPref;
 
-
+    RelativeLayout relativeLayoutImage2, relativeLayoutImage3;
 
     TextInputLayout edtLayoutStreetLocationReport, dropDownBarangayReportLayout, dropIncidentTypeLayout, edtReportDetailsLayout;
 
@@ -51,19 +70,62 @@ public class BarangayReportActivity extends AppCompatActivity {
 
     AutoCompleteTextView autoCompleteBarangaytxt, autoCompleteIncidentTypetxt;
 
-    private Button btnSubmitReportBlotter, btnDatePickerReport, btnReportTimePickerReport;
+    private Button btnSubmitReportBlotter, btnDatePickerReport, btnReportTimePickerReport, report_image_1, report_image_2,report_image_3;
     private DatePickerDialog datePickerDialog;
 
 
-    String[] barangay_array = {"Upper Bicutan","Lower Bicutan", "Signal Village"};
+    String[] barangay_array =
+            {
+                    "Barangay Central Bicutan",
+                    "Barangay Central Signal Village",
+                    "Barangay Fort Bonifacio",
+                    "Barangay Katuparan",
+                    "Barangay Maharlika Village",
+                    "Barangay North Daanghari",
+                    "Barangay North Signal Village",
+                    "Barangay Pinagsama",
+                    "Barangay South Daanghari",
+                    "Barangay South Signal Village",
+                    "Barangay Tanyag",
+                    "Barangay Upper Bicutan",
+                    "Barangay Western Bicutan"
+
+            };
+
     ArrayAdapter<String> barangayAdapterItems;
+
+    String[] barangayDB =
+            {
+                    "barangay_centralbicutan",
+                    "barangay_centralsignalvillage",
+                    "barangay_fortbonifacio",
+                    "barangay_katuparan",
+                    "barangay_maharlikavillage",
+                    "barangay_northdaanghari",
+                    "barangay_northsignalvillage",
+                    "barangay_pinagsama",
+                    "barangay_southdaanghari",
+                    "barangay_southsignalvillage",
+                    "barangay_tanyag",
+                    "barangay_upperbicutan",
+                    "barangay_westernbicutan"
+            };
+
 
     String[] incident_type_array = {"Physical Injury","Thief", "Robbery"};
     ArrayAdapter<String> incidentAdapterItems;
 
-    TextView txtchkbx;
+    TextView txtchkbx, txtBarangay;
 
     CheckBox anonymousCheckBox;
+
+    private Bitmap bitmap = null;
+
+    String image1,image2,image3;
+
+    ImageView evidence_1, evidence_2, evidence_3;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +133,15 @@ public class BarangayReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_barangay_report);
 
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        //ImageView
+        evidence_1 = findViewById(R.id.evidence_1);
+        evidence_2 = findViewById(R.id.evidence_2);
+        evidence_3 = findViewById(R.id.evidence_3);
+
+        //RelativeLayout
+        relativeLayoutImage2 = findViewById(R.id.relativeLayoutImage2);
+        relativeLayoutImage3 = findViewById(R.id.relativeLayoutImage3);
 
         //TextInputLayout
         edtLayoutStreetLocationReport = findViewById(R.id.edtLayoutStreetLocationReport);
@@ -89,6 +160,23 @@ public class BarangayReportActivity extends AppCompatActivity {
         //Barangay
         barangayAdapterItems = new ArrayAdapter<String>(this,R.layout.barangay_list_item, barangay_array);
         autoCompleteBarangaytxt.setAdapter(barangayAdapterItems);
+
+        txtBarangay = findViewById(R.id.txtBarangay);
+
+        autoCompleteBarangaytxt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                int pos = -1;
+                for(int i = 0; i < barangay_array.length; i++){
+                    if(autoCompleteBarangaytxt.getText().toString().equals(barangay_array[position]))
+                        pos = position;
+                    break;
+                }
+                String id = barangayDB[pos]; // should be your desired number
+                txtBarangay.setText(id);
+
+            }
+        });
 
 
         //Incident Type
@@ -134,6 +222,89 @@ public class BarangayReportActivity extends AppCompatActivity {
 
         anonymousCheckBox = findViewById(R.id.anonymousCheckBox);
 
+        report_image_1 = findViewById(R.id.report_image_1);
+        report_image_1.setOnClickListener(v->{
+
+
+            Dexter.withContext(BarangayReportActivity.this)
+                    .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    .withListener(new PermissionListener() {
+                        @Override
+                        public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            startActivityForResult(Intent.createChooser(intent,"Select Image"),1);
+                        }
+
+                        @Override
+                        public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+
+                        }
+
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+
+                        }
+                    }).check();
+
+
+
+        });
+
+        report_image_2 = findViewById(R.id.report_image_2);
+        report_image_2.setOnClickListener(v->{
+
+            Dexter.withContext(BarangayReportActivity.this)
+                    .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    .withListener(new PermissionListener() {
+                        @Override
+                        public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            startActivityForResult(Intent.createChooser(intent,"Select Image"),2);
+                        }
+
+                        @Override
+                        public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+
+                        }
+
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+
+                        }
+                    }).check();
+
+        });
+
+
+        report_image_3 = findViewById(R.id.report_image_3);
+        report_image_3.setOnClickListener(v->{
+
+            Dexter.withContext(BarangayReportActivity.this)
+                    .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    .withListener(new PermissionListener() {
+                        @Override
+                        public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            startActivityForResult(Intent.createChooser(intent,"Select Image"),3);
+                        }
+
+                        @Override
+                        public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+
+                        }
+
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+
+                        }
+                    }).check();
+
+
+        });
+
 
         btnSubmitReportBlotter = findViewById(R.id.btnSubmitReportBlotter);
         btnSubmitReportBlotter.setOnClickListener(v->{
@@ -141,6 +312,90 @@ public class BarangayReportActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 1 && resultCode==RESULT_OK){
+
+            Uri filePath1 = data.getData();
+
+            try{
+                InputStream inputStream = getContentResolver().openInputStream(filePath1);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                evidence_1.setImageBitmap(bitmap);
+
+                ImageStore1(bitmap);
+                relativeLayoutImage2.setVisibility(View.VISIBLE);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (requestCode == 2 && resultCode==RESULT_OK){
+
+            Uri filePath2 = data.getData();
+
+            try{
+                InputStream inputStream = getContentResolver().openInputStream(filePath2);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                evidence_2.setImageBitmap(bitmap);
+
+                ImageStore2(bitmap);
+                relativeLayoutImage3.setVisibility(View.VISIBLE);
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (requestCode == 3 && resultCode==RESULT_OK){
+
+            Uri filePath3 = data.getData();
+
+            try{
+                InputStream inputStream = getContentResolver().openInputStream(filePath3);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                evidence_3.setImageBitmap(bitmap);
+
+                ImageStore3(bitmap);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void ImageStore1(Bitmap bitmap){
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte [] imageBytes = byteArrayOutputStream.toByteArray();
+            image1 = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+    }
+
+    private void ImageStore2(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte [] imageBytes = byteArrayOutputStream.toByteArray();
+        image2 = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
+
+    private void ImageStore3(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte [] imageBytes = byteArrayOutputStream.toByteArray();
+        image3 = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
+
+
 
     private String getTodaysDate(){
         Calendar cal = Calendar.getInstance();
@@ -178,26 +433,11 @@ public class BarangayReportActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-//    public void onCheckBoxedClicked(View view){
-//        Boolean checked = ((CheckBox) view).isChecked();
-//
-//        if(anonymousCheckBox.isChecked()){
-//            checked = true;
-//            String complainant_identity= "anonymous";
-//        }
-//        else {
-//            checked = false;
-//            String complainant_identity= "not_anonymous";
-//
-//        }
-//
-//    }
-
 
 
     private void SubmitReport(){
         String street = txtInputStreetReport.getText().toString().trim();
-        String barangay = autoCompleteBarangaytxt.getText().toString().trim();
+        String barangay = txtBarangay.getText().toString().trim();
         String incident_type = autoCompleteIncidentTypetxt.getText().toString().trim();
         String date_commited = btnDatePickerReport.getText().toString().trim();
         String time_commited = btnReportTimePickerReport.getText().toString().trim();
@@ -250,8 +490,23 @@ public class BarangayReportActivity extends AppCompatActivity {
                 map.put("report_details",report_details);
                 map.put("complainant_identity",complainant_identity);
 
+                if (image1 != null){
+                    map.put("report_images_1", image1);
+                }
+                if (image2 != null){
+                    map.put("report_images_2", image2);
+                }
+                if (image3 != null){
+                    map.put("report_images_3", image3);
+                }
+
+
+
                 return map;
             }
+
+
+
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);

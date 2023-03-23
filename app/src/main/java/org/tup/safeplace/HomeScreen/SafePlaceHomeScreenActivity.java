@@ -153,16 +153,16 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
                                     if(status.equals("unverified_user")){
 
-                                        if (requested){
-                                            Toast.makeText(SafePlaceHomeScreenActivity.this, "Your account is already in the process of verification, please wait.", Toast.LENGTH_SHORT).show();
-                                            showPopupWindow();
-                                        }
-                                        else {
+//                                        if (requested){
+//                                            Toast.makeText(SafePlaceHomeScreenActivity.this, "Your account is already in the process of verification, please wait.", Toast.LENGTH_SHORT).show();
+//                                            showPopupWindow();
+//                                        }
+//                                        else {
                                             startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
                                             SharedPreferences.Editor editor = userPref.edit();
                                             editor.putBoolean("verification_submitted",false);
                                             editor.apply();
-                                        }
+//                                        }
                                     }
 
                                     if(status.equals("verified_user")){

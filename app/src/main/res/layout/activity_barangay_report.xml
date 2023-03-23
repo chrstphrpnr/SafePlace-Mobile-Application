@@ -120,6 +120,15 @@
 
                 />
 
+            <TextView
+                android:id="@+id/txtBarangay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtBarangayTitle"
+                android:text="Barangay"
+                android:textSize="15sp"
+                />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,7 +136,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:id="@+id/dropDownBarangayReportLayout"
                 android:background="@color/white"
-                android:layout_below="@+id/txtBarangayTitle"
+                android:layout_below="@+id/txtBarangay"
                 android:layout_marginTop="@dimen/_10sdp"
                 >
 
@@ -139,8 +148,6 @@
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
 
             <TextView
                 android:id="@+id/txtIncidentTypeTitle"
@@ -203,7 +210,6 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 />
 
-
             <TextView
                 android:id="@+id/txtReportTimePickerTitle"
                 android:layout_width="match_parent"
@@ -214,7 +220,6 @@
                 android:layout_marginTop="@dimen/_20sdp"
 
                 />
-
 
             <Button
                 android:id="@+id/btnReportTimePickerReport"
@@ -237,15 +242,148 @@
 
 
             <TextView
-                android:id="@+id/txtReportDetailsTitle"
+                android:id="@+id/txtReportImageTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btnReportTimePickerReport"
+                android:text="Evidences"
+                android:textSize="15sp"
+                android:layout_marginTop="@dimen/_20sdp"
+
+                />
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutImage1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/txtReportImageTitle"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/_10sdp"
+                >
+
+
+
+                <ImageView
+                    android:id="@+id/evidence_1"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_image"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/report_image_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_toRightOf="@+id/evidence_1"
+                    android:backgroundTint="@color/safeplace_textHint"
+                    android:text="Upload Image"
+                    android:drawableLeft="@drawable/ic_upload"
+                    />
+
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutImage2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/relativeLayoutImage1"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="gone"
+                >
+
+
+
+                <ImageView
+                    android:id="@+id/evidence_2"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:src="@drawable/ic_image"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_centerVertical="true"
+                    />
+
+
+                <Button
+                    android:id="@+id/report_image_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_toRightOf="@+id/evidence_2"
+                    android:backgroundTint="@color/colorTextSecondary"
+                    android:text="Upload Image"
+                    android:drawableLeft="@drawable/ic_upload"
+
+                    />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutImage3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/relativeLayoutImage2"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="gone"
+
+                >
+
+
+
+                <ImageView
+                    android:id="@+id/evidence_3"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:src="@drawable/ic_image"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_centerVertical="true"
+                    />
+
+
+                <Button
+                    android:id="@+id/report_image_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_toRightOf="@+id/evidence_3"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="@color/safeplace_textHint"
+                    android:text="Upload Image"
+                    android:drawableLeft="@drawable/ic_upload"
+
+                    />
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/txtReportDetailsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayoutImage3"
                 android:text="Report Details"
                 android:textSize="15sp"
                 android:layout_marginTop="@dimen/_20sdp"
                 />
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edtReportDetailsLayout"
@@ -294,6 +432,7 @@
                 android:layout_below="@+id/anonymousCheckBox"
                 android:visibility="gone"
                 />
+
 
 
             <Button
