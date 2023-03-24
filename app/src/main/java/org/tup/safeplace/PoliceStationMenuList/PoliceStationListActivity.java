@@ -1,16 +1,15 @@
 package org.tup.safeplace.PoliceStationMenuList;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.tup.safeplace.R;
 
 public class PoliceStationListActivity extends AppCompatActivity {
     private ImageView btnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,12 +17,12 @@ public class PoliceStationListActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnPoliceStationBack);
 
 
-        btnBack.setOnClickListener(v->{
+        btnBack.setOnClickListener(v -> {
             onBackPressed();
             finish();
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.framePoliceStationListContainer,new PoliceStationListMenuFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.framePoliceStationListContainer, new PoliceStationListMenuFragment()).commit();
 
     }
 }

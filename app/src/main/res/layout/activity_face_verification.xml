@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,61 +10,58 @@
         android:id="@+id/txtfacecapture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TAKE A SELFIE"
-        android:textSize="30sp"
-        android:gravity="center"
         android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:text="TAKE A SELFIE"
         android:textColor="@color/safeplace_darkfont"
-        />
+        android:textSize="30sp" />
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_below="@+id/txtfacecapture"-->
-<!--        android:id="@+id/cardviewFaceImage"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:layout_marginHorizontal="50dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        >-->
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:layout_below="@+id/txtfacecapture"-->
+    <!--        android:id="@+id/cardviewFaceImage"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        android:layout_marginHorizontal="50dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        >-->
 
-<!--        <ImageView-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_width="50dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:background="@drawable/ic_camera"/>-->
+    <!--        <ImageView-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:layout_width="50dp"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:background="@drawable/ic_camera"/>-->
 
-        <ImageView
-            android:id="@+id/imgFaceImage"
-            android:layout_gravity="center"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_centerInParent="true"
-            android:layout_below="@+id/txtfacecapture"
-            android:src="@color/white"
-            />
+    <ImageView
+        android:id="@+id/imgFaceImage"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_below="@+id/txtfacecapture"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:src="@color/white" />
 
-<!--    </androidx.cardview.widget.CardView>-->
+    <!--    </androidx.cardview.widget.CardView>-->
 
     <Button
         android:id="@+id/btnCaptureFace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorTextSecondary"
         android:layout_below="@+id/imgFaceImage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="TAKE PHOTO"/>
+        android:backgroundTint="@color/colorTextSecondary"
+        android:text="TAKE PHOTO" />
 
     <Button
         android:id="@+id/btnFaceCaptureDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/safeplace_btnblue"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
-        android:text="Done"
-        />
+        android:backgroundTint="@color/safeplace_btnblue"
+        android:text="Done" />
 
 </RelativeLayout>

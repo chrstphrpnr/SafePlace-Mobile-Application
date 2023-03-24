@@ -13,9 +13,9 @@ import org.tup.safeplace.R;
 
 import java.util.List;
 
-public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>{
+public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder> {
 
-    private List<OnboardingItems> onboardingItems;
+    private final List<OnboardingItems> onboardingItems;
 
     public OnboardingAdapter(List<OnboardingItems> onboardingItems) {
         this.onboardingItems = onboardingItems;
@@ -41,10 +41,10 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.On
         return onboardingItems.size();
     }
 
-    class OnboardingViewHolder extends RecyclerView.ViewHolder{
-        private TextView textTitle;
-        private TextView textDescription;
-        private ImageView imageOnboarding;
+    class OnboardingViewHolder extends RecyclerView.ViewHolder {
+        private final TextView textTitle;
+        private final TextView textDescription;
+        private final ImageView imageOnboarding;
 
         public OnboardingViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,7 +53,7 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.On
             imageOnboarding = itemView.findViewById(R.id.imageOnboarding);
         }
 
-        void setOnboardingData(OnboardingItems onboardingItems){
+        void setOnboardingData(OnboardingItems onboardingItems) {
             textTitle.setText(onboardingItems.getTitle());
             textDescription.setText(onboardingItems.getDescription());
             imageOnboarding.setImageResource(onboardingItems.getImage());

@@ -7,19 +7,18 @@
 
 
     <SearchView
-        android:layout_marginTop="60dp"
         android:id="@+id/searchHospital"
-        android:queryHint="Search"
-        android:iconifiedByDefault="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search" />
 
     <ListView
-        android:layout_below="@id/searchHospital"
         android:id="@+id/myListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchHospital" />
 
 
 </RelativeLayout>

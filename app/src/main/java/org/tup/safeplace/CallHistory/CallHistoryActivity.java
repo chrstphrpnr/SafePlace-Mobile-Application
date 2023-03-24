@@ -1,11 +1,11 @@
 package org.tup.safeplace.CallHistory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,14 +25,11 @@ import java.util.Map;
 
 public class CallHistoryActivity extends AppCompatActivity {
 
-    private SharedPreferences userPref;
-
-
-    private ListView myListViewBarangayCallHistory;
-    CallHistoryAdapter adapter;
     public static ArrayList<CallHistory> callHistoryArrayList = new ArrayList<>();
+    CallHistoryAdapter adapter;
     CallHistory barangay;
-
+    private SharedPreferences userPref;
+    private ListView myListViewBarangayCallHistory;
     private ImageView btnCallHistoryBack;
 
 
@@ -43,12 +40,12 @@ public class CallHistoryActivity extends AppCompatActivity {
 
         userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
         myListViewBarangayCallHistory = findViewById(R.id.myListViewBarangayCallHistory);
-        adapter =new CallHistoryAdapter(this, callHistoryArrayList);
+        adapter = new CallHistoryAdapter(this, callHistoryArrayList);
         myListViewBarangayCallHistory.setAdapter(adapter);
 
         btnCallHistoryBack = findViewById(R.id.btnCallHistoryBack);
 
-        btnCallHistoryBack.setOnClickListener(v->{
+        btnCallHistoryBack.setOnClickListener(v -> {
             onBackPressed();
             finish();
         });
@@ -57,7 +54,7 @@ public class CallHistoryActivity extends AppCompatActivity {
 
     }
 
-    private void callHistory(){
+    private void callHistory() {
 
         StringRequest request = new StringRequest(Request.Method.GET, API.call_history, response -> {
             callHistoryArrayList.clear();
@@ -75,7 +72,7 @@ public class CallHistoryActivity extends AppCompatActivity {
                         String date_contacted = object.getString("date_contacted");
                         String time_contacted = object.getString("time_contacted");
 
-                        barangay = new CallHistory(name_contacted,type_contacted,date_contacted,time_contacted);
+                        barangay = new CallHistory(name_contacted, type_contacted, date_contacted, time_contacted);
                         callHistoryArrayList.add(barangay);
                         adapter.notifyDataSetChanged();
 

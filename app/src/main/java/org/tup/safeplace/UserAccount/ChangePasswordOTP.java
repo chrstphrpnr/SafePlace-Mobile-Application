@@ -1,8 +1,5 @@
 package org.tup.safeplace.UserAccount;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +32,7 @@ public class ChangePasswordOTP extends AppCompatActivity {
     private Button btnOTP;
 
     private boolean otpSent = false;
-    private String CountryCode = "+63";
+    private final String CountryCode = "+63";
     private String id = "";
 
     private ProgressDialog dialog;
@@ -55,32 +55,30 @@ public class ChangePasswordOTP extends AppCompatActivity {
 
         btnOTP = findViewById(R.id.btnOTP);
 
-        btnOTP.setOnClickListener(v->{
+        btnOTP.setOnClickListener(v -> {
 
             dialog.setMessage("Loading...");
             dialog.show();
 
-            if(otpSent){
+            if (otpSent) {
                 final String getOTP = oneTimePassword.getText().toString();
 
-                if(id.isEmpty()) {
+                if (id.isEmpty()) {
                     Toast.makeText(ChangePasswordOTP.this, "Unable to verify OTP", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
-                }
-                else {
+                } else {
 
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(id,getOTP);
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(id, getOTP);
                     firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 FirebaseUser userDetails = task.getResult().getUser();
                                 Toast.makeText(ChangePasswordOTP.this, "Verified", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 startActivity(new Intent(ChangePasswordOTP.this, UserChangePasswordActivity.class));
                                 finish();
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(ChangePasswordOTP.this, "Something Went Wrong. Please Try Again", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
 
@@ -90,12 +88,11 @@ public class ChangePasswordOTP extends AppCompatActivity {
 
                 }
 
-            }
-            else{
+            } else {
                 final String getMobileNumber = PhoneNumber.getText().toString();
 
                 PhoneAuthOptions options = PhoneAuthOptions.newBuilder(firebaseAuth)
-                        .setPhoneNumber(CountryCode+""+getMobileNumber)
+                        .setPhoneNumber(CountryCode + "" + getMobileNumber)
                         .setTimeout(60L, TimeUnit.SECONDS)
                         .setActivity(this)
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {

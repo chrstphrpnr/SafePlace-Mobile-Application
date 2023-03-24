@@ -1,44 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:background="@color/safeplace_bgcolor"
     android:fillViewport="true"
     tools:context=".CallHistory.CallHistoryActivity"
-    android:background="@color/safeplace_bgcolor"
 
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/taskbarHistoryCall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/taskbarHistoryCall"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:background="@color/white"
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/btnCallHistoryBack"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_back"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -48,9 +44,9 @@
 
 
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="Call History"
                             android:textColor="@color/black"
                             android:textSize="25dp"
@@ -58,8 +54,6 @@
 
 
                     </LinearLayout>
-
-
 
 
                 </androidx.appcompat.widget.Toolbar>
@@ -73,10 +67,9 @@
 
         <ListView
             android:id="@+id/myListViewBarangayCallHistory"
-            android:layout_below="@+id/taskbarHistoryCall"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            android:layout_below="@+id/taskbarHistoryCall" />
 
 
     </RelativeLayout>

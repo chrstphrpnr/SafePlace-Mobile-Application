@@ -6,11 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +17,10 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -44,28 +43,18 @@ import java.util.Map;
 
 public class BarangayCallScreenFragment extends Fragment {
 
-    View view;
     public static final String TAG_NAME = "barangay_name";
     public static final String TAG_CONTACT = "barangay_contact";
     public static final String JSON_ARRAY = "data";
-
+    static int PERMISSION_CODE = 100;
+    View view;
+    ImageButton btnBarangayCall;
     private Spinner spinner;
-
     private ArrayList<String> barangays;
-
     private JSONArray data;
-
     private TextView barangayContact;
     private Button btnCallHistory;
-
-    ImageButton btnBarangayCall;
-    static int PERMISSION_CODE = 100;
-
     private SharedPreferences userPref;
-
-
-
-
 
 
     @Override
@@ -76,12 +65,11 @@ public class BarangayCallScreenFragment extends Fragment {
         return view;
     }
 
-    private void init(){
+    private void init() {
         userPref = getActivity().getApplicationContext().getSharedPreferences("user", getContext().MODE_PRIVATE);
 
 
         barangays = new ArrayList<String>();
-
 
 
         spinner = view.findViewById(R.id.barangaySpinner);
@@ -99,8 +87,8 @@ public class BarangayCallScreenFragment extends Fragment {
                 ((TextView) adapterView.getChildAt(0)).setGravity(Gravity.CENTER);
 
 
-
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 barangayContact.setText("");
@@ -112,11 +100,11 @@ public class BarangayCallScreenFragment extends Fragment {
             return;
         }
 
-        btnCallHistory.setOnClickListener(v->{
-                startActivity(new Intent(getContext(), CallHistoryActivity.class));
+        btnCallHistory.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), CallHistoryActivity.class));
         });
 
-        btnBarangayCall.setOnClickListener(v->{
+        btnBarangayCall.setOnClickListener(v -> {
 
             StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
 
@@ -168,7 +156,7 @@ public class BarangayCallScreenFragment extends Fragment {
 
     }
 
-    private void callLog(){
+    private void callLog() {
         String name_contacted = spinner.getSelectedItem().toString();
 
         StringRequest request = new StringRequest(Request.Method.POST, API.barangay_call_log, response -> {
@@ -186,13 +174,13 @@ public class BarangayCallScreenFragment extends Fragment {
             Toast.makeText(getContext(), "Error in Connection", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
 
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                String token = userPref.getString("token","");
-                HashMap<String, String> map =new HashMap<>();
-                map.put("Authorization","Bearer "+token);
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
                 return map;
             }
 
@@ -200,7 +188,7 @@ public class BarangayCallScreenFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("name_contacted",name_contacted);
+                map.put("name_contacted", name_contacted);
                 return map;
             }
         };
@@ -209,7 +197,7 @@ public class BarangayCallScreenFragment extends Fragment {
         requestQueue.add(request);
     }
 
-    private void getData(){
+    private void getData() {
         StringRequest stringRequest = new StringRequest(API.barangay_list_api, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -247,9 +235,9 @@ public class BarangayCallScreenFragment extends Fragment {
         requestQueue.add(stringRequest);
     }
 
-    private void getBarangay(JSONArray j){
+    private void getBarangay(JSONArray j) {
         //Traversing through all the items in the json array
-        for(int i=0;i<j.length();i++){
+        for (int i = 0; i < j.length(); i++) {
             try {
                 //Getting json object
                 JSONObject json = j.getJSONObject(i);
@@ -267,8 +255,8 @@ public class BarangayCallScreenFragment extends Fragment {
     }
 
     //Method to get barangay name of a particular position
-    private String getContact(int position){
-        String contact="";
+    private String getContact(int position) {
+        String contact = "";
         try {
             //Getting object of given index
             JSONObject json = data.getJSONObject(position);

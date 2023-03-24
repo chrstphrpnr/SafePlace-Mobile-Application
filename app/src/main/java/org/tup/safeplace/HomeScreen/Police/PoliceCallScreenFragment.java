@@ -1,18 +1,11 @@
 package org.tup.safeplace.HomeScreen.Police;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +16,10 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,7 +32,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tup.safeplace.CallHistory.CallHistory;
 import org.tup.safeplace.CallHistory.CallHistoryActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
@@ -47,24 +43,17 @@ import java.util.Map;
 
 public class PoliceCallScreenFragment extends Fragment {
 
-    private View view;
     public static final String TAG_NAME = "policestation_name";
     public static final String TAG_CONTACT = "policestation_contact";
     public static final String JSON_ARRAY = "data";
-
-    private Button btnCallHistory;
-
-    private Spinner spinner;
-
-    private ArrayList<String> policeStations;
-
-    private JSONArray data;
-
-    private TextView policeContact;
-
-    ImageButton btnPoliceCall;
     static int PERMISSION_CODE = 100;
-
+    ImageButton btnPoliceCall;
+    private View view;
+    private Button btnCallHistory;
+    private Spinner spinner;
+    private ArrayList<String> policeStations;
+    private JSONArray data;
+    private TextView policeContact;
     private SharedPreferences userPref;
 
 
@@ -77,7 +66,7 @@ public class PoliceCallScreenFragment extends Fragment {
     }
 
 
-    private void init(){
+    private void init() {
 
         userPref = getActivity().getApplicationContext().getSharedPreferences("user", getContext().MODE_PRIVATE);
 
@@ -90,10 +79,9 @@ public class PoliceCallScreenFragment extends Fragment {
 
         btnCallHistory = view.findViewById(R.id.btnCallHistory);
 
-        btnCallHistory.setOnClickListener(v->{
+        btnCallHistory.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), CallHistoryActivity.class));
         });
-
 
 
         getData();
@@ -118,7 +106,7 @@ public class PoliceCallScreenFragment extends Fragment {
             return;
         }
 
-        btnPoliceCall.setOnClickListener(v->{
+        btnPoliceCall.setOnClickListener(v -> {
             String phoneNumber = policeContact.getText().toString();
             Uri uri = Uri.parse("tel:" + Uri.encode(phoneNumber));
             Intent intent = new Intent("android.intent.action.VIEW");
@@ -180,7 +168,7 @@ public class PoliceCallScreenFragment extends Fragment {
 
     }
 
-    private void callLog(){
+    private void callLog() {
         String name_contacted = spinner.getSelectedItem().toString();
 
         StringRequest request = new StringRequest(Request.Method.POST, API.police_call_log, response -> {
@@ -198,13 +186,13 @@ public class PoliceCallScreenFragment extends Fragment {
             Toast.makeText(getContext(), "Error in Connection", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
 
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                String token = userPref.getString("token","");
-                HashMap<String, String> map =new HashMap<>();
-                map.put("Authorization","Bearer "+token);
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
                 return map;
             }
 
@@ -212,7 +200,7 @@ public class PoliceCallScreenFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("name_contacted",name_contacted);
+                map.put("name_contacted", name_contacted);
                 return map;
             }
         };
@@ -222,7 +210,7 @@ public class PoliceCallScreenFragment extends Fragment {
     }
 
 
-    private void getData(){
+    private void getData() {
 
         StringRequest stringRequest = new StringRequest(API.police_stations_list_api, new Response.Listener<String>() {
             @Override
@@ -263,9 +251,9 @@ public class PoliceCallScreenFragment extends Fragment {
 
     }
 
-    private void getPoliceStations(JSONArray j){
+    private void getPoliceStations(JSONArray j) {
         //Traversing through all the items in the json array
-        for(int i=0;i<j.length();i++){
+        for (int i = 0; i < j.length(); i++) {
             try {
                 //Getting json object
                 JSONObject json = j.getJSONObject(i);
@@ -282,8 +270,8 @@ public class PoliceCallScreenFragment extends Fragment {
     }
 
     //Method to get student name of a particular position
-    private String getContact(int position){
-        String contact="";
+    private String getContact(int position) {
+        String contact = "";
         try {
             //Getting object of given index
             JSONObject json = data.getJSONObject(position);
@@ -296,14 +284,6 @@ public class PoliceCallScreenFragment extends Fragment {
         //Returning the name
         return contact;
     }
-
-
-
-
-
-
-
-
 
 
 }

@@ -3,7 +3,7 @@ package org.tup.safeplace.HospitalMenuList;
 import java.io.Serializable;
 
 public class Hospital implements Serializable {
-    String hospital_name,hospital_type,hospital_medical_director,hospital_location,hospital_schedule,hospital_contact,img;
+    String hospital_name, hospital_type, hospital_medical_director, hospital_location, hospital_schedule, hospital_contact, img;
 
     public Hospital() {
     }
@@ -19,7 +19,6 @@ public class Hospital implements Serializable {
         this.img = img;
 
     }
-
 
 
     public String getHospital_name() {

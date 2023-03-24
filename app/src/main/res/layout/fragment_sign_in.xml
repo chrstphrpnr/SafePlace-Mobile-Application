@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="@dimen/_40sdp"
-    android:paddingRight="@dimen/_40sdp"
     android:paddingTop="@dimen/_100sdp"
-    tools:context=".Authentication.SignInFragment"
-    >
+    android:paddingRight="@dimen/_40sdp"
+    tools:context=".Authentication.SignInFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +30,6 @@
         android:textStyle="bold" />
 
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLayoutEmailSignIn"
         android:layout_width="match_parent"
@@ -42,8 +40,7 @@
         android:textSize="15sp"
         app:boxStrokeWidth="0dp"
         app:hintTextColor="#8C8686"
-        app:startIconDrawable="@drawable/ic_person"
-        >
+        app:startIconDrawable="@drawable/ic_person">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtEmailSignIn"
@@ -64,8 +61,8 @@
         android:textSize="15sp"
         app:boxStrokeWidth="0dp"
         app:hintTextColor="#8C8686"
-        app:startIconDrawable="@drawable/ic_password"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPasswordSignIn"
@@ -76,41 +73,38 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <TextView
         android:id="@+id/txtForgotPassword"
-        android:gravity="right"
-        android:layout_marginTop="@dimen/_8sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Forgot Password?"/>
-
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="right"
+        android:text="Forgot Password?" />
 
 
     <Button
         android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_round"
         android:text="LOGIN"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="23dp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
         app:backgroundTint="@color/safeplace_mediumgreen" />
 
     <TextView
         android:id="@+id/txtQrCodeLogin"
-        android:gravity="center"
-        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="QR Code Login"
-        android:layout_marginRight="6dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="6dp"
+        android:gravity="center"
+        android:text="QR Code Login"
         android:textColor="@color/safeplace_btnblue"
-        />
+        android:textStyle="bold" />
 
 
     <LinearLayout
@@ -120,33 +114,23 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dont have an account?"
-            android:layout_marginRight="6dp"
             android:layout_marginTop="10dp"
-            />
+            android:layout_marginRight="6dp"
+            android:text="Dont have an account?"
+            android:textStyle="bold" />
 
         <TextView
-            android:textStyle="bold"
             android:id="@+id/txtSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="6dp"
             android:text="Sign Up"
             android:textColor="@color/safeplace_btnblue"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="10dp"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
-
-
-
-
-
-
-
-
 
 
 </LinearLayout>

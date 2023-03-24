@@ -1,53 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popUpUnregisteredUser"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A2A2A3"
-    android:id="@+id/popUpUnregisteredUser"
-    >
+    android:background="#A2A2A3">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
+        android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/popup"
-        android:layout_centerInParent="true"
         android:gravity="center"
-        android:paddingHorizontal="@dimen/_50sdp"
-        >
-
+        android:paddingHorizontal="@dimen/_50sdp">
 
 
         <Button
             android:id="@+id/btnReportBarangay"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:text="Barangay"
             android:backgroundTint="#BB0707"
-            android:textStyle="bold"
-            />
+            android:text="Barangay"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnReportPolice"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:text="Police Station"
-            android:backgroundTint="#004AAD"
-            android:textStyle="bold"
             android:layout_below="@+id/btnReportBarangay"
-            />
+            android:backgroundTint="#004AAD"
+            android:text="Police Station"
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/safeplace_logo_name"
             android:layout_above="@+id/btnReportBarangay"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_centerHorizontal="true"
-            />
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:src="@drawable/safeplace_logo_name" />
 
 
     </RelativeLayout>

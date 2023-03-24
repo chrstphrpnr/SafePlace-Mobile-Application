@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Barangay implements Serializable {
 
-    String barangay_name,barangay_captain,barangay_location,barangay_schedule,barangay_contact,img;
+    String barangay_name, barangay_captain, barangay_location, barangay_schedule, barangay_contact, img;
 
     public Barangay() {
     }
 
-    public Barangay(String barangay_name, String barangay_captain, String barangay_location, String barangay_schedule, String barangay_contact,String img) {
+    public Barangay(String barangay_name, String barangay_captain, String barangay_location, String barangay_schedule, String barangay_contact, String img) {
         this.barangay_name = barangay_name;
         this.barangay_captain = barangay_captain;
         this.barangay_location = barangay_location;

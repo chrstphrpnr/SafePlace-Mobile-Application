@@ -1,45 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Verification.GuideTwoFragment"
     android:background="@color/safeplace_bgcolor"
+    tools:context=".Verification.GuideTwoFragment"
 
     >
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/taskbarIdGuide"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/taskbarIdGuide"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:background="@color/white"
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/btnGuidTwoBack"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_back"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -49,9 +45,9 @@
 
 
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="VERIFICATION"
                             android:textColor="@color/black"
                             android:textSize="25dp"
@@ -59,8 +55,6 @@
 
 
                     </LinearLayout>
-
-
 
 
                 </androidx.appcompat.widget.Toolbar>
@@ -93,15 +87,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/GuideTakingIdPictureTitle"
             android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/opensans"
             android:gravity="center"
-            android:text="Fill out the required information and make sure you have at least one [1] valid Primary ID. Please ensure that the Name and Birthday you entered in the Upgrade Application form matches the Name and Birthday reflected in the Valid ID that you will be uploading."
             android:paddingHorizontal="@dimen/_28sdp"
+            android:text="Fill out the required information and make sure you have at least one [1] valid Primary ID. Please ensure that the Name and Birthday you entered in the Upgrade Application form matches the Name and Birthday reflected in the Valid ID that you will be uploading."
             android:textColor="@color/safeplace_darkfont"
             android:textSize="@dimen/_10sdp"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_20sdp"
-            />
+            android:textStyle="bold" />
 
 
         <GridLayout
@@ -115,20 +108,20 @@
             >
 
             <androidx.cardview.widget.CardView
-                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide1"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
+                android:backgroundTint="#EFF3F3"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_230sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -138,8 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:gravity="center"
-                        android:src="@drawable/verification3"
-                        />
+                        android:src="@drawable/verification3" />
 
 
                 </LinearLayout>
@@ -147,34 +139,32 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:gravity="center"
                     android:text="Make sure the information in your ID is same with the information you entered in the app."
                     android:textColor="@color/colorTextPrimary"
                     android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    />
+                    android:textStyle="bold" />
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide2"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
+                android:backgroundTint="#EFF3F3"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
-                >
+                app:cardElevation="5dp">
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_230sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -183,22 +173,20 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:gravity="center"
-                        android:src="@drawable/verification4"
-                        />
+                        android:src="@drawable/verification4" />
 
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:gravity="center"
                     android:text="Please ensure that your ID is up to date and not expired (and also not a photocopy)."
                     android:textColor="@color/colorTextPrimary"
                     android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    />
+                    android:textStyle="bold" />
 
 
             </androidx.cardview.widget.CardView>
@@ -216,13 +204,13 @@
             >
 
             <androidx.cardview.widget.CardView
-                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide3"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
+                android:backgroundTint="#EFF3F3"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
@@ -259,13 +247,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide4"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
+                android:backgroundTint="#EFF3F3"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
@@ -305,20 +293,14 @@
             android:id="@+id/btnContinueGuideTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/safeplace_btnblue"
+            android:layout_below="@+id/gridlayout2"
             android:layout_alignParentRight="true"
             android:layout_margin="20dp"
-            android:text="CONTINUE"
-            android:layout_below="@+id/gridlayout2"
-            />
+            android:backgroundTint="@color/safeplace_btnblue"
+            android:text="CONTINUE" />
 
 
     </RelativeLayout>
-
-
-
-
-
 
 
 </ScrollView>

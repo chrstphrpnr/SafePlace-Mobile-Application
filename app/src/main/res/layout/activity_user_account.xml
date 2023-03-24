@@ -9,33 +9,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        >
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:id="@+id/taskbarAccount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:background="@color/white"
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/btnAccountBack"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_back"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -45,9 +42,9 @@
 
 
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="Account Information"
                             android:textColor="@color/black"
                             android:textSize="25dp"
@@ -63,34 +60,30 @@
         </LinearLayout>
 
 
-
         <RelativeLayout
             android:id="@+id/UserProfileHeader"
-            android:background="#303658"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_below="@+id/taskbarAccount"
-            >
+            android:background="#303658">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardviewProfile"
-                android:background="@color/white"
-                app:cardCornerRadius="200dp"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerInParent="true"
-                >
+                android:background="@color/white"
+                app:cardCornerRadius="200dp">
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/userProfileImage"
-                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:contentDescription="Header Image"
                     android:src="@drawable/ic_person"
-                    tools:srcCompat="@tools:sample/avatars"
-                    />
+                    tools:srcCompat="@tools:sample/avatars" />
 
             </androidx.cardview.widget.CardView>
 
@@ -118,53 +111,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UserProfileHeader"
-            android:text="Email"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
-            />
+            android:layout_marginTop="30dp"
+            android:text="Email"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/txtUserAccountEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UserAccountEmailTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/safeplace_textHint"
+            android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:textStyle="bold"
-            android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/UserAccountNameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUserAccountEmail"
-            android:text="Name"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
-            />
+            android:layout_marginTop="30dp"
+            android:text="Name"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/txtUserAccountName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UserAccountNameTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/safeplace_textHint"
+            android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:textStyle="bold"
-            android:backgroundTint="@color/safeplace_textHint"
-            />
-
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -172,105 +160,97 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUserAccountName"
-            android:text="Gender"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
-            />
+            android:layout_marginTop="30dp"
+            android:text="Gender"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/txtUserAccountGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UserAccountGenderTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/safeplace_textHint"
+            android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:textStyle="bold"
-            android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/UserAccountBirthDateTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUserAccountGender"
-            android:text="Birthday"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
-            />
+            android:layout_marginTop="30dp"
+            android:text="Birthday"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/txtUserAccountBirthDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UserAccountBirthDateTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/safeplace_textHint"
+            android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:textStyle="bold"
-            android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/UserAccountAddressTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUserAccountBirthDate"
-            android:text="Address"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
-            />
+            android:layout_marginTop="30dp"
+            android:text="Address"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/txtUserAccountAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UserAccountAddressTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/safeplace_textHint"
+            android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:textStyle="bold"
-            android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/UserAccountContactTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUserAccountAddress"
-            android:text="Contact Number"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
-            />
+            android:layout_marginTop="30dp"
+            android:text="Contact Number"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/txtUserAccountContactNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UserAccountContactTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/safeplace_textHint"
+            android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:textStyle="bold"
-            android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnChangePassword"
@@ -279,24 +259,12 @@
             android:layout_below="@+id/txtUserAccountContactNumber"
             android:layout_marginHorizontal="35dp"
             android:layout_marginVertical="10dp"
-            android:text="CHANGE PASSWORD"
             android:background="@drawable/btn_round"
+            android:text="CHANGE PASSWORD"
             app:backgroundTint="@color/colorAccent" />
 
 
-
-
-
-
-
-
-
-
     </RelativeLayout>
-
-
-
-
 
 
 </ScrollView>

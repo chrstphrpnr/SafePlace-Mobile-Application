@@ -2,48 +2,42 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameHomeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    android:id="@+id/frameHomeContainer"
     tools:context=".HomeScreen.SafePlaceHomeScreenActivity"
-    >
-
-
+    tools:openDrawer="start">
 
 
     <!--    viewpager-->
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/pager">
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_height="match_parent"></androidx.viewpager2.widget.ViewPager2>
 
 
     <!--    Toolbar-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
-                android:background="@color/white"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/white">
 
                 <LinearLayout
-                    android:layout_marginRight="30dp"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginRight="30dp"
                     android:orientation="horizontal">
 
 
@@ -53,16 +47,13 @@
                         android:src="@drawable/logo" />
 
                     <TextView
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="SAFEPLACE"
                         android:textColor="@color/black"
                         android:textSize="25dp"
                         android:textStyle="bold" />
-
-
-
 
 
                 </LinearLayout>
@@ -71,17 +62,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    >
+                    android:layout_marginRight="@dimen/_10sdp">
 
                     <ImageView
                         android:id="@+id/notificationBell"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_28sdp"
-                        android:src="@drawable/ic_notification"
                         android:layout_gravity="right"
                         android:layout_marginRight="@dimen/_13sdp"
-                        />
+                        android:src="@drawable/ic_notification" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/notif_cardview"
@@ -102,13 +91,12 @@
                             android:id="@+id/txt_notif_count"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="0"
                             android:layout_gravity="center"
-                            android:gravity="center"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
                             android:layout_marginBottom="@dimen/_1sdp"
-                            />
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
 
 
                     </androidx.cardview.widget.CardView>
@@ -116,24 +104,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+            </androidx.appcompat.widget.Toolbar>
 
 
+        </com.google.android.material.appbar.AppBarLayout>
 
 
-
-
-
-
-
-
-
-                </androidx.appcompat.widget.Toolbar>
-
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-
-        </LinearLayout>
+    </LinearLayout>
 
     <!--    BottomNavigation-->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -141,21 +118,20 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            app:labelVisibilityMode="selected"
-            android:elevation="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/menu_shape"
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/menu_shape"
+            android:elevation="10dp"
+            app:labelVisibilityMode="selected"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_nav"
-            />
+            app:menu="@menu/bottom_nav" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -167,12 +143,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/header_layout"
-        app:menu="@menu/navigation_menu"
         android:textAlignment="center"
+        app:headerLayout="@layout/header_layout"
         app:itemTextAppearance="@style/ActionMenuTextAppearance"
         app:itemVerticalPadding="20dp"
-        />
+        app:menu="@menu/navigation_menu" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

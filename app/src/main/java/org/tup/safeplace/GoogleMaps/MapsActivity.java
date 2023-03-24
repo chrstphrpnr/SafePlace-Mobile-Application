@@ -1,23 +1,20 @@
 package org.tup.safeplace.GoogleMaps;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -33,7 +30,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -49,11 +45,11 @@ import org.tup.safeplace.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-    private ActivityMapsBinding binding;
+    private static final int REQUEST_CODE = 101;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
-    private static final int REQUEST_CODE = 101;
+    private GoogleMap mMap;
+    private ActivityMapsBinding binding;
     private JSONArray result;
 
     @Override
@@ -75,12 +71,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this,R.raw.mapstyle));
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.mapstyle));
 
         // Add a marker in Sydney and move the camera
         LatLng myLocation = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         mMap.addMarker(new MarkerOptions().position(myLocation).title("Current Location")
-                .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_usermarker)
+                .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_usermarker)
                 ));
 
         float zoomLevel = 16.0f; //This goes up to 21
@@ -95,9 +91,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     //Converts Image in Drawable to Bitmap
-    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int VectorResId){
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int VectorResId) {
         Drawable vectorDrawable = ContextCompat.getDrawable(context, VectorResId);
-        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
         Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
                 vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -106,8 +102,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     //Get Users Current Location
-    private void getCurrentLocation(){
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+    private void getCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION
             }, REQUEST_CODE);
@@ -143,14 +139,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-
     //Show markers of Hospitals
     private void getHospitalsLocation() {
 
-        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.hospital_map,response -> {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.hospital_map, response -> {
 
-            Log.d("JSONResult", response.toString());
+            Log.d("JSONResult", response);
             JSONObject j = null;
             try {
                 j = new JSONObject(response);
@@ -164,7 +159,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(hospitalLatitude), Double.parseDouble(hospitalLongtitude)))
                             .title(hospital_name)
-                            .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_hospitalmarker))
+                            .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_hospitalmarker))
                     );
 
 
@@ -188,12 +183,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     //Show Markers of Barangay
-    private void getBarangaysLocation(){
+    private void getBarangaysLocation() {
 
-        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.barangay_map,response -> {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.barangay_map, response -> {
 
-            Log.d("JSONResult", response.toString());
+            Log.d("JSONResult", response);
             JSONObject j = null;
             try {
                 j = new JSONObject(response);
@@ -207,9 +202,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
                             .title(barangay_name)
-                            .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_barangaymarker))
+                            .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_barangaymarker))
                     );
-
 
 
                 }
@@ -232,11 +226,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     //Show Markers of Police Station
-    private void getPoliceStationsLocation(){
-        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.policeStation_map,response -> {
+    private void getPoliceStationsLocation() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.policeStation_map, response -> {
 
-            Log.d("JSONResult", response.toString());
+            Log.d("JSONResult", response);
             JSONObject j = null;
             try {
                 j = new JSONObject(response);
@@ -250,9 +244,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
                             .title(policestation_name)
-                            .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_policemarker))
+                            .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_policemarker))
                     );
-
 
 
                 }
@@ -272,8 +265,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
     }
-
-
 
 
 }

@@ -30,7 +30,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationModel> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_list_item,null,true);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_list_item, null, true);
 
         TextView tvMessage = view.findViewById(R.id.txt_notification);
         TextView tvStatus = view.findViewById(R.id.txt_notification_status);
@@ -40,19 +40,13 @@ public class NotificationAdapter extends ArrayAdapter<NotificationModel> {
         tvStatus.setText(arrayListNotification.get(position).getStatus());
 
 
-        if (tvStatus.getText().equals("unread")){
+        if (tvStatus.getText().equals("unread")) {
             view.setBackgroundResource(android.R.color.darker_gray);
         }
 
-        if (tvStatus.getText().equals("read")){
+        if (tvStatus.getText().equals("read")) {
             view.setBackgroundResource(R.color.white);
         }
-
-
-
-
-
-
 
 
         return view;

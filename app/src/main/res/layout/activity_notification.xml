@@ -13,29 +13,27 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/layout_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/layout_bar"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:background="@color/white"
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/btnNotificationBack"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_back"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -44,22 +42,17 @@
                         android:orientation="horizontal">
 
 
-
-
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="NOTIFICATION"
                             android:textColor="@color/safeplace_darkfont"
                             android:textSize="@dimen/_25sdp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
-
-
 
 
                 </androidx.appcompat.widget.Toolbar>
@@ -72,35 +65,24 @@
 
 
         <ListView
-            android:layout_below="@+id/layout_bar"
+            android:id="@+id/myListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/myListView"/>
-
-
+            android:layout_below="@+id/layout_bar" />
 
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRead"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:cornerRadius="20dp"
-            android:text="Mark as Read"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/_20sdp"
             android:backgroundTint="@color/safeplace_btnblue"
-            />
+            android:text="Mark as Read"
+            app:cornerRadius="20dp" />
 
     </RelativeLayout>
-
-
-
-
-
-
-
-
 
 
 </ScrollView>

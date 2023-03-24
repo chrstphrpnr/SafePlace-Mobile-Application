@@ -1,14 +1,13 @@
 package org.tup.safeplace.Verification;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
 
 import org.tup.safeplace.R;
 
@@ -25,11 +24,11 @@ public class GuideTwoFragment extends Fragment {
         btnGuideTwo = view.findViewById(R.id.btnContinueGuideTwo);
         btnBack = view.findViewById(R.id.btnGuidTwoBack);
 
-        btnGuideTwo.setOnClickListener(v->{
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameVerificationContainer,new GuideThreeFragment()).commit();
+        btnGuideTwo.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameVerificationContainer, new GuideThreeFragment()).commit();
         });
 
-        btnBack.setOnClickListener(v->{
+        btnBack.setOnClickListener(v -> {
             requireActivity().onBackPressed();
         });
 

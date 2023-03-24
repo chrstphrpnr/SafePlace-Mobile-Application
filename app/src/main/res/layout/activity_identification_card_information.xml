@@ -9,33 +9,30 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/taskbarVerification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:background="@color/white"
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/btnCardInfoBack"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_back"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -45,9 +42,9 @@
 
 
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="VERIFICATION"
                             android:textColor="@color/black"
                             android:textSize="25dp"
@@ -57,32 +54,28 @@
                     </LinearLayout>
 
 
-
-
                 </androidx.appcompat.widget.Toolbar>
 
 
             </com.google.android.material.appbar.AppBarLayout>
 
 
-
         </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/relativelayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/relativelayout1"
-            android:layout_below="@+id/taskbarVerification"
-        >
+            android:layout_below="@+id/taskbarVerification">
 
             <TextView
                 android:id="@+id/VerificationIdInformationTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:fontFamily="@font/opensans"
                 android:gravity="center"
-                android:layout_centerHorizontal="true"
                 android:paddingHorizontal="@dimen/_28sdp"
                 android:text="UPLOAD IDENTIFICATION CARD"
                 android:textColor="@color/safeplace_darkfont"
@@ -104,16 +97,15 @@
                 android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
-                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:id="@+id/frontIdCardView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_118sdp"
                 android:layout_below="@+id/FrontIdTitle"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_15sdp"
                 android:backgroundTint="@color/white"
                 app:cardCornerRadius="@dimen/_5sdp"
-                app:cardElevation="5dp"
-                android:layout_marginVertical="@dimen/_15sdp"
-                android:id="@+id/frontIdCardView"
-                >
+                app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -123,8 +115,7 @@
                         android:id="@+id/frontIdImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/cardview_rounded"
-                        />
+                        android:src="@drawable/cardview_rounded" />
 
                     <ImageView
                         android:id="@+id/frontIdCam"
@@ -147,21 +138,19 @@
                         android:id="@+id/relativelayoutFront"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:background="#8D000000"
                         android:layout_alignParentBottom="true"
-                        android:visibility="invisible"
-                        >
+                        android:background="#8D000000"
+                        android:visibility="invisible">
 
                         <TextView
                             android:id="@+id/frontRecapture"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RECAPTURE"
                             android:layout_centerInParent="true"
-                            android:textSize="@dimen/_20sdp"
-                            android:textStyle="bold"
+                            android:text="RECAPTURE"
                             android:textColor="@color/white"
-                            />
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="bold" />
 
                     </RelativeLayout>
 
@@ -184,16 +173,15 @@
                 android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
-                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:id="@+id/backIdCardView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_118sdp"
                 android:layout_below="@+id/BackIdTitle"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_15sdp"
                 android:backgroundTint="@color/white"
                 app:cardCornerRadius="@dimen/_5sdp"
-                app:cardElevation="5dp"
-                android:layout_marginVertical="@dimen/_15sdp"
-                android:id="@+id/backIdCardView"
-                >
+                app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -203,8 +191,7 @@
                         android:id="@+id/backIdImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/cardview_rounded"
-                        />
+                        android:src="@drawable/cardview_rounded" />
 
                     <ImageView
                         android:id="@+id/backIdCam"
@@ -220,30 +207,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/backIdCam"
-                        android:text="Upload the BACK of your ID Here"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="@dimen/_5sdp"
-                        />
+                        android:text="Upload the BACK of your ID Here" />
 
                     <RelativeLayout
                         android:id="@+id/relativelayoutBack"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:background="#8D000000"
                         android:layout_alignParentBottom="true"
-                        android:visibility="invisible"
-                        >
+                        android:background="#8D000000"
+                        android:visibility="invisible">
 
                         <TextView
                             android:id="@+id/backRecapture"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RECAPTURE"
                             android:layout_centerInParent="true"
-                            android:textSize="@dimen/_20sdp"
-                            android:textStyle="bold"
+                            android:text="RECAPTURE"
                             android:textColor="@color/white"
-                            />
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="bold" />
 
                     </RelativeLayout>
 
@@ -259,26 +243,23 @@
             android:id="@+id/relativelayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="30dp"
             android:layout_below="@+id/relativelayout1"
-            >
+            android:layout_marginHorizontal="30dp">
 
             <TextView
                 android:id="@+id/txtTitleIdType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Id Type"
-                />
+                android:text="Id Type" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dropDownLayoutIdType"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_20sdp"
-                android:hint="@string/select_here"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:id="@+id/dropDownLayoutIdType"
                 android:background="@color/white"
-                >
+                android:hint="@string/select_here">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteIdtxt"
@@ -290,39 +271,35 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
             <TextView
                 android:id="@+id/txtTitleIdNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Id Number"
                 android:layout_below="@+id/dropDownLayoutIdType"
-                />
+                android:text="Id Number" />
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtLayoutIdentificationCardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTitleIdNumber"
                 android:hint="ID Number"
                 android:textColor="@color/safeplace_darkfont"
-                android:layout_below="@+id/txtTitleIdNumber"
                 android:textSize="15sp"
                 app:boxStrokeWidth="0dp"
-                app:hintTextColor="#8C8686"
-                >
+                app:hintTextColor="#8C8686">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:background="@color/white"
                     android:id="@+id/edtIdentificationCardNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/white"
                     android:inputType="textEmailAddress"
                     android:singleLine="true" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
         </RelativeLayout>
@@ -344,31 +321,7 @@
             android:text="CONTINUE" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </RelativeLayout>
-
-
-
-
-
-
 
 
 </ScrollView>

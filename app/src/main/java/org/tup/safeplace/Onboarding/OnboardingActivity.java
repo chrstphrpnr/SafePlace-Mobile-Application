@@ -1,9 +1,5 @@
 package org.tup.safeplace.Onboarding;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.google.android.material.button.MaterialButton;
 
-import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.Privacy.PrivacyActivity;
 import org.tup.safeplace.R;
 
@@ -57,11 +56,11 @@ public class OnboardingActivity extends AppCompatActivity {
 
         try {
             prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            boolean firstTimeLoading = prefs.getBoolean("first_time_finish",true);
-            if (!firstTimeLoading){
+            boolean firstTimeLoading = prefs.getBoolean("first_time_finish", true);
+            if (!firstTimeLoading) {
                 nextFragment();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -69,12 +68,11 @@ public class OnboardingActivity extends AppCompatActivity {
         buttonOnboaringAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()){
+                if (onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()) {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
-                }
-                else {
+                } else {
                     SharedPreferences.Editor editor = prefs.edit();
-                    editor.putBoolean("first_time_finish",false);
+                    editor.putBoolean("first_time_finish", false);
                     editor.commit();
                     nextFragment();
                 }
@@ -83,11 +81,10 @@ public class OnboardingActivity extends AppCompatActivity {
 
     }
 
-    private void nextFragment(){
+    private void nextFragment() {
         startActivity(new Intent(getApplicationContext(), PrivacyActivity.class));
         finish();
     }
-
 
 
     private void setupOnboardingItem() {
@@ -124,14 +121,14 @@ public class OnboardingActivity extends AppCompatActivity {
         onboardingAdapter = new OnboardingAdapter(onboardingItems);
     }
 
-    private void setupOnboardingIndicator(){
+    private void setupOnboardingIndicator() {
         ImageView[] indicators = new ImageView[onboardingAdapter.getItemCount()];
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
         );
-        layoutParams.setMargins(8,0,8,0);
+        layoutParams.setMargins(8, 0, 8, 0);
 
-        for (int i = 0; i <indicators.length ; i++) {
+        for (int i = 0; i < indicators.length; i++) {
             indicators[i] = new ImageView(getApplicationContext());
             indicators[i].setImageDrawable(ContextCompat.getDrawable(
                     getApplicationContext(),
@@ -144,22 +141,20 @@ public class OnboardingActivity extends AppCompatActivity {
     }
 
 
-    private void setCurrentOnboardingIndicator(int index){
+    private void setCurrentOnboardingIndicator(int index) {
         int childCount = layoutOnboardingIndicator.getChildCount();
-        for(int i=0; i<childCount; i++){
+        for (int i = 0; i < childCount; i++) {
             ImageView imageView = (ImageView) layoutOnboardingIndicator.getChildAt(i);
-            if(i == index){
-                imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.onboarding_indicator_active));
-            }
-            else {
-                imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.onboarding_indicator_inactive));
+            if (i == index) {
+                imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.onboarding_indicator_active));
+            } else {
+                imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.onboarding_indicator_inactive));
             }
         }
 
-        if (index == onboardingAdapter.getItemCount() - 1){
+        if (index == onboardingAdapter.getItemCount() - 1) {
             buttonOnboaringAction.setText("Start");
-        }
-        else {
+        } else {
             buttonOnboaringAction.setText("Next");
         }
 

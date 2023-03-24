@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Verification.GuideThreeFragment"
     android:background="@color/safeplace_bgcolor"
-    >
+    tools:context=".Verification.GuideThreeFragment">
 
 
     <RelativeLayout
@@ -17,26 +16,24 @@
             android:id="@+id/taskbarSelfieGuide"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:background="@color/white"
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/btnGuideThreeBack"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_back"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -46,9 +43,9 @@
 
 
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="VERIFICATION"
                             android:textColor="@color/black"
                             android:textSize="25dp"
@@ -56,8 +53,6 @@
 
 
                     </LinearLayout>
-
-
 
 
                 </androidx.appcompat.widget.Toolbar>
@@ -75,15 +70,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/taskbarSelfieGuide"
             android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/opensans"
             android:gravity="center"
-            android:text="GUIDE IN TAKING A SELFIE"
             android:paddingHorizontal="@dimen/_28sdp"
+            android:text="GUIDE IN TAKING A SELFIE"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="@dimen/_18sdp"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_20sdp"
-            />
+            android:textStyle="bold" />
 
         <GridLayout
             android:id="@+id/gridlayout4"
@@ -96,21 +90,20 @@
             >
 
             <androidx.cardview.widget.CardView
-                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide1"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
+                android:backgroundTint="#EFF3F3"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
-                >
+                app:cardElevation="5dp">
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_230sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -120,8 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:gravity="center"
-                        android:src="@drawable/verification7"
-                        />
+                        android:src="@drawable/verification7" />
 
 
                 </LinearLayout>
@@ -129,34 +121,32 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:gravity="center"
                     android:text=" Ensure that you face the camera fully, and position your head within the frame."
                     android:textColor="@color/colorTextPrimary"
                     android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    />
+                    android:textStyle="bold" />
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide2"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
+                android:backgroundTint="#EFF3F3"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
-                >
+                app:cardElevation="5dp">
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_230sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -165,22 +155,20 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:gravity="center"
-                        android:src="@drawable/verification8"
-                        />
+                        android:src="@drawable/verification8" />
 
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:gravity="center"
                     android:text="Find a well-lit place so that the camera can accurately scan your face."
                     android:textColor="@color/colorTextPrimary"
                     android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    />
+                    android:textStyle="bold" />
 
 
             </androidx.cardview.widget.CardView>
@@ -198,20 +186,20 @@
             >
 
             <androidx.cardview.widget.CardView
-                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide3"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
+                android:backgroundTint="#EFF3F3"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_230sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -221,8 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:gravity="center"
-                        android:src="@drawable/verification9"
-                        />
+                        android:src="@drawable/verification9" />
 
 
                 </LinearLayout>
@@ -230,34 +217,32 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:gravity="center"
                     android:text="Remove any mask or sunglasses before taking your selfie."
                     android:textColor="@color/colorTextPrimary"
                     android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    />
+                    android:textStyle="bold" />
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:backgroundTint="#EFF3F3"
                 android:id="@+id/guide4"
                 android:layout_width="165dp"
                 android:layout_height="300dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="15dp"
+                android:backgroundTint="#EFF3F3"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
-                >
+                app:cardElevation="5dp">
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_230sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -266,22 +251,20 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:gravity="center"
-                        android:src="@drawable/verification10"
-                        />
+                        android:src="@drawable/verification10" />
 
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:gravity="center"
                     android:text=" Ready to snap your shot? Lift your phone to the eye level (just as shown in the image below.)"
                     android:textColor="@color/colorTextPrimary"
                     android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    />
+                    android:textStyle="bold" />
 
 
             </androidx.cardview.widget.CardView>
@@ -293,19 +276,14 @@
             android:id="@+id/btnContinueGuideThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/safeplace_btnblue"
+            android:layout_below="@id/gridlayout5"
             android:layout_alignParentRight="true"
             android:layout_margin="20dp"
-            android:text="Get Started"
-            android:layout_below="@id/gridlayout5"
-            />
+            android:backgroundTint="@color/safeplace_btnblue"
+            android:text="Get Started" />
 
 
     </RelativeLayout>
-
-
-
-
 
 
 </ScrollView>

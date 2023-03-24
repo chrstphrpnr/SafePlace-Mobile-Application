@@ -1,7 +1,5 @@
 package org.tup.safeplace;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.Onboarding.OnboardingActivity;
@@ -28,25 +28,21 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                SharedPreferences userPref = getApplicationContext().getSharedPreferences("user",Context.MODE_PRIVATE);
-                boolean isLoggedIn = userPref.getBoolean("isLoggedIn",false);
+                SharedPreferences userPref = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+                boolean isLoggedIn = userPref.getBoolean("isLoggedIn", false);
 
-                if (isLoggedIn){
+                if (isLoggedIn) {
                     startActivity(new Intent(MainActivity.this, SafePlaceHomeScreenActivity.class));
                     finish();
-                }
-
-                else {
-                    startActivity(new Intent(MainActivity.this,OnboardingActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
                     finish();
                 }
             }
-        },1000);
-
+        }, 1000);
 
 
     }
-
 
 
 }

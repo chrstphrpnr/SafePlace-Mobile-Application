@@ -7,7 +7,7 @@ public class NotificationModel {
     public NotificationModel() {
     }
 
-    public NotificationModel(String message,String status) {
+    public NotificationModel(String message, String status) {
         this.message = message;
         this.status = status;
 

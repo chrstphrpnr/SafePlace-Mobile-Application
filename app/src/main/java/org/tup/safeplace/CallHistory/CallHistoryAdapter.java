@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.tup.safeplace.CallHistory.CallHistory;
 import org.tup.safeplace.R;
 
 import java.util.List;
@@ -40,8 +39,8 @@ public class CallHistoryAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-        View view = inflater.inflate( R.layout.call_history_list_item, null );
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.call_history_list_item, null);
 
         ImageView barangay_ic = view.findViewById(R.id.barangay_icon);
 

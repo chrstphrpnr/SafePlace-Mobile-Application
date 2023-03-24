@@ -4,9 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
@@ -16,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -40,7 +39,7 @@ public class SignInFragment extends Fragment {
 
     private View view;
 
-    private TextInputLayout layoutEmail,layoutPassword;
+    private TextInputLayout layoutEmail, layoutPassword;
     private TextInputEditText txtEmail, txtPassword;
 
     private Button btnSignIn;
@@ -51,7 +50,8 @@ public class SignInFragment extends Fragment {
     private ProgressDialog dialog;
 
 
-    public SignInFragment(){}
+    public SignInFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +61,7 @@ public class SignInFragment extends Fragment {
         return view;
     }
 
-    private void init(){
+    private void init() {
         //TextLayout
         layoutEmail = view.findViewById(R.id.txtLayoutEmailSignIn);
         layoutPassword = view.findViewById(R.id.txtLayoutPasswordSignIn);
@@ -83,12 +83,12 @@ public class SignInFragment extends Fragment {
         dialog = new ProgressDialog(getContext());
         dialog.setCancelable(false);
 
-        txtSignup.setOnClickListener(v->{
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAuthContainer,new SignUpFragment()).commit();
+        txtSignup.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAuthContainer, new SignUpFragment()).commit();
         });
 
-        txtForgotPassword.setOnClickListener(v->{
-            startActivity(new Intent(((AuthenticationActivity)getContext()), ForgotPasswordActivity.class));
+        txtForgotPassword.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), ForgotPasswordActivity.class));
         });
 
         txtEmail.addTextChangedListener(new TextWatcher() {
@@ -99,7 +99,7 @@ public class SignInFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!txtEmail.getText().toString().isEmpty()){
+                if (!txtEmail.getText().toString().isEmpty()) {
                     layoutEmail.setErrorEnabled(false);
                 }
             }
@@ -118,7 +118,7 @@ public class SignInFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(txtPassword.getText().toString().length()>7){
+                if (txtPassword.getText().toString().length() > 7) {
                     layoutPassword.setErrorEnabled(false);
                 }
             }
@@ -129,41 +129,41 @@ public class SignInFragment extends Fragment {
             }
         });
 
-        txtQrCodeLogin.setOnClickListener(v->{
-            startActivity(new Intent(((AuthenticationActivity)getContext()), QRLoginActivity.class));
+        txtQrCodeLogin.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), QRLoginActivity.class));
         });
 
-        btnSignIn.setOnClickListener(v->{
-            if(validate()){
+        btnSignIn.setOnClickListener(v -> {
+            if (validate()) {
                 login();
             }
         });
     }
 
-    private boolean validate(){
+    private boolean validate() {
 
         String email = txtEmail.getText().toString();
         String password = txtPassword.getText().toString();
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             layoutEmail.setErrorEnabled(true);
             layoutEmail.setError("Please enter a valid Email");
             return false;
         }
 
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             layoutEmail.setErrorEnabled(true);
             layoutEmail.setError("Email is Required");
             return false;
         }
 
-        if (password.isEmpty()){
+        if (password.isEmpty()) {
             layoutPassword.setErrorEnabled(true);
             layoutPassword.setError("Password is Required");
             return false;
         }
 
-        if (password.length()<8){
+        if (password.length() < 8) {
             layoutPassword.setErrorEnabled(true);
             layoutPassword.setError("Required at least 8 character");
             return false;
@@ -172,7 +172,7 @@ public class SignInFragment extends Fragment {
 
     }
 
-    private void login(){
+    private void login() {
         dialog.setMessage("Loading...");
         dialog.show();
         StringRequest request = new StringRequest(Request.Method.POST, API.login_user, response -> {
@@ -180,44 +180,44 @@ public class SignInFragment extends Fragment {
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray jsonArray = jsonObject.getJSONArray("user");
-                if(jsonObject.getBoolean("success")){
-                    for (int i = 0; i <jsonArray.length(); i++) {
+                if (jsonObject.getBoolean("success")) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject object = jsonArray.getJSONObject(i);
-                        SharedPreferences userPref = getActivity().getApplicationContext().getSharedPreferences("user",getContext().MODE_PRIVATE);
+                        SharedPreferences userPref = getActivity().getApplicationContext().getSharedPreferences("user", getContext().MODE_PRIVATE);
                         SharedPreferences.Editor editor = userPref.edit();
 
-                        editor.putString("token",jsonObject.getString("token"));
+                        editor.putString("token", jsonObject.getString("token"));
 
-                        editor.putInt("id",object.getInt("id"));
+                        editor.putInt("id", object.getInt("id"));
 
-                        editor.putString("fname",object.getString("fname"));
-                        editor.putString("mname",object.getString("mname"));
-                        editor.putString("lname",object.getString("lname"));
-                        editor.putString("gender",object.getString("gender"));
-                        editor.putString("birthdate",object.getString("birthdate"));
-                        editor.putString("address",object.getString("address"));
-                        editor.putString("contact",object.getString("contact"));
-                        editor.putString("email",object.getString("email"));
+                        editor.putString("fname", object.getString("fname"));
+                        editor.putString("mname", object.getString("mname"));
+                        editor.putString("lname", object.getString("lname"));
+                        editor.putString("gender", object.getString("gender"));
+                        editor.putString("birthdate", object.getString("birthdate"));
+                        editor.putString("address", object.getString("address"));
+                        editor.putString("contact", object.getString("contact"));
+                        editor.putString("email", object.getString("email"));
 
-                        editor.putString("status",object.getString("status"));
+                        editor.putString("status", object.getString("status"));
 
-                        editor.putString("img",object.getString("img"));
+                        editor.putString("img", object.getString("img"));
 
-                        editor.putBoolean("isLoggedIn",true);
+                        editor.putBoolean("isLoggedIn", true);
 
                         editor.apply();
                     }
 
 
                     //if Success
-                    startActivity(new Intent(((AuthenticationActivity)getContext()), SafePlaceHomeScreenActivity.class));
+                    startActivity(new Intent(getContext(), SafePlaceHomeScreenActivity.class));
                     ((AuthenticationActivity) getContext()).finish();
                     Toast.makeText(getContext(), "Login Success", Toast.LENGTH_SHORT).show();
 
                 }
 
-            } catch (JSONException e){
+            } catch (JSONException e) {
                 Toast.makeText(getContext(), "Please Try Again", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
                 dialog.dismiss();
@@ -225,20 +225,19 @@ public class SignInFragment extends Fragment {
             dialog.dismiss();
 
 
-
-        },error -> {
+        }, error -> {
             //error if connection not success
             Toast.makeText(getContext(), "Error in Connection", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
             dialog.dismiss();
 
-        }){
+        }) {
             //add parameters
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String,String> map = new HashMap<>();
-                map.put("email",txtEmail.getText().toString().trim());
-                map.put("password",txtPassword.getText().toString());
+                HashMap<String, String> map = new HashMap<>();
+                map.put("email", txtEmail.getText().toString().trim());
+                map.put("password", txtPassword.getText().toString());
                 return map;
             }
         };

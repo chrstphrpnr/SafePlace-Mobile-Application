@@ -1,10 +1,5 @@
 package org.tup.safeplace.Verification;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -23,11 +18,14 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -57,33 +55,20 @@ import java.util.Map;
 
 public class IdentificationCardInformationActivity extends AppCompatActivity {
 
-    private Button btnContinue;
-    private ImageView btnback, frontIdCam, frontIdImage,backIdCam, backIdImage;
-    private SharedPreferences userPref;
-    private TextView frontGuidetxt,backGuidetxt,frontRecapture,backRecapture;
-
-    private TextInputLayout txtLayoutIdentificationCardNumber,dropDownLayoutIdType;
-    private TextInputEditText edtIdentificationCardNumber;
-
-    private RelativeLayout relativelayoutFront,relativelayoutBack;
-
-
-
-
     Bitmap bitmapfront, bitmapback;
-    String encodedimagefront,encodedimageback;
-
-    private String currentPhotoPathBackId, currentPhotoPathFrontId;
-
-    private ProgressDialog dialog;
-
-
-    String[] identificationCards = {"National ID","School ID", "Postal ID"};
+    String encodedimagefront, encodedimageback;
+    String[] identificationCards = {"National ID", "School ID", "Postal ID"};
     AutoCompleteTextView autoCompleteIdList;
     ArrayAdapter<String> adapterItems;
-
-
-
+    private Button btnContinue;
+    private ImageView btnback, frontIdCam, frontIdImage, backIdCam, backIdImage;
+    private SharedPreferences userPref;
+    private TextView frontGuidetxt, backGuidetxt, frontRecapture, backRecapture;
+    private TextInputLayout txtLayoutIdentificationCardNumber, dropDownLayoutIdType;
+    private TextInputEditText edtIdentificationCardNumber;
+    private RelativeLayout relativelayoutFront, relativelayoutBack;
+    private String currentPhotoPathBackId, currentPhotoPathFrontId;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +77,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -102,13 +87,11 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
         backRecapture = findViewById(R.id.backRecapture);
 
 
-
         edtIdentificationCardNumber = findViewById(R.id.edtIdentificationCardNumber);
         txtLayoutIdentificationCardNumber = findViewById(R.id.txtLayoutIdentificationCardNumber);
 
         dropDownLayoutIdType = findViewById(R.id.dropDownLayoutIdType);
         autoCompleteIdList = findViewById(R.id.autoCompleteIdtxt);
-
 
 
         frontIdCam = findViewById(R.id.frontIdCam);
@@ -124,10 +107,8 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
         btnContinue = findViewById(R.id.btnContinueCardInformation);
 
 
-
-        adapterItems = new ArrayAdapter<String>(this,R.layout.identification_list_item, identificationCards);
+        adapterItems = new ArrayAdapter<String>(this, R.layout.identification_list_item, identificationCards);
         autoCompleteIdList.setAdapter(adapterItems);
-
 
 
         dialog = new ProgressDialog(this);
@@ -138,17 +119,17 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
 
         btnback = findViewById(R.id.btnCardInfoBack);
-        btnback.setOnClickListener(v->{
+        btnback.setOnClickListener(v -> {
             onBackPressed();
         });
 
-        btnContinue.setOnClickListener(v->{
-            if(validate()){
+        btnContinue.setOnClickListener(v -> {
+            if (validate()) {
                 postCardDetails();
             }
         });
 
-        frontRecapture.setOnClickListener(v->{
+        frontRecapture.setOnClickListener(v -> {
 
             Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
                 @Override
@@ -158,13 +139,13 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
 
                     try {
-                        File imageFileFront = File.createTempFile(fileNameFront,".jpg",storageDirectory);
+                        File imageFileFront = File.createTempFile(fileNameFront, ".jpg", storageDirectory);
 
                         currentPhotoPathFrontId = imageFileFront.getAbsolutePath();
 
                         Uri imageUriFront = FileProvider.getUriForFile(IdentificationCardInformationActivity.this, "org.tup.safeplace.fileprovider", imageFileFront);
                         Intent intentFront = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        intentFront.putExtra(MediaStore.EXTRA_OUTPUT,imageUriFront);
+                        intentFront.putExtra(MediaStore.EXTRA_OUTPUT, imageUriFront);
                         startActivityForResult(intentFront, 111);
 
                     } catch (IOException e) {
@@ -184,7 +165,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
             }).check();
         });
 
-        backRecapture.setOnClickListener(v->{
+        backRecapture.setOnClickListener(v -> {
 
             Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
                 @Override
@@ -194,13 +175,13 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
 
                     try {
-                        File imageFileBack = File.createTempFile(fileNameBack,".jpg",storageDirectory);
+                        File imageFileBack = File.createTempFile(fileNameBack, ".jpg", storageDirectory);
 
                         currentPhotoPathBackId = imageFileBack.getAbsolutePath();
 
                         Uri imageUriBack = FileProvider.getUriForFile(IdentificationCardInformationActivity.this, "org.tup.safeplace.fileprovider", imageFileBack);
                         Intent intentBack = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        intentBack.putExtra(MediaStore.EXTRA_OUTPUT,imageUriBack);
+                        intentBack.putExtra(MediaStore.EXTRA_OUTPUT, imageUriBack);
                         startActivityForResult(intentBack, 112);
 
                     } catch (IOException e) {
@@ -224,9 +205,9 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
     }
 
-    private void FrontIdCapture(){
+    private void FrontIdCapture() {
 
-        frontIdCam.setOnClickListener(v->{
+        frontIdCam.setOnClickListener(v -> {
             Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
                 @Override
                 public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
@@ -235,13 +216,13 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
 
                     try {
-                        File imageFileFront = File.createTempFile(fileNameFront,".jpg",storageDirectory);
+                        File imageFileFront = File.createTempFile(fileNameFront, ".jpg", storageDirectory);
 
                         currentPhotoPathFrontId = imageFileFront.getAbsolutePath();
 
                         Uri imageUriFront = FileProvider.getUriForFile(IdentificationCardInformationActivity.this, "org.tup.safeplace.fileprovider", imageFileFront);
                         Intent intentFront = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        intentFront.putExtra(MediaStore.EXTRA_OUTPUT,imageUriFront);
+                        intentFront.putExtra(MediaStore.EXTRA_OUTPUT, imageUriFront);
                         startActivityForResult(intentFront, 111);
 
                     } catch (IOException e) {
@@ -264,8 +245,8 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
     }
 
-    private void BackIdCapture(){
-        backIdCam.setOnClickListener(v->{
+    private void BackIdCapture() {
+        backIdCam.setOnClickListener(v -> {
 
 
             Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
@@ -276,13 +257,13 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
 
                     try {
-                        File imageFileBack = File.createTempFile(fileNameBack,".jpg",storageDirectory);
+                        File imageFileBack = File.createTempFile(fileNameBack, ".jpg", storageDirectory);
 
                         currentPhotoPathBackId = imageFileBack.getAbsolutePath();
 
                         Uri imageUriBack = FileProvider.getUriForFile(IdentificationCardInformationActivity.this, "org.tup.safeplace.fileprovider", imageFileBack);
                         Intent intentBack = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        intentBack.putExtra(MediaStore.EXTRA_OUTPUT,imageUriBack);
+                        intentBack.putExtra(MediaStore.EXTRA_OUTPUT, imageUriBack);
                         startActivityForResult(intentBack, 112);
 
                     } catch (IOException e) {
@@ -306,24 +287,22 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
     }
 
-    private boolean validate(){
+    private boolean validate() {
         String idNumber = edtIdentificationCardNumber.getText().toString();
         String IdType = autoCompleteIdList.getText().toString();
 
-        if(IdType.isEmpty()){
+        if (IdType.isEmpty()) {
             dropDownLayoutIdType.setErrorEnabled(true);
             dropDownLayoutIdType.setError("Your Id Type is Required");
             return false;
         }
 
 
-        if(idNumber.isEmpty()){
+        if (idNumber.isEmpty()) {
             txtLayoutIdentificationCardNumber.setErrorEnabled(true);
             txtLayoutIdentificationCardNumber.setError("Your ID Number is Required");
             return false;
         }
-
-
 
 
         return true;
@@ -346,7 +325,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
 
         }
-        if(requestCode == 112 && resultCode == RESULT_OK){
+        if (requestCode == 112 && resultCode == RESULT_OK) {
 
             bitmapback = BitmapFactory.decodeFile(currentPhotoPathBackId);
             Matrix matrixback = new Matrix();
@@ -395,7 +374,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
             dialog.dismiss();
 
 
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -413,7 +392,6 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
                 return map;
             }
         };
-
 
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -445,7 +423,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
             error.printStackTrace();
             dialog.dismiss();
 
-        }){
+        }) {
 
 
             @Override
@@ -479,24 +457,24 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
     }
 
 
-    private void postCardDetails(){
+    private void postCardDetails() {
 
         String id_type = autoCompleteIdList.getText().toString().trim();
         String id_number = edtIdentificationCardNumber.getText().toString().trim();
 
         StringRequest request = new StringRequest(Request.Method.POST, API.id_information, response -> {
 
-            try{
+            try {
 
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray jsonArray = jsonObject.getJSONArray("user");
-                if(jsonObject.getBoolean("success")){
-                    for (int i = 0; i <jsonArray.length(); i++) {
+                if (jsonObject.getBoolean("success")) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
 
                         SharedPreferences.Editor editor = userPref.edit();
-                        editor.putString("id_type",object.getString("id_type"));
-                        editor.putString("id_number",object.getString("id_number"));
+                        editor.putString("id_type", object.getString("id_type"));
+                        editor.putString("id_number", object.getString("id_number"));
 
 //                        editor.putBoolean("IsIdDetails",true);
                         editor.apply();
@@ -507,11 +485,10 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
                     finish();
                 }
 
-            } catch (Exception e){
+            } catch (Exception e) {
                 Toast.makeText(this, "Please Try Again", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
-
 
 
         }, error -> {
@@ -519,13 +496,13 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
             Toast.makeText(this, "Error in Connection", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
 
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                String token = userPref.getString("token","");
-                HashMap<String, String> map =new HashMap<>();
-                map.put("Authorization","Bearer "+token);
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
                 return map;
             }
 
@@ -533,8 +510,8 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("id_type",id_type);
-                map.put("id_number",id_number);
+                map.put("id_type", id_type);
+                map.put("id_number", id_number);
                 return map;
             }
         };

@@ -1,9 +1,5 @@
 package org.tup.safeplace.Verification;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,18 +13,19 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.karumi.dexter.Dexter;
@@ -50,15 +47,22 @@ import java.util.Map;
 
 public class FaceVerificationActivity extends AppCompatActivity {
 
-    private SharedPreferences userPref;
-    private ImageView imgFaceImage;
-    private Button btnFaceCaptureDone,btnCaptureFace;
     Bitmap bitmap;
     String encodedimage;
-
+    private SharedPreferences userPref;
+    private ImageView imgFaceImage;
+    private Button btnFaceCaptureDone, btnCaptureFace;
     private String currentPhotoPath;
 
     private ProgressDialog dialog;
+
+    // rotate the bitmap to portrait
+    public static Bitmap RotateBitmap(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(),
+                source.getHeight(), matrix, true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,7 @@ public class FaceVerificationActivity extends AppCompatActivity {
         dialog.setCancelable(false);
 
 
-        btnCaptureFace.setOnClickListener(v->{
+        btnCaptureFace.setOnClickListener(v -> {
             Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
                 @Override
                 public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
@@ -86,13 +90,13 @@ public class FaceVerificationActivity extends AppCompatActivity {
 
 
                     try {
-                        File imageFile = File.createTempFile(fileName,".jpg",storageDirectory);
+                        File imageFile = File.createTempFile(fileName, ".jpg", storageDirectory);
 
                         currentPhotoPath = imageFile.getAbsolutePath();
 
                         Uri imageUri = FileProvider.getUriForFile(FaceVerificationActivity.this, "org.tup.safeplace.fileprovider", imageFile);
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                         startActivityForResult(intent, 111);
 
                     } catch (IOException e) {
@@ -117,15 +121,6 @@ public class FaceVerificationActivity extends AppCompatActivity {
             finish();
         });
     }
-
-    // rotate the bitmap to portrait
-    public static Bitmap RotateBitmap(Bitmap source, float angle) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(),
-                source.getHeight(), matrix, true);
-    }
-
 
     //the front camera displays the mirror image, we should flip it to its original
     Bitmap flip(Bitmap d) {
@@ -168,7 +163,7 @@ public class FaceVerificationActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, API.face_image, response -> {
 
             SharedPreferences.Editor editor = userPref.edit();
-            editor.putBoolean("verification_submitted",true);
+            editor.putBoolean("verification_submitted", true);
             editor.apply();
 
             Toast.makeText(this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
@@ -180,14 +175,15 @@ public class FaceVerificationActivity extends AppCompatActivity {
             error.printStackTrace();
             dialog.dismiss();
 
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 String token = userPref.getString("token", "");
                 HashMap<String, String> map = new HashMap<>();
                 map.put("Authorization", "Bearer " + token);
-                return map;            }
+                return map;
+            }
 
             @Nullable
             @Override

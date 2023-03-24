@@ -1,8 +1,5 @@
 package org.tup.safeplace.UserAccount;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +9,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -29,12 +29,11 @@ import java.util.Map;
 
 public class UserChangePasswordActivity extends AppCompatActivity {
 
-    private TextInputLayout LayoutCurrentPassword,LayoutNewPassword,LayoutConfirmNewPassword;
-    private TextInputEditText txtCurrentPassword,txtNewPassword,txtConfirmNewPassword;
+    private TextInputLayout LayoutCurrentPassword, LayoutNewPassword, LayoutConfirmNewPassword;
+    private TextInputEditText txtCurrentPassword, txtNewPassword, txtConfirmNewPassword;
     private Button btnSaveChangePassword;
     private SharedPreferences userPref;
     private ProgressDialog dialog;
-
 
 
     @Override
@@ -44,7 +43,7 @@ public class UserChangePasswordActivity extends AppCompatActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         dialog = new ProgressDialog(this);
@@ -62,7 +61,6 @@ public class UserChangePasswordActivity extends AppCompatActivity {
         btnSaveChangePassword = findViewById(R.id.btnSaveChangePassword);
 
 
-
         txtCurrentPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -71,7 +69,7 @@ public class UserChangePasswordActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!txtCurrentPassword.getText().toString().isEmpty()){
+                if (!txtCurrentPassword.getText().toString().isEmpty()) {
                     LayoutCurrentPassword.setErrorEnabled(false);
                 }
             }
@@ -89,7 +87,7 @@ public class UserChangePasswordActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!txtNewPassword.getText().toString().isEmpty()){
+                if (!txtNewPassword.getText().toString().isEmpty()) {
                     LayoutNewPassword.setErrorEnabled(false);
                 }
             }
@@ -108,7 +106,7 @@ public class UserChangePasswordActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!txtConfirmNewPassword.getText().toString().isEmpty()){
+                if (!txtConfirmNewPassword.getText().toString().isEmpty()) {
                     LayoutConfirmNewPassword.setErrorEnabled(false);
                 }
             }
@@ -119,50 +117,50 @@ public class UserChangePasswordActivity extends AppCompatActivity {
             }
         });
 
-        btnSaveChangePassword.setOnClickListener(v->{
-            if(validate()){
+        btnSaveChangePassword.setOnClickListener(v -> {
+            if (validate()) {
                 changePassword();
             }
         });
     }
 
-    private boolean validate(){
+    private boolean validate() {
         String currentPassword = txtCurrentPassword.getText().toString();
         String newPassword = txtNewPassword.getText().toString();
         String confirmNewPassword = txtConfirmNewPassword.getText().toString();
 
 
-        if(currentPassword.isEmpty()){
+        if (currentPassword.isEmpty()) {
             LayoutCurrentPassword.setErrorEnabled(true);
             LayoutCurrentPassword.setError("Your Current Password is Required");
             return false;
         }
 
-        if(newPassword.isEmpty()){
+        if (newPassword.isEmpty()) {
             LayoutNewPassword.setErrorEnabled(true);
             LayoutNewPassword.setError("Your New Password is Required");
             return false;
         }
 
-        if(confirmNewPassword.isEmpty()){
+        if (confirmNewPassword.isEmpty()) {
             LayoutConfirmNewPassword.setErrorEnabled(true);
             LayoutConfirmNewPassword.setError("Your Confirmation Password is Required");
             return false;
         }
 
-        if (currentPassword.equals(newPassword)){
+        if (currentPassword.equals(newPassword)) {
             LayoutCurrentPassword.setErrorEnabled(true);
             LayoutCurrentPassword.setError("New Password should not be equal to the old password.");
             return false;
         }
 
-        if (newPassword.equals(currentPassword)){
+        if (newPassword.equals(currentPassword)) {
             LayoutNewPassword.setErrorEnabled(true);
             LayoutNewPassword.setError("New Password should not be equal to the old password.");
             return false;
         }
 
-        if(!confirmNewPassword.equals(newPassword)){
+        if (!confirmNewPassword.equals(newPassword)) {
             LayoutConfirmNewPassword.setErrorEnabled(true);
             LayoutConfirmNewPassword.setError("Inputted Password does not match");
             return false;
@@ -189,13 +187,13 @@ public class UserChangePasswordActivity extends AppCompatActivity {
             Toast.makeText(this, "Current Password Doesn't Match", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
             dialog.dismiss();
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                String token = userPref.getString("token","");
-                HashMap<String, String> map =new HashMap<>();
-                map.put("Authorization","Bearer "+token);
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
                 return map;
             }
 
@@ -203,9 +201,9 @@ public class UserChangePasswordActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("old_password",old_password);
-                map.put("password",password);
-                map.put("confirm_password",confirm_password);
+                map.put("old_password", old_password);
+                map.put("password", password);
+                map.put("confirm_password", confirm_password);
                 return map;
             }
         };
@@ -213,7 +211,7 @@ public class UserChangePasswordActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-    public void message(String message){
+    public void message(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

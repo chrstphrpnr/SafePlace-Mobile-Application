@@ -45,8 +45,8 @@ public class HospitalAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-        View view = inflater.inflate( R.layout.hospital_list_item, null );
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.hospital_list_item, null);
 
         TextView tvHospitalName = view.findViewById(R.id.txt_hospital_name);
         tvHospitalName.setText(hospitalArrayListFiltered.get(position).getHospital_name());
@@ -60,18 +60,17 @@ public class HospitalAdapter extends BaseAdapter implements Filterable {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults results = new FilterResults();
-                if (constraint != null && constraint.length()>0){
+                if (constraint != null && constraint.length() > 0) {
                     ArrayList<Hospital> filterList = new ArrayList<Hospital>();
-                    for (int i=0; i<hospitalArrayList.size(); i++){
-                        if ((hospitalArrayList.get(i).getHospital_name().toUpperCase()).contains(constraint.toString().toUpperCase())){
-                            Hospital hospital = new Hospital(hospitalArrayList.get(i).getHospital_name(),hospitalArrayList.get(i).getHospital_type(),hospitalArrayList.get(i).getHospital_medical_director(),hospitalArrayList.get(i).getHospital_location(),hospitalArrayList.get(i).getHospital_schedule(),hospitalArrayList.get(i).getHospital_contact(),hospitalArrayList.get(i).getImg());
+                    for (int i = 0; i < hospitalArrayList.size(); i++) {
+                        if ((hospitalArrayList.get(i).getHospital_name().toUpperCase()).contains(constraint.toString().toUpperCase())) {
+                            Hospital hospital = new Hospital(hospitalArrayList.get(i).getHospital_name(), hospitalArrayList.get(i).getHospital_type(), hospitalArrayList.get(i).getHospital_medical_director(), hospitalArrayList.get(i).getHospital_location(), hospitalArrayList.get(i).getHospital_schedule(), hospitalArrayList.get(i).getHospital_contact(), hospitalArrayList.get(i).getImg());
                             filterList.add(hospital);
                         }
                     }
                     results.count = filterList.size();
                     results.values = filterList;
-                }
-                else{
+                } else {
                     results.count = hospitalArrayList.size();
                     results.values = hospitalArrayList;
                 }

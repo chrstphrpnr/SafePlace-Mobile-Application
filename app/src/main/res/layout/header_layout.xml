@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
+    android:background="@drawable/header_layout"
     android:gravity="center_vertical"
-    android:background="@drawable/header_layout">
-    
+    android:padding="10dp">
+
     <androidx.cardview.widget.CardView
 
         android:id="@+id/profileCardView"
-        android:background="@color/white"
-        app:cardCornerRadius="200dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="@dimen/_5sdp"
         android:layout_marginTop="50dp"
-        >
+        android:background="@color/white"
+        app:cardCornerRadius="200dp">
 
 
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/userProfileImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="Header Image"
-                android:src="@drawable/ic_person"
-                tools:srcCompat="@tools:sample/avatars"
-                />
-
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userProfileImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Header Image"
+            android:src="@drawable/ic_person"
+            tools:srcCompat="@tools:sample/avatars" />
 
 
     </androidx.cardview.widget.CardView>
@@ -39,38 +35,27 @@
         android:id="@+id/txtUserNameDrawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/profileCardView"
-        android:text="User Name"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_15sdp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="5dp"
-        />
+        android:layout_toRightOf="@id/profileCardView"
+        android:text="User Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp" />
 
     <TextView
         android:id="@+id/txtUserVerificationStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/profileCardView"
         android:layout_below="@+id/txtUserNameDrawer"
-        android:text="Verification Status"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_8sdp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="5dp"
         android:layout_marginTop="@dimen/_5sdp"
-        />
-
-
-
-
-
-
-
-
-
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/profileCardView"
+        android:text="Verification Status"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_8sdp" />
 
 
 </RelativeLayout>

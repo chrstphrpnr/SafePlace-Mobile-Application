@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="50dp"
-    android:paddingRight="50dp"
     android:paddingTop="50dp"
+    android:paddingRight="50dp"
     tools:context=".Authentication.SignUpFragment">
 
     <TextView
@@ -41,8 +41,7 @@
         android:textSize="15sp"
         app:boxStrokeWidth="0dp"
         app:hintTextColor="#8C8686"
-        app:startIconDrawable="@drawable/ic_person"
-        >
+        app:startIconDrawable="@drawable/ic_person">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtEmailSignUp"
@@ -62,8 +61,7 @@
         android:textSize="15sp"
         app:boxStrokeWidth="0dp"
         app:hintTextColor="#8C8686"
-        app:startIconDrawable="@drawable/ic_person"
-        >
+        app:startIconDrawable="@drawable/ic_person">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtFirstNameSignUp"
@@ -83,8 +81,7 @@
         android:textSize="15sp"
         app:boxStrokeWidth="0dp"
         app:hintTextColor="#8C8686"
-        app:startIconDrawable="@drawable/ic_person"
-        >
+        app:startIconDrawable="@drawable/ic_person">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtMiddleNameNameSignUp"
@@ -104,8 +101,7 @@
         android:textSize="15sp"
         app:boxStrokeWidth="0dp"
         app:hintTextColor="#8C8686"
-        app:startIconDrawable="@drawable/ic_person"
-        >
+        app:startIconDrawable="@drawable/ic_person">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtLastNameSignUp"
@@ -126,8 +122,8 @@
         android:textSize="15sp"
         app:boxStrokeWidth="0dp"
         app:hintTextColor="#8C8686"
-        app:startIconDrawable="@drawable/ic_password"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPasswordSignUp"
@@ -149,8 +145,8 @@
         android:textSize="15sp"
         app:boxStrokeWidth="0dp"
         app:hintTextColor="#8C8686"
-        app:startIconDrawable="@drawable/ic_password"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtConfirmPasswordSignUp"
@@ -181,26 +177,23 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account?"
-            android:layout_marginRight="6dp"
             android:layout_marginTop="10dp"
-            />
+            android:layout_marginRight="6dp"
+            android:text="Already have an account?"
+            android:textStyle="bold" />
 
         <TextView
-            android:textStyle="bold"
             android:id="@+id/txtSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="6dp"
             android:text="LOGIN HERE"
             android:textColor="@color/safeplace_btnblue"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="10dp"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
-
 
 
 </LinearLayout>

@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popUpUnregisteredUser"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A2A2A3"
-    android:id="@+id/popUpUnregisteredUser"
-    >
+    android:background="#A2A2A3">
 
     <LinearLayout
-        android:layout_margin="@dimen/_20sdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
-        android:orientation="vertical"
-        android:background="@drawable/popup">
+        android:layout_margin="@dimen/_20sdp"
+        android:background="@drawable/popup"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/safeplace_darkfont"
-            android:text="SAFEPLACE"
-            android:textSize="@dimen/_20sdp"
-            android:gravity="center"
             android:layout_marginTop="@dimen/_20sdp"
-            />
+            android:gravity="center"
+            android:text="SAFEPLACE"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_20sdp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/safeplace_darkfont"
-            android:text="YOU'RE ACCOUNT IS ALREADY VERIFIED"
-            android:textSize="@dimen/_18sdp"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_25sdp"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            />
-
+            android:layout_marginTop="@dimen/_25sdp"
+            android:gravity="center"
+            android:text="YOU'RE ACCOUNT IS ALREADY VERIFIED"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_18sdp" />
 
 
         <RelativeLayout
@@ -42,23 +39,19 @@
 
 
             <TextView
-                android:textSize="@dimen/_11sdp"
-                android:background="@drawable/btn_round"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="4dp"
-                android:text="CLOSE"
+                android:background="@drawable/btn_round"
                 android:padding="@dimen/_10sdp"
-                android:textStyle="bold"
+                android:text="CLOSE"
                 android:textColor="@color/white"
-                />
-
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>
-
-
 
 
     </LinearLayout>

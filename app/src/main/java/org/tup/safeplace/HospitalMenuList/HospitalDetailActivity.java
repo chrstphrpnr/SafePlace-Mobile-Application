@@ -1,11 +1,11 @@
 package org.tup.safeplace.HospitalMenuList;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
@@ -14,8 +14,8 @@ import org.tup.safeplace.R;
 
 public class HospitalDetailActivity extends AppCompatActivity {
     private Hospital Hospital;
-    private TextView tvDetailHospitalTitle,tvDetailHospitalName, tvDetailHospitalType,tvDetailHospitalDirector,tvDetailHospitalLocation,tvDetailHospitalSchedule,txtDetailHospitalWebsite;
-    private ImageView btnHospitalDetailBack,imgDetailsHospital;
+    private TextView tvDetailHospitalTitle, tvDetailHospitalName, tvDetailHospitalType, tvDetailHospitalDirector, tvDetailHospitalLocation, tvDetailHospitalSchedule, txtDetailHospitalWebsite;
+    private ImageView btnHospitalDetailBack, imgDetailsHospital;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class HospitalDetailActivity extends AppCompatActivity {
         imgDetailsHospital = findViewById(R.id.imgDetailsHospital);
 
         Intent intent = getIntent();
-        if(intent.getExtras() != null){
+        if (intent.getExtras() != null) {
             Hospital = (Hospital) intent.getSerializableExtra("item");
             tvDetailHospitalTitle.setText(Hospital.getHospital_name());
             tvDetailHospitalName.setText(Hospital.getHospital_name());
@@ -42,21 +42,16 @@ public class HospitalDetailActivity extends AppCompatActivity {
             tvDetailHospitalLocation.setText(Hospital.getHospital_location());
             tvDetailHospitalSchedule.setText(Hospital.getHospital_schedule());
             txtDetailHospitalWebsite.setText(Hospital.getHospital_contact());
-            Picasso.get().load(API.URL+Hospital.getImg()).resize(500,0).centerCrop().into(imgDetailsHospital);
+            Picasso.get().load(API.URL + Hospital.getImg()).resize(500, 0).centerCrop().into(imgDetailsHospital);
 
 
         }
 
         btnHospitalDetailBack = findViewById(R.id.btnHospitalDetailBack);
-        btnHospitalDetailBack.setOnClickListener(v->{
+        btnHospitalDetailBack.setOnClickListener(v -> {
             onBackPressed();
             finish();
         });
-
-
-
-
-
 
 
     }

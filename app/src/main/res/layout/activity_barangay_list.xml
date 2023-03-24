@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameBarangayListContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BarangaysMenuList.BarangayListActivity"
-    android:id="@+id/frameBarangayListContainer"
-    >
+    tools:context=".BarangaysMenuList.BarangayListActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/btnBarangayBack"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
             android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/titleBarangay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:text="BARANGAYS"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="@dimen/_25sdp"
             android:textStyle="bold"
-            android:layout_gravity="center"
 
             />
 

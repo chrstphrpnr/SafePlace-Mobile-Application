@@ -10,12 +10,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,6 +22,11 @@ import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -53,13 +52,13 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tup.safeplace.Report.BarangayReport.BarangayReportActivity;
 import org.tup.safeplace.BarangaysMenuList.BarangayListActivity;
 import org.tup.safeplace.Constants.API;
-import org.tup.safeplace.HospitalMenuList.HospitalListActivity;
 import org.tup.safeplace.GoogleMaps.MapsActivity;
+import org.tup.safeplace.HospitalMenuList.HospitalListActivity;
 import org.tup.safeplace.PoliceStationMenuList.PoliceStationListActivity;
 import org.tup.safeplace.R;
+import org.tup.safeplace.Report.BarangayReport.BarangayReportActivity;
 import org.tup.safeplace.Report.PoliceReport.PoliceReportActivity;
 import org.tup.safeplace.ReportsMenuList.ReportListActivity;
 import org.tup.safeplace.Verification.VerificationActivity;
@@ -71,20 +70,16 @@ import java.util.Map;
 
 public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
+    private static final int REQUEST_CODE = 101;
+    GoogleMap mMap;
+    Location currentLocation;
+    FusedLocationProviderClient fusedLocationProviderClient;
     private View view;
     private CardView menuHospitalList, menuPoliceStationList, menuBarangayList, menuReportList, mapView;
     private Button btnReportHere;
-
     private SharedPreferences userPref;
-
     private ImageView ic_zoom;
-
-    GoogleMap mMap;
-
     private ActivityMapsBinding binding;
-    Location currentLocation;
-    FusedLocationProviderClient fusedLocationProviderClient;
-    private static final int REQUEST_CODE = 101;
     private JSONArray result;
 
     private ScrollView scrollViewHomeScreen;
@@ -107,7 +102,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
 
 
         return view;
@@ -231,16 +225,15 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
         Button btnReportPolice = popupView.findViewById(R.id.btnReportPolice);
 
-        btnReportBarangay.setOnClickListener(v->{
+        btnReportBarangay.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), BarangayReportActivity.class));
             popupWindow.dismiss();
         });
 
-        btnReportPolice.setOnClickListener(v->{
+        btnReportPolice.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), PoliceReportActivity.class));
             popupWindow.dismiss();
         });
-
 
 
     }
@@ -294,14 +287,13 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         Location location = null;
 
         mMap = googleMap;
-        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(),R.raw.mapstyle));
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.mapstyle));
 
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(true);
-
 
 
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
@@ -311,7 +303,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             public void onSuccess(Location location) {
                 LatLng myLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(myLocation).title("Current Location")
-                        .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(),R.drawable.ic_usermarker)
+                        .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(), R.drawable.ic_usermarker)
                         ));
                 float zoomLevel = 15.0f; //This goes up to 21
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, zoomLevel));
@@ -327,9 +319,9 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     }
 
     //Converts Image in Drawable to Bitmap
-    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int VectorResId){
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int VectorResId) {
         Drawable vectorDrawable = ContextCompat.getDrawable(context, VectorResId);
-        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
         Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
                 vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -340,10 +332,10 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     //Show markers of Hospitals
     private void getHospitalsLocation() {
 
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.hospital_map,response -> {
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.hospital_map, response -> {
 
-            Log.d("JSONResult", response.toString());
+            Log.d("JSONResult", response);
             JSONObject j = null;
             try {
                 j = new JSONObject(response);
@@ -357,7 +349,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(hospitalLatitude), Double.parseDouble(hospitalLongtitude)))
                             .title(hospital_name)
-                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(),R.drawable.ic_hospitalmarker))
+                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(), R.drawable.ic_hospitalmarker))
                     );
 
 
@@ -381,12 +373,12 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     }
 
     //Show Markers of Barangay
-    private void getBarangaysLocation(){
+    private void getBarangaysLocation() {
 
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.barangay_map,response -> {
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.barangay_map, response -> {
 
-            Log.d("JSONResult", response.toString());
+            Log.d("JSONResult", response);
             JSONObject j = null;
             try {
                 j = new JSONObject(response);
@@ -400,9 +392,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
                             .title(barangay_name)
-                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(),R.drawable.ic_barangaymarker))
+                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(), R.drawable.ic_barangaymarker))
                     );
-
 
 
                 }
@@ -425,11 +416,11 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
     }
 
     //Show Markers of Police Station
-    private void getPoliceStationsLocation(){
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.policeStation_map,response -> {
+    private void getPoliceStationsLocation() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API.policeStation_map, response -> {
 
-            Log.d("JSONResult", response.toString());
+            Log.d("JSONResult", response);
             JSONObject j = null;
             try {
                 j = new JSONObject(response);
@@ -443,9 +434,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(lat_i), Double.parseDouble(long_i)))
                             .title(policestation_name)
-                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(),R.drawable.ic_policemarker))
+                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(), R.drawable.ic_policemarker))
                     );
-
 
 
                 }
@@ -465,8 +455,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
     }
-
-
 
 
 }

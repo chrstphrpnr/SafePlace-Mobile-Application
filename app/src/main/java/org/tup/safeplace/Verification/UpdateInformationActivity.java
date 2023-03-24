@@ -1,14 +1,14 @@
 package org.tup.safeplace.Verification;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,9 +27,9 @@ import java.util.Map;
 
 public class UpdateInformationActivity extends AppCompatActivity {
 
+    Button btnInfoSubmit;
     private SharedPreferences userPref;
     private EditText txtUpdateFName, txtUpdateMName, txtUpdateLName, txtUpdateGender, txtUpdateBirthdate, txtUpdateAddress, txtUpdateContact;
-    Button btnInfoSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class UpdateInformationActivity extends AppCompatActivity {
         btnInfoSubmit = findViewById(R.id.btnInfoSubmit);
 
 
-        btnInfoSubmit.setOnClickListener(v->{
+        btnInfoSubmit.setOnClickListener(v -> {
             UpdateData();
         });
 
@@ -75,20 +75,20 @@ public class UpdateInformationActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray jsonArray = jsonObject.getJSONArray("user");
-                if(jsonObject.getBoolean("success")){
-                    for (int i = 0; i <jsonArray.length(); i++) {
+                if (jsonObject.getBoolean("success")) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
 
                         SharedPreferences.Editor editor = userPref.edit();
 
-                        editor.putString("fname",object.getString("fname"));
-                        editor.putString("mname",object.getString("mname"));
-                        editor.putString("lname",object.getString("lname"));
-                        editor.putString("gender",object.getString("gender"));
-                        editor.putString("birthdate",object.getString("birthdate"));
-                        editor.putString("address",object.getString("address"));
-                        editor.putString("contact",object.getString("contact"));
-                        editor.putString("email",object.getString("email"));
+                        editor.putString("fname", object.getString("fname"));
+                        editor.putString("mname", object.getString("mname"));
+                        editor.putString("lname", object.getString("lname"));
+                        editor.putString("gender", object.getString("gender"));
+                        editor.putString("birthdate", object.getString("birthdate"));
+                        editor.putString("address", object.getString("address"));
+                        editor.putString("contact", object.getString("contact"));
+                        editor.putString("email", object.getString("email"));
 
                         editor.apply();
                     }
@@ -106,19 +106,18 @@ public class UpdateInformationActivity extends AppCompatActivity {
             }
 
 
-
         }, error -> {
 
             Toast.makeText(this, "Error in Connection", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
 
-        }){
+        }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                String token = userPref.getString("token","");
-                HashMap<String, String> map =new HashMap<>();
-                map.put("Authorization","Bearer "+token);
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
                 return map;
             }
 
@@ -126,13 +125,13 @@ public class UpdateInformationActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("fname",fname);
-                map.put("mname",mname);
-                map.put("lname",lname);
-                map.put("gender",gender);
-                map.put("birthdate",birthdate);
-                map.put("address",address);
-                map.put("contact",contact);
+                map.put("fname", fname);
+                map.put("mname", mname);
+                map.put("lname", lname);
+                map.put("gender", gender);
+                map.put("birthdate", birthdate);
+                map.put("address", address);
+                map.put("contact", contact);
 
                 return map;
             }
@@ -144,8 +143,7 @@ public class UpdateInformationActivity extends AppCompatActivity {
     }
 
 
-
-    private void getData(){
+    private void getData() {
 
         StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
 

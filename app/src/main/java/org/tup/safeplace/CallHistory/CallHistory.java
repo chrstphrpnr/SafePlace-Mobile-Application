@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class CallHistory implements Serializable {
 
-    String name_contacted,type_contacted,date_contacted,time_contacted;
+    String name_contacted, type_contacted, date_contacted, time_contacted;
 
     public CallHistory() {
     }

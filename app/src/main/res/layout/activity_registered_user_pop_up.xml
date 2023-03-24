@@ -1,72 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:backgroundTint="@color/safeplace_bgcolor"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_250sdp"
+        android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/popup"
-        android:layout_centerInParent="true"
+        android:backgroundTint="@color/safeplace_bgcolor"
         android:gravity="center"
-        android:paddingHorizontal="@dimen/_5sdp"
-        >
-
+        android:paddingHorizontal="@dimen/_5sdp">
 
 
         <ImageView
             android:id="@+id/verified_logo"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_80sdp"
-            android:src="@drawable/ic_green_verified"
             android:layout_centerHorizontal="true"
-            />
+            android:src="@drawable/ic_green_verified" />
 
         <TextView
             android:id="@+id/txtAccountAlreadyVerified"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/safeplace_darkfont"
-            android:text="YOUR ACCOUNT IS ALREADY VERIFIED"
-            android:textSize="@dimen/_20sdp"
-            android:gravity="center"
             android:layout_below="@+id/verified_logo"
             android:layout_marginTop="@dimen/_5sdp"
-            />
+            android:gravity="center"
+            android:text="YOUR ACCOUNT IS ALREADY VERIFIED"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_20sdp" />
 
         <Button
             android:id="@+id/txtRegisteredClose"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_40sdp"
             android:layout_below="@+id/txtAccountAlreadyVerified"
-            android:backgroundTint="@color/safeplace_btnblue"
-            android:text="Close"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_10sdp"
-            />
+            android:backgroundTint="@color/safeplace_btnblue"
+            android:text="Close" />
 
 
-<!--        <TextView-->
-<!--        android:textSize="@dimen/_15sdp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center"-->
-<!--        android:text="CLOSE" />-->
-
-
-
+        <!--        <TextView-->
+        <!--        android:textSize="@dimen/_15sdp"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:gravity="center"-->
+        <!--        android:text="CLOSE" />-->
 
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>

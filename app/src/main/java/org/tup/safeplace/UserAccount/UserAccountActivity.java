@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.RetryPolicy;
@@ -167,8 +166,8 @@ public class UserAccountActivity extends AppCompatActivity {
 //                        SharedPreferences.Editor editor = userPref.edit();
 //                        editor.putString("img", object.getString("img"));
 //                        editor.apply();
-                        finish();
-                        startActivity(getIntent());
+            finish();
+            startActivity(getIntent());
 
 //                    }
 //                }
@@ -222,9 +221,6 @@ public class UserAccountActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
-
-
-
 
 
     }

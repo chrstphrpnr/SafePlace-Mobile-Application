@@ -1,16 +1,10 @@
 package org.tup.safeplace.HospitalMenuList;
 
+import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.Toast;
-
-import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
 
 public class HospitalListActivity extends AppCompatActivity {
@@ -24,12 +18,12 @@ public class HospitalListActivity extends AppCompatActivity {
 
         btnBack = findViewById(R.id.btnHospitalBack);
 
-        btnBack.setOnClickListener(v->{
+        btnBack.setOnClickListener(v -> {
             onBackPressed();
             finish();
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameHospitalListContainer,new HospitalListMenuFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameHospitalListContainer, new HospitalListMenuFragment()).commit();
     }
 
     @Override

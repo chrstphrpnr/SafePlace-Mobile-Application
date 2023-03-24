@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="50dp"
     android:paddingLeft="50dp"
+    android:paddingRight="50dp"
     tools:context=".Privacy.TermsConditionFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TERMS AND CONDITION"
-        android:textSize="30dp"
         android:gravity="center"
-        />
+        android:text="TERMS AND CONDITION"
+        android:textSize="30dp" />
 
     <Button
         android:id="@+id/btnAcceptTerm"
@@ -22,9 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
+        android:background="@drawable/btn_round"
         android:text="Accept"
         android:textSize="20sp"
-        android:background="@drawable/btn_round"
         app:backgroundTint="@color/safeplace_mediumgreen" />
 
     <Button
@@ -33,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/btn_round"
         android:text="Not Now"
         android:textSize="20sp"
-        android:background="@drawable/btn_round"
         app:backgroundTint="@color/colorTextSecondary" />
 
 </RelativeLayout>

@@ -1,21 +1,20 @@
 package org.tup.safeplace.BarangaysMenuList;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.squareup.picasso.Picasso;
 
 import org.tup.safeplace.Constants.API;
-import org.tup.safeplace.HospitalMenuList.HospitalListMenuFragment;
 import org.tup.safeplace.R;
 
 public class BarangayDetailsActivity extends AppCompatActivity {
 
-    TextView tvDetailBarangayTitle,tvDetailBarangayName,tvDetailBarangayCaptain,tvDetailBarangayLocation,tvDetailBarangaySchedule,tvDetailBarangayContacts;
+    TextView tvDetailBarangayTitle, tvDetailBarangayName, tvDetailBarangayCaptain, tvDetailBarangayLocation, tvDetailBarangaySchedule, tvDetailBarangayContacts;
     Barangay Barangay;
     ImageView imgDetailsBarangay, btnBarangayDetailsBack;
 
@@ -35,7 +34,7 @@ public class BarangayDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if (intent.getExtras()!=null){
+        if (intent.getExtras() != null) {
             Barangay = (Barangay) intent.getSerializableExtra("item");
 
             tvDetailBarangayTitle.setText(Barangay.getBarangay_name());
@@ -44,17 +43,16 @@ public class BarangayDetailsActivity extends AppCompatActivity {
             tvDetailBarangayLocation.setText(Barangay.getBarangay_location());
             tvDetailBarangaySchedule.setText(Barangay.getBarangay_schedule());
             tvDetailBarangayContacts.setText(Barangay.getBarangay_contact());
-            Picasso.get().load(API.URL+Barangay.getImg()).resize(500,0).centerCrop().into(imgDetailsBarangay);
+            Picasso.get().load(API.URL + Barangay.getImg()).resize(500, 0).centerCrop().into(imgDetailsBarangay);
 
         }
 
         btnBarangayDetailsBack = findViewById(R.id.btnBarangayDetailsBack);
 
-        btnBarangayDetailsBack.setOnClickListener(v->{
+        btnBarangayDetailsBack.setOnClickListener(v -> {
             onBackPressed();
             finish();
         });
-
 
 
     }

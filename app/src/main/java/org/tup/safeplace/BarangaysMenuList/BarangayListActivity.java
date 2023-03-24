@@ -1,12 +1,10 @@
 package org.tup.safeplace.BarangaysMenuList;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.tup.safeplace.R;
 
 public class BarangayListActivity extends AppCompatActivity {
@@ -20,11 +18,11 @@ public class BarangayListActivity extends AppCompatActivity {
 
         btnBack = findViewById(R.id.btnBarangayBack);
 
-        btnBack.setOnClickListener(v->{
+        btnBack.setOnClickListener(v -> {
             onBackPressed();
             finish();
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameBarangayListContainer,new BarangayListFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameBarangayListContainer, new BarangayListFragment()).commit();
     }
 }

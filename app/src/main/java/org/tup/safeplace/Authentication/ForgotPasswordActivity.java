@@ -1,19 +1,17 @@
 package org.tup.safeplace.Authentication;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
@@ -46,14 +44,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         txtEmailForgotPassword = findViewById(R.id.txtEmailForgotPassword);
         btnResetPassword = findViewById(R.id.btnResetPassword);
 
-        btnResetPassword.setOnClickListener(v->{
+        btnResetPassword.setOnClickListener(v -> {
             resetPassword();
         });
 
 
     }
 
-    public void resetPassword(){
+    public void resetPassword() {
 
 
         String email = txtEmailForgotPassword.getText().toString().trim();
@@ -73,13 +71,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             dialog.dismiss();
 
 
-        }){
+        }) {
 
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("email",email);
+                map.put("email", email);
                 return map;
             }
         };

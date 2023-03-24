@@ -3,39 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Verification.GuideOneFragment"
     android:background="@color/safeplace_bgcolor"
-    >
+    tools:context=".Verification.GuideOneFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/taskbarfragone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/taskbarfragone"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:background="@color/white"
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/btnGuidOneBack"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_back"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -45,9 +41,9 @@
 
 
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="VERIFICATION"
                             android:textColor="@color/black"
                             android:textSize="25dp"
@@ -55,8 +51,6 @@
 
 
                     </LinearLayout>
-
-
 
 
                 </androidx.appcompat.widget.Toolbar>
@@ -67,30 +61,28 @@
 
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/AboutVerificationTitle"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/taskbarfragone"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:layout_marginTop="@dimen/_20sdp"-->
-<!--            android:fontFamily="@font/opensans"-->
-<!--            android:gravity="center"-->
-<!--            android:text="ABOUT VERIFICATION"-->
-<!--            android:textColor="@color/safeplace_darkfont"-->
-<!--            android:textSize="@dimen/_20sdp"-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/AboutVerificationTitle"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/taskbarfragone"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginTop="@dimen/_20sdp"-->
+        <!--            android:fontFamily="@font/opensans"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="ABOUT VERIFICATION"-->
+        <!--            android:textColor="@color/safeplace_darkfont"-->
+        <!--            android:textSize="@dimen/_20sdp"-->
 
-<!--            android:textStyle="bold" />-->
-
+        <!--            android:textStyle="bold" />-->
 
 
         <ImageView
             android:id="@+id/AboutVerificationImage1"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_200sdp"
-            android:src="@drawable/verification1"
             android:layout_below="@+id/taskbarfragone"
-            />
+            android:src="@drawable/verification1" />
 
         <TextView
             android:id="@+id/AboutVerificationDescription1"
@@ -110,50 +102,37 @@
             android:id="@+id/AboutVerificationImage2"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_180sdp"
-            android:src="@drawable/verification2"
-            android:layout_below="@+id/AboutVerificationDescription1"/>
+            android:layout_below="@+id/AboutVerificationDescription1"
+            android:src="@drawable/verification2" />
 
         <TextView
+            android:id="@+id/AboutVerificationDescription2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/AboutVerificationImage2"
             android:layout_centerInParent="true"
             android:fontFamily="@font/opensans"
+            android:gravity="center"
             android:paddingHorizontal="@dimen/_28sdp"
             android:text="We take your safety seriously. If you submit fake information, you may be blacklisted."
             android:textColor="@color/safeplace_darkfont"
             android:textSize="@dimen/_10sdp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:id="@+id/AboutVerificationDescription2"
-            />
+            android:textStyle="bold" />
 
 
         <Button
             android:id="@+id/btnContinueGuideOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/safeplace_btnblue"
+            android:layout_below="@+id/AboutVerificationDescription2"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_margin="20dp"
-            android:text="CONTINUE"
-            android:layout_below="@+id/AboutVerificationDescription2"
-            />
-
-
-
-
-
-
-
+            android:backgroundTint="@color/safeplace_btnblue"
+            android:text="CONTINUE" />
 
 
     </RelativeLayout>
-
-
-
-
 
 
 </ScrollView>

@@ -1,33 +1,27 @@
 package org.tup.safeplace.Authentication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Size;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.common.util.concurrent.ListenableFuture;
 import com.google.zxing.Result;
 
 import org.json.JSONArray;
@@ -39,15 +33,13 @@ import org.tup.safeplace.R;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 public class QRLoginActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE = 101;
     private EditText qrCodetxt;
     private CodeScanner codeScanner;
     private CodeScannerView codeScannerView;
-    private static final int REQUEST_CODE = 101;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +47,17 @@ public class QRLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qrlogin);
 
         codeScannerView = findViewById(R.id.codeScannerView);
-        codeScanner = new CodeScanner(this,codeScannerView);
+        codeScanner = new CodeScanner(this, codeScannerView);
         qrCodetxt = findViewById(R.id.qrCodeEdtTxt);
 
 
-
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.CAMERA
             }, REQUEST_CODE);
         }
 
         init();
-
 
 
     }
@@ -97,7 +87,7 @@ public class QRLoginActivity extends AppCompatActivity {
     }
 
 
-    private void init(){
+    private void init() {
         codeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull Result result) {
@@ -116,41 +106,41 @@ public class QRLoginActivity extends AppCompatActivity {
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     JSONArray jsonArray = jsonObject.getJSONArray("user");
-                                    if(jsonObject.getBoolean("success")){
-                                        for (int i = 0; i <jsonArray.length(); i++) {
+                                    if (jsonObject.getBoolean("success")) {
+                                        for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject object = jsonArray.getJSONObject(i);
-                                            SharedPreferences userPref = getApplicationContext().getSharedPreferences("user",MODE_PRIVATE);
+                                            SharedPreferences userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = userPref.edit();
-                                            editor.putString("token",jsonObject.getString("token"));
+                                            editor.putString("token", jsonObject.getString("token"));
 
-                                            editor.putInt("id",object.getInt("id"));
+                                            editor.putInt("id", object.getInt("id"));
 
-                                            editor.putString("fname",object.getString("fname"));
-                                            editor.putString("mname",object.getString("mname"));
-                                            editor.putString("lname",object.getString("lname"));
-                                            editor.putString("gender",object.getString("gender"));
-                                            editor.putString("birthdate",object.getString("birthdate"));
-                                            editor.putString("address",object.getString("address"));
-                                            editor.putString("contact",object.getString("contact"));
-                                            editor.putString("email",object.getString("email"));
+                                            editor.putString("fname", object.getString("fname"));
+                                            editor.putString("mname", object.getString("mname"));
+                                            editor.putString("lname", object.getString("lname"));
+                                            editor.putString("gender", object.getString("gender"));
+                                            editor.putString("birthdate", object.getString("birthdate"));
+                                            editor.putString("address", object.getString("address"));
+                                            editor.putString("contact", object.getString("contact"));
+                                            editor.putString("email", object.getString("email"));
 
-                                            editor.putString("status",object.getString("status"));
+                                            editor.putString("status", object.getString("status"));
 
-                                            editor.putString("img",object.getString("img"));
+                                            editor.putString("img", object.getString("img"));
 
-                                            editor.putBoolean("isLoggedIn",true);
+                                            editor.putBoolean("isLoggedIn", true);
 
                                             editor.apply();
                                         }
 
 
                                         //if Success
-                                        startActivity(new Intent(QRLoginActivity.this,SafePlaceHomeScreenActivity.class));
+                                        startActivity(new Intent(QRLoginActivity.this, SafePlaceHomeScreenActivity.class));
                                         finish();
                                         Toast.makeText(QRLoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                                     }
 
-                                } catch (JSONException e){
+                                } catch (JSONException e) {
                                     recreate();
                                     e.printStackTrace();
                                     Toast.makeText(QRLoginActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
@@ -162,13 +152,13 @@ public class QRLoginActivity extends AppCompatActivity {
                             error.printStackTrace();
                             Toast.makeText(QRLoginActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
 
-                        }){
+                        }) {
 
                             @Nullable
                             @Override
                             protected Map<String, String> getParams() throws AuthFailureError {
-                                HashMap<String,String> map = new HashMap<>();
-                                map.put("qr_code",qrCodetxt.getText().toString().trim());
+                                HashMap<String, String> map = new HashMap<>();
+                                map.put("qr_code", qrCodetxt.getText().toString().trim());
                                 return map;
                             }
                         };

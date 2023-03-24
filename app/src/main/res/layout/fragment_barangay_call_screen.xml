@@ -39,8 +39,7 @@
         android:layout_below="@+id/barangaySpinner"
         android:gravity="center_horizontal"
         android:textAlignment="center"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 
     <ImageButton
         android:id="@+id/btnBarangayCall"
@@ -56,11 +55,10 @@
         android:id="@+id/btnCallHistoryBarangay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Call History"
-        android:backgroundTint="@color/safeplace_btnblue"
         android:layout_below="@+id/btnBarangayCall"
-        android:layout_margin="@dimen/_50sdp"
         android:layout_centerInParent="true"
-        />
+        android:layout_margin="@dimen/_50sdp"
+        android:backgroundTint="@color/safeplace_btnblue"
+        android:text="Call History" />
 
 </RelativeLayout>

@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameHospitalListContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HospitalMenuList.HospitalListActivity"
-    android:id="@+id/frameHospitalListContainer"
-    >
-
+    tools:context=".HospitalMenuList.HospitalListActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
-                android:background="@color/white"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/white">
 
                 <ImageView
                     android:id="@+id/btnHospitalBack"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_back"
                     android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_back" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -41,22 +36,17 @@
                     android:orientation="horizontal">
 
 
-
-
                     <TextView
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="HOSPITALS"
                         android:textColor="@color/safeplace_darkfont"
                         android:textSize="@dimen/_25sdp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
-
-
 
 
             </androidx.appcompat.widget.Toolbar>
@@ -66,7 +56,6 @@
 
 
     </LinearLayout>
-
 
 
 </RelativeLayout>

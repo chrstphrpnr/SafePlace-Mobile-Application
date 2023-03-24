@@ -4,75 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="50dp"
     android:orientation="vertical"
+    android:padding="50dp"
     tools:context=".Authentication.UserInfoRegisterActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Info"
-        android:textSize="30sp"
+        android:layout_marginBottom="30dp"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="30dp"/>
+        android:text="User Info"
+        android:textSize="30sp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgProfileUserInfo"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
-        android:src="#D4CCCC"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:src="#D4CCCC" />
 
     <TextView
         android:id="@+id/txtSelectPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
         android:text="Select Photo"
         android:textColor="@color/teal_200"
-        android:gravity="center_horizontal"
-        android:textSize="16sp"
-        android:layout_marginBottom="20dp"/>
+        android:textSize="16sp" />
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtLayoutAddressUserInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtLayoutAddressUserInfo"
         android:layout_marginBottom="20dp"
         android:background="@color/transparent"
-        app:boxStrokeWidth="0dp"
-        >
+        app:boxStrokeWidth="0dp">
 
         <EditText
+            android:id="@+id/txtAddressUserInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Address"
-            android:id="@+id/txtAddressUserInfo"
             android:inputType="text"
-            android:textSize="15sp"/>
+            android:textSize="15sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
-        <Button
-            android:layout_marginBottom="20dp"
-            android:id="@+id/btnDatePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#DFDFDF"
-            android:backgroundTint="#DFDFDF"
-            android:text="2022-10-22"
-            app:backgroundTint="#DFDFDF"
-            android:textColor="#5B5B5B"
-            android:textSize="17sp"
-            android:textAllCaps="false"
-            android:gravity="start"
-            android:layout_gravity="start"
-            style="@style/Widget.AppCompat.Spinner"
-            android:onClick="openDatePicker"
-            />
+    <Button
+        android:id="@+id/btnDatePicker"
+        style="@style/Widget.AppCompat.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="20dp"
+        android:background="#DFDFDF"
+        android:backgroundTint="#DFDFDF"
+        android:gravity="start"
+        android:onClick="openDatePicker"
+        android:text="2022-10-22"
+        android:textAllCaps="false"
+        android:textColor="#5B5B5B"
+        android:textSize="17sp"
+        app:backgroundTint="#DFDFDF" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -93,26 +90,20 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
-
-
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtLayoutContactUserInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtLayoutContactUserInfo"
         android:layout_marginBottom="20dp"
-        app:boxStrokeWidth="0dp"
-        >
+        app:boxStrokeWidth="0dp">
 
         <EditText
+            android:id="@+id/txtContactUserInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contact"
-            android:id="@+id/txtContactUserInfo"
             android:inputType="text"
-            android:textSize="15sp"/>
+            android:textSize="15sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +117,6 @@
         android:textSize="20dp"
 
         app:backgroundTint="@color/safeplace_btnblue" />
-
 
 
 </LinearLayout>

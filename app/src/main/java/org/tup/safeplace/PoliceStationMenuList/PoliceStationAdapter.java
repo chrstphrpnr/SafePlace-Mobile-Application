@@ -4,14 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.tup.safeplace.R;
 
@@ -48,8 +44,8 @@ public class PoliceStationAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-        View view = inflater.inflate( R.layout.policestation_list_item, null );
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.policestation_list_item, null);
 
         TextView tvPoliceStationName = view.findViewById(R.id.txt_policestation_name);
         tvPoliceStationName.setText(arrayListPoliceStationFiltered.get(position).getPolicestation_name());
@@ -64,10 +60,10 @@ public class PoliceStationAdapter extends BaseAdapter implements Filterable {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults results = new FilterResults();
-                if (constraint != null && constraint.length()>0){
+                if (constraint != null && constraint.length() > 0) {
                     ArrayList<PoliceStation> filterList = new ArrayList<PoliceStation>();
-                    for (int i=0; i<arrayListPoliceStation.size(); i++){
-                        if ((arrayListPoliceStation.get(i).getPolicestation_name().toUpperCase()).contains(constraint.toString().toUpperCase())){
+                    for (int i = 0; i < arrayListPoliceStation.size(); i++) {
+                        if ((arrayListPoliceStation.get(i).getPolicestation_name().toUpperCase()).contains(constraint.toString().toUpperCase())) {
 
                             PoliceStation policeStation = new PoliceStation(
                                     arrayListPoliceStation.get(i).getPolicestation_name(),
@@ -84,8 +80,7 @@ public class PoliceStationAdapter extends BaseAdapter implements Filterable {
                     }
                     results.count = filterList.size();
                     results.values = filterList;
-                }
-                else{
+                } else {
                     results.count = arrayListPoliceStation.size();
                     results.values = arrayListPoliceStation;
                 }

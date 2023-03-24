@@ -1,17 +1,15 @@
 package org.tup.safeplace.Privacy;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.R;
@@ -46,7 +44,7 @@ public class TermsConditionFragment extends Fragment {
             e.printStackTrace();
         }
 
-        btnDecline.setOnClickListener(v->{
+        btnDecline.setOnClickListener(v -> {
             getActivity().finishAffinity();
             System.exit(0);
         });
@@ -67,7 +65,7 @@ public class TermsConditionFragment extends Fragment {
             e.printStackTrace();
         }
 
-        btnAccept.setOnClickListener(v->{
+        btnAccept.setOnClickListener(v -> {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("first_time_load", false);
             editor.commit();
@@ -76,7 +74,6 @@ public class TermsConditionFragment extends Fragment {
             getActivity().finish();
         });
     }
-
 
 
 }

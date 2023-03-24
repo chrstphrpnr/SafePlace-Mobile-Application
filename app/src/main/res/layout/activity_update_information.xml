@@ -4,41 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Verification.UpdateInformationActivity"
     android:background="@color/safeplace_bgcolor"
-    >
+    tools:context=".Verification.UpdateInformationActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        >
+        android:paddingBottom="20dp">
 
 
         <LinearLayout
             android:id="@+id/TaskbarUpdateInfo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:background="@color/white"
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/btnAccountBack"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_back"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -48,9 +44,9 @@
 
 
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="Account Information"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_15sdp"
@@ -71,14 +67,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/TaskbarUpdateInfo"
-            android:text="Please Update Your Information if necessary before submitting it for verification."
-            android:textSize="@dimen/_14sdp"
-            android:layout_marginTop="30dp"
-            android:textStyle="bold"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
+            android:text="Please Update Your Information if necessary before submitting it for verification."
             android:textColor="@color/safeplace_darkfont"
-            />
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -86,11 +81,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UpdateTitleInfo"
-            android:text="First Name"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:text="First Name"
             android:textColor="@color/safeplace_darkfont"
+            android:textSize="15sp"
 
             />
 
@@ -99,23 +94,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UpdateFNameTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
-            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/UpdateMNameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUpdateFName"
-            android:text="Middle Name"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Middle Name"
             android:textColor="@color/safeplace_darkfont"
+            android:textSize="15sp"
 
             />
 
@@ -124,12 +118,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UpdateMNameTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
-            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/safeplace_textHint"
             android:textColor="@color/safeplace_darkfont"
+            android:textSize="20sp"
+            android:textStyle="bold"
 
             />
 
@@ -139,11 +133,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUpdateMName"
-            android:text="Last Name"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Last Name"
             android:textColor="@color/safeplace_darkfont"
+            android:textSize="15sp"
 
             />
 
@@ -152,11 +146,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UpdateLNameTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
-            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/safeplace_textHint"
+            android:textSize="20sp"
+            android:textStyle="bold"
 
             />
 
@@ -166,11 +160,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUpdateLName"
-            android:text="Gender"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Gender"
             android:textColor="@color/safeplace_darkfont"
+            android:textSize="15sp"
 
             />
 
@@ -180,12 +174,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UpdateGenderTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
-            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -193,11 +186,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUpdateGender"
-            android:text="Birthdate"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Birthdate"
             android:textColor="@color/safeplace_darkfont"
+            android:textSize="15sp"
 
             />
 
@@ -206,12 +199,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UpdateBirthdateTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
-            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -219,11 +211,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUpdateBirthdate"
-            android:text="Address"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Address"
             android:textColor="@color/safeplace_darkfont"
+            android:textSize="15sp"
 
             />
 
@@ -232,12 +224,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UpdateAddressTitle"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="30dp"
-            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -245,11 +236,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUpdateAddress"
-            android:text="Contact"
-            android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Contact"
             android:textColor="@color/safeplace_darkfont"
+            android:textSize="15sp"
 
             />
 
@@ -258,13 +249,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/UpdateContactTitle"
-            android:textSize="20sp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginHorizontal="30dp"
-            android:textStyle="bold"
             android:backgroundTint="@color/safeplace_textHint"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <Button
@@ -274,23 +264,12 @@
             android:layout_below="@+id/txtUpdateContact"
             android:layout_marginHorizontal="35dp"
             android:layout_marginVertical="10dp"
-            android:text="SUBMIT"
             android:background="@drawable/btn_round"
-            app:backgroundTint="@color/colorAccent"
-            />
-
-
-
-
-
-
-
-
-
+            android:text="SUBMIT"
+            app:backgroundTint="@color/colorAccent" />
 
 
     </RelativeLayout>
-
 
 
 </ScrollView>
