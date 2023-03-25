@@ -53,17 +53,19 @@
         android:background="@drawable/ic_emergencycall" />
 
 
-    <Button
-        android:id="@+id/btnCallHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnPoliceCall"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/_20sdp"
-        android:backgroundTint="@color/safeplace_btnblue"
-        android:text="Call History"
+<!--    <Button-->
+<!--        android:id="@+id/btnCallHistory"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/btnPoliceCall"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginStart="@dimen/_20sdp"-->
 
-        />
+<!--        android:layout_marginTop="@dimen/_20sdp"-->
+<!--        android:layout_marginEnd="@dimen/_20sdp"-->
+<!--        android:layout_marginBottom="@dimen/_20sdp"-->
+<!--        android:backgroundTint="@color/safeplace_btnblue"-->
+<!--        android:text="Call History" />-->
 
     <!--    <Button-->
     <!--        android:id="@+id/btnPoliceCall"-->

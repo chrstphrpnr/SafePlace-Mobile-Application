@@ -218,11 +218,11 @@ public class SignUpFragment extends Fragment {
         String password = txtPassword.getText().toString();
         String confirmation = txtConfirm.getText().toString();
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            layoutEmail.setErrorEnabled(true);
-            layoutEmail.setError("Please enter a valid Email");
-            return false;
-        }
+//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+//            layoutEmail.setErrorEnabled(true);
+//            layoutEmail.setError("Please enter a valid Email");
+//            return false;
+//        }
 
         if (email.isEmpty()) {
             layoutEmail.setErrorEnabled(true);

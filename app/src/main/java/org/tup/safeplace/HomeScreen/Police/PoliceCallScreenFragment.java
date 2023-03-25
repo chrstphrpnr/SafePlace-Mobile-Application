@@ -77,11 +77,6 @@ public class PoliceCallScreenFragment extends Fragment {
         policeContact = view.findViewById(R.id.policeContactCall);
         btnPoliceCall = view.findViewById(R.id.btnPoliceCall);
 
-        btnCallHistory = view.findViewById(R.id.btnCallHistory);
-
-        btnCallHistory.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), CallHistoryActivity.class));
-        });
 
 
         getData();

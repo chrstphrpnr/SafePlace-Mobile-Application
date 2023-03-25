@@ -369,7 +369,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
         }, error -> {
 
-            Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
             dialog.dismiss();
 
@@ -419,7 +419,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
         }, error -> {
 
-            Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
             dialog.dismiss();
 
@@ -515,6 +515,8 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
                 return map;
             }
         };
+
+
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);

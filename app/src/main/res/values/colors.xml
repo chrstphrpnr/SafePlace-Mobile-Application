@@ -8,6 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    Background
+    <color name="safeplace_bgcolor">#FAFAFA</color>
+    <color name="safeplace_main2">#ECEDF3</color>
+    <color name="safeplace_main3">#F5F5F5</color>
+
+
+
     <color name="colorPrimary">#00A651</color>
     <color name="colorPrimaryDark">#007300</color>
     <color name="colorAccent">#022C84</color>
@@ -16,7 +23,8 @@
     <color name="safeplace_mediumgreen">#00A651</color>
     <color name="safeplace_lightgreen">#2AC52A</color>
 
-    <color name="safeplace_bgcolor">#ECEDF3</color>
+    <color name="safeplace_default">#4B4B4D</color>
+
     <color name="safeplace_lightfont">#3B3C42</color>
     <color name="safeplace_darkfont">#000000</color>
 
@@ -30,6 +38,10 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="safeplace_textinput">#DADCE2</color>
     <color name="safeplace_textHint">#8C8686</color>
+
+
+    <color name="new_blue">#003554</color>
+    <color name="new_yellow">#F6BF0A</color>
 
 
 

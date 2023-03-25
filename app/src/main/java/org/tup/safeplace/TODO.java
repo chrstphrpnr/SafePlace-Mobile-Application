@@ -6,6 +6,12 @@ public class TODO {
     //TODO: Submit a review
 
     //TODO: Loading in Reports
+    //TODO: Condition if theres no viber
+    //TODO: Shared Preference if user is already requested a verification
+    //TODO: Shared Preference if user theres no photo uploaded in id card
+
+
+
 
 
     //DONE

@@ -10,7 +10,7 @@
         android:id="@+id/txt_barangay_name"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:text="Barangay Name"
         android:textColor="@color/black"
         android:textSize="20sp" />

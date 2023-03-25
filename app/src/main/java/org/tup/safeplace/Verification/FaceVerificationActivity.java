@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -49,6 +50,7 @@ public class FaceVerificationActivity extends AppCompatActivity {
 
     Bitmap bitmap;
     String encodedimage;
+    File imageFile;
     private SharedPreferences userPref;
     private ImageView imgFaceImage;
     private Button btnFaceCaptureDone, btnCaptureFace;
@@ -90,7 +92,7 @@ public class FaceVerificationActivity extends AppCompatActivity {
 
 
                     try {
-                        File imageFile = File.createTempFile(fileName, ".jpg", storageDirectory);
+                        imageFile = File.createTempFile(fileName, ".jpg", storageDirectory);
 
                         currentPhotoPath = imageFile.getAbsolutePath();
 
@@ -137,11 +139,38 @@ public class FaceVerificationActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 111 && resultCode == RESULT_OK) {
             bitmap = BitmapFactory.decodeFile(currentPhotoPath);
+
+            ExifInterface ei = null;
+            try {
+                ei = new ExifInterface(imageFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
             Matrix matrixfront = new Matrix();
-            matrixfront.postRotate(-90);
-            Bitmap rotatedfront = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrixfront, true);
-            imgFaceImage.setImageBitmap(flip(rotatedfront));
-            ImageStore(rotatedfront);
+
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    matrixfront.postRotate(90);
+                    Bitmap rotatedfront90 = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrixfront, true);
+                    imgFaceImage.setImageBitmap(flip(rotatedfront90));
+                    ImageStore(rotatedfront90);
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    matrixfront.postRotate(180);
+                    Bitmap rotatedfront180 = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrixfront, true);
+                    imgFaceImage.setImageBitmap(flip(rotatedfront180));
+                    ImageStore(rotatedfront180);
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    matrixfront.postRotate(270);
+                    Bitmap rotatedfront270 = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrixfront, true);
+                    imgFaceImage.setImageBitmap(flip(rotatedfront270));
+                    ImageStore(rotatedfront270);
+                default:
+                    Bitmap rotatedfront = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrixfront, true);
+                    imgFaceImage.setImageBitmap(flip(rotatedfront));
+                    ImageStore(rotatedfront);
+            }
+
         }
         super.onActivityResult(requestCode, resultCode, data);
         uploadFaceImage();

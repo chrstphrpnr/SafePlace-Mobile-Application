@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserAccount.UserAccountActivity">
+    tools:context=".UserAccount.UserAccountActivity"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp">
+        android:paddingBottom="20dp"
+        >
 
         <LinearLayout
+            android:background="@color/white"
             android:id="@+id/taskbarAccount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:elevation="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -65,7 +69,9 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_below="@+id/taskbarAccount"
-            android:background="#303658">
+            android:background="@color/safeplace_main2"
+
+            >
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardviewProfile"
@@ -100,9 +106,10 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:text="Select Photo"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:text="Change Profile Picture"
+                android:textColor="@color/safeplace_textHint"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -123,12 +130,13 @@
             android:layout_below="@+id/UserAccountEmailTitle"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
+            android:backgroundTint="@color/transparent"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <TextView
             android:id="@+id/UserAccountNameTitle"
@@ -147,7 +155,7 @@
             android:layout_below="@+id/UserAccountNameTitle"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
+            android:backgroundTint="@color/transparent"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -172,7 +180,7 @@
             android:layout_below="@+id/UserAccountGenderTitle"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
+            android:backgroundTint="@color/transparent"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -196,7 +204,7 @@
             android:layout_below="@+id/UserAccountBirthDateTitle"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
+            android:backgroundTint="@color/transparent"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -220,7 +228,7 @@
             android:layout_below="@+id/UserAccountAddressTitle"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
+            android:backgroundTint="@color/transparent"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -245,7 +253,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/safeplace_textHint"
+            android:backgroundTint="@color/transparent"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"

@@ -130,9 +130,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/frontIdCam"
-                        android:layout_centerInParent="true"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:text="Upload the FRONT of your ID Here" />
+                        android:text="Please take a horizontal image of the front side of your identification card."
+                        android:gravity="center"
+                        android:textSize="@dimen/_10sdp"
+                        />
 
                     <RelativeLayout
                         android:id="@+id/relativelayoutFront"
@@ -208,8 +209,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/backIdCam"
                         android:layout_centerInParent="true"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:text="Upload the BACK of your ID Here" />
+                        android:text="Please take a horizontal image of the back side of your identification card."
+                        android:gravity="center"
+                        />
 
                     <RelativeLayout
                         android:id="@+id/relativelayoutBack"

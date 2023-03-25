@@ -28,6 +28,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
@@ -281,15 +283,30 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
                 map.put("gender", gender);
                 map.put("contact", contact);
 
-                if (encodedImage == null) {
-
-                } else {
+                if (encodedImage != null) {
                     map.put("img", encodedImage);
                 }
 
                 return map;
             }
         };
+
+        request.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);

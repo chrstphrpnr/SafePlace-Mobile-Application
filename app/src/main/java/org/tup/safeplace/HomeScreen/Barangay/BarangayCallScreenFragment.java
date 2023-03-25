@@ -75,7 +75,6 @@ public class BarangayCallScreenFragment extends Fragment {
         spinner = view.findViewById(R.id.barangaySpinner);
         barangayContact = view.findViewById(R.id.barangayContactCall);
         btnBarangayCall = view.findViewById(R.id.btnBarangayCall);
-        btnCallHistory = view.findViewById(R.id.btnCallHistoryBarangay);
 
         getData();
 
@@ -99,10 +98,6 @@ public class BarangayCallScreenFragment extends Fragment {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 123);
             return;
         }
-
-        btnCallHistory.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), CallHistoryActivity.class));
-        });
 
         btnBarangayCall.setOnClickListener(v -> {
 

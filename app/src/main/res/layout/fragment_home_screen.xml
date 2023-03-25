@@ -5,73 +5,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollViewHomeScreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/safeplace_bgcolor"
-    android:orientation="vertical"
-    tools:context=".HomeScreen.HomeScreenFragment">
+    tools:context=".HomeScreen.HomeScreenFragment"
+    >
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:paddingBottom="150dp">
+        android:layout_marginTop="@dimen/_60sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:paddingBottom="180dp"
+        >
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/headerView"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp">
+            android:layout_height="@dimen/_130sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="30dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="60dp"
-                android:text="Taguig District 2"
-                android:textColor="@color/safeplace_lightfont"
-                android:textSize="@dimen/_22sdp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:layout_width="160dp"
-                android:layout_height="66dp"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="48dp"
-                android:layout_marginTop="60dp"
-                android:gravity="center_horizontal"
-                android:text="NEIGHBORHOOD PROBLEM?"
-                android:textAlignment="center"
-                android:textColor="@color/safeplace_lightfont"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnReportHere"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="115dp"
-                android:backgroundTint="@color/safeplace_textinput"
-                android:text="REPORT HERE"
-                android:textColor="@color/safeplace_mediumgreen"
-                android:textStyle="bold" />
-
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="225dp"
-                android:src="@drawable/cardview_reporthere" />
-            />
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/a1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Taguig District 2"
+                        android:textColor="#4B4B4D"
+                        android:textSize="@dimen/_22sdp"
+                        android:textStyle="bold"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/txtProblem"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="NEIGHBORHOOD PROBLEM?"
+                        android:textColor="@color/safeplace_lightfont"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold"
+
+                        />
+
+
+                    <Button
+                        android:id="@+id/btnReportHere"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtProblem"
+                        android:layout_centerInParent="true"
+                        android:backgroundTint="@color/safeplace_mediumgreen"
+                        android:text="REPORT HERE"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/a1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cardview_reporthere"
+                        />
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+
+
+
+
+
 
 
         </androidx.cardview.widget.CardView>
@@ -79,26 +108,23 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/mapView"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
             android:layout_below="@+id/headerView"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp">
-
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            >
+<!--                            map:uiRotateGestures="false"-->
+<!--                            map:uiScrollGestures="false"-->
+<!--                            map:uiZoomControls="false"-->
+<!--                            map:uiZoomGestures="false"-->
             <fragment
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 map:cameraZoom="10"
-                map:uiRotateGestures="false"
-                map:uiScrollGestures="false"
-                map:uiZoomControls="false"
-                map:uiZoomGestures="false"
-
                 />
 
             <ImageView
@@ -113,180 +139,242 @@
         </androidx.cardview.widget.CardView>
 
 
-        <GridLayout
-            android:id="@+id/gridlayout"
+        <RelativeLayout
+            android:id="@+id/homeScreenRelative1"
             android:layout_width="match_parent"
-            android:layout_height="215dp"
+            android:layout_height="@dimen/_150sdp"
             android:layout_below="@+id/mapView"
-            android:layout_marginTop="15dp"
-            android:columnCount="2">
+            android:layout_marginTop="@dimen/_15sdp"
+            >
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/menuHospitalList"
-                android:layout_width="165dp"
+
+            <GridLayout
+                android:id="@+id/gridlayout1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                android:layout_below="@+id/mapView"
+                android:columnCount="2"
+                >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:gravity="center"
-                        android:src="@drawable/cardview_hospital" />
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/menuHospitalList"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="HOSPITAL"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textStyle="bold" />
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_2sdp"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
 
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/txtHospitalTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="HOSPITAL"
+                            android:textColor="@color/safeplace_default"
+                            android:textStyle="bold" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/menuPoliceStationList"
-                android:layout_width="165dp"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="15dp"
-                android:gravity="center"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                        <ImageView
+                            android:layout_below="@+id/txtHospitalTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/cardview_hospital"
+                            android:layout_centerHorizontal="true"
+                            />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/cardview_policestation" />
 
-                </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
 
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/menuPoliceStationList"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
                     android:gravity="center"
-                    android:text="POLICE STATION"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textStyle="bold" />
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
 
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/txtPoliceTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="POLICE SUBSTATIONS"
+                            android:textColor="@color/safeplace_default"
+                            android:textStyle="bold" />
 
-        </GridLayout>
+                        <ImageView
+                            android:layout_below="@+id/txtPoliceTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/cardview_policestation" />
 
-        <GridLayout
-            android:id="@+id/gridlayout2"
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/homeScreenRelative2"
             android:layout_width="match_parent"
-            android:layout_height="215dp"
-            android:layout_below="@+id/gridlayout"
-            android:columnCount="2">
+            android:layout_height="@dimen/_150sdp"
+            android:layout_below="@+id/homeScreenRelative1"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/menuBarangayList"
-                android:layout_width="165dp"
+            <GridLayout
+                android:id="@+id/gridlayout2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                android:layout_below="@+id/mapView"
+                android:columnCount="2"
+                >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:gravity="center"
-                        android:src="@drawable/cardview_barangay" />
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/menuBarangayList"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="BARANGAY"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textStyle="bold" />
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
 
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/txtBarangayTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="BARANGAY"
+                            android:textColor="@color/safeplace_default"
+                            android:textStyle="bold" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/menuReportList"
-                android:layout_width="165dp"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="15dp"
-                android:gravity="center"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtBarangayTitle"
+                            android:layout_centerHorizontal="true"
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/cardview_reports" />
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:src="@drawable/cardview_barangay" />
 
-                </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
 
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/menuReportList"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="REPORTS"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textStyle="bold" />
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
 
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/txtReportTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="REPORTS"
+                            android:textColor="@color/safeplace_default"
+                            android:textStyle="bold" />
 
-        </GridLayout>
+
+                        <ImageView
+                            android:layout_below="@+id/txtReportTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/cardview_reports"
+                            android:layout_centerHorizontal="true"
+                            />
+
+
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </GridLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
 
 
     </RelativeLayout>

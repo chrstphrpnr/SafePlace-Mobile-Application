@@ -58,6 +58,8 @@
 
                 </LinearLayout>
 
+
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +105,21 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:id="@+id/btnCallLogs"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/ic_baseline_phone_24"
 
+                        />
+                </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
 
 

@@ -40,6 +40,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tup.safeplace.Authentication.AuthenticationActivity;
+import org.tup.safeplace.CallHistory.CallHistoryActivity;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
@@ -72,7 +73,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
     private CircleImageView imgProfile;
     private final String imgUrl = "";
 
-    private ImageView notificationBell;
+    private ImageView notificationBell,btnCallLogs;
     private Menu optionsMenu;
 
 
@@ -100,6 +101,11 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
         notificationBell.setOnClickListener(v -> {
             startActivity(new Intent(SafePlaceHomeScreenActivity.this, NotificationActivity.class));
+        });
+
+        btnCallLogs = findViewById(R.id.btnCallLogs);
+        btnCallLogs.setOnClickListener(v->{
+            startActivity(new Intent(SafePlaceHomeScreenActivity.this, CallHistoryActivity.class));
         });
 
 
