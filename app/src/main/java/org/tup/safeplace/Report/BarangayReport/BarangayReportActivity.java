@@ -3,6 +3,7 @@ package org.tup.safeplace.Report.BarangayReport;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -107,12 +109,18 @@ public class BarangayReportActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Bitmap bitmap = null;
 
+    private ProgressDialog dialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barangay_report);
 
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
 
         //ImageView
         evidence_1 = findViewById(R.id.evidence_1);
@@ -412,6 +420,10 @@ public class BarangayReportActivity extends AppCompatActivity {
 
 
     private void SubmitReport() {
+
+        dialog.setMessage("Submitting Report...");
+        dialog.show();
+
         String street = txtInputStreetReport.getText().toString().trim();
         String barangay = txtBarangay.getText().toString().trim();
         String incident_type = autoCompleteIncidentTypetxt.getText().toString().trim();
@@ -434,15 +446,22 @@ public class BarangayReportActivity extends AppCompatActivity {
 
                 try {
                     startActivity(new Intent(BarangayReportActivity.this, SafePlaceHomeScreenActivity.class));
+                    Toast.makeText(BarangayReportActivity.this, "Report Submitted Successfully", Toast.LENGTH_SHORT).show();
                 } catch (Error error) {
                     error.printStackTrace();
+                    dialog.dismiss();
                 }
+                dialog.dismiss();
+
+
 
 
             }
         }, error -> {
             Toast.makeText(BarangayReportActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
+            dialog.dismiss();
+
         }) {
 
             @Override
@@ -483,6 +502,12 @@ public class BarangayReportActivity extends AppCompatActivity {
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         requestQueue.add(request);
 
     }

@@ -1,6 +1,7 @@
 package org.tup.safeplace.HomeScreen.Barangay;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -151,17 +152,35 @@ public class BarangayCallScreenFragment extends Fragment {
 
     }
 
+
+
+
     private void callLog() {
         String name_contacted = spinner.getSelectedItem().toString();
 
         StringRequest request = new StringRequest(Request.Method.POST, API.barangay_call_log, response -> {
 
-            String phoneNumber = barangayContact.getText().toString();
-            Uri uri = Uri.parse("tel:" + Uri.encode(phoneNumber));
-            Intent intent = new Intent("android.intent.action.VIEW");
-            intent.setClassName("com.viber.voip", "com.viber.voip.WelcomeActivity");
-            intent.setData(uri);
-            startActivity(intent);
+
+            try{
+                String phoneNumber = barangayContact.getText().toString();
+                Uri uri = Uri.parse("tel:" + Uri.encode(phoneNumber));
+                Intent intent = new Intent("android.intent.action.VIEW").setClassName("com.viber.voip", "com.viber.voip.WelcomeActivity").setData(uri);
+
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+                openPlayStore();
+            }
+
+
+//            if (isViberInstalled()) {
+//
+//            } else {
+////                Toast.makeText(getContext(), "Viber is not installed", Toast.LENGTH_SHORT).show();
+//            }
+
+
+
 
 
         }, error -> {
@@ -191,6 +210,25 @@ public class BarangayCallScreenFragment extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(request);
     }
+
+    public boolean isViberInstalled() {
+        PackageManager pm = getActivity().getPackageManager();
+        try {
+            pm.getPackageInfo("com.viber.voip.WelcomeActivity", PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    private void openPlayStore() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.viber.voip")));
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.viber.voip")));
+        }
+    }
+
 
     private void getData() {
         StringRequest stringRequest = new StringRequest(API.barangay_list_api, new Response.Listener<String>() {

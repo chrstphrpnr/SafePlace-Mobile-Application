@@ -11,6 +11,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
@@ -69,6 +70,7 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
     private RelativeLayout relativelayoutFront, relativelayoutBack;
     private String currentPhotoPathBackId, currentPhotoPathFrontId;
     private ProgressDialog dialog;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +127,9 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
         btnContinue.setOnClickListener(v -> {
             if (validate()) {
+
                 postCardDetails();
+
             }
         });
 
@@ -304,6 +308,29 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
             return false;
         }
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isBackId = prefs.getBoolean("isBackId", false);
+        boolean isFrontId = prefs.getBoolean("isBackId", false);
+
+        if(isFrontId){
+            Toast.makeText(this, "Please Upload the Front side of you ID", Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
+
+        if(isBackId){
+            Toast.makeText(this, "Please Upload the Back side of you ID", Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
+
+//        if((isBackId) && (isFrontId)){
+//            Toast.makeText(this, "Please Upload your ID", Toast.LENGTH_SHORT).show();
+//            return false;
+//
+//        }
+
+
 
         return true;
 
@@ -364,6 +391,12 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
         StringRequest request = new StringRequest(Request.Method.POST, API.front_id, response -> {
 
+            prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isFrontId", true);
+            editor.apply();
+
+
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
 
@@ -413,6 +446,11 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
         dialog.show();
 
         StringRequest request = new StringRequest(Request.Method.POST, API.back_id, response -> {
+
+            prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isBackId", true);
+            editor.apply();
 
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
             dialog.dismiss();

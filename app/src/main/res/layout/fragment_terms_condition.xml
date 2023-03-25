@@ -8,33 +8,240 @@
     android:paddingRight="50dp"
     tools:context=".Privacy.TermsConditionFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="TERMS AND CONDITION"
-        android:textSize="30dp" />
-
-    <Button
-        android:id="@+id/btnAcceptTerm"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:background="@drawable/btn_round"
-        android:text="Accept"
-        android:textSize="20sp"
-        app:backgroundTint="@color/safeplace_mediumgreen" />
+        android:layout_centerInParent="true">
 
-    <Button
-        android:id="@+id/btnDeclineTerm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/btn_round"
-        android:text="Not Now"
-        android:textSize="20sp"
-        app:backgroundTint="@color/colorTextSecondary" />
+
+        <TextView
+            android:id="@+id/txtTermsAndConditionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TERMS AND CONDITION"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/_20sdp"
+            />
+
+        <ScrollView
+            android:layout_below="@+id/txtTermsAndConditionTitle"
+            android:id="@+id/termsAndConditionScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_350sdp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@color/safeplace_main2"
+            android:paddingVertical="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            >
+
+                        <LinearLayout
+                            android:paddingHorizontal="@dimen/_10sdp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            >
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Welcome to SafePlace App, the website and online service of SafePlace App, Inc. (“Company,” “we,” or “us”). This page explains the terms by which you may use our online and/or mobile services, website, and software provided on or in connection with the service (collectively the “Service”). By accessing or using the Service (including by downloading any mobile application we may offer from time to time), you signify that you have read, understood, and agree to be bound by this Terms of Use Agreement (“Agreement”) and to the collection and use of your information as set forth in the SafePlace Privacy Policy, whether or not you are a registered user of our Service. This Agreement applies to all visitors, users, and others who access or use the Service (“Users”)."
+                                />
+
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="PLEASE READ THIS AGREEMENT CAREFULLY TO ENSURE THAT YOU UNDERSTAND EACH PROVISION, AS THIS AGREEMENT CONTAINS IMPORTANT INFORMATION ‎REGARDING YOUR ‎LEGAL RIGHTS, REMEDIES, AND OBLIGATIONS, ‎INCLUDING ‎VARIOUS LIMITATIONS AND ‎EXCLUSIONS ON DAMAGES ‎YOU MAY CLAIM AGAINST US AND INDEMNIFICATION OBLIGATIONS YOU OWE TO ‎US‎. THIS AGREEMENT CONTAINS A MANDATORY ARBITRATION OF DISPUTES PROVISION THAT, EXCEPT WERE PROHIBITED BY APPLICABLE LAWS, REQUIRES THE USE OF ARBITRATION ON AN INDIVIDUAL BASIS TO RESOLVE DISPUTES, RATHER THAN JURY TRIALS OR CLASS ACTIONS. BY ACCESSING OR USING THE SERVICE, YOU INDICATE YOUR CONSENT TO THIS AGREEMENT."
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:gravity="center"
+                                />
+
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.Use of the Service"
+                                android:layout_marginTop="@dimen/_30sdp"
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="A.Eligibility "
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="You may use the Service only if you can form a binding contract with Company, and only in compliance with this Agreement and all applicable local, state, provincial, federal, national, and international laws, rules and regulations. Anyone under thirteen (13) is strictly prohibited from creating an account for the Service without explicit parental consent. For users in Korea, the Service is not available to anyone under the age of 14. By providing consent for a child under thirteen (13) to use the Service, parents and guardians agree to: (i) exercise oversight of the child’s use of the Service, including ensuring that such use is always in accordance with this Agreement, all documents related hereto, and all applicable laws, and to be fully responsible and liable for the child’s compliance with this Agreement and the child’s ‎use of the Service‎; (ii) ‎the disclaimers, waivers and limitations of liability set out in this Agreement on your ‎behalf and on the child’s behalf‎; and (iii) be fully liable for and to fully indemnify, defend, and hold harmless Company and our subsidiaries, agents/mandataries, licensors, managers, and other affiliated companies, and their employees, contractors, agents/mandataries, officers and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to legal fees) arising, directly or indirectly, from such child’s use of the Service or such child’s failure to comply with this Agreement, and all references to “you” or “your” in (i) through (vi) in section 15 will be deemed amended to include your child or your ward, as applicable. The Service is not available to any Users previously removed from the Service by us."
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="B. Service Rules "
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="You agree not to engage in any of the following prohibited activities: (i) copying, distributing, transmitting, disassembling, decompiling, publicly displaying, republishing, or disclosing any part of the Service in any medium, including without limitation by any automated or non-automated “scraping” or by creating any derivative works of the Service; (ii) determining or attempting to determine any source code, algorithms, methods, or techniques ‎embodied by the Service or any derivative works thereof, or incorporating the Service or any portion thereof into any other program or product‎; (iii) using any automated system, including without limitation “robots,” “spiders,” “offline readers,” etc., to access the Service in a manner that sends more request messages to the Company servers than a human can reasonably produce in the same period of time by using a conventional on-line web browser; (iv) transmitting spam, chain letters, or other unsolicited email; (v) attempting to interfere with, compromise the system integrity or security or decipher any transmissions to or from the servers running the Service; (vi) taking any action that imposes, or may impose at our sole discretion an unreasonable or disproportionately large load on our infrastructure; (vii) uploading invalid data, viruses, worms, or other software agents through the Service; (viii) collecting or harvesting any personally identifiable information, including account names, from the Service; (ix) using the Service for any commercial solicitation purposes; (x) impersonating another person or otherwise misrepresenting your affiliation with a person or entity, conducting fraud, hiding or attempting to hide your identity; (xi) interfering with, or attempting to interfere with, the proper working of the Service; (xii) accessing any content on the Service through any technology or means other than those provided or authorized by the Service; (xiii) bypassing the measures we may use to prevent or restrict access to the Service, including without limitation features that prevent or restrict use or copying of any content or enforce limitations on use of the Service or the content therein; (xiv) distributing, licensing, transferring, or selling, in whole or in part, any of the Service or any derivative works ‎thereof‎; (xv) encouraging any conduct that restricts or inhibits anyone’s use or enjoyment of the ‎Service, or which, as determined by us, may harm us or Users of the ‎Service or expose us or them ‎to liability‎; and (xvi) violating, or promoting the violation of, this Agreement or any applicable federal, provincial, local, state, foreign, or ‎international law or regulation, ‎including any laws regarding the export of data or software, ‎patent, trademark, trade secret, ‎copyright, or other intellectual property or legal rights (including ‎the rights of publicity and privacy of ‎others)‎."
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="C.License to Use the Service"
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="Subject to the terms and conditions of this Agreement, we hereby grant you a non-exclusive, limited, non-transferable, freely revocable license to use the Service for your personal, noncommercial use only and as permitted by the features of the Service. Company reserves all rights not expressly granted herein in the Service and the Company Content (as defined below). Company may terminate this license at any time for any reason or no reason. "
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="D.	Accounts"
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="Accounts that you are able to establish with the Service give you access to the services and functionality that we may establish and maintain from time to time and in our sole discretion. You may never use another User’s account without permission. When creating your account, you must provide accurate and complete information. You are solely responsible for the activity that occurs on your account, and you must keep your account password secure. We encourage you to use “strong” passwords (passwords that use a combination of upper- and lower-case letters, numbers and symbols) with your account. You must notify us immediately of any breach of security or unauthorized use of your account. Company will not be liable for any losses caused by any unauthorized use of your account. You may control your user profile and how you interact with the Service by changing settings that are made available to you."
+                                />
+
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_30sdp"
+                                android:text="2.	Service Availability and Our Right to Terminate"
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="We may, without prior notice, change the Service; stop providing the Service or features of the Service, to you or to Users generally; or create usage limits for the Service. If we materially change the Service, we will provide you with at least 30 days’ notice. We may permanently or temporarily terminate or suspend your access to the Service without notice and liability for any reason, including if in our sole determination you violate any provision of this Agreement, or for no reason. Upon termination for any reason or no reason, you continue to be bound by this Agreement. You are responsible for all the mobile data usage resulting from the use of Service. Consult your mobile operator concerning your plan, data rate charges and limits. You are solely responsible for your interactions with other Users. We reserve the right, but have no obligation, to monitor disputes between you and other Users. Company shall have no liability for your interactions with other Users, or for any User’s action or inaction."
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_30sdp"
+                                android:text="3.	User Content"
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="Some areas of the Service allow Users to post content such as profile information, images, comments, questions, messages and other content or information (any such content a User submits, posts, displays, creates, or affirmatively chooses to make available on the Service is “User Content”). User Content does not include information collected from or about your phone or device. We claim no ownership rights over User Content created or submitted by you. The User Content you create remains yours; however, by sharing User Content through the Service, you agree to the User Content License Grant below, and to allow others to view, edit, and/or share your User Content in accordance with your settings and this Agreement. Company has the right (but not the obligation) in our sole discretion to remove any User Content that is shared via the Service. You agree not to post or transmit User Content that: (i) may create a risk of harm, loss, physical or mental injury, emotional distress, death, disability, disfigurement, or physical or mental illness to you, to any other person, or to any animal; (ii) may create a risk of any other loss or damage to any person or property; (iii) seeks to harm or exploit children by exposing them to inappropriate content, asking for personally identifiable details or otherwise; (iv) may constitute or contribute to a crime or tort; (v) contains any information or content that we deem to be unlawful, harmful, abusive, racially or ethnically offensive, defamatory, infringing, invasive of personal privacy or publicity rights, harassing, humiliating to other people (publicly or otherwise), libelous, threatening, profane, or otherwise objectionable; (vi) contains any information or content that is illegal (including, without limitation, the disclosure of insider information under securities law or of another party’s trade secrets); (vii) contains any information or content that you do not have a right to make available under any law or under contractual or fiduciary relationships; (viii) contains any information or content that you know is not correct and current; (ix) violates any school or other applicable policy, including those related to cheating or ethics; (x) interferes with other Users of the Service including, without limitation, disrupting the normal flow of dialogue in an interactive area of the Service and deleting or revising any content posted by another person or entity; or (xi) except where expressly permitted, post or transmit charity requests, petitions for signatures, franchise arrangements, distributorship arrangements, sales representative agency arrangements or other business opportunities (including offers of employment or contracting arrangements), club memberships, chain letters or letters relating to pyramid schemes, any advertising or promotional materials or any other solicitation of other Users to use goods or services except in those areas (e.g., a classified bulletin board) that are designated for such purpose. You agree that any employment or other relationship you form or attempt to form with an employer, employee, or contractor whom you contact through areas of the Service that may be designated for that purpose is between you and that employer, employee, or contractor alone, and not with us. You may not copy or use personal identifying or business contact information about other Users without their permission. You agree, represent and warrant that any User Content that you post does not and will not violate third-party rights of any kind, including without limitation any Intellectual Property Rights (as defined below) or rights of privacy. Company reserves the right, but is not obligated, to reject and/or remove any User Content that Company believes, in our sole discretion, violates these provisions. For the purposes of this Agreement, “Intellectual Property Rights” means all patent rights, copyright rights, mask work rights, moral rights, rights of publicity, trademark, trade dress and service mark rights, goodwill, trade secret rights and other intellectual property rights as may now exist or hereafter come into existence, and all applications therefore and registrations, renewals and extensions thereof, under the laws of any state, province, country, territory or other jurisdiction"
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_30sdp"
+                                android:text="4.	Security"
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="Company cares about the integrity and security of your personal information. However, we cannot guarantee that unauthorized third parties will never be able to defeat our security measures or use your personal information for improper purposes. You acknowledge that you provide your personal information at your own risk."
+                                />
+
+                            <TextView
+                                android:textColor="@color/safeplace_darkfont"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_30sdp"
+                                android:text="Please contact us safeplacetaguig.com with any questions regarding this Agreement. This Agreement was last modified on February 6, 2023."
+                                android:gravity="center"
+                                />
+
+                        </LinearLayout>
+
+
+        </ScrollView>
+
+
+        <Button
+            android:id="@+id/btnAcceptTerm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/btn_round"
+            android:text="Accept"
+            android:textSize="20sp"
+            app:backgroundTint="@color/safeplace_mediumgreen"
+            android:layout_below="@+id/termsAndConditionScrollView"
+            />
+
+        <Button
+            android:id="@+id/btnDeclineTerm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_round"
+            android:text="Not Now"
+            android:textSize="20sp"
+            app:backgroundTint="@color/colorTextSecondary"
+            android:layout_below="@+id/btnAcceptTerm"
+            />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

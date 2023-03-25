@@ -64,12 +64,17 @@ public class UserAccountActivity extends AppCompatActivity {
     private ImageView btnAccountBack;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
 
         userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+
+
+
         txtUserAccountName = findViewById(R.id.txtUserAccountName);
         txtUserAccountEmail = findViewById(R.id.txtUserAccountEmail);
         txtUserAccountGender = findViewById(R.id.txtUserAccountGender);
@@ -235,6 +240,9 @@ public class UserAccountActivity extends AppCompatActivity {
 
     private void getData() {
 
+        dialog.setMessage("Loading...");
+        dialog.show();
+
         StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
 
             try {
@@ -256,10 +264,16 @@ public class UserAccountActivity extends AppCompatActivity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                dialog.dismiss();
+
             }
+            dialog.dismiss();
+
 
         }, error -> {
             error.printStackTrace();
+            dialog.dismiss();
+
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

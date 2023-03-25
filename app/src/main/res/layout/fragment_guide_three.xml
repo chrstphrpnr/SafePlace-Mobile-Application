@@ -278,9 +278,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txtGuide3Title"
                             android:layout_centerInParent="true"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="15dp"
+                            android:layout_margin="@dimen/_15sdp"
                             android:src="@drawable/verification9" />
 
 
@@ -312,13 +310,14 @@
 
 
                         <TextView
+                            android:id="@+id/txtGuide4Title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:gravity="center"
-                            android:text=" Ready to snap your shot? Lift your phone to the eye level (just as shown in the image below.)"
+                            android:text=" Ready to snap your shot? Lift your phone to the eye level."
                             android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_8sdp"
                             android:textStyle="bold" />
@@ -326,12 +325,13 @@
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_200sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtGuide4Title"
                             android:layout_centerInParent="true"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="15dp"
+                            android:layout_margin="@dimen/_15sdp"
                             android:src="@drawable/verification10" />
+
+
 
 
 

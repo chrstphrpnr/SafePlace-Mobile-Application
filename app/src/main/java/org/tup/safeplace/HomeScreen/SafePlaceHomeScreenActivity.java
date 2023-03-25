@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -125,8 +126,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
 
                 SharedPreferences userPref = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
-                boolean requested = userPref.getBoolean("verification_submitted", true);
 
+                boolean requested = userPref.getBoolean("verification_submitted", true);
 
                 StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
 
@@ -137,29 +138,53 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject object = jsonArray.getJSONObject(i);
 
-                                String status = object.getString("role");
+                                String role = object.getString("role");
 
-                                if (status.equals("unverified_user")) {
+                                String status = object.getString("status");
 
-//                                        if (requested){
-//                                            Toast.makeText(SafePlaceHomeScreenActivity.this, "Your account is already in the process of verification, please wait.", Toast.LENGTH_SHORT).show();
-//                                            showPopupWindow();
-//                                        }
-//                                        else {
-                                    startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
-                                    SharedPreferences.Editor editor = userPref.edit();
-                                    editor.putBoolean("verification_submitted", false);
-                                    editor.apply();
-//                                        }
+
+
+                                if (role.equals("unverified_user")) {
+
+                                    if(status.equals("Pending")){
+                                        Toast.makeText(SafePlaceHomeScreenActivity.this, "Your account is already in the process of verification, please wait.", Toast.LENGTH_SHORT).show();
+                                        showPopupWindow();
+                                    }
+
+                                    if(status.equals("Rejected")){
+                                        startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
+//                                        SharedPreferences.Editor editor = userPref.edit();
+//                                        editor.putBoolean("verification_submitted", false);
+//                                        editor.apply();
+                                    }
+
+                                    if(status.equals("Unverified")){
+                                        startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
+//                                        SharedPreferences.Editor editor = userPref.edit();
+//                                        editor.putBoolean("verification_submitted", false);
+//                                        editor.apply();
+                                    }
+
+                                    if(status.equals("Banned")){
+                                        Toast.makeText(this, "Your Account is Banned. Please Contact the Admin", Toast.LENGTH_SHORT).show();
+                                    }
+
+
                                 }
 
-                                if (status.equals("verified_user")) {
+                                if (role.equals("verified_user")) {
                                     Toast.makeText(SafePlaceHomeScreenActivity.this, "Your Account is already registered.", Toast.LENGTH_SHORT).show();
                                     SharedPreferences.Editor editor = userPref.edit();
                                     editor.putBoolean("verification_submitted", true);
                                     editor.apply();
                                     showPopupWindowVerified();
                                 }
+
+
+
+
+
+
 
                             }
                         }
@@ -316,12 +341,124 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
+    private void check_status(){
+
+        StringRequest request = new StringRequest(Request.Method.GET, API.get_user_info, response -> {
+
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray jsonArray = jsonObject.getJSONArray("user");
+                if (jsonObject.getBoolean("success")) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+
+                        String status = object.getString("status");
+                        SharedPreferences userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+
+                        SharedPreferences.Editor editor = userPref.edit();
+                        if (status.equals("Pending")){
+                            editor.putString("status", "Pending");
+                            editor.apply();
+
+                        }
+
+                        if (status.equals("Rejected")){
+                            editor.putString("status", "Rejected");
+                            editor.apply();
+
+                        }
+
+
+
+
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }, error -> {
+            error.printStackTrace();
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
+                return map;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
+
+    }
+
+    //Check Notification
+    private void check_notification() {
+
+        TextView notification_count = findViewById(R.id.txt_notif_count);
+
+
+        StringRequest request = new StringRequest(Request.Method.GET, API.notification_check_unread, response -> {
+
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray jsonArray = jsonObject.getJSONArray("notification");
+
+
+                if (jsonObject.getBoolean("success")) {
+//                    for (int i = 0; i <jsonArray.length(); i++) {
+//                        JSONObject object = jsonArray.getJSONObject(i);
+
+                    notification_count.setText(Integer.toString(jsonArray.length()));
+
+//                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }, error -> {
+            error.printStackTrace();
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                String token = userPref.getString("token", "");
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Bearer " + token);
+                return map;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
+
+
+    }
+
+
 
     //    OnResume Method for getData Method
     @Override
     protected void onResume() {
         super.onResume();
         getData();
+        check_status();
+        check_notification();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        check_notification();
+        check_status();
+        getData();
+
     }
 
     //Logout Method for user logging out
@@ -420,55 +557,21 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
-    //Check Notification
-    private void check_notification() {
-
-        TextView notification_count = findViewById(R.id.txt_notif_count);
-
-
-        StringRequest request = new StringRequest(Request.Method.GET, API.notification_check_unread, response -> {
-
-            try {
-                JSONObject jsonObject = new JSONObject(response);
-                JSONArray jsonArray = jsonObject.getJSONArray("notification");
-
-
-                if (jsonObject.getBoolean("success")) {
-//                    for (int i = 0; i <jsonArray.length(); i++) {
-//                        JSONObject object = jsonArray.getJSONObject(i);
-
-                    notification_count.setText(Integer.toString(jsonArray.length()));
-
-//                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-        }, error -> {
-            error.printStackTrace();
-        }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                String token = userPref.getString("token", "");
-                HashMap<String, String> map = new HashMap<>();
-                map.put("Authorization", "Bearer " + token);
-                return map;
-            }
-        };
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
-
-
-    }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
         check_notification();
+        check_status();
+        getData();
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        check_notification();
+
     }
 
     //Bottom Navigation Slide Pager
@@ -498,4 +601,6 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             return NUM_PAGES;
         }
     }
+
+
 }
