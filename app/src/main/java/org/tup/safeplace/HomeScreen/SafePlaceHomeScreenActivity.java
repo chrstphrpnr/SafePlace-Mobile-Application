@@ -503,6 +503,14 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        check_notification();
+        check_status();
+        getData();
+    }
+
     //Logout Method for user logging out
     private void logout() {
         StringRequest request = new StringRequest(Request.Method.GET, API.logout_user, response -> {

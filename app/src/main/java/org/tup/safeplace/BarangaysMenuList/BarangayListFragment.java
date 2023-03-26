@@ -89,6 +89,8 @@ public class BarangayListFragment extends Fragment {
 
 
         StringRequest request = new StringRequest(Request.Method.GET, API.barangay_list_api, response -> {
+            barangayArrayList.clear();
+
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String succes = jsonObject.optString("success");

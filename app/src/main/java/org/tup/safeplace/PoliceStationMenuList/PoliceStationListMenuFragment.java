@@ -88,6 +88,7 @@ public class PoliceStationListMenuFragment extends Fragment {
         dialog.show();
 
         StringRequest request = new StringRequest(Request.Method.GET, API.police_stations_list_api, response -> {
+            policeStationArrayList.clear();
 
             try {
                 JSONObject jsonObject = new JSONObject(response);

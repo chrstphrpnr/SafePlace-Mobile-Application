@@ -203,6 +203,8 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View view) {
                 checkStatus();
+                popupWindow.dismiss();
+
             }
         });
 
