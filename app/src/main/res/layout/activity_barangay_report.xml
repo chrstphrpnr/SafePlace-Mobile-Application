@@ -29,7 +29,7 @@
                     android:background="@color/white">
 
                     <ImageView
-                        android:id="@+id/btnReportBack"
+                        android:id="@+id/btnReportBackReportBarangay"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_centerVertical="true"

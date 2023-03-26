@@ -1,8 +1,540 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReportsMenuList.ReportDetailsActivity">
+    tools:context=".ReportsMenuList.ReportDetailsActivity"
+    android:background="@color/safeplace_bgcolor"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_50sdp"
+        >
+
+        <LinearLayout
+            android:id="@+id/taskbarReport"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.google.android.material.appbar.AppBarLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbarReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/safeplace_main3">
+
+                    <ImageView
+                        android:id="@+id/btnReportDetailsBack"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="DETAILS"
+                            android:textColor="@color/black"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativedetailsreport1"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:layout_below="@+id/taskbarReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            >
+
+            <TextView
+                android:id="@+id/txtImgTitleReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:text="Report Images"
+                android:textColor="@color/safeplace_darkfont"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_below="@+id/txtImgTitleReport"
+                android:id="@+id/imgReport1"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                />
+
+            <ImageView
+                android:layout_below="@+id/txtImgTitleReport"
+                android:id="@+id/imgReport2"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/imgReport1"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"/>
+
+            <ImageView
+                android:layout_below="@+id/txtImgTitleReport"
+
+                android:id="@+id/imgReport3"
+                android:layout_toRightOf="@+id/imgReport2"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginVertical="@dimen/_10sdp"
+                />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativedetailsreport2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativedetailsreport1"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            >
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REPORT LOCATION"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/safeplace_darkfont"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativedetailsreport3"
+            android:layout_below="@+id/relativedetailsreport2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:paddingVertical="@dimen/_20sdp"
+            >
+
+
+            <RelativeLayout
+                android:id="@+id/relativebarangay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_centerInParent="true"
+
+                >
+
+
+                <TextView
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:id="@+id/txtBarangayDetails"
+                    android:layout_below="@+id/txtBarangayDetailsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mangahan Street, Central Bicutan"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/safeplace_lightfont"
+                    android:textStyle="bold"
+
+                    />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativedetailsreport4"
+        android:layout_below="@+id/relativedetailsreport3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_20sdp"
+
+        >
+
+        <RelativeLayout
+            android:id="@+id/relativePolice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/relativebarangay"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:layout_centerInParent="true"
+
+            >
+
+
+            <TextView
+                android:id="@+id/txtPoliceDetailsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Police Sub-Station"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/safeplace_darkfont"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/txtPoliceSubstationDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPoliceDetailsTitle"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Police"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/safeplace_lightfont"
+                android:textStyle="bold"
+                />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/relativedetailsreport5"
+            android:layout_below="@+id/relativedetailsreport4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            >
+
+            <GridLayout
+                android:id="@+id/gridlayout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/mapView"
+                android:columnCount="2"
+                >
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/relativedetailsreportDateTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/relativedetailsreport4"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        >
+
+                        <TextView
+                            android:layout_centerHorizontal="true"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="REPORTED"
+                            android:textSize="@dimen/_13sdp"
+                            android:textColor="@color/safeplace_darkfont"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relativedetailsreport6"
+                        android:layout_below="@+id/relativedetailsreportDateTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:paddingVertical="@dimen/_20sdp"
+                        android:layout_centerInParent="true"
+                        >
+
+                        <RelativeLayout
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            >
+
+
+                            <RelativeLayout
+                                android:id="@+id/relativeDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <TextView
+                                    android:id="@+id/txtDateDetailsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Date"
+                                    android:textSize="@dimen/_15sdp"
+                                    android:textColor="@color/safeplace_lightfont"
+                                    android:textStyle="bold"
+                                    />
+
+                                <TextView
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:id="@+id/txtDateDetails"
+                                    android:layout_below="@+id/txtDateDetailsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Date"
+                                    />
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/relativeTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_toRightOf="@+id/relativeDate"
+                                >
+
+                                <TextView
+                                    android:id="@+id/txtTimeDetailsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Time"
+                                    android:textSize="@dimen/_15sdp"
+                                    android:textColor="@color/safeplace_lightfont"
+                                    android:textStyle="bold"
+                                    />
+
+                                <TextView
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:id="@+id/txtTimeDetails"
+                                    android:layout_below="@+id/txtTimeDetailsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Time"
+                                    />
+
+
+                            </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    >
+
+
+                    <RelativeLayout
+                        android:id="@+id/relativedetailsreportDateCommittedTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/relativedetailsreport4"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="COMMITTED"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="@dimen/_13sdp"
+                            android:textColor="@color/safeplace_darkfont"
+                            android:textStyle="bold"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relativedetailsreport7"
+                        android:layout_below="@+id/relativedetailsreportDateCommittedTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:paddingVertical="@dimen/_20sdp"
+                        >
+
+                        <RelativeLayout
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            >
+
+
+                            <RelativeLayout
+                                android:id="@+id/relativeDateCommit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <TextView
+                                    android:id="@+id/txtDateCommitDetailsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Date"
+                                    android:textSize="@dimen/_15sdp"
+                                    android:textColor="@color/safeplace_lightfont"
+                                    android:textStyle="bold"
+                                    />
+
+                                <TextView
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:id="@+id/txtDateCommitDetails"
+                                    android:layout_below="@+id/txtDateCommitDetailsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Date"
+                                    />
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/relativeTimeCommit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_toRightOf="@+id/relativeDateCommit"
+                                >
+
+                                <TextView
+                                    android:id="@+id/txtTimeCommitDetailsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Time"
+                                    android:textSize="@dimen/_15sdp"
+                                    android:textColor="@color/safeplace_lightfont"
+                                    android:textStyle="bold"
+                                    />
+
+                                <TextView
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:id="@+id/txtTimeCommitDetails"
+                                    android:layout_below="@+id/txtTimeCommitDetailsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Time"
+                                    />
+
+
+                            </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </GridLayout>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativedetailsreport10"
+        android:layout_below="@+id/relativedetailsreport5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        >
+
+        <TextView
+            android:id="@+id/txtDetailedTitleReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Report Details"
+            android:textColor="@color/safeplace_darkfont"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativedetailsreport11"
+        android:layout_below="@+id/relativedetailsreport10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_20sdp"
+        android:paddingHorizontal="@dimen/_20sdp"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@color/safeplace_main2"
+            android:paddingBottom="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            >
+
+            <TextView
+                android:id="@+id/txtReportContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REPORT LOCATION"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/safeplace_darkfont"
+                android:textStyle="bold"/>
+
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

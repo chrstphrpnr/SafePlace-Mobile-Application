@@ -360,7 +360,7 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         mapView = view.findViewById(R.id.mapView);
         menuBarangayList = view.findViewById(R.id.menuBarangayList);
         btnReportHere = view.findViewById(R.id.btnReportHere);
-//        menuReportList = view.findViewById(R.id.menuReportList);
+        menuReportList = view.findViewById(R.id.menuReportList);
 
         scrollViewHomeScreen = view.findViewById(R.id.scrollViewHomeScreen);
 
@@ -388,10 +388,10 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         menuBarangayList.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), BarangayListActivity.class));
         });
-//
-//        menuReportList.setOnClickListener(v -> {
-//            startActivity(new Intent(getContext(), ReportListActivity.class));
-//        });
+
+        menuReportList.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), ReportListActivity.class));
+        });
     }
 
     @Override

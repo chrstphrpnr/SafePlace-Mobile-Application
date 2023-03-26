@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingVertical="@dimen/_20sdp"
+        >
+
+        <RelativeLayout
+            android:id="@+id/relativelayoutreport1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            >
+
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/img_type_report"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"/>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_toRightOf="@+id/relativelayoutreport1"
+            android:id="@+id/relativelayoutreport2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_25sdp">
+
+            <TextView
+                android:id="@+id/txt_report_incident_type"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Report Details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sdp" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/txt_report_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_toRightOf="@+id/txt_report_incident_type"
+                android:gravity="center"
+                android:text="Pending"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8sdp" />
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_toRightOf="@+id/relativelayoutreport1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_below="@+id/relativelayoutreport2"
+            android:layout_marginTop="@dimen/_5sdp"
+            >
+
+
+            <TextView
+                android:drawableLeft="@drawable/ic_calendar_grey"
+                android:id="@+id/txt_report_date_reported"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="2000-10-10"
+                android:drawablePadding="@dimen/_5sdp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8sdp" />
+
+
+                <TextView
+                    android:drawableLeft="@drawable/ic_barangay"
+                    android:drawableTint="@color/black"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/txt_report_date_reported"
+                    android:id="@+id/txt_report_barangay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Barangay"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp" />
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/txt_report_police_station"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Police Substation"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20sp" />-->
+
+
+
+</LinearLayout>

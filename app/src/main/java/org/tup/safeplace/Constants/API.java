@@ -147,5 +147,7 @@ public class API {
     public static String report_police = "https://safeplacetaguig.com/api/police_report";
     public static String report_barangay = "https://safeplacetaguig.com/api/barangay_report";
 
+    public static String view_reports = "https://safeplacetaguig.com/api/view_reports";
+
 
 }

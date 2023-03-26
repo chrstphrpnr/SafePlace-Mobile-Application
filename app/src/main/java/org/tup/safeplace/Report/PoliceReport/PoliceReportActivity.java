@@ -126,7 +126,7 @@ public class PoliceReportActivity extends AppCompatActivity {
     TextView txtchkbx, txtBarangay, txtPoliceStation, txtNearestBarangay, txtNearestPoliceStation;
     CheckBox anonymousCheckBox;
     String image1, image2, image3;
-    ImageView evidence_1, evidence_2, evidence_3;
+    ImageView evidence_1, evidence_2, evidence_3, btnReportBackPolice;
     private SharedPreferences userPref;
     private Button btnSubmitReportBlotter, btnDatePickerReport, btnReportTimePickerReport, report_image_1, report_image_2, report_image_3;
     private DatePickerDialog datePickerDialog;
@@ -144,6 +144,11 @@ public class PoliceReportActivity extends AppCompatActivity {
         evidence_1 = findViewById(R.id.police_evidence_1);
         evidence_2 = findViewById(R.id.police_evidence_2);
         evidence_3 = findViewById(R.id.police_evidence_3);
+        btnReportBackPolice = findViewById(R.id.btnReportBackPolice);
+
+        btnReportBackPolice.setOnClickListener(v->{
+            onBackPressed();
+        });
 
         //RelativeLayout
         relativeLayoutImage2 = findViewById(R.id.police_relativeLayoutImage2);
