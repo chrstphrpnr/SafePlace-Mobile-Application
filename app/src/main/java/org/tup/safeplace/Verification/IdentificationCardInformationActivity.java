@@ -312,17 +312,17 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
         boolean isBackId = prefs.getBoolean("isBackId", false);
         boolean isFrontId = prefs.getBoolean("isBackId", false);
 
-        if(isFrontId){
-            Toast.makeText(this, "Please Upload the Front side of you ID", Toast.LENGTH_SHORT).show();
-            return false;
-
-        }
-
-        if(isBackId){
-            Toast.makeText(this, "Please Upload the Back side of you ID", Toast.LENGTH_SHORT).show();
-            return false;
-
-        }
+//        if(isFrontId){
+//            Toast.makeText(this, "Please Upload the Front side of you ID", Toast.LENGTH_SHORT).show();
+//            return false;
+//
+//        }
+//
+//        if(isBackId){
+//            Toast.makeText(this, "Please Upload the Back side of you ID", Toast.LENGTH_SHORT).show();
+//            return false;
+//
+//        }
 
 //        if((isBackId) && (isFrontId)){
 //            Toast.makeText(this, "Please Upload your ID", Toast.LENGTH_SHORT).show();

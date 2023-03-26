@@ -1,5 +1,6 @@
 package org.tup.safeplace.PoliceStationMenuList;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,6 +39,8 @@ public class PoliceStationListMenuFragment extends Fragment {
     PoliceStation policeStation;
     SearchView searchPoliceStation;
     private View view;
+    private ProgressDialog dialog;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +50,11 @@ public class PoliceStationListMenuFragment extends Fragment {
         listViewPolice = view.findViewById(R.id.myListViewPoliceStation);
         adapter = new PoliceStationAdapter(getContext(), policeStationArrayList);
         listViewPolice.setAdapter(adapter);
+
+
+        dialog = new ProgressDialog(getContext());
+        dialog.setCancelable(false);
+
 
         searchPoliceStation.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -74,8 +83,11 @@ public class PoliceStationListMenuFragment extends Fragment {
     }
 
     private void showPoliceStationList() {
+
+        dialog.setMessage("Loading...");
+        dialog.show();
+
         StringRequest request = new StringRequest(Request.Method.GET, API.police_stations_list_api, response -> {
-            policeStationArrayList.clear();
 
             try {
                 JSONObject jsonObject = new JSONObject(response);
@@ -97,23 +109,45 @@ public class PoliceStationListMenuFragment extends Fragment {
 
                         policeStationArrayList.add(policeStation);
                         adapter.notifyDataSetChanged();
+                        dialog.dismiss();
+
                     }
                 }
 
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                dialog.dismiss();
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+                dialog.dismiss();
+
 
             }
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(policeStationArrayList != null){ //prevent crashing if the map doesn't exist yet (eg. on starting activity)
+            showPoliceStationList();
+        }
+        else{
+            policeStationArrayList.clear();
+        }
     }
 
     @Override

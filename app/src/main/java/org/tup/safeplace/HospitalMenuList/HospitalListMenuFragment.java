@@ -1,5 +1,6 @@
 package org.tup.safeplace.HospitalMenuList;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -36,11 +38,16 @@ public class HospitalListMenuFragment extends Fragment {
     HospitalAdapter adapter;
     Hospital hospital;
     private View view;
+    private ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_hospital_list_menu, container, false);
+
+        dialog = new ProgressDialog(getContext());
+        dialog.setCancelable(false);
+
         listView = view.findViewById(R.id.myListView);
         searchHospital = view.findViewById(R.id.searchHospital);
         adapter = new HospitalAdapter(getContext(), hospitalArrayList);
@@ -73,6 +80,10 @@ public class HospitalListMenuFragment extends Fragment {
     }
 
     private void showHospitalList() {
+
+        dialog.setMessage("Loading...");
+        dialog.show();
+
         StringRequest request = new StringRequest(Request.Method.GET, API.hospital_list_api, response -> {
             hospitalArrayList.clear();
 
@@ -97,22 +108,32 @@ public class HospitalListMenuFragment extends Fragment {
 
                         hospitalArrayList.add(hospital);
                         adapter.notifyDataSetChanged();
+
+                        dialog.dismiss();
+
                     }
                 }
 
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                dialog.dismiss();
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
+                dialog.dismiss();
+
             }
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
     }
 

@@ -1,5 +1,6 @@
 package org.tup.safeplace.HomeScreen;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -72,16 +74,20 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
     private TextView txtUserName, txtUserVerificationStatus;
 
     private CircleImageView imgProfile;
-    private final String imgUrl = "";
 
     private ImageView notificationBell,btnCallLogs;
     private Menu optionsMenu;
+    private ProgressDialog dialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_safe_place_home_screen);
+
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
 
         viewPager2 = findViewById(R.id.pager);
         bottomNavigationView = findViewById(R.id.bottomNav);
@@ -124,6 +130,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
             } else if (id == R.id.VerificationMenu) {
 
+                dialog.setMessage("Loading...");
+                dialog.show();
 
                 SharedPreferences userPref = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
 
@@ -148,17 +156,25 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
                                     if(status.equals("Pending")){
                                         Toast.makeText(SafePlaceHomeScreenActivity.this, "Your account is already in the process of verification, please wait.", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+
                                         showPopupWindow();
+
                                     }
 
                                     if(status.equals("Rejected")){
+                                        dialog.dismiss();
+
                                         startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
 //                                        SharedPreferences.Editor editor = userPref.edit();
 //                                        editor.putBoolean("verification_submitted", false);
 //                                        editor.apply();
+
                                     }
 
                                     if(status.equals("Unverified")){
+                                        dialog.dismiss();
+
                                         startActivity(new Intent(SafePlaceHomeScreenActivity.this, VerificationActivity.class));
 //                                        SharedPreferences.Editor editor = userPref.edit();
 //                                        editor.putBoolean("verification_submitted", false);
@@ -166,6 +182,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                                     }
 
                                     if(status.equals("Banned")){
+                                        dialog.dismiss();
+
                                         Toast.makeText(this, "Your Account is Banned. Please Contact the Admin", Toast.LENGTH_SHORT).show();
                                     }
 
@@ -173,28 +191,26 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                                 }
 
                                 if (role.equals("verified_user")) {
-                                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Your Account is already registered.", Toast.LENGTH_SHORT).show();
                                     SharedPreferences.Editor editor = userPref.edit();
                                     editor.putBoolean("verification_submitted", true);
                                     editor.apply();
+                                    dialog.dismiss();
+                                    Toast.makeText(SafePlaceHomeScreenActivity.this, "Your Account is already registered.", Toast.LENGTH_SHORT).show();
                                     showPopupWindowVerified();
                                 }
-
-
-
-
-
-
 
                             }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        dialog.dismiss();
                     }
 
 
                 }, error -> {
                     error.printStackTrace();
+                    dialog.dismiss();
+
                 }) {
 
                     @Override
@@ -207,6 +223,10 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 };
 
                 RequestQueue queue = Volley.newRequestQueue(this);
+                request.setRetryPolicy(new DefaultRetryPolicy(
+                        10000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 queue.add(request);
 
 
@@ -308,10 +328,12 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
                         if (status.equals("unverified_user")) {
                             txtUserVerificationStatus.setText("Unverified User");
+
                         }
 
                         if (status.equals("verified_user")) {
                             txtUserVerificationStatus.setText("Verified User");
+
                         }
 
                         Picasso.get().load(API.URL + object.getString("img")).resize(500, 0).centerCrop().into(imgProfile);
@@ -320,11 +342,13 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+
             }
 
 
         }, error -> {
             error.printStackTrace();
+
         }) {
 
             @Override
@@ -337,6 +361,10 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         };
 
         RequestQueue queue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(request);
 
     }
@@ -360,6 +388,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                             editor.putString("status", "Pending");
                             editor.apply();
 
+
                         }
 
                         if (status.equals("Rejected")){
@@ -375,11 +404,13 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+
             }
 
 
         }, error -> {
             error.printStackTrace();
+
         }) {
 
             @Override
@@ -392,6 +423,10 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         };
 
         RequestQueue queue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(request);
 
     }
@@ -415,15 +450,18 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
                     notification_count.setText(Integer.toString(jsonArray.length()));
 
+
 //                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+
             }
 
 
         }, error -> {
             error.printStackTrace();
+
         }) {
 
             @Override
@@ -436,6 +474,10 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
         };
 
         RequestQueue queue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(request);
 
 
@@ -558,21 +600,7 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        check_notification();
-        check_status();
-        getData();
-    }
 
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        check_notification();
-
-    }
 
     //Bottom Navigation Slide Pager
     private class ScreenSlidePageAdapter extends FragmentStateAdapter {

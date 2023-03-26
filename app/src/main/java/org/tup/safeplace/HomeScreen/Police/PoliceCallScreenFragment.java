@@ -1,6 +1,8 @@
 package org.tup.safeplace.HomeScreen.Police;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -55,6 +57,10 @@ public class PoliceCallScreenFragment extends Fragment {
     private JSONArray data;
     private TextView policeContact;
     private SharedPreferences userPref;
+    private ProgressDialog dialog;
+
+
+
 
 
     @Override
@@ -70,7 +76,8 @@ public class PoliceCallScreenFragment extends Fragment {
 
         userPref = getActivity().getApplicationContext().getSharedPreferences("user", getContext().MODE_PRIVATE);
 
-
+        dialog = new ProgressDialog(getContext());
+        dialog.setCancelable(false);
         policeStations = new ArrayList<String>();
 
         spinner = view.findViewById(R.id.policeSpinner);
@@ -165,15 +172,19 @@ public class PoliceCallScreenFragment extends Fragment {
 
     private void callLog() {
         String name_contacted = spinner.getSelectedItem().toString();
-
         StringRequest request = new StringRequest(Request.Method.POST, API.police_call_log, response -> {
 
-            String phoneNumber = policeContact.getText().toString();
-            Uri uri = Uri.parse("tel:" + Uri.encode(phoneNumber));
-            Intent intent = new Intent("android.intent.action.VIEW");
-            intent.setClassName("com.viber.voip", "com.viber.voip.WelcomeActivity");
-            intent.setData(uri);
-            startActivity(intent);
+
+            try{
+                String phoneNumber = policeContact.getText().toString();
+                Uri uri = Uri.parse("tel:" + Uri.encode(phoneNumber));
+                Intent intent = new Intent("android.intent.action.VIEW").setClassName("com.viber.voip", "com.viber.voip.WelcomeActivity").setData(uri);
+
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+                openPlayStore();
+            }
 
 
         }, error -> {
@@ -205,7 +216,19 @@ public class PoliceCallScreenFragment extends Fragment {
     }
 
 
+    private void openPlayStore() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.viber.voip")));
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.viber.voip")));
+        }
+    }
+
+
     private void getData() {
+
+        dialog.setMessage("Loading...");
+        dialog.show();
 
         StringRequest stringRequest = new StringRequest(API.police_stations_list_api, new Response.Listener<String>() {
             @Override
@@ -216,8 +239,12 @@ public class PoliceCallScreenFragment extends Fragment {
                     //Parsing the fetched Json String to JSON Object
                     try {
                         j = new JSONObject(response);
+                        dialog.dismiss();
+
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        dialog.dismiss();
+
                     }
 
                     //Storing the Array of JSON String to our JSON Array
@@ -225,8 +252,12 @@ public class PoliceCallScreenFragment extends Fragment {
 
                     //Calling method getStudents to get the students from the JSON Array
                     getPoliceStations(data);
+                    dialog.dismiss();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    dialog.dismiss();
+
                 }
 
             }
@@ -247,6 +278,8 @@ public class PoliceCallScreenFragment extends Fragment {
     }
 
     private void getPoliceStations(JSONArray j) {
+        dialog.setMessage("Loading...");
+        dialog.show();
         //Traversing through all the items in the json array
         for (int i = 0; i < j.length(); i++) {
             try {
@@ -255,6 +288,8 @@ public class PoliceCallScreenFragment extends Fragment {
 
                 //Adding the name of the student to array list
                 policeStations.add(json.getString(TAG_NAME));
+                dialog.dismiss();
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -266,6 +301,8 @@ public class PoliceCallScreenFragment extends Fragment {
 
     //Method to get student name of a particular position
     private String getContact(int position) {
+        dialog.setMessage("Loading...");
+        dialog.show();
         String contact = "";
         try {
             //Getting object of given index
@@ -273,6 +310,8 @@ public class PoliceCallScreenFragment extends Fragment {
 
             //Fetching name from that object
             contact = json.getString(TAG_CONTACT);
+            dialog.dismiss();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

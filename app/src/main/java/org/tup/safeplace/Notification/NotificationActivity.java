@@ -1,5 +1,6 @@
 package org.tup.safeplace.Notification;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -34,11 +36,17 @@ public class NotificationActivity extends AppCompatActivity {
     ImageView btnBack;
     MaterialButton btnRead;
     private SharedPreferences userPref;
+    private ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
+
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
 
         userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
 
@@ -65,11 +73,15 @@ public class NotificationActivity extends AppCompatActivity {
 
                 startActivity(getIntent());
                 finish();
+                dialog.dismiss();
+
 
 
             }, error -> {
                 Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
+                dialog.dismiss();
+
             }) {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
@@ -81,6 +93,10 @@ public class NotificationActivity extends AppCompatActivity {
             };
 
             RequestQueue queue = Volley.newRequestQueue(this);
+            request.setRetryPolicy(new DefaultRetryPolicy(
+                    10000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(request);
 
 
@@ -90,8 +106,12 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     public void Notification() {
+        dialog.setMessage("Loading...");
+        dialog.show();
+        notificationModelArrayList.clear();
+
+
         StringRequest request = new StringRequest(Request.Method.GET, API.notification, response -> {
-            notificationModelArrayList.clear();
 
             try {
                 JSONObject jsonObject = new JSONObject(response);
@@ -109,6 +129,8 @@ public class NotificationActivity extends AppCompatActivity {
 
                         notificationModelArrayList.add(notificationModel);
                         adapter.notifyDataSetChanged();
+                        dialog.dismiss();
+
 
                     }
                 }
@@ -128,9 +150,16 @@ public class NotificationActivity extends AppCompatActivity {
         };
 
         RequestQueue queue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(request);
 
 
     }
+
+
+
 
 }

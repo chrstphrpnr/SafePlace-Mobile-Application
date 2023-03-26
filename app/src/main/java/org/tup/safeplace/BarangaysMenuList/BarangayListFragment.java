@@ -1,5 +1,6 @@
 package org.tup.safeplace.BarangaysMenuList;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,11 +39,17 @@ public class BarangayListFragment extends Fragment {
     Barangay barangay;
     SearchView searchView;
     private View view;
+    private ProgressDialog dialog;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_barangay_list, container, false);
+
+        dialog = new ProgressDialog(getContext());
+        dialog.setCancelable(false);
+
         listViewBarangay = view.findViewById(R.id.myListViewBarangay);
         searchView = view.findViewById(R.id.searchBarangay);
         adapter = new BarangayAdapter(getContext(), barangayArrayList);
@@ -75,10 +83,12 @@ public class BarangayListFragment extends Fragment {
     }
 
     private void showBarangayList() {
+
+        dialog.setMessage("Loading...");
+        dialog.show();
+
+
         StringRequest request = new StringRequest(Request.Method.GET, API.barangay_list_api, response -> {
-            barangayArrayList.clear();
-
-
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String succes = jsonObject.optString("success");
@@ -99,6 +109,8 @@ public class BarangayListFragment extends Fragment {
 
                         barangayArrayList.add(barangay);
                         adapter.notifyDataSetChanged();
+                        dialog.dismiss();
+
 
                     }
                 }
@@ -106,16 +118,36 @@ public class BarangayListFragment extends Fragment {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                dialog.dismiss();
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+                dialog.dismiss();
+
             }
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(barangayArrayList != null){ //prevent crashing if the map doesn't exist yet (eg. on starting activity)
+            showBarangayList();
+        }
+        else{
+            barangayArrayList.clear();
+        }
     }
 
     @Override

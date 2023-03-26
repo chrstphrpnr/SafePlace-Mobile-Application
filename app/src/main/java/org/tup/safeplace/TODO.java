@@ -2,16 +2,15 @@ package org.tup.safeplace;
 
 public class TODO {
 
-    //TODO: Send Notification After Clicking DONE in Selfie Activity
 
     //TODO: Submit a review
 
 
 
-    //TODO: Verify number
+    //TODO: Verify number ???
 
 
-
+    //NOTIFICATIOn
 
 
 
@@ -22,6 +21,7 @@ public class TODO {
     //TODO: Shared Preference if user theres no photo uploaded in id card
     //TODO: Condition if theres no viber
     //TODO: TERMS AND CONDITION
+    //TODO: Send Notification After Clicking DONE in Selfie Activity
 
 
 
