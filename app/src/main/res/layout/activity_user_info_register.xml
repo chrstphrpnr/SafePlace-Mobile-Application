@@ -7,26 +7,33 @@
     tools:context=".Authentication.UserInfoRegisterActivity">
 
     <RelativeLayout
-        android:layout_margin="@dimen/_20sdp"
+        android:layout_margin="@dimen/_30sdp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_30sdp"
+        >
 
         <TextView
             android:id="@+id/txtInfoTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="User Info"
+            android:text="PROFILE DETAILS"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="30sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgProfileUserInfo"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
-            android:layout_margin="@dimen/_20sdp"
-            android:layout_centerHorizontal="true"
-            android:src="#D4CCCC"
             android:layout_below="@+id/txtInfoTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:src="#B2B2B2"
             />
 
         <TextView
@@ -35,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="Select Photo"
             android:layout_below="@+id/imgProfileUserInfo"
-            android:textColor="@color/teal_200"
+            android:textColor="#153B9A"
             android:textSize="16sp"
             android:gravity="center"
             />
@@ -174,6 +181,7 @@
             android:layout_height="wrap_content"
             android:text="Continue"
             android:textSize="20dp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_50sdp"
             android:layout_below="@+id/txtLayoutContactUserInfo"
             app:backgroundTint="@color/safeplace_btnblue" />

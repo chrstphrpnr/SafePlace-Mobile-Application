@@ -32,7 +32,7 @@
         <item name="colorPrimaryVariant">@color/safeplace_bgcolor</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/safeplace_bgcolor</item>
-        <item name="android:windowBackground">@drawable/splashscreen</item>
+        <item name="android:windowBackground">@drawable/safeplace_splash_screen</item>
     </style>
 
     <style name="ActionMenuTextAppearance" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu">

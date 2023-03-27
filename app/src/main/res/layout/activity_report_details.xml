@@ -154,9 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_centerInParent="true"
-
                 >
-
 
                 <TextView
                     android:layout_marginTop="@dimen/_10sdp"
@@ -347,9 +345,6 @@
 
                     </RelativeLayout>
 
-
-
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -420,7 +415,6 @@
                                     android:text="Date"
                                     />
 
-
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -461,8 +455,6 @@
                 </RelativeLayout>
 
             </GridLayout>
-
-
 
     </RelativeLayout>
 
@@ -517,23 +509,7 @@
 
         </ScrollView>
 
-
-
     </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </RelativeLayout>
 

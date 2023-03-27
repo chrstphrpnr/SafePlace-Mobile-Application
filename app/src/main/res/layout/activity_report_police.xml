@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtStreetTitle"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:hint="Street"
+                android:hint="Input Street if Applicable"
                 android:textColor="@color/safeplace_darkfont"
                 android:textSize="15sp"
                 app:boxStrokeWidth="0dp"
@@ -94,7 +94,7 @@
                     android:id="@+id/txtInputStreetReport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/safeplace_main2"
                     android:inputType="textEmailAddress"
                     android:singleLine="true" />
 
@@ -128,14 +128,14 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtBarangay"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/white"
+                android:background="@color/safeplace_main2"
                 android:hint="@string/select_here">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteBarangaytxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#DFDFDF"
+                    android:background="@color/safeplace_main2"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -176,14 +176,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtPoliceStation"
-                android:background="@color/white"
+                android:background="@color/safeplace_main2"
                 android:hint="@string/select_here">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompletePoliceStationtxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#DFDFDF"
+                    android:background="@color/safeplace_main2"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -215,14 +215,14 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtIncidentTypeTitle"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/white"
+                android:background="@color/safeplace_main2"
                 android:hint="@string/select_here">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteIncidentTypetxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#DFDFDF"
+                    android:background="@color/safeplace_main2"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -246,15 +246,15 @@
                 android:layout_below="@+id/txtReportDateTitle"
                 android:layout_gravity="start"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="#DFDFDF"
-                android:backgroundTint="#DFDFDF"
+                android:background="@color/safeplace_main2"
+                android:backgroundTint="@color/safeplace_main2"
                 android:gravity="start"
                 android:onClick="openDatePicker"
                 android:text="Please pick the date of incident "
                 android:textAllCaps="false"
                 android:textColor="#5B5B5B"
                 android:textSize="17sp"
-                app:backgroundTint="@color/white" />
+                app:backgroundTint="@color/safeplace_main2" />
 
 
             <TextView
@@ -277,15 +277,15 @@
                 android:layout_below="@+id/txtReportTimePickerTitle"
                 android:layout_gravity="start"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="#DFDFDF"
-                android:backgroundTint="#DFDFDF"
+                android:background="@color/safeplace_main2"
+                android:backgroundTint="@color/safeplace_main2"
                 android:gravity="start"
                 android:onClick="openDatePicker"
                 android:text="Please Pick the Time of Incident"
                 android:textAllCaps="false"
                 android:textColor="#5B5B5B"
                 android:textSize="17sp"
-                app:backgroundTint="@color/white" />
+                app:backgroundTint="@color/safeplace_main2" />
 
 
             <TextView
@@ -306,7 +306,8 @@
                 android:layout_height="@dimen/_100sdp"
                 android:layout_below="@+id/txtReportImageTitle"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/white">
+                android:background="@color/safeplace_main2"
+                >
 
 
                 <ImageView
@@ -339,7 +340,7 @@
                 android:layout_height="@dimen/_100sdp"
                 android:layout_below="@+id/police_relativeLayoutImage1"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/white"
+                android:background="@color/safeplace_main2"
                 android:visibility="gone">
 
 
@@ -375,7 +376,7 @@
                 android:layout_below="@+id/police_relativeLayoutImage2"
 
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/white"
+                android:background="@color/safeplace_main2"
                 android:visibility="gone"
 
                 >
@@ -428,6 +429,7 @@
                 android:textSize="15sp"
                 app:boxStrokeWidth="0dp"
                 app:hintTextColor="#8C8686"
+                android:background="@color/safeplace_main2"
 
                 >
 
@@ -435,7 +437,7 @@
                     android:id="@+id/txtReportDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/safeplace_main2"
                     android:editable="true"
                     android:ellipsize="start"
                     android:enabled="true"
@@ -449,6 +451,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <CheckBox
+                android:textStyle="bold"
                 android:id="@+id/anonymousCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

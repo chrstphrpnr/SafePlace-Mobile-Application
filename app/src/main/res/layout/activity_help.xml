@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Help.HelpActivity"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_50sdp"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/taskbarHelpCenter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.google.android.material.appbar.AppBarLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbarReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/safeplace_main3">
+
+                    <ImageView
+                        android:id="@+id/btnReportDetailsBack"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="HELP CENTER"
+                            android:textColor="@color/black"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativehelp1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_below="@+id/taskbarHelpCenter"
+            >
+
+            <ImageView
+                android:id="@+id/imgHelp"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:src="@drawable/ic_help_center" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativehelp1"
+            android:padding="@dimen/_20sdp"
+            >
+
+            <Button
+
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/safeplace_main2"
+                android:id="@+id/btnGettingStarted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GETTING STARTED"
+                android:textSize="@dimen/_15sdp"
+                android:drawableRight="@drawable/ic_expand"
+                android:layout_centerHorizontal="true"
+                />
+
+            <RelativeLayout
+                android:id="@+id/relativeGettingStarted"
+                android:layout_below="@+id/btnGettingStarted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_40sdp"
+                android:layout_marginTop="-10dp"
+                android:background="@color/safeplace_main2"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/txtDowloadTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download Safe Place App"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/txtDowloadDesc"
+                    android:layout_below="@+id/txtDowloadTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To download our app, browse to our website and click the DOWNLOAD button."
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColor="@color/safeplace_darkfont"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:gravity="center"
+                    />
+
+                <ImageView
+                    android:id="@+id/imgDownload"
+                    android:layout_marginTop="-50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/txtDowloadDesc"
+                    android:src="@drawable/help_ui_1"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/txtRegisterTitle"
+                    android:layout_below="@+id/imgDownload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registration"
+                    android:layout_marginTop="-30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12sdp"/>
+
+
+                <TextView
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/txtRegisterDesc"
+                    android:layout_below="@+id/txtRegisterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You may establish a SafePlace Account using our website or our mobile app, the SafePlace Application."
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColor="@color/safeplace_darkfont"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:gravity="center"
+                    />
+
+                <ImageView
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:id="@+id/imgRegister"
+                    android:layout_marginTop="-40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/txtRegisterDesc"
+                    android:src="@drawable/help_ui_2"
+                    android:layout_centerHorizontal="true"/>
+
+
+
+                <TextView
+                    android:id="@+id/txtVerificationTitle"
+                    android:layout_below="@+id/imgRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Verification"
+                    android:layout_marginTop="-30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12sdp"/>
+
+
+                <TextView
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/txtVerificationDesc"
+                    android:layout_below="@+id/txtVerificationTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A completely verified SafePlace Account guarantees the authenticity of your account by submitting personal documents to verify evidence of identification, as well as a selfie scan for further protection. It also gives you access to all of our application's features and services."
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColor="@color/safeplace_darkfont"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:gravity="center"
+                    />
+
+
+                <ImageView
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/imgVerif1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/txtVerificationDesc"
+                    android:src="@drawable/help_ui_3"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageView
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/imgVerif2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/imgVerif1"
+                    android:src="@drawable/help_ui_4"
+                    android:layout_centerHorizontal="true"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+            <Button
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_below="@+id/relativeGettingStarted"
+                android:backgroundTint="@color/safeplace_main2"
+                android:id="@+id/btnServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SERVICES"
+                android:textSize="@dimen/_15sdp"
+                android:drawableRight="@drawable/ic_expand"
+                android:layout_centerHorizontal="true"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+
+            <RelativeLayout
+                android:id="@+id/relativeServices"
+                android:layout_below="@+id/btnServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:background="@color/safeplace_main2"
+                android:paddingBottom="@dimen/_40sdp"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/txtEmergencyCallTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Calls"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/txtCallDesc"
+                    android:layout_below="@+id/txtEmergencyCallTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="If you swipe right, you will see the call button for Police Substations, and if you swipe left, you will see the call button for Barangays in Taguig City's District 2."
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColor="@color/safeplace_darkfont"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:gravity="center"
+                    />
+
+
+                <ImageView
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/imgCall"
+                    android:layout_marginTop="-30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/txtCallDesc"
+                    android:src="@drawable/help_ui_5"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/txtReportsTitle"
+                    android:layout_below="@+id/imgCall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Filing Reports"
+                    android:layout_marginTop="-30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12sdp"/>
+
+
+                <TextView
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/txtReportDesc"
+                    android:layout_below="@+id/txtReportsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Through this app, users are able to report any happenings or scandalous event in their area."
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColor="@color/safeplace_darkfont"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtReportsBarangayTitle"
+                    android:layout_below="@+id/txtReportDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Barangay"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <ImageView
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/imgReportBarangay"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/txtReportsBarangayTitle"
+                    android:src="@drawable/help_ui_6"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/txtReportsPoliceTitle"
+                    android:layout_below="@+id/imgReportBarangay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Police Sub-Station"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <ImageView
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/imgReportPolice"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/txtReportsPoliceTitle"
+                    android:src="@drawable/help_ui_7"
+                    android:layout_centerHorizontal="true"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+            <Button
+                android:gravity="left"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_below="@+id/relativeServices"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/safeplace_main2"
+                android:id="@+id/btnSecurity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SECURITY"
+                android:drawableRight="@drawable/ic_expand"
+                android:layout_centerHorizontal="true"/>
+
+
+            <RelativeLayout
+                android:id="@+id/relativeSecurity"
+                android:layout_below="@+id/btnSecurity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:background="@color/safeplace_main2"
+                android:paddingBottom="@dimen/_40sdp"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/txtAccountRecoveryTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Account Recovery"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/txtAccountRecoveryDesc"
+                    android:layout_below="@+id/txtAccountRecoveryTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="It allows you to regain access to your account on your own if you forget your password. Click the FORGOT PASSWORD then enter your email address so that it will send an email to reset your password. You can also change your password via your Account Information by clicking CHANGE PASSWORD"
+                    android:textColor="@color/safeplace_darkfont"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:gravity="center"
+                    />
+
+                <ImageView
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/imgRecover"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/txtAccountRecoveryDesc"
+                    android:src="@drawable/help_ui_8"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageView
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/imgForgot"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp"
+                    android:layout_below="@+id/imgRecover"
+                    android:src="@drawable/help_ui_9"
+                    android:layout_centerHorizontal="true"/>
+
+
+            </RelativeLayout>
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

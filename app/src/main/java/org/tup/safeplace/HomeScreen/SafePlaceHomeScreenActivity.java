@@ -45,6 +45,7 @@ import org.json.JSONObject;
 import org.tup.safeplace.Authentication.AuthenticationActivity;
 import org.tup.safeplace.CallHistory.CallHistoryActivity;
 import org.tup.safeplace.Constants.API;
+import org.tup.safeplace.Help.HelpActivity;
 import org.tup.safeplace.HomeScreen.Barangay.BarangayCallScreenFragment;
 import org.tup.safeplace.HomeScreen.Police.PoliceCallScreenFragment;
 import org.tup.safeplace.Notification.NotificationActivity;
@@ -128,7 +129,8 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
 
             if (id == R.id.AccountMenu) {
                 startActivity(new Intent(SafePlaceHomeScreenActivity.this, UserAccountActivity.class));
-            } else if (id == R.id.VerificationMenu) {
+            }
+            else if (id == R.id.VerificationMenu) {
 
                 dialog.setMessage("Loading...");
                 dialog.show();
@@ -230,9 +232,12 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                 queue.add(request);
 
 
-            } else if (id == R.id.HelpMenu) {
-                Toast.makeText(SafePlaceHomeScreenActivity.this, "Help", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.LogoutMenu) {
+            }
+            else if (id == R.id.HelpMenu) {
+                startActivity(new Intent(SafePlaceHomeScreenActivity.this, HelpActivity.class));
+                finish();
+            }
+            else if (id == R.id.LogoutMenu) {
                 Toast.makeText(SafePlaceHomeScreenActivity.this, "Logout", Toast.LENGTH_SHORT).show();
                 logout();
             }

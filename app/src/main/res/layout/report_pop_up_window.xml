@@ -41,7 +41,7 @@
             android:layout_above="@+id/btnReportBarangay"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:src="@drawable/safeplace_logo_name" />
+            android:src="@drawable/ic_safeplace_logo_name" />
 
 
     </RelativeLayout>
