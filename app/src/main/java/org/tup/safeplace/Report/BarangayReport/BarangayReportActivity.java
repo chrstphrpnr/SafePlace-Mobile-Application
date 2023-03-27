@@ -61,8 +61,8 @@ import java.util.TimeZone;
 public class BarangayReportActivity extends AppCompatActivity {
 
     RelativeLayout relativeLayoutImage2, relativeLayoutImage3;
-    TextInputLayout edtLayoutStreetLocationReport, dropDownBarangayReportLayout, dropIncidentTypeLayout, edtReportDetailsLayout;
-    TextInputEditText txtInputStreetReport, txtReportDetails;
+    TextInputLayout edtLayoutStreetLocationReport, dropDownBarangayReportLayout, dropIncidentTypeLayout, edtReportDetailsLayout,edtLayoutIncidentReportBarangay;
+    TextInputEditText txtInputStreetReport, txtReportDetails,txtInputIncidentReportBarangay;
     AutoCompleteTextView autoCompleteBarangaytxt, autoCompleteIncidentTypetxt;
     String[] barangay_array =
             {
@@ -98,7 +98,7 @@ public class BarangayReportActivity extends AppCompatActivity {
                     "barangay_upperbicutan",
                     "barangay_westernbicutan"
             };
-    String[] incident_type_array = {"Physical Injury", "Thief", "Robbery"};
+    String[] incident_type_array = {"Physical Injury", "Thief", "Robbery","Others"};
     ArrayAdapter<String> incidentAdapterItems;
     TextView txtchkbx, txtBarangay;
     CheckBox anonymousCheckBox;
@@ -176,6 +176,19 @@ public class BarangayReportActivity extends AppCompatActivity {
         //Incident Type
         incidentAdapterItems = new ArrayAdapter<String>(this, R.layout.incident_type_list_item, incident_type_array);
         autoCompleteIncidentTypetxt.setAdapter(incidentAdapterItems);
+        edtLayoutIncidentReportBarangay = findViewById(R.id.edtLayoutIncidentReportBarangay);
+        txtInputIncidentReportBarangay = findViewById(R.id.txtInputIncidentReportBarangay);
+        autoCompleteIncidentTypetxt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                txtInputIncidentReportBarangay.setText(autoCompleteIncidentTypetxt.getText().toString().trim());
+
+                if(txtInputIncidentReportBarangay.getText().toString().equals("Others")){
+                    txtInputIncidentReportBarangay.setText("");
+                    edtLayoutIncidentReportBarangay.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         //DatePicker
         btnDatePickerReport = findViewById(R.id.btnDatePickerReport);
@@ -432,7 +445,7 @@ public class BarangayReportActivity extends AppCompatActivity {
 
         String street = txtInputStreetReport.getText().toString().trim();
         String barangay = txtBarangay.getText().toString().trim();
-        String incident_type = autoCompleteIncidentTypetxt.getText().toString().trim();
+        String incident_type = txtInputIncidentReportBarangay.getText().toString().trim();
         String date_commited = btnDatePickerReport.getText().toString().trim();
         String time_commited = btnReportTimePickerReport.getText().toString().trim();
         String report_details = txtReportDetails.getText().toString().trim();

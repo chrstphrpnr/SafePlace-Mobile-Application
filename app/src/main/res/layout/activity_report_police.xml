@@ -227,11 +227,66 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtLayoutIncidentReportPolice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dropIncidentTypeLayout"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Please input the specific incident type."
+                android:textColor="@color/safeplace_darkfont"
+                android:textSize="15sp"
+                app:boxStrokeWidth="0dp"
+                app:hintTextColor="#8C8686"
+                android:visibility="gone"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInputIncidentReportPolice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/safeplace_main2"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/txtOtherIncident"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtLayoutIncidentReportPolice"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Other Incident"
+                android:textSize="15sp"
+                android:visibility="gone"
+
+                />
+
+            <EditText
+                android:id="@+id/edtOtherIncident"
+                android:layout_below="@+id/txtOtherIncident"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/safeplace_main2"
+                android:hint="Please input the Specific Incident"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_20sdp"
+
+                />
+
+
+
+
+
             <TextView
                 android:id="@+id/txtReportDateTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/dropIncidentTypeLayout"
+                android:layout_below="@+id/edtOtherIncident"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="Date Committed"
                 android:textSize="15sp"

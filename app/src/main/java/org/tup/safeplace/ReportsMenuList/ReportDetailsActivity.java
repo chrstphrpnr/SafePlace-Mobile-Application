@@ -85,6 +85,34 @@ public class ReportDetailsActivity extends AppCompatActivity {
         Picasso.get().load(API.URL + ReportListFragment.reportArrayList.get(position).getReport_images_2()).resize(500, 0).centerCrop().into(img2);
         Picasso.get().load(API.URL + ReportListFragment.reportArrayList.get(position).getReport_images_3()).resize(500, 0).centerCrop().into(img3);
 
+
+        img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReportDetailsActivity.this, FullScreenImageActivity.class);
+                intent.putExtra("image_url", API.URL + ReportListFragment.reportArrayList.get(position).getReport_images_1());
+                startActivity(intent);
+            }
+        });
+
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReportDetailsActivity.this, FullScreenImageActivity.class);
+                intent.putExtra("image_url", API.URL + ReportListFragment.reportArrayList.get(position).getReport_images_2());
+                startActivity(intent);
+            }
+        });
+
+        img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReportDetailsActivity.this, FullScreenImageActivity.class);
+                intent.putExtra("image_url", API.URL + ReportListFragment.reportArrayList.get(position).getReport_images_3());
+                startActivity(intent);
+            }
+        });
+
         String Address = ReportListFragment.reportArrayList.get(position).getStreet();
         String Barangay = ReportListFragment.reportArrayList.get(position).getBarangay();
 
@@ -94,55 +122,59 @@ public class ReportDetailsActivity extends AppCompatActivity {
         }
         else {
 
-            if(Address.equals("barangay_centralbicutan")){
+            if(Barangay.equals("barangay_centralbicutan")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Central Signal Village");
             }
 
-            if(Address.equals("barangay_centralsignalvillage")){
+            if(Barangay.equals("barangay_centralsignalvillage")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Central Signal Village");
             }
 
-            if(Address.equals("barangay_fortbonifacio")){
+            if(Barangay.equals("barangay_fortbonifacio")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Fort Bonifacio");
             }
 
-            if(Address.equals("barangay_katuparan")){
+            if(Barangay.equals("barangay_katuparan")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Katuparan");
             }
 
-            if(Address.equals("barangay_maharlikavillage")){
+            if(Barangay.equals("barangay_maharlikavillage")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Maharlika Village");
             }
 
-            if(Address.equals("barangay_northdaanghari")){
+            if(Barangay.equals("barangay_northdaanghari")){
                 txtBarangayDetails.setText(Address+", "+"Barangay North Daanghari");
             }
 
-            if(Address.equals("barangay_northsignalvillage")){
+            if(Barangay.equals("barangay_northsignalvillage")){
                 txtBarangayDetails.setText(Address+", "+"Barangay North Signal Village");
             }
 
-            if(Address.equals("barangay_pinagsama")){
+            if(Barangay.equals("barangay_pinagsama")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Pinagsama");
             }
 
-            if(Address.equals("barangay_southdaanghari")){
+            if(Barangay.equals("barangay_southdaanghari")){
                 txtBarangayDetails.setText(Address+", "+"Barangay South Daanghari");
             }
 
-            if(Address.equals("barangay_southsignalvillage")){
+            if(Barangay.equals("barangay_southsignalvillage")){
                 txtBarangayDetails.setText(Address+", "+"Barangay South Signal Village");
             }
 
-            if(Address.equals("barangay_tanyag")){
+            if(Barangay.equals("barangay_tanyag")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Tanyag");
             }
 
-            if(Address.equals("barangay_upperbicutan")){
+            if(Barangay.equals("barangay_upperbicutan")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Upper Bicutan");
             }
 
-            if(Address.equals("barangay_westernbicutan")){
+            if(Barangay.equals("barangay_westernbicutan")){
+                txtBarangayDetails.setText(Address+", "+"Barangay Western Bicutan");
+            }
+
+            if(Barangay.equals("barangay_westernbicutan")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Western Bicutan");
             }
 

@@ -181,11 +181,36 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtLayoutIncidentReportBarangay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dropIncidentTypeLayout"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Please input the specific incident type."
+                android:textColor="@color/safeplace_darkfont"
+                android:textSize="15sp"
+                app:boxStrokeWidth="0dp"
+                app:hintTextColor="#8C8686"
+                android:visibility="gone"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInputIncidentReportBarangay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/safeplace_main2"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/txtReportDateTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/dropIncidentTypeLayout"
+                android:layout_below="@+id/edtLayoutIncidentReportBarangay"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="Date Committed"
                 android:textSize="15sp"

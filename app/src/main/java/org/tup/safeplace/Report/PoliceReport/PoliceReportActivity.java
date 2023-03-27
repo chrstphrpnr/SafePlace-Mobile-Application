@@ -19,6 +19,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,8 +61,8 @@ import java.util.TimeZone;
 public class PoliceReportActivity extends AppCompatActivity {
 
     RelativeLayout relativeLayoutImage2, relativeLayoutImage3;
-    TextInputLayout edtLayoutStreetLocationReport, dropDownPoliceReportLayout, dropDownBarangayReportLayout, dropIncidentTypeLayout, edtReportDetailsLayout;
-    TextInputEditText txtInputStreetReport, txtReportDetails;
+    TextInputLayout edtLayoutStreetLocationReport, dropDownPoliceReportLayout, dropDownBarangayReportLayout, dropIncidentTypeLayout, edtReportDetailsLayout,edtLayoutIncidentReportPolice;
+    TextInputEditText txtInputStreetReport, txtReportDetails,txtInputIncidentReportPolice;
     AutoCompleteTextView autoCompleteBarangaytxt, autoCompletePoliceStationtxt, autoCompleteIncidentTypetxt;
     String[] barangay_array =
             {
@@ -121,9 +122,9 @@ public class PoliceReportActivity extends AppCompatActivity {
                     "police_substation8",
 
             };
-    String[] incident_type_array = {"Physical Injury", "Thief", "Robbery"};
+    String[] incident_type_array = {"Physical Injury", "Thief", "Robbery","Others"};
     ArrayAdapter<String> incidentAdapterItems;
-    TextView txtchkbx, txtBarangay, txtPoliceStation, txtNearestBarangay, txtNearestPoliceStation;
+    TextView txtchkbx, txtBarangay, txtPoliceStation, txtNearestBarangay, txtNearestPoliceStation,txtOtherIncident;
     CheckBox anonymousCheckBox;
     String image1, image2, image3;
     ImageView evidence_1, evidence_2, evidence_3, btnReportBackPolice;
@@ -131,6 +132,7 @@ public class PoliceReportActivity extends AppCompatActivity {
     private Button btnSubmitReportBlotter, btnDatePickerReport, btnReportTimePickerReport, report_image_1, report_image_2, report_image_3;
     private DatePickerDialog datePickerDialog;
     private Bitmap bitmap = null;
+    private EditText edtOtherIncident;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -298,8 +300,34 @@ public class PoliceReportActivity extends AppCompatActivity {
         });
 
         //Incident Type
+        txtOtherIncident = findViewById(R.id.txtOtherIncident);
+
         incidentAdapterItems = new ArrayAdapter<String>(this, R.layout.incident_type_list_item, incident_type_array);
         autoCompleteIncidentTypetxt.setAdapter(incidentAdapterItems);
+
+        edtLayoutIncidentReportPolice = findViewById(R.id.edtLayoutIncidentReportPolice);
+        txtInputIncidentReportPolice = findViewById(R.id.txtInputIncidentReportPolice);
+
+        autoCompleteIncidentTypetxt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                txtInputIncidentReportPolice.setText(autoCompleteIncidentTypetxt.getText().toString().trim());
+
+                if(txtInputIncidentReportPolice.getText().toString().equals("Others")){
+                    txtInputIncidentReportPolice.setText("");
+                    edtLayoutIncidentReportPolice.setVisibility(View.VISIBLE);
+                }
+
+
+
+
+            }
+        });
+
+
+
+
+
 
 
         //DatePicker
@@ -542,7 +570,7 @@ public class PoliceReportActivity extends AppCompatActivity {
         String street = txtInputStreetReport.getText().toString().trim();
         String barangay = txtBarangay.getText().toString().trim();
         String police_substation = txtPoliceStation.getText().toString().trim();
-        String incident_type = autoCompleteIncidentTypetxt.getText().toString().trim();
+        String incident_type = txtInputIncidentReportPolice.getText().toString().trim();
         String date_commited = btnDatePickerReport.getText().toString().trim();
         String time_commited = btnReportTimePickerReport.getText().toString().trim();
         String report_details = txtReportDetails.getText().toString().trim();
