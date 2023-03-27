@@ -174,9 +174,7 @@ public class ReportDetailsActivity extends AppCompatActivity {
                 txtBarangayDetails.setText(Address+", "+"Barangay Western Bicutan");
             }
 
-            if(Barangay.equals("barangay_westernbicutan")){
-                txtBarangayDetails.setText(Address+", "+"Barangay Western Bicutan");
-            }
+
 
         }
 

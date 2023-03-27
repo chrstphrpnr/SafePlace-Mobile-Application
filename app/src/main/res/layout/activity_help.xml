@@ -33,7 +33,7 @@
                     android:background="@color/safeplace_main3">
 
                     <ImageView
-                        android:id="@+id/btnReportDetailsBack"
+                        android:id="@+id/btnHelpCenterBack"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_centerVertical="true"

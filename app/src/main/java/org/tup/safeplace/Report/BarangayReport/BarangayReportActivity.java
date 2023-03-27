@@ -48,6 +48,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
+import org.tup.safeplace.ReportsMenuList.ReportListActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -464,7 +465,8 @@ public class BarangayReportActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
-                    startActivity(new Intent(BarangayReportActivity.this, SafePlaceHomeScreenActivity.class));
+                    startActivity(new Intent(BarangayReportActivity.this, ReportListActivity.class));
+                    finish();
                     Toast.makeText(BarangayReportActivity.this, "Report Submitted Successfully", Toast.LENGTH_SHORT).show();
                 } catch (Error error) {
                     error.printStackTrace();

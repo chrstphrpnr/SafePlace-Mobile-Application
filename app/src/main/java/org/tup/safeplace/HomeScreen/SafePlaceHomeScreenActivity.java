@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -235,7 +236,6 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
             }
             else if (id == R.id.HelpMenu) {
                 startActivity(new Intent(SafePlaceHomeScreenActivity.this, HelpActivity.class));
-                finish();
             }
             else if (id == R.id.LogoutMenu) {
                 Toast.makeText(SafePlaceHomeScreenActivity.this, "Logout", Toast.LENGTH_SHORT).show();
@@ -332,12 +332,14 @@ public class SafePlaceHomeScreenActivity extends AppCompatActivity {
                         String status = object.getString("role");
 
                         if (status.equals("unverified_user")) {
-                            txtUserVerificationStatus.setText("Unverified User");
+                            txtUserVerificationStatus.setText("Not Verified");
+//                            txtUserVerificationStatus.setTextColor(Color.parseColor("#BDF89A"));
 
                         }
 
                         if (status.equals("verified_user")) {
                             txtUserVerificationStatus.setText("Verified User");
+//                            txtUserVerificationStatus.setTextColor(Color.parseColor("#FF128317"));
 
                         }
 

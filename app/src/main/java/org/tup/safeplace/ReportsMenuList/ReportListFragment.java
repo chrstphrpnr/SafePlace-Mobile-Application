@@ -2,6 +2,7 @@ package org.tup.safeplace.ReportsMenuList;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -46,6 +49,7 @@ public class ReportListFragment extends Fragment {
     private SharedPreferences userPref;
 
     private ImageView btnMenuListBarangay;
+    private ProgressDialog dialog;
 
 
 
@@ -56,6 +60,8 @@ public class ReportListFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_report_list, container, false);
         userPref = getContext().getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+        dialog = new ProgressDialog(getContext());
+        dialog.setCancelable(false);
 
         btnMenuListBarangay = view.findViewById(R.id.btnMenuListBarangay);
 
@@ -66,10 +72,13 @@ public class ReportListFragment extends Fragment {
             requireActivity().finish();
 
         });
-
         listViewReport = view.findViewById(R.id.myListViewReports);
         adapter = new ReportAdapter(getContext(), reportArrayList);
+
         listViewReport.setAdapter(adapter);
+
+
+
 
 
         listViewReport.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -87,7 +96,8 @@ public class ReportListFragment extends Fragment {
 
 
     private void showReportList(){
-
+        dialog.setMessage("Loading...");
+        dialog.show();
         StringRequest request = new StringRequest(Request.Method.GET, API.view_reports, response -> {
             reportArrayList.clear();
 
@@ -115,22 +125,32 @@ public class ReportListFragment extends Fragment {
                         String report_images_3 = object.getString("report_images_3");
                         String street = object.getString("street");
 
-
-
                         reports = new Report(complainant_identity, report_details, report_status, date_reported,time_reported,
                                 year_reported,date_commited,time_commited,incident_type,barangay,police_substation,report_images_1,report_images_2,report_images_3,street);
 
                         reportArrayList.add(reports);
+
                         adapter.notifyDataSetChanged();
 
+
+
+                        dialog.dismiss();
+
+
                     }
+                    dialog.dismiss();
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                dialog.dismiss();
+
             }
 
         }, error -> {
             error.printStackTrace();
+            dialog.dismiss();
+
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

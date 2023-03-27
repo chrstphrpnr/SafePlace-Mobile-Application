@@ -270,15 +270,13 @@
                         android:layout_below="@+id/relativedetailsreportDateTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/_20sdp"
-                        android:paddingVertical="@dimen/_20sdp"
-                        android:layout_centerInParent="true"
                         >
 
                         <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_centerInParent="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:gravity="center"
                             >
 
 
@@ -286,6 +284,7 @@
                                 android:id="@+id/relativeDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+
                                 >
 
                                 <TextView
@@ -296,6 +295,7 @@
                                     android:textSize="@dimen/_15sdp"
                                     android:textColor="@color/safeplace_lightfont"
                                     android:textStyle="bold"
+
                                     />
 
                                 <TextView
@@ -379,14 +379,13 @@
                         android:layout_below="@+id/relativedetailsreportDateCommittedTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/_20sdp"
-                        android:paddingVertical="@dimen/_20sdp"
                         >
 
                         <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_centerInParent="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:gravity="center"
                             >
 
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import org.tup.safeplace.R;
@@ -13,6 +14,7 @@ public class HelpActivity extends AppCompatActivity {
 
     private Button btnGettingStarted,btnServices,btnSecurity;
     private RelativeLayout relativeGettingStarted,relativeServices,relativeSecurity;
+    private ImageView btnHelpBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,11 @@ public class HelpActivity extends AppCompatActivity {
 
         btnGettingStarted = findViewById(R.id.btnGettingStarted);
         relativeGettingStarted = findViewById(R.id.relativeGettingStarted);
+        btnHelpBack = findViewById(R.id.btnHelpCenterBack);
+
+        btnHelpBack.setOnClickListener(v->{
+            onBackPressed();
+        });
 
 
         btnGettingStarted.setOnClickListener(new View.OnClickListener() {

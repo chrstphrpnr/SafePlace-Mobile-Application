@@ -3,6 +3,7 @@ package org.tup.safeplace.Report.PoliceReport;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -48,6 +49,8 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.R;
+import org.tup.safeplace.Report.BarangayReport.BarangayReportActivity;
+import org.tup.safeplace.ReportsMenuList.ReportListActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -133,6 +136,7 @@ public class PoliceReportActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Bitmap bitmap = null;
     private EditText edtOtherIncident;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,7 +144,8 @@ public class PoliceReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_police);
 
         userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
-
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
 
         //ImageView
         evidence_1 = findViewById(R.id.police_evidence_1);
@@ -567,6 +572,9 @@ public class PoliceReportActivity extends AppCompatActivity {
 
 
     private void SubmitReport() {
+        dialog.setMessage("Submitting Report...");
+        dialog.show();
+
         String street = txtInputStreetReport.getText().toString().trim();
         String barangay = txtBarangay.getText().toString().trim();
         String police_substation = txtPoliceStation.getText().toString().trim();
@@ -589,16 +597,24 @@ public class PoliceReportActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
-                    startActivity(new Intent(PoliceReportActivity.this, SafePlaceHomeScreenActivity.class));
+                    startActivity(new Intent(PoliceReportActivity.this, ReportListActivity.class));
+                    finish();
+                    Toast.makeText(PoliceReportActivity.this, "Report Submitted Successfully", Toast.LENGTH_SHORT).show();
+
                 } catch (Error error) {
                     error.printStackTrace();
+                    dialog.dismiss();
+
                 }
+                dialog.dismiss();
 
 
             }
         }, error -> {
             Toast.makeText(PoliceReportActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
             error.printStackTrace();
+            dialog.dismiss();
+
         }) {
 
             @Override
