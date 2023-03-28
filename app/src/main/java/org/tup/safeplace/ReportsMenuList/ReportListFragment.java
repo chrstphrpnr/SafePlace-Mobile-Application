@@ -95,6 +95,7 @@ public class ReportListFragment extends Fragment {
     }
 
 
+
     private void showReportList(){
         dialog.setMessage("Loading...");
         dialog.show();
@@ -166,5 +167,7 @@ public class ReportListFragment extends Fragment {
 
 
     }
+
+
 
 }

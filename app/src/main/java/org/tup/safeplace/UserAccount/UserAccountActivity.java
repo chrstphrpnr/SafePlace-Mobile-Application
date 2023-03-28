@@ -183,6 +183,8 @@ public class UserAccountActivity extends AppCompatActivity {
 //            }
             dialog.dismiss();
 
+            Toast.makeText(this, "Successfully Changed Profile Picture", Toast.LENGTH_SHORT).show();
+
 
         }, error -> {
             Toast.makeText(this, "Please Try Again.", Toast.LENGTH_SHORT).show();
