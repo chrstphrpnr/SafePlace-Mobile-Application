@@ -244,6 +244,8 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
 
                         editor.putBoolean("isLoggedIn", true);
                         editor.putBoolean("verification_submitted", false);
+                        editor.putBoolean("isRegistered", true);
+
 
 
                         editor.apply();

@@ -205,6 +205,8 @@ public class SignInFragment extends Fragment {
                         editor.putString("img", object.getString("img"));
 
                         editor.putBoolean("isLoggedIn", true);
+                        editor.putBoolean("isRegistered", true);
+
 
                         editor.apply();
                     }

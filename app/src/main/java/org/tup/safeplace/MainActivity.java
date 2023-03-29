@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.tup.safeplace.Authentication.UserInfoRegisterActivity;
 import org.tup.safeplace.HomeScreen.SafePlaceHomeScreenActivity;
 import org.tup.safeplace.Onboarding.OnboardingActivity;
 
@@ -30,14 +31,29 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 SharedPreferences userPref = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
                 boolean isLoggedIn = userPref.getBoolean("isLoggedIn", false);
+                boolean isRegistered = userPref.getBoolean("isRegistered", false);
+
 
                 if (isLoggedIn) {
-                    startActivity(new Intent(MainActivity.this, SafePlaceHomeScreenActivity.class));
-                    finish();
+                    if(isRegistered){
+                        startActivity(new Intent(MainActivity.this, SafePlaceHomeScreenActivity.class));
+                        finish();
+                    }
+                    else{
+                        startActivity(new Intent(MainActivity.this, UserInfoRegisterActivity.class));
+                        finish();
+                    }
                 } else {
                     startActivity(new Intent(MainActivity.this, OnboardingActivity.class));
                     finish();
                 }
+
+
+
+
+
+
+
             }
         }, 1000);
 

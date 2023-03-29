@@ -298,6 +298,8 @@ public class SignUpFragment extends Fragment {
 
                         editor.putString("status", object.getString("status"));
 
+                        editor.putBoolean("isLoggedIn", true);
+
 
                         editor.apply();
                     }
