@@ -9,7 +9,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,6 +51,12 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.gun0912.tedpermission.normal.TedPermission;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,6 +74,7 @@ import org.tup.safeplace.Verification.VerificationActivity;
 import org.tup.safeplace.databinding.ActivityMapsBinding;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -103,9 +112,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
-        myLocation();
-
 
         return view;
 
@@ -405,7 +411,6 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
-
     private void myLocation(){
 
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -421,20 +426,31 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
             task.addOnSuccessListener(new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
-                    mMap.getUiSettings().setMyLocationButtonEnabled(false);
-                    mMap.getUiSettings().setZoomControlsEnabled(true);
-                    LatLng myLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
-                    mMap.addMarker(new MarkerOptions().position(myLocation).title("Current Location")
-                            .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(), R.drawable.ic_usermarker)
-                            ));
+                    try{
 
-                    float zoomLevel = 15.0f; //This goes up to 21
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, zoomLevel));
+                        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                        mMap.getUiSettings().setZoomControlsEnabled(true);
+                        LatLng myLocation = new LatLng(location.getLatitude(), location.getLongitude());
+
+                        mMap.addMarker(new MarkerOptions().position(myLocation).title("Current Location")
+                                .icon(bitmapDescriptorFromVector(getActivity().getApplicationContext(), R.drawable.ic_usermarker)
+                                ));
+
+                        float zoomLevel = 15.0f; //This goes up to 21
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, zoomLevel));
+
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
 
                 }
             });
+
+
 
             getHospitalsLocation();
             getBarangaysLocation();
@@ -458,16 +474,34 @@ public class HomeScreenFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    private void locationCondition(){
+        LocationManager locationManager = (LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
+
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+//             Prompt the user to turn on location services
+//            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//            startActivity(intent);
+            Toast.makeText(getContext(), "Please Turn on your Location", Toast.LENGTH_LONG).show();
+        }
+
+        else{
+            if(mMap != null){ //prevent crashing if the map doesn't exist yet (eg. on starting activity)
+                myLocation();
+            }
+            else{
+                mMap.clear();
+            }
+        }
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        if(mMap != null){ //prevent crashing if the map doesn't exist yet (eg. on starting activity)
-            myLocation();
-        }
-        else{
-            mMap.clear();
-        }
+        locationCondition();
     }
+
+
 
     //Converts Image in Drawable to Bitmap
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, int VectorResId) {

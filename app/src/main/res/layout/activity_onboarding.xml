@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Onboarding.OnboardingActivity">
+    tools:context=".Onboarding.OnboardingActivity"
+    android:layout_marginTop="@dimen/_20sdp"
+    >
 
 
     <com.google.android.material.button.MaterialButton

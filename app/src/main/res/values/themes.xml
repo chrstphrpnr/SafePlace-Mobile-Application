@@ -36,7 +36,7 @@
     </style>
 
     <style name="ActionMenuTextAppearance" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu">
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 

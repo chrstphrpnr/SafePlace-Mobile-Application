@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".HomeScreen.SafePlaceHomeScreenActivity"
-    tools:openDrawer="start">
+    >
 
 
     <!--    viewpager-->
@@ -76,8 +76,8 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/notif_cardview"
-                        android:layout_width="17dp"
-                        android:layout_height="16dp"
+                        android:layout_width="@dimen/_13sdp"
+                        android:layout_height="@dimen/_13sdp"
                         android:layout_gravity="right"
                         app:cardBackgroundColor="#E60A0A"
                         app:cardCornerRadius="@dimen/_200sdp"
@@ -97,6 +97,7 @@
                             android:layout_marginBottom="@dimen/_1sdp"
                             android:gravity="center"
                             android:text="0"
+                            android:textSize="@dimen/_10sdp"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
 
