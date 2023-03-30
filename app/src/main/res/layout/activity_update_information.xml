@@ -89,181 +89,225 @@
 
             />
 
-        <EditText
-            android:id="@+id/txtUpdateFName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutFNameUserInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/UpdateFNameTitle"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_below="@+id/UpdateFNameTitle"
+            android:background="@color/transparent"
+            app:boxStrokeWidth="0dp">
+
+            <EditText
+                android:id="@+id/txtUpdateFName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First Name"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/UpdateMNameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtUpdateFName"
+            android:layout_below="@+id/txtLayoutFNameUserInfo"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
             android:text="Middle Name"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="15sp"
-
             />
 
-        <EditText
-            android:id="@+id/txtUpdateMName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutMNameUserInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/UpdateMNameTitle"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
-            android:textColor="@color/safeplace_darkfont"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_below="@+id/UpdateMNameTitle"
+            android:background="@color/transparent"
+            app:boxStrokeWidth="0dp">
 
-            />
+            <EditText
+                android:id="@+id/txtUpdateMName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Middle Name"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
             android:id="@+id/UpdateLNameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtUpdateMName"
+            android:layout_below="@+id/txtLayoutMNameUserInfo"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
             android:text="Last Name"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="15sp"
-
             />
 
-        <EditText
-            android:id="@+id/txtUpdateLName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutLNameUserInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/UpdateLNameTitle"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_below="@+id/UpdateLNameTitle"
+            android:background="@color/transparent"
+            app:boxStrokeWidth="0dp">
 
-            />
+            <EditText
+                android:id="@+id/txtUpdateLName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:inputType="text"
+                android:textSize="15sp" />
 
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/UpdateGenderTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtUpdateLName"
+            android:layout_below="@+id/txtLayoutLNameUserInfo"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
             android:text="Gender"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="15sp"
-
             />
 
-
-        <EditText
-            android:id="@+id/txtUpdateGender"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/UpdateGenderTitle"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            app:boxBackgroundColor="#DEDEDE"
 
+            app:boxStrokeWidth="0dp"
+            android:layout_below="@+id/UpdateGenderTitle"
+            android:id="@+id/txtInputGender"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/dropDownGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/UpdateBirthdateTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtUpdateGender"
+            android:layout_below="@+id/txtInputGender"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
             android:text="Birthdate"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="15sp"
-
             />
 
-        <EditText
-            android:id="@+id/txtUpdateBirthdate"
+        <Button
+            android:id="@+id/btnUpdateBirthdate"
+            style="@style/Widget.AppCompat.Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="20dp"
+            android:background="#DFDFDF"
+            android:backgroundTint="#DFDFDF"
+            android:gravity="start"
+            android:onClick="openDatePicker"
+            android:text="2022-10-22"
+            android:textAllCaps="false"
+            android:textColor="#5B5B5B"
+            android:textSize="17sp"
+            app:backgroundTint="#DFDFDF"
             android:layout_below="@+id/UpdateBirthdateTitle"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
+            />
 
         <TextView
             android:id="@+id/UpdateAddressTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtUpdateBirthdate"
+            android:layout_below="@+id/btnUpdateBirthdate"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
             android:text="Address"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="15sp"
-
             />
 
-        <EditText
-            android:id="@+id/txtUpdateAddress"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutAddressUserInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/UpdateAddressTitle"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_below="@+id/UpdateAddressTitle"
+            android:background="@color/transparent"
+            app:boxStrokeWidth="0dp">
+
+            <EditText
+                android:id="@+id/txtUpdateAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
             android:id="@+id/UpdateContactTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtUpdateAddress"
+            android:layout_below="@+id/txtLayoutAddressUserInfo"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
             android:text="Contact"
             android:textColor="@color/safeplace_darkfont"
             android:textSize="15sp"
-
             />
 
-        <EditText
-            android:id="@+id/txtUpdateContact"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutContactUserInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/UpdateContactTitle"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/safeplace_textHint"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_below="@+id/UpdateContactTitle"
+            android:background="@color/transparent"
+            app:boxStrokeWidth="0dp">
+
+            <EditText
+                android:id="@+id/txtUpdateContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contact"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
             android:id="@+id/btnInfoSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtUpdateContact"
-            android:layout_marginHorizontal="35dp"
-            android:layout_marginVertical="10dp"
+            android:layout_below="@+id/txtLayoutContactUserInfo"
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
             android:background="@drawable/btn_round"
             android:text="SUBMIT"
             app:backgroundTint="@color/colorAccent" />

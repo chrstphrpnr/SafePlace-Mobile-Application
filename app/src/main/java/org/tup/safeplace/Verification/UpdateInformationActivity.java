@@ -1,9 +1,15 @@
 package org.tup.safeplace.Verification;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,14 +28,22 @@ import org.json.JSONObject;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class UpdateInformationActivity extends AppCompatActivity {
 
-    Button btnInfoSubmit;
+    Button btnInfoSubmit, btnUpdateBirthdate;
     private SharedPreferences userPref;
-    private EditText txtUpdateFName, txtUpdateMName, txtUpdateLName, txtUpdateGender, txtUpdateBirthdate, txtUpdateAddress, txtUpdateContact;
+    private EditText txtUpdateFName, txtUpdateMName, txtUpdateLName, txtUpdateAddress, txtUpdateContact;
+    private DatePickerDialog datePickerDialog;
+
+    String[] Male = {"Male", "Female"};
+    String[] Female = {"Female", "Male"};
+
+    AutoCompleteTextView genderDropdown;
+    ArrayAdapter<String> adapterItemsMale,adapterItemsFeMale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +56,19 @@ public class UpdateInformationActivity extends AppCompatActivity {
         txtUpdateFName = findViewById(R.id.txtUpdateFName);
         txtUpdateMName = findViewById(R.id.txtUpdateMName);
         txtUpdateLName = findViewById(R.id.txtUpdateLName);
-        txtUpdateGender = findViewById(R.id.txtUpdateGender);
-        txtUpdateBirthdate = findViewById(R.id.txtUpdateBirthdate);
+
+        genderDropdown = findViewById(R.id.dropDownGender);
+
+        btnUpdateBirthdate = findViewById(R.id.btnUpdateBirthdate);
         txtUpdateAddress = findViewById(R.id.txtUpdateAddress);
         txtUpdateContact = findViewById(R.id.txtUpdateContact);
         btnInfoSubmit = findViewById(R.id.btnInfoSubmit);
+
+        genderDropdown = findViewById(R.id.dropDownGender);
+        adapterItemsMale = new ArrayAdapter<String>(this, R.layout.gender_list_item, Male);
+        adapterItemsFeMale = new ArrayAdapter<String>(this, R.layout.gender_list_item, Female);
+
+
 
 
         btnInfoSubmit.setOnClickListener(v -> {
@@ -54,20 +76,52 @@ public class UpdateInformationActivity extends AppCompatActivity {
         });
 
 
+
+        initDatePicker();
         getData();
 
 
     }
+
+    private void initDatePicker(){
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(year, month, day);
+                btnUpdateBirthdate.setText(date);
+            }
+        };
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+    }
+
+    private String makeDateString(int year, int month, int day) {
+        return year + "-" + month + "-" + day;
+    }
+
+    public void openDatePicker(View view) {
+        datePickerDialog.show();
+    }
+
 
     private void UpdateData() {
 
         String fname = txtUpdateFName.getText().toString().trim();
         String mname = txtUpdateMName.getText().toString().trim();
         String lname = txtUpdateLName.getText().toString().trim();
-        String gender = txtUpdateGender.getText().toString().trim();
-        String birthdate = txtUpdateBirthdate.getText().toString().trim();
         String address = txtUpdateAddress.getText().toString().trim();
         String contact = txtUpdateContact.getText().toString().trim();
+        String birthdate = btnUpdateBirthdate.getText().toString().trim();
+        String gender = genderDropdown.getText().toString().trim();
+
+
+
 
         StringRequest request = new StringRequest(Request.Method.POST, API.update_information, response -> {
 
@@ -157,10 +211,33 @@ public class UpdateInformationActivity extends AppCompatActivity {
                         txtUpdateFName.setText(object.getString("fname"));
                         txtUpdateMName.setText(object.getString("mname"));
                         txtUpdateLName.setText(object.getString("lname"));
-                        txtUpdateGender.setText(object.getString("gender"));
-                        txtUpdateBirthdate.setText(object.getString("birthdate"));
                         txtUpdateAddress.setText(object.getString("address"));
                         txtUpdateContact.setText(object.getString("contact"));
+
+                        int year = Integer.parseInt(object.getString("birth_year"));
+                        int month = Integer.parseInt(object.getString("birth_month"));
+                        int day = Integer.parseInt(object.getString("birth_day"));
+
+                        btnUpdateBirthdate.setText(year + "-" + month + "-" + day);
+
+
+                        datePickerDialog.updateDate(year, month, day);
+
+
+                       String gender = object.getString("gender");
+
+                       if(gender.equals("Male")){
+                           genderDropdown.setText("Male");
+                           genderDropdown.setAdapter(adapterItemsMale);
+                       }
+                       if(gender.equals("Female")){
+                           genderDropdown.setText("Female");
+                           genderDropdown.setAdapter(adapterItemsFeMale);
+                       }
+
+
+
+
 
 
                     }

@@ -2,6 +2,7 @@ package org.tup.safeplace.UserAccount;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ public class ChangePasswordOTP extends AppCompatActivity {
     private String id = "";
 
     private ProgressDialog dialog;
+    private SharedPreferences userPref;
 
 
     @Override
@@ -49,9 +51,15 @@ public class ChangePasswordOTP extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
 
+        userPref = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+        String number = userPref.getString("contact", "");
 
         PhoneNumber = findViewById(R.id.edtPhoneNumber);
         oneTimePassword = findViewById(R.id.edtOTP);
+
+
+
+        PhoneNumber.setText(number);
 
         btnOTP = findViewById(R.id.btnOTP);
 
