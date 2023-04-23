@@ -149,5 +149,9 @@ public class API {
 
     public static String view_reports = "https://safeplacetaguig.com/api/view_reports";
 
+    public static String common_crime_year = "https://safeplacetaguig.com/api/common_crime_year";
+
+
+
 
 }
