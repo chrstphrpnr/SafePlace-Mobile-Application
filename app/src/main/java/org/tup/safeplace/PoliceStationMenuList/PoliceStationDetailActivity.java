@@ -107,7 +107,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
     }
 
     private void Sub1Year(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -145,7 +145,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub2Year(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -191,7 +191,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub3Year(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -237,7 +237,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub6Year(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -283,7 +283,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub7Year(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -329,7 +329,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub8Year(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -377,7 +377,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
 
     private void Sub1Month(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_month, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -415,7 +415,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub2Month(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_month, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -461,7 +461,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub3Month(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_month, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -507,7 +507,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub6Month(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_month, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -553,7 +553,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub7Month(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_month, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -599,7 +599,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
     }
     private void Sub8Month(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_month, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
