@@ -23,6 +23,8 @@ import org.json.JSONObject;
 import org.tup.safeplace.Constants.API;
 import org.tup.safeplace.R;
 
+import java.util.Calendar;
+
 public class PoliceStationDetailActivity extends AppCompatActivity {
     PoliceStation PoliceStation;
     private TextView tvDetailPoliceTitle, tvDetailPoliceName, tvDetailPoliceCommander, tvDetailPoliceLocation,
@@ -67,7 +69,6 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
             Picasso.get().load(API.URL + PoliceStation.getImg()).resize(500, 0).centerCrop().into(imgDetailsPoliceStation);
 
 
-            CurrentYear();
 
 
             if(police_station_name.equals("Fort Bonifacio Police Sub-Station 1")){
@@ -104,6 +105,11 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
         }
 
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        tvStatisticalReportCurrentYearTitle.setText(String.valueOf(year));
+
+
+
 
         btnBack.setOnClickListener(v -> {
             onBackPressed();
@@ -112,42 +118,6 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         });
     }
 
-
-    private void CurrentYear(){
-        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try{
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("policesub1");
-                    if (jsonObject.getBoolean("success")) {
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject object = jsonArray.getJSONObject(i);
-
-                            String year = object.getString("year");
-                            tvStatisticalReportCurrentYearTitle.setText(year);
-
-
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                10000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue.add(request);
-    }
 
     private void Sub1Year(){
         StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
