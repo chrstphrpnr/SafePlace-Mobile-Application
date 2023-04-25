@@ -10,39 +10,74 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        >
 
-        <RelativeLayout
-            android:id="@+id/policeStationActionBar"
+
+
+        <LinearLayout
+            android:id="@+id/policeStationdetailtoolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/_10sdp"
+            >
 
-            <ImageView
-                android:id="@+id/btnPoliceStationDetailBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_back" />
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/titleDetailPoliceStation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="POLICE STATION"
-                android:textSize="30dp" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/btnPoliceStationDetailBack"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
 
 
-        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Police SubStation"
+                            android:textColor="@color/black"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+        </LinearLayout>
+
+
+
+
 
 
         <TextView
             android:id="@+id/txtDetailPoliceStationNameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/policeStationActionBar"
+            android:layout_below="@+id/policeStationdetailtoolbar"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:gravity="center"
@@ -71,6 +106,7 @@
             android:drawableLeft="@drawable/ic_police"
             android:drawablePadding="10dp"
             android:text="Police Station Name"
+            android:textColor="#171616"
             android:textStyle="bold" />
 
         <TextView
@@ -82,6 +118,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
+            android:textColor="@color/safeplace_darkfont"
             android:textSize="20dp" />
 
         <TextView
@@ -94,6 +131,8 @@
             android:drawableLeft="@drawable/ic_police"
             android:drawablePadding="10dp"
             android:text="Police Station Commander"
+            android:textColor="#171616"
+
             android:textStyle="bold" />
 
         <TextView
@@ -105,6 +144,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
+            android:textColor="@color/safeplace_darkfont"
+
             android:textSize="20dp" />
 
 
@@ -118,6 +159,8 @@
             android:drawableLeft="@drawable/ic_location"
             android:drawablePadding="10dp"
             android:text="Location"
+            android:textColor="#171616"
+
             android:textStyle="bold" />
 
         <TextView
@@ -129,6 +172,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
+            android:textColor="@color/safeplace_darkfont"
+
             android:textSize="20dp" />
 
 
@@ -141,6 +186,7 @@
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/ic_clock"
             android:drawablePadding="10dp"
+            android:textColor="#171616"
             android:text="Schedule"
             android:textStyle="bold" />
 
@@ -153,6 +199,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
+            android:textColor="@color/safeplace_darkfont"
+
             android:textSize="20dp" />
 
 
@@ -165,6 +213,7 @@
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/ic_phone"
             android:drawablePadding="10dp"
+            android:textColor="#171616"
             android:text="Contact Details"
             android:textStyle="bold" />
 
@@ -178,7 +227,54 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
+            android:textColor="@color/safeplace_darkfont"
+
             android:textSize="20dp" />
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtStatisticalReportYearTitle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/txtDetailPoliceStationWebsite"-->
+<!--            android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:textColor="#171616"-->
+<!--            android:text="The Most Common Crimes for 2023"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_below="@+id/txtDetailPoliceStationWebsite"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/txtStatisticalReportYearLayout"
+            >
+
+            <TextView
+                android:id="@+id/txtStatisticalReportYearTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The Most Common Crimes for "
+                android:textColor="#171616"
+                android:textStyle="bold"
+            />
+
+            <TextView
+                android:id="@+id/txtStatisticalReportCurrentYearTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0000"
+                android:textColor="#171616"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
 
 
 
@@ -186,19 +282,38 @@
             android:id="@+id/txtStatisticalReportYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtDetailPoliceStationWebsite"
+            android:layout_below="@+id/txtStatisticalReportYearLayout"
             android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
+            android:textColor="@color/safeplace_darkfont"
+
             android:textSize="20dp" />
 
+
         <TextView
-            android:id="@+id/txtStatisticalReportMonth"
+            android:id="@+id/txtStatisticalReportMonthTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtStatisticalReportYear"
             android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="The Most Common Crimes for this month"
+            android:textStyle="bold"
+            android:textColor="#171616"
+
+            />
+
+        <TextView
+            android:id="@+id/txtStatisticalReportMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtStatisticalReportMonthTitle"
+            android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/safeplace_darkfont"
+
             android:layout_marginBottom="10dp"
             android:textSize="20dp" />
 

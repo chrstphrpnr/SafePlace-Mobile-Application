@@ -25,7 +25,8 @@ import org.tup.safeplace.R;
 
 public class PoliceStationDetailActivity extends AppCompatActivity {
     PoliceStation PoliceStation;
-    private TextView tvDetailPoliceTitle, tvDetailPoliceName, tvDetailPoliceCommander, tvDetailPoliceLocation, tvDetailPoliceSchedule, tvDetailPoliceWebsite, tvStatisticalReportYear, tvStatisticalReportMonth;
+    private TextView tvDetailPoliceTitle, tvDetailPoliceName, tvDetailPoliceCommander, tvDetailPoliceLocation,
+            tvDetailPoliceSchedule, tvDetailPoliceWebsite, tvStatisticalReportYear, tvStatisticalReportMonth,tvStatisticalReportCurrentYearTitle;
     private ImageView btnBack, imgDetailsPoliceStation;
 
     @Override
@@ -47,6 +48,8 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
         tvStatisticalReportMonth = findViewById(R.id.txtStatisticalReportMonth);
 
+        tvStatisticalReportCurrentYearTitle = findViewById(R.id.txtStatisticalReportCurrentYearTitle);
+
         Intent intent = getIntent();
 
         if (intent.getExtras() != null) {
@@ -62,6 +65,9 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
             tvDetailPoliceSchedule.setText(PoliceStation.getPolicestation_schedule());
             tvDetailPoliceWebsite.setText(PoliceStation.getPolicestation_contact());
             Picasso.get().load(API.URL + PoliceStation.getImg()).resize(500, 0).centerCrop().into(imgDetailsPoliceStation);
+
+
+            CurrentYear();
 
 
             if(police_station_name.equals("Fort Bonifacio Police Sub-Station 1")){
@@ -104,6 +110,43 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
             finish();
 
         });
+    }
+
+
+    private void CurrentYear(){
+        StringRequest request = new StringRequest(Request.Method.GET, API.psub_common_crime_year, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("policesub1");
+                    if (jsonObject.getBoolean("success")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            String year = object.getString("year");
+                            tvStatisticalReportCurrentYearTitle.setText(year);
+
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
     }
 
     private void Sub1Year(){
@@ -644,6 +687,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
+
 
 
 
