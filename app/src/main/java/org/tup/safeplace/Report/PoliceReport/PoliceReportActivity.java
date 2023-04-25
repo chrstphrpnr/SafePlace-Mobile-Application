@@ -125,7 +125,7 @@ public class PoliceReportActivity extends AppCompatActivity {
                     "police_substation8",
 
             };
-    String[] incident_type_array = {"Physical Injury", "Thief", "Robbery","Others"};
+    String[] incident_type_array = {"Murder", "Homicide", "Robbery","Theft", "Physical Injury", "Rape", "Carnapping Motor Vehicle", "Carnapping Motorcycle", "Others"};
     ArrayAdapter<String> incidentAdapterItems;
     TextView txtchkbx, txtBarangay, txtPoliceStation, txtNearestBarangay, txtNearestPoliceStation,txtOtherIncident;
     CheckBox anonymousCheckBox;

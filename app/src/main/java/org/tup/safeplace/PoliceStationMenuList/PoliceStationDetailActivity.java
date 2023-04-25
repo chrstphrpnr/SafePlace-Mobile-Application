@@ -25,7 +25,7 @@ import org.tup.safeplace.R;
 
 public class PoliceStationDetailActivity extends AppCompatActivity {
     PoliceStation PoliceStation;
-    private TextView tvDetailPoliceTitle, tvDetailPoliceName, tvDetailPoliceCommander, tvDetailPoliceLocation, tvDetailPoliceSchedule, tvDetailPoliceWebsite,tvStatisticalReport;
+    private TextView tvDetailPoliceTitle, tvDetailPoliceName, tvDetailPoliceCommander, tvDetailPoliceLocation, tvDetailPoliceSchedule, tvDetailPoliceWebsite, tvStatisticalReportYear, tvStatisticalReportMonth;
     private ImageView btnBack, imgDetailsPoliceStation;
 
     @Override
@@ -43,7 +43,9 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         tvDetailPoliceWebsite = findViewById(R.id.txtDetailPoliceStationWebsite);
         imgDetailsPoliceStation = findViewById(R.id.imgDetailsPoliceStation);
 
-        tvStatisticalReport = findViewById(R.id.txtStatisticalReport);
+        tvStatisticalReportYear = findViewById(R.id.txtStatisticalReportYear);
+
+        tvStatisticalReportMonth = findViewById(R.id.txtStatisticalReportMonth);
 
         Intent intent = getIntent();
 
@@ -63,22 +65,33 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
 
             if(police_station_name.equals("Fort Bonifacio Police Sub-Station 1")){
-                Sub1();
+                Sub1Year();
+                Sub1Month();
             }
             if(police_station_name.equals("Western Bicutan Police Sub-Station 2")){
-                Sub2();
+                Sub2Year();
+                Sub2Month();
+
             }
             if(police_station_name.equals("Sub-Station 3 Pinagsama")){
-                Sub3();
+                Sub3Year();
+                Sub3Month();
+
             }
             if(police_station_name.equals("Police Sub-Station 6, Signal Village")){
-                Sub6();
+                Sub6Year();
+                Sub6Month();
+
             }
             if(police_station_name.equals("MCU Sub-Station 7 Taguig City Police Station")){
-                Sub7();
+                Sub7Year();
+                Sub7Month();
+
             }
             if(police_station_name.equals("Sub-Station 8 Tanyag Daang Hari")){
-                Sub8();
+                Sub8Year();
+                Sub8Month();
+
             }
 
 
@@ -93,7 +106,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void Sub1(){
+    private void Sub1Year(){
         StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -107,16 +120,8 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
                             String incident_type = object.getString("incident_type");
 
-                            Log.d( "sample" , incident_type);
-
-
-
-
-                            tvStatisticalReport.append(countingNumber+". "+incident_type);
-                            tvStatisticalReport.append("\n");
-
-
-
+                            tvStatisticalReportYear.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportYear.append("\n");
 
                         }
                     }
@@ -139,7 +144,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
-    private void Sub2(){
+    private void Sub2Year(){
         StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -158,8 +163,8 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
 
 
-                            tvStatisticalReport.append(countingNumber+". "+incident_type);
-                            tvStatisticalReport.append("\n");
+                            tvStatisticalReportYear.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportYear.append("\n");
 
 
 
@@ -185,7 +190,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
-    private void Sub3(){
+    private void Sub3Year(){
         StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -204,8 +209,8 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
 
 
-                            tvStatisticalReport.append(countingNumber+". "+incident_type);
-                            tvStatisticalReport.append("\n");
+                            tvStatisticalReportYear.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportYear.append("\n");
 
 
 
@@ -231,7 +236,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
-    private void Sub6(){
+    private void Sub6Year(){
         StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -250,8 +255,8 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
 
 
-                            tvStatisticalReport.append(countingNumber+". "+incident_type);
-                            tvStatisticalReport.append("\n");
+                            tvStatisticalReportYear.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportYear.append("\n");
 
 
 
@@ -277,7 +282,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
-    private void Sub7(){
+    private void Sub7Year(){
         StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -296,8 +301,8 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
 
 
-                            tvStatisticalReport.append(countingNumber+". "+incident_type);
-                            tvStatisticalReport.append("\n");
+                            tvStatisticalReportYear.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportYear.append("\n");
 
 
 
@@ -323,7 +328,7 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
-    private void Sub8(){
+    private void Sub8Year(){
         StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_year, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -342,8 +347,8 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
 
 
 
-                            tvStatisticalReport.append(countingNumber+". "+incident_type);
-                            tvStatisticalReport.append("\n");
+                            tvStatisticalReportYear.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportYear.append("\n");
 
 
 
@@ -369,5 +374,277 @@ public class PoliceStationDetailActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
+
+
+    private void Sub1Month(){
+        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("policesub1");
+                    if (jsonObject.getBoolean("success")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            int countingNumber = i + 1;
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            String incident_type = object.getString("incident_type");
+
+                            tvStatisticalReportMonth.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportMonth.append("\n");
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
+
+    }
+    private void Sub2Month(){
+        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("policesub2");
+                    if (jsonObject.getBoolean("success")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            int countingNumber = i + 1;
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            String incident_type = object.getString("incident_type");
+
+                            Log.d( "sample" , incident_type);
+
+
+
+
+                            tvStatisticalReportMonth.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportMonth.append("\n");
+
+
+
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
+
+    }
+    private void Sub3Month(){
+        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("policesub3");
+                    if (jsonObject.getBoolean("success")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            int countingNumber = i + 1;
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            String incident_type = object.getString("incident_type");
+
+                            Log.d( "sample" , incident_type);
+
+
+
+
+                            tvStatisticalReportMonth.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportMonth.append("\n");
+
+
+
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
+
+    }
+    private void Sub6Month(){
+        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("policesub6");
+                    if (jsonObject.getBoolean("success")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            int countingNumber = i + 1;
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            String incident_type = object.getString("incident_type");
+
+                            Log.d( "sample" , incident_type);
+
+
+
+
+                            tvStatisticalReportMonth.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportMonth.append("\n");
+
+
+
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
+
+    }
+    private void Sub7Month(){
+        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("policesub7");
+                    if (jsonObject.getBoolean("success")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            int countingNumber = i + 1;
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            String incident_type = object.getString("incident_type");
+
+                            Log.d( "sample" , incident_type);
+
+
+
+
+                            tvStatisticalReportMonth.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportMonth.append("\n");
+
+
+
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
+
+    }
+    private void Sub8Month(){
+        StringRequest request = new StringRequest(Request.Method.GET, API.common_crime_month, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("policesub8");
+                    if (jsonObject.getBoolean("success")) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            int countingNumber = i + 1;
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            String incident_type = object.getString("incident_type");
+
+                            Log.d( "sample" , incident_type);
+
+
+
+
+                            tvStatisticalReportMonth.append(countingNumber+". "+incident_type);
+                            tvStatisticalReportMonth.append("\n");
+
+
+
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
+
+    }
+
+
 
 }

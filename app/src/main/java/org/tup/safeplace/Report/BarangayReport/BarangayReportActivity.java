@@ -99,7 +99,7 @@ public class BarangayReportActivity extends AppCompatActivity {
                     "barangay_upperbicutan",
                     "barangay_westernbicutan"
             };
-    String[] incident_type_array = {"Physical Injury", "Thief", "Robbery","Others"};
+    String[] incident_type_array = {"Murder", "Homicide", "Robbery","Theft", "Physical Injury", "Rape", "Carnapping Motor Vehicle", "Carnapping Motorcycle", "Others"};
     ArrayAdapter<String> incidentAdapterItems;
     TextView txtchkbx, txtBarangay;
     CheckBox anonymousCheckBox;
