@@ -454,7 +454,7 @@ public class BarangayReportActivity extends AppCompatActivity {
         if (anonymousCheckBox.isChecked()) {
             txtchkbx.setText("anonymous");
         } else {
-            txtchkbx.setText("not_anonymous");
+            txtchkbx.setText("not anonymous");
         }
 
         String complainant_identity = txtchkbx.getText().toString().trim();

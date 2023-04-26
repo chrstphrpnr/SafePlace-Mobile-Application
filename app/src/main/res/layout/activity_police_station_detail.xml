@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/safeplace_bgcolor"
     tools:context=".PoliceStationMenuList.PoliceStationDetailActivity">
 
 
@@ -107,6 +108,7 @@
             android:drawablePadding="10dp"
             android:text="Police Station Name"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
 
         <TextView
@@ -118,8 +120,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
-            android:textSize="20dp" />
+            android:textColor="#4C4D53"
+            android:textSize="@dimen/_13sdp"
+            />
 
         <TextView
             android:id="@+id/txtDetailPoliceStationCaptionCommander"
@@ -131,6 +134,7 @@
             android:drawableLeft="@drawable/ic_police"
             android:drawablePadding="10dp"
             android:text="Police Station Commander"
+            android:textSize="@dimen/_15sdp"
             android:textColor="#171616"
 
             android:textStyle="bold" />
@@ -144,9 +148,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
-
-            android:textSize="20dp" />
+            android:textColor="#4C4D53"
+            android:textSize="@dimen/_13sdp"
+            />
 
 
         <TextView
@@ -160,6 +164,7 @@
             android:drawablePadding="10dp"
             android:text="Location"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
 
             android:textStyle="bold" />
 
@@ -172,9 +177,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
+            android:textColor="#4C4D53"
 
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
 
         <TextView
@@ -188,6 +194,8 @@
             android:drawablePadding="10dp"
             android:textColor="#171616"
             android:text="Schedule"
+            android:textSize="@dimen/_15sdp"
+
             android:textStyle="bold" />
 
         <TextView
@@ -199,9 +207,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
+            android:textColor="#4C4D53"
 
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
 
         <TextView
@@ -215,6 +224,8 @@
             android:drawablePadding="10dp"
             android:textColor="#171616"
             android:text="Contact Details"
+            android:textSize="@dimen/_15sdp"
+
             android:textStyle="bold" />
 
 
@@ -227,9 +238,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
+            android:textColor="#4C4D53"
 
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
 
         <LinearLayout
@@ -239,8 +251,8 @@
             android:orientation="horizontal"
             android:layout_below="@+id/txtDetailPoliceStationWebsite"
             android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:id="@+id/txtStatisticalReportYearLayout"
             >
 
@@ -251,7 +263,9 @@
                 android:text="The Most Common Crimes for "
                 android:textColor="#171616"
                 android:textStyle="bold"
-            />
+                android:textSize="@dimen/_15sdp"
+
+                />
 
             <TextView
                 android:id="@+id/txtStatisticalReportCurrentYearTitle"
@@ -259,6 +273,8 @@
                 android:layout_height="wrap_content"
                 android:text="0000"
                 android:textColor="#171616"
+                android:textSize="@dimen/_15sdp"
+
                 android:textStyle="bold"/>
 
         </LinearLayout>
@@ -271,9 +287,10 @@
             android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/safeplace_darkfont"
+            android:textColor="#4C4D53"
 
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
 
         <TextView
@@ -282,11 +299,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtStatisticalReportYear"
             android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:text="The Most Common Crimes for this month"
+            android:layout_marginTop="10dp"
+            android:text="The Most Common Crimes For This Month"
             android:textStyle="bold"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
 
             />
 
@@ -297,10 +314,11 @@
             android:layout_below="@+id/txtStatisticalReportMonthTitle"
             android:layout_alignLeft="@+id/txtDetailPoliceStationCaptionWebsite"
             android:layout_marginTop="5dp"
-            android:textColor="@color/safeplace_darkfont"
-
             android:layout_marginBottom="10dp"
-            android:textSize="20dp" />
+            android:textColor="#4C4D53"
+
+            android:textSize="@dimen/_13sdp"
+            />
 
 
     </RelativeLayout>

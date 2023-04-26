@@ -123,8 +123,9 @@ public class ReportDetailsActivity extends AppCompatActivity {
         else {
 
             if(Barangay.equals("barangay_centralbicutan")){
-                txtBarangayDetails.setText(Address+", "+"Barangay Central Signal Village");
+                txtBarangayDetails.setText(Address+", "+"Barangay Central Bicutan Village");
             }
+
 
             if(Barangay.equals("barangay_centralsignalvillage")){
                 txtBarangayDetails.setText(Address+", "+"Barangay Central Signal Village");

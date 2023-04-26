@@ -91,6 +91,8 @@
             android:drawablePadding="10dp"
             android:text="Barangay Name"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
+
             android:textStyle="bold" />
 
         <TextView
@@ -102,8 +104,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
-            android:textSize="20dp" />
+            android:textColor="#4C4D53"
+            android:textSize="@dimen/_13sdp"
+            />
 
         <TextView
             android:id="@+id/txtDetailCaptionBarangayCaptain"
@@ -116,6 +119,7 @@
             android:drawablePadding="10dp"
             android:text="Barangay Captain"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
 
             android:textStyle="bold" />
 
@@ -128,9 +132,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
+            android:textColor="#4C4D53"
 
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
         <TextView
             android:id="@+id/txtDetailBarangayCaptionLocation"
@@ -143,6 +148,7 @@
             android:drawablePadding="10dp"
             android:text="Location"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
 
             android:textStyle="bold" />
 
@@ -155,9 +161,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
+            android:textColor="#4C4D53"
 
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
         <TextView
             android:id="@+id/txtDetailBarangayCaptionSchedule"
@@ -170,6 +177,7 @@
             android:drawablePadding="10dp"
             android:text="Barangay Working Hours"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
 
             android:textStyle="bold" />
 
@@ -183,9 +191,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
+            android:textColor="#4C4D53"
 
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
         <TextView
             android:id="@+id/txtDetailBarangayCaptionContact"
@@ -198,6 +207,7 @@
             android:drawablePadding="10dp"
             android:text="Contact Details"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
 
             android:textStyle="bold" />
 
@@ -210,9 +220,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="TEST"
-            android:textColor="@color/safeplace_darkfont"
+            android:textColor="#4C4D53"
 
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -221,7 +232,7 @@
             android:orientation="horizontal"
             android:layout_below="@+id/txtDetailBarangayContact"
             android:layout_alignLeft="@+id/txtDetailBarangayContact"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:id="@+id/txtBrgyStatisticalReportYearLayout"
             >
@@ -233,6 +244,8 @@
                 android:text="The Most Common Crimes for "
                 android:textColor="#171616"
                 android:textStyle="bold"
+                android:textSize="@dimen/_15sdp"
+
                 />
 
             <TextView
@@ -241,6 +254,8 @@
                 android:layout_height="wrap_content"
                 android:text="0000"
                 android:textColor="#171616"
+                android:textSize="@dimen/_15sdp"
+
                 android:textStyle="bold"/>
 
         </LinearLayout>
@@ -251,10 +266,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtBrgyStatisticalReportYearLayout"
             android:layout_alignLeft="@+id/txtDetailBarangayContact"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textColor="@color/safeplace_darkfont"
-            android:textSize="20dp"
+            android:textSize="@dimen/_13sdp"
             />
 
 
@@ -269,10 +284,12 @@
             android:text="The Most Common Crimes For This Month"
             android:textStyle="bold"
             android:textColor="#171616"
+            android:textSize="@dimen/_15sdp"
 
             />
 
         <TextView
+
             android:id="@+id/txtStatisticalReportMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -281,7 +298,8 @@
             android:layout_marginTop="5dp"
             android:textColor="@color/safeplace_darkfont"
             android:layout_marginBottom="10dp"
-            android:textSize="20dp" />
+            android:textSize="@dimen/_13sdp"
+            />
 
 
 

@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,9 @@ public class ReportListFragment extends Fragment {
     private ProgressDialog dialog;
 
 
+    private TextView txtNoReport;
+
+
 
 
     @Override
@@ -64,6 +68,8 @@ public class ReportListFragment extends Fragment {
         dialog.setCancelable(false);
 
         btnMenuListBarangay = view.findViewById(R.id.btnMenuListBarangay);
+
+        txtNoReport = view.findViewById(R.id.txtNoReports);
 
 
         btnMenuListBarangay.setOnClickListener(v->{
@@ -78,9 +84,6 @@ public class ReportListFragment extends Fragment {
         listViewReport.setAdapter(adapter);
 
 
-
-
-
         listViewReport.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -90,6 +93,10 @@ public class ReportListFragment extends Fragment {
 
 
         showReportList();
+
+
+
+
 
         return view;
     }
@@ -133,6 +140,17 @@ public class ReportListFragment extends Fragment {
 
                         adapter.notifyDataSetChanged();
 
+//                        if(reportArrayList.isEmpty()){
+//                            System.out.print("Empty");
+//                        }
+//
+//                        if(adapter.isEmpty()){
+//                            System.out.print("Empty");
+//                        }
+//
+//
+
+
 
 
                         dialog.dismiss();
@@ -142,6 +160,11 @@ public class ReportListFragment extends Fragment {
                     dialog.dismiss();
 
                 }
+
+                if(jsonArray.length() == 0){
+                    txtNoReport.setVisibility(View.VISIBLE);
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 dialog.dismiss();

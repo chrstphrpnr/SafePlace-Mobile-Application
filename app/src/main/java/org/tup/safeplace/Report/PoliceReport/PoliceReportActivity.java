@@ -215,7 +215,7 @@ public class PoliceReportActivity extends AppCompatActivity {
                 }
 
                 if (txtBarangay.getText().toString().equals("barangay_katuparan")) {
-                    txtNearestPoliceStation.setText("Nearest Police Substation: Police Substation 5");
+                    txtNearestPoliceStation.setText("Nearest Police Substation: Police Substation 6");
                 }
 
                 if (txtBarangay.getText().toString().equals("barangay_maharlikavillage")) {
@@ -586,7 +586,7 @@ public class PoliceReportActivity extends AppCompatActivity {
         if (anonymousCheckBox.isChecked()) {
             txtchkbx.setText("anonymous");
         } else {
-            txtchkbx.setText("not_anonymous");
+            txtchkbx.setText("not anonymous");
         }
 
         String complainant_identity = txtchkbx.getText().toString().trim();
