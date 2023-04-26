@@ -123,15 +123,13 @@ public class PoliceCallScreenFragment extends Fragment {
 
 
                             if (status.equals("unverified_user")) {
-                                Toast.makeText(getContext(), "Register First", Toast.LENGTH_SHORT).show();
-//                                showPopupWindow(view);
-
-                            } else {
-//                                startActivity(new Intent(getContext(), PoliceReportActivity.class));
-//                                Toast.makeText(getContext(), "Report Here", Toast.LENGTH_SHORT).show();
-//                                startActivity(intent);
+                                Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
                                 callLog();
 
+                            }
+                            if (status.equals("verified_user")) {
+                                Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
+                                callLog();
                             }
 
 

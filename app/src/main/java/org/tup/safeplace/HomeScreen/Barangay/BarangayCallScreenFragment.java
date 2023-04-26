@@ -115,10 +115,12 @@ public class BarangayCallScreenFragment extends Fragment {
 
 
                             if (status.equals("unverified_user")) {
-                                Toast.makeText(getContext(), "Register First", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
+                                callLog();
 
-                            } else {
-
+                            }
+                            if (status.equals("verified_user")) {
+                                Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
                                 callLog();
                             }
 

@@ -58,7 +58,19 @@ public class IdentificationCardInformationActivity extends AppCompatActivity {
 
     Bitmap bitmapfront, bitmapback;
     String encodedimagefront, encodedimageback;
-    String[] identificationCards = {"National ID", "School ID", "Postal ID"};
+    String[] identificationCards =
+    {
+            "Driver’s License",
+            "UMID",
+            "Philhealth ID",
+            "Philippine Postal ID" ,
+            "Passport",
+            "SSS ID",
+            "PRC ID",
+            "Voter’s ID",
+            "School ID"
+
+    };
     AutoCompleteTextView autoCompleteIdList;
     ArrayAdapter<String> adapterItems;
     private Button btnContinue;
