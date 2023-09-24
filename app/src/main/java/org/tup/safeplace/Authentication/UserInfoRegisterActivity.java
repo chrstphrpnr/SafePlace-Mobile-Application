@@ -51,8 +51,12 @@ import org.tup.safeplace.R;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -197,6 +201,7 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
     }
 
     private boolean validate() {
+        String selectedDate = btnDatePicker.getText().toString();
 
         if (txtAddress.getText().toString().isEmpty()) {
             layoutAddress.setErrorEnabled(true);
@@ -204,13 +209,34 @@ public class UserInfoRegisterActivity extends AppCompatActivity {
             return false;
         }
 
-
         if (txtContact.getText().toString().isEmpty()) {
             layoutContact.setErrorEnabled(true);
             layoutContact.setError("Contact is Required");
             return false;
         }
 
+        // Calculate age based on selected birthdate
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        Date birthDate;
+        try {
+            birthDate = sdf.parse(selectedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false; // Handle date parsing error
+        }
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(birthDate);
+        int birthYear = cal.get(Calendar.YEAR);
+
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int age = currentYear - birthYear;
+
+        if (age < 16) {
+            // Display an error message for age validation
+            Toast.makeText(this, "Age must be at least 16 years old.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         return true;
     }
